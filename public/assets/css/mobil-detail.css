@@ -92,6 +92,50 @@
 /* Keep the real local brand mark visible on the dark detail card without adding a box. */
 .detail-brand-logo img{filter:brightness(0) invert(1);}
 
+/* Keep the brand mark, vehicle brand text, and favourite control visually grouped. */
+.detail-brand-identity {
+    grid-template-columns: 48px minmax(0, max-content) 44px;
+    gap: 12px;
+}
+
+.detail-brand-logo {
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
+}
+
+.detail-brand-logo img {
+    width: 48px;
+    height: 48px;
+    max-width: 48px;
+}
+
+.detail-brand-identity > div {
+    min-width: 0;
+}
+
+.detail-brand-identity .detail-favorite {
+    margin-left: 0;
+}
+
+@media (max-width: 600px) {
+    .detail-brand-identity {
+        grid-template-columns: 48px minmax(0, 1fr) 40px;
+        gap: 10px;
+    }
+
+    .detail-brand-logo,
+    .detail-brand-logo img {
+        width: 48px;
+        height: 40px;
+        max-width: 48px;
+    }
+
+    .detail-brand-logo {
+        flex-basis: 48px;
+    }
+}
+
 /* WhatsApp CTA uses the recognizable green brand mark with a white glyph. */
 .detail-button-primary .detail-whatsapp-icon{color:#fff;background:#25D366;border-radius:50%;padding:2px;stroke-width:1.85;}
 

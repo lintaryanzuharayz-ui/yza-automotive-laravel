@@ -69,7 +69,7 @@
     <title>{{ $mobil->merk }} {{ $mobil->model }} · YZA Automotive</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/public-navbar.css') }}?v=public-navbar-20261004">
-    <link rel="stylesheet" href="{{ asset('assets/css/mobil-detail.css') }}?v=detail-wide-20261011">
+    <link rel="stylesheet" href="{{ asset('assets/css/mobil-detail.css') }}?v=detail-wide-20261011b">
 </head>
 <body class="yza-detail-page">
     <div class="detail-orb detail-orb-one"></div><div class="detail-orb detail-orb-two"></div>
