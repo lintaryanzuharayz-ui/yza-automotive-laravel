@@ -34,7 +34,8 @@
         'kosong', 'habis', 'sold_out', 'sold-out', 'tidak_tersedia', 'tidak tersedia' => ['label' => 'Kosong', 'class' => 'is-empty'],
         default => ['label' => ucwords(str_replace(['_', '-'], ' ', $statusKey)), 'class' => 'is-neutral'],
     };
-    $isAvailable = $statusMeta['class'] === 'is-available';
+    $hasVehicleId = filled($mobil->getAttribute('id_mobil'));
+    $isAvailable = $statusMeta['class'] === 'is-available' && $hasVehicleId;
     $isPreOrder = $statusMeta['class'] === 'is-preorder';
     $whatsappText = 'Halo YZA Automotive, saya ingin konsultasi mengenai '.$mobil->merk.' '.$mobil->model.'.';
     $uiIcon = static function (string $name): string {
