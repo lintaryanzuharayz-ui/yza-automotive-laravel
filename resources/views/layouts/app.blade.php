@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', config('app.name'))</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/vehicle-badges.css') }}?v=stock-badges-20261010">
     @php
         $isMemberShell = auth()->check() && auth()->user()->roleName() === 'pelanggan' && request()->routeIs('pelanggan.*') && !View::hasSection('member-portal');
     @endphp

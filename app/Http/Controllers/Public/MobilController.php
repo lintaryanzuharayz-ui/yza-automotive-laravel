@@ -5,15 +5,16 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use App\Models\Mobil;
 use App\Services\VehicleGalleryService;
+use App\Services\VehicleAvailabilityService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class MobilController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, VehicleAvailabilityService $availabilityService)
     {
         $galleryService = app(VehicleGalleryService::class);
-        $allCars = Mobil::query()->where('status', 'tersedia')->with('foto')->get()->map(function (Mobil $car) use ($galleryService): Mobil {
+        $allCars = Mobil::query()->where('status', '!=', 'nonaktif')->with('foto')->get()->map(function (Mobil $car) use ($galleryService): Mobil {
             $identity = strtolower(trim($car->merk.' '.$car->model.' '.$car->tipe));
             if (str_contains($identity, 'toyota gr supra')) {
                 $car->setAttribute('showcase_slug', 'toyota-gr-supra');
@@ -29,6 +30,7 @@ class MobilController extends Controller
             }
             return $car;
         })->filter(fn (Mobil $car): bool => !str_starts_with((string) $car->kode_mobil, 'PREM-') || $car->getAttribute('gallery_ready') !== false)->concat($this->catalogShowcases());
+        $allCars = $availabilityService->decorate($allCars);
         $cars = $allCars;
         $search = trim((string) $request->input('q', ''));
         $condition = (string) $request->input('kondisi', '');
@@ -76,11 +78,12 @@ class MobilController extends Controller
         ]);
     }
 
-    public function memberShow(Request $request, Mobil $mobil, VehicleGalleryService $galleryService)
+    public function memberShow(Request $request, Mobil $mobil, VehicleGalleryService $galleryService, VehicleAvailabilityService $availabilityService)
     {
-        abort_unless(in_array(strtolower((string) $mobil->status), ['tersedia', 'pre_order', 'pre-order', 'preorder', 'kosong', 'habis', 'sold_out', 'sold-out', 'tidak_tersedia', 'tidak tersedia'], true), 404);
+        abort_unless(strtolower((string) $mobil->status) !== 'nonaktif', 404);
         abort_if(str_starts_with((string) $mobil->kode_mobil, 'PREM-') && !$galleryService->isReady($mobil), 404);
         $mobil->load('foto');
+        $mobil->setAttribute('availability', $availabilityService->for($mobil));
         return view('pelanggan.katalog-mobil.member-show', [
             'mobil' => $mobil,
             'galleryData' => $galleryService->for($mobil),
@@ -152,11 +155,12 @@ class MobilController extends Controller
         return $this->catalogShowcases()->concat($premium)->values();
     }
 
-    public function show(Request $request, Mobil $mobil, VehicleGalleryService $galleryService)
+    public function show(Request $request, Mobil $mobil, VehicleGalleryService $galleryService, VehicleAvailabilityService $availabilityService)
     {
-        abort_unless($mobil->status === 'tersedia', 404);
+        abort_unless($mobil->status !== 'nonaktif', 404);
         abort_if(str_starts_with((string) $mobil->kode_mobil, 'PREM-') && !$galleryService->isReady($mobil), 404);
         $mobil->load('foto');
+        $mobil->setAttribute('availability', $availabilityService->for($mobil));
         return view('mobil.show', [
             'mobil' => $mobil,
             'galleryData' => $galleryService->for($mobil),

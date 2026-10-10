@@ -47,6 +47,7 @@
     $title = trim($brand.' '.$mobil->model);
     $displayTitle = $title.($variantLabel !== '' ? ' · '.$variantLabel : '');
     $brandLogo = \App\Support\BrandLogo::path($brand, $mobil->model);
+    $availability = $mobil->getAttribute('availability') ?? app(\App\Services\VehicleAvailabilityService::class)->for($mobil);
 @endphp
 <article class="catalog-card {{ $isPerformance ? 'catalog-card-performance' : '' }}">
     <a class="catalog-card-image" href="{{ $detailUrl }}">
@@ -54,6 +55,8 @@
         <span class="catalog-card-badges">
             @if($mobil->kondisi === 'baru')<span class="catalog-condition">BARU</span>@endif
             @if($isPerformance)<span class="catalog-sport-badge">SPORT HIGHLIGHT</span>@endif
+            @if($availability['is_limited_edition'] ?? false)<span class="vehicle-limited-badge">LIMITED EDITION</span>@endif
+            <span class="vehicle-stock-badge {{ $availability['status_class'] ?? 'is-available' }}">{{ $availability['label'] ?? 'TERSEDIA' }}</span>
         </span>
     </a>
     <button class="catalog-heart" type="button" data-favorite-id="{{ $mobil->id_mobil }}" data-favorite-name="{{ $title }}" aria-label="Tambahkan {{ $title }} ke favorit" aria-pressed="false">♡</button>

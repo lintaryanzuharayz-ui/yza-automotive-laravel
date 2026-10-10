@@ -14,7 +14,7 @@ class Mobil extends Model
 
     protected function casts(): array
     {
-        return ['tahun' => 'integer', 'kilometer' => 'integer', 'harga_beli' => 'decimal:2', 'harga_jual' => 'decimal:2', 'tanggal_masuk' => 'date', 'id_mobil' => 'integer'];
+        return ['tahun' => 'integer', 'kilometer' => 'integer', 'harga_beli' => 'decimal:2', 'harga_jual' => 'decimal:2', 'tanggal_masuk' => 'date', 'id_mobil' => 'integer', 'is_limited_edition' => 'boolean'];
     }
 
     public function getRouteKeyName(): string { return 'id_mobil'; }
