@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/showroom.css?v=nav-pointer-fix-20261010b') }}">
 </head>
 <body class="showroom landing">
+{{-- Legacy intro removed from the initial landing render. --}}
+{{--
 <div id="yza-intro" class="yza-intro" aria-label="Welcome to YZA Automotive" role="dialog">
     <div class="yza-intro-backdrop" aria-hidden="true"><img src="{{ asset('assets/images/hero/yza-intro-reference-match.png') }}" alt=""></div>
     <div class="yza-intro-vignette" aria-hidden="true"></div>
@@ -25,6 +27,7 @@
     <div class="yza-intro-door yza-intro-door--left" aria-hidden="true"></div><div class="yza-intro-door yza-intro-door--right" aria-hidden="true"></div>
 </div>
 <noscript><style>#yza-intro{display:none!important}</style></noscript>
+--}}
 <x-public-navbar :member-state="$landingMemberState ?? 'guest'" />
 <main id="beranda">
 <section class="show-hero"><img class="hero-showroom-mark" src="{{ asset('assets/images/branding/logo-yza.png') }}" alt="YZA Automotive showroom" aria-hidden="true"><div class="show-hero-inner"><div class="hero-copy-premium"><span class="show-kicker">YZA AUTOMOTIVE SHOWROOM</span><h1>Temukan<br><em>Mobil Impian</em><br>Anda</h1><p>Koleksi mobil berkualitas, layanan profesional, dan pengalaman otomotif terbaik hanya di YZA Automotive.</p><div class="hero-buttons"><a class="show-cta" href="#mobil">Lihat Koleksi Mobil&nbsp; →</a><a class="show-ghost" href="#janji-temu">Jadwalkan Janji Temu</a></div><div class="hero-proof-line"><span><b>●</b> Koleksi pilihan terkurasi</span><span><b>●</b> Layanan profesional</span></div></div><div class="hero-car-stage">@php($featured = $featuredHeroCar ?? null)<div class="hero-podium-back" aria-hidden="true"></div><img class="hero-360-car" src="{{ asset('assets/images/catalog/toyota-gr-supra/front.png') }}" alt="Toyota GR Supra 2024"><div class="hero-car-contact-shadow" aria-hidden="true"></div><div class="hero-podium-front" aria-hidden="true"></div><div class="hero-vehicle-info" data-vehicle-id="{{ $featured?->id_mobil ?? '' }}">@if($featured)<button class="hero-favorite" type="button" data-featured-favorite aria-label="Tambahkan {{ $featured->model }} ke favorit" aria-pressed="false">♡</button><small>{{ strtoupper($featured->merk) }}</small><h2>{{ $featured->model }}</h2><p>{{ $featured->tahun ?: 'Premium collection' }} · {{ strtoupper($featured->transmisi ?: 'Automatic') }}</p><strong>Rp {{ number_format((float) $featured->harga_jual,0,',','.') }}</strong><a href="{{ route('mobil.showcase', ['slug' => 'toyota-gr-supra', 'source' => 'landing']) }}">Lihat Detail</a>@else<small>YZA AUTOMOTIVE</small><h2>Premium Collection</h2><p>Showroom pilihan YZA</p>@endif</div></div></div></section>
