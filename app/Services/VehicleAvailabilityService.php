@@ -61,7 +61,7 @@ class VehicleAvailabilityService
 
     private function syntheticAvailability(Mobil $car): array
     {
-        return ['stock' => null, 'label' => 'KOLEKSI SHOWROOM', 'detail' => 'Pembelian online belum tersedia', 'status_class' => 'is-showcase', 'is_limited_edition' => (bool) $car->is_limited_edition, 'orderable_ids' => []];
+        return ['stock' => null, 'label' => 'KETERSEDIAAN PERLU DIKONFIRMASI', 'detail' => 'Hubungi dealer untuk konfirmasi stok', 'status_class' => 'is-unverified', 'is_limited_edition' => (bool) $car->is_limited_edition, 'orderable_ids' => []];
     }
 
     private function statusForStock(int $stock): array

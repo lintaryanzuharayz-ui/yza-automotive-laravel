@@ -69,8 +69,8 @@
         .member-detail-parity .detail-spec-status .detail-status-tag.is-preorder { border-color: rgba(246,185,72,.55); color: #ffe0a0; background: rgba(246,185,72,.1); }
         .member-detail-parity .detail-status-badge.is-empty,
         .member-detail-parity .detail-spec-status .detail-status-tag.is-empty { border-color: rgba(255,93,101,.5); color: #ffb5b9; background: rgba(239,31,47,.1); }
-        .member-detail-parity .detail-status-badge.is-showcase,
-        .member-detail-parity .detail-spec-status .detail-status-tag.is-showcase { border-color: rgba(217,180,90,.65); color: #ffe0a0; background: rgba(217,180,90,.1); }
+        .member-detail-parity .detail-status-badge.is-unverified,
+        .member-detail-parity .detail-spec-status .detail-status-tag.is-unverified { border-color: rgba(217,180,90,.65); color: #ffe0a0; background: rgba(217,180,90,.1); }
         .member-detail-parity .detail-status-badge.is-neutral,
         .member-detail-parity .detail-spec-status .detail-status-tag.is-neutral { border-color: rgba(255,255,255,.3); color: #dedede; background: rgba(255,255,255,.06); }
         .member-detail-parity .detail-spec-status .detail-status-tag { display: inline-flex; align-items: center; justify-content: center; justify-self: end; min-width: 92px; padding: 7px 12px; border: 1px solid rgba(72,210,139,.4); border-radius: 999px; font-size: .75rem; font-weight: 800; }

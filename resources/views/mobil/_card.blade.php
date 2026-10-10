@@ -55,6 +55,7 @@
         <span class="catalog-card-badges">
             @if($mobil->kondisi === 'baru')<span class="catalog-condition">BARU</span>@endif
             @if($isPerformance)<span class="catalog-sport-badge">SPORT HIGHLIGHT</span>@endif
+            @if($mobil->showcase_slug)<span class="vehicle-showcase-badge">KOLEKSI SHOWROOM</span>@endif
             @if($availability['is_limited_edition'] ?? false)<span class="vehicle-limited-badge">LIMITED EDITION</span>@endif
             <span class="vehicle-stock-badge {{ $availability['status_class'] ?? 'is-available' }}">{{ $availability['label'] ?? 'TERSEDIA' }}</span>
         </span>

@@ -4,7 +4,8 @@
 .vehicle-stock-badge.is-low { background:#d88c17; color:#fff; }
 .vehicle-stock-badge.is-last { background:#ef1f2f; color:#fff; }
 .vehicle-stock-badge.is-empty { background:#4c5057; color:#e9edf2; }
-.vehicle-stock-badge.is-showcase { background:#665b42; color:#ffe7a6; }
+.vehicle-stock-badge.is-unverified { background:#665b42; color:#ffe7a6; }
+.vehicle-showcase-badge { display:inline-flex; align-items:center; min-height:24px; padding:4px 8px; border-radius:6px; background:#262b33; color:#d9dee7; font-size:9px; font-weight:900; letter-spacing:.03em; line-height:1; }
 .vehicle-limited-badge { background:#d9b45a; color:#17120a; }
 .detail-limited-badge { display:inline-flex; align-items:center; padding:6px 10px; border:1px solid rgba(217,180,90,.72); border-radius:999px; color:#f2d78c; background:rgba(217,180,90,.12); font-size:.65rem; font-weight:900; letter-spacing:.08em; }
 .detail-stock-copy { color:#c5cbd3; font-size:.72rem; font-weight:800; letter-spacing:.04em; }

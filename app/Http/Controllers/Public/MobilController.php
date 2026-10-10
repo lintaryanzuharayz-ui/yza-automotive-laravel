@@ -105,6 +105,12 @@ class MobilController extends Controller
             'mclaren-720s' => ['merk' => 'McLaren', 'model' => '720S', 'tipe' => 'Performance', 'tahun' => 2024, 'transmisi' => 'automatic', 'harga_jual' => 7900000000, 'kondisi' => 'baru', 'warna' => 'Papaya Spark', 'kode_mobil' => 'SHOWCASE-MCLAREN-720S', 'bahan_bakar' => 'bensin', 'image' => asset('assets/images/catalog/sport/mclaren-720s.png')],
         ];
         abort_unless(isset($showcases[$slug]), 404);
+        $inventory = $this->showcaseInventory($slug, $showcases[$slug]);
+        if ($inventory) {
+            $inventory->setAttribute('showcase_slug', $slug);
+            $inventory->setAttribute('image', $showcases[$slug]['image']);
+            return $this->memberShowcaseView($inventory, $galleryService, $showcases[$slug]['image']);
+        }
         $data = $showcases[$slug];
         $image = $data['image']; unset($data['image']);
         $mobil = new Mobil($data); $mobil->setAttribute('status', 'tersedia'); $mobil->setAttribute('image', $image);
@@ -128,12 +134,27 @@ class MobilController extends Controller
         return collect($showcases)->map(function (array $data, string $slug) {
             $image = $data['image'];
             unset($data['image']);
-            $car = new Mobil($data);
-            $car->setAttribute('status', 'tersedia');
+            $car = $this->showcaseInventory($slug, $data) ?: new Mobil($data);
+            if (!$car->exists) {
+                $car->setAttribute('status', 'tersedia');
+            }
             $car->setAttribute('image', $image);
             $car->setAttribute('showcase_slug', $slug);
             return $car;
         });
+    }
+
+    private function showcaseInventory(string $slug, array $definition): ?Mobil
+    {
+        return Mobil::query()
+            ->where('merk', $definition['merk'])
+            ->where('model', $definition['model'])
+            ->where('tipe', $definition['tipe'])
+            ->where('tahun', $definition['tahun'])
+            ->where('status', '!=', 'nonaktif')
+            ->orderByRaw("CASE WHEN status = 'tersedia' THEN 0 ELSE 1 END")
+            ->orderBy('id_mobil')
+            ->first();
     }
 
     public function sportShowcases()
@@ -256,6 +277,14 @@ class MobilController extends Controller
             'mclaren-720s' => ['merk' => 'McLaren', 'model' => '720S', 'tipe' => 'Performance', 'tahun' => 2024, 'transmisi' => 'automatic', 'harga_jual' => 7900000000, 'kondisi' => 'baru', 'warna' => 'Papaya Spark', 'bahan_bakar' => 'bensin', 'kode_mobil' => 'SHOWCASE-MCLAREN-720S', 'deskripsi' => 'McLaren 720S Performance dengan siluet eksotis, respons tajam, dan pengalaman berkendara yang sangat dinamis.', 'image' => asset('assets/images/catalog/sport/mclaren-720s.png')],
         ];
         abort_unless(isset($showcases[$slug]), 404);
+        $inventory = $this->showcaseInventory($slug, $showcases[$slug]);
+        if ($inventory) {
+            $showcaseImage = $showcases[$slug]['image'];
+            $inventory->setAttribute('showcase_slug', $slug);
+            $inventory->setAttribute('image', $showcaseImage);
+            $galleryService = app(VehicleGalleryService::class);
+            return view('mobil.show', ['mobil' => $inventory, 'showcaseImage' => $showcaseImage, 'galleryData' => $galleryService->for($inventory, $showcaseImage), 'defaultColorKey' => $galleryService->defaultColor($inventory), ...$this->detailNavigation($request)]);
+        }
         $data = $showcases[$slug];
         $showcaseImage = $data['image'];
         unset($data['image']);

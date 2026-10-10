@@ -135,4 +135,4 @@
 
 .detail-status-badge.is-low { border-color: rgba(246,185,72,.65); color: #ffe0a0; background: rgba(216,140,23,.12); }
 .detail-status-badge.is-last { border-color: rgba(255,93,101,.65); color: #ffb5b9; background: rgba(239,31,47,.12); }
-.detail-status-badge.is-showcase { border-color: rgba(217,180,90,.65); color: #ffe0a0; background: rgba(217,180,90,.12); }
+.detail-status-badge.is-unverified { border-color: rgba(217,180,90,.65); color: #ffe0a0; background: rgba(217,180,90,.12); }
