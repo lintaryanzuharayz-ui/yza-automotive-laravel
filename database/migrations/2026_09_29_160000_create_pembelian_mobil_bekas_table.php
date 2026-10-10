@@ -30,12 +30,18 @@ return new class extends Migration {
             $t->foreign('id_petugas')->references('id_petugas')->on('petugas')->cascadeOnUpdate();
             $t->foreign('id_mobil')->references('id_mobil')->on('mobil')->nullOnDelete()->cascadeOnUpdate();
         });
-        DB::table('pembelian_mobil_bekas')->insert([
-            'id_pembelian'=>1,'kode_pembelian'=>'BUY-202609-487E3F23','id_transaksi'=>6,
-            'id_pengajuan'=>1,'id_inspeksi'=>1,'id_pelanggan'=>1,'id_petugas'=>2,'id_mobil'=>6,
-            'tanggal_pembelian'=>'2026-09-23 15:29:46','harga_pembelian'=>100000000,
-            'status'=>'selesai','catatan'=>'QA purchase','created_at'=>'2026-09-23 15:29:46','updated_at'=>'2026-09-23 15:29:46'
-        ]);
+        if (DB::table('pengajuan_mobil')->where('id_pengajuan', 1)->exists()
+            && DB::table('inspeksi_mobil')->where('id_inspeksi', 1)->exists()
+            && DB::table('pelanggan')->where('id_pelanggan', 1)->exists()
+            && DB::table('petugas')->where('id_petugas', 2)->exists()
+            && DB::table('mobil')->where('id_mobil', 6)->exists()) {
+            DB::table('pembelian_mobil_bekas')->insert([
+                'id_pembelian'=>1,'kode_pembelian'=>'BUY-202609-487E3F23','id_transaksi'=>6,
+                'id_pengajuan'=>1,'id_inspeksi'=>1,'id_pelanggan'=>1,'id_petugas'=>2,'id_mobil'=>6,
+                'tanggal_pembelian'=>'2026-09-23 15:29:46','harga_pembelian'=>100000000,
+                'status'=>'selesai','catatan'=>'QA purchase','created_at'=>'2026-09-23 15:29:46','updated_at'=>'2026-09-23 15:29:46'
+            ]);
+        }
     }
     public function down(): void { Schema::dropIfExists('pembelian_mobil_bekas'); }
 };

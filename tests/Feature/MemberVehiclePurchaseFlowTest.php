@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Models\{Mobil, User};
-use App\Services\MemberVehiclePurchaseService;
+use App\Models\{KendaraanPelanggan, Mobil, User};
+use App\Services\{MemberVehiclePurchaseService, PaymentService, VerifiedCarOwnershipService};
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use RuntimeException;
 use Tests\TestCase;
@@ -46,5 +46,68 @@ class MemberVehiclePurchaseFlowTest extends TestCase
         $order = $service->approve($service->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA']), $this->actor());
         $this->expectException(RuntimeException::class);
         $service->savePdi($order, $this->actor(), ['mesin' => true]);
+    }
+
+    public function test_second_checkout_cannot_double_sell_reserved_unit_and_rejection_releases_it(): void
+    {
+        $customer = $this->user('pelanggan')->pelanggan;
+        $car = Mobil::where('status', 'tersedia')->firstOrFail();
+        $service = app(MemberVehiclePurchaseService::class);
+        $order = $service->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA']);
+        $this->expectException(RuntimeException::class);
+        try {
+            $service->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA']);
+        } finally {
+            $service->reject($order, $this->actor(), 'Unit tidak tersedia setelah verifikasi.');
+            $this->assertSame('tersedia', $car->fresh()->status);
+        }
+    }
+
+    public function test_pending_payment_does_not_complete_sale_but_verified_payment_marks_order_lunas(): void
+    {
+        $customer = $this->user('pelanggan')->pelanggan;
+        $car = Mobil::where('status', 'tersedia')->firstOrFail();
+        $service = app(MemberVehiclePurchaseService::class);
+        $order = $service->approve($service->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA']), $this->actor());
+        $payment = app(PaymentService::class)->create($order->id_transaksi, $this->actor(), (string) $order->total_tagihan, 'transfer', null, 'Stage 2 pending');
+        $this->assertSame('menunggu', $payment->status);
+        $this->assertSame('belum_bayar', $order->transaksi->fresh()->status);
+        app(PaymentService::class)->verify($payment->id_pembayaran, $this->actor());
+        $this->assertSame('lunas', $order->transaksi->fresh()->status);
+        $this->assertSame('lunas', $order->fresh()->status);
+        $this->assertSame('proses', $order->penjualan->fresh()->status);
+        $this->assertSame('dibooking', $car->fresh()->status);
+    }
+
+    public function test_failed_pdi_cannot_be_handed_over(): void
+    {
+        $customer = $this->user('pelanggan')->pelanggan;
+        $car = Mobil::where('status', 'tersedia')->firstOrFail();
+        $service = app(MemberVehiclePurchaseService::class);
+        $order = $service->approve($service->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA']), $this->actor());
+        app(PaymentService::class)->create($order->id_transaksi, $this->actor(), (string) $order->total_tagihan, 'tunai', null, 'Stage 2 full payment');
+        $service->savePdi($order, $this->actor(), ['mesin' => true, 'final_quality' => false]);
+        $this->assertSame('pdi_gagal', $order->fresh()->status);
+        $this->expectException(RuntimeException::class);
+        $service->handover($order, $this->actor(), ['nama_penerima' => 'Stage 2 Receiver']);
+    }
+
+    public function test_only_completed_handover_creates_verified_my_garage_vehicle_and_is_not_repeatable(): void
+    {
+        $customer = $this->user('pelanggan')->pelanggan;
+        $car = Mobil::where('status', 'tersedia')->firstOrFail();
+        $service = app(MemberVehiclePurchaseService::class);
+        $order = $service->approve($service->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA']), $this->actor());
+        app(PaymentService::class)->create($order->id_transaksi, $this->actor(), (string) $order->total_tagihan, 'tunai', null, 'Stage 2 full payment');
+        $items = array_fill_keys(['mesin', 'eksterior', 'interior', 'rem', 'ban', 'kelistrikan', 'lampu', 'ac', 'dokumen', 'final_quality'], true);
+        $service->savePdi($order, $this->actor(), $items);
+        $this->assertSame(0, KendaraanPelanggan::where('id_pelanggan', $customer->id_pelanggan)->count());
+        $service->handover($order, $this->actor(), ['nama_penerima' => 'Stage 2 Receiver', 'nomor_identitas' => 'SYNTHETIC-ID']);
+        $this->assertSame('diserahkan', $order->fresh()->status);
+        $this->assertSame('terjual', $car->fresh()->status);
+        $this->assertTrue(app(VerifiedCarOwnershipService::class)->customerHasVerifiedPurchase($customer->id_pelanggan));
+        $this->assertSame(1, KendaraanPelanggan::where('id_pelanggan', $customer->id_pelanggan)->count());
+        $this->expectException(RuntimeException::class);
+        $service->handover($order, $this->actor(), ['nama_penerima' => 'Stage 2 Receiver']);
     }
 }

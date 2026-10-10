@@ -130,7 +130,8 @@ class MemberVehiclePurchaseService
             $items = ['mesin', 'eksterior', 'interior', 'rem', 'ban', 'kelistrikan', 'lampu', 'ac', 'dokumen', 'final_quality'];
             $values = array_fill_keys($items, false);
             foreach ($items as $item) $values[$item] = (bool) ($input[$item] ?? false);
-            $pdi = PdiPesananMobil::updateOrCreate(['id_pesanan' => $order->id_pesanan], $values + ['id_petugas' => $petugasId, 'status' => in_array(false, $values, true) ? 'gagal' : 'lulus', 'catatan' => $input['catatan'] ?? null, 'diperiksa_at' => now()]);
+            $pdi = PdiPesananMobil::firstOrNew(['id_pesanan' => $order->id_pesanan]);
+            $pdi->forceFill($values + ['id_pesanan' => $order->id_pesanan, 'id_petugas' => $petugasId, 'status' => in_array(false, $values, true) ? 'gagal' : 'lulus', 'catatan' => $input['catatan'] ?? null, 'diperiksa_at' => now()])->save();
             $order->update(['status' => $pdi->status === 'lulus' ? 'siap_diambil' : 'pdi_gagal']);
             return $pdi;
         });
@@ -143,7 +144,8 @@ class MemberVehiclePurchaseService
             if ($order->status !== 'siap_diambil' || !$order->transaksi || $order->transaksi->status !== 'lunas') throw new RuntimeException('Pesanan belum memenuhi syarat serah-terima.');
             $pdi = PdiPesananMobil::where('id_pesanan', $order->id_pesanan)->where('status', 'lulus')->exists();
             if (!$pdi) throw new RuntimeException('PDI belum lulus.');
-            $handover = SerahTerimaPesananMobil::create(['id_pesanan' => $order->id_pesanan, 'id_petugas' => $petugasId, 'nama_penerima' => trim($input['nama_penerima']), 'nomor_identitas' => $input['nomor_identitas'] ?? null, 'pelunasan_terverifikasi' => true, 'dokumen_lengkap' => true, 'kendaraan_sesuai' => true, 'catatan' => $input['catatan'] ?? null, 'diserahkan_at' => now()]);
+            $handover = SerahTerimaPesananMobil::firstOrNew(['id_pesanan' => $order->id_pesanan]);
+            $handover->forceFill(['id_pesanan' => $order->id_pesanan, 'id_petugas' => $petugasId, 'nama_penerima' => trim($input['nama_penerima']), 'nomor_identitas' => $input['nomor_identitas'] ?? null, 'pelunasan_terverifikasi' => true, 'dokumen_lengkap' => true, 'kendaraan_sesuai' => true, 'catatan' => $input['catatan'] ?? null, 'diserahkan_at' => now()])->save();
             $order->penjualan->forceFill(['status' => 'selesai'])->save();
             Mobil::lockForUpdate()->findOrFail($order->id_mobil)->forceFill(['status' => 'terjual'])->save();
             $order->forceFill(['status' => 'diserahkan', 'diserahkan_at' => now()])->save();
