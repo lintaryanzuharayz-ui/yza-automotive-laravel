@@ -82,7 +82,7 @@ class VehicleAvailabilityService
     {
         if ($stock === 0) return ['stock' => 0, 'label' => 'STOK HABIS', 'detail' => 'Pre-order tersedia', 'status_class' => 'is-empty', 'can_preorder' => true, 'preorder_reason' => 'stok_habis'];
         if ($stock === 1) return ['stock' => 1, 'label' => 'SISA 1 UNIT', 'detail' => 'Sisa 1 Unit', 'status_class' => 'is-last'];
-        if ($stock <= 3) return ['stock' => $stock, 'label' => 'STOK MENIPIS', 'detail' => 'Sisa '.$stock.' Unit', 'status_class' => 'is-low'];
+        if ($stock <= 3) return ['stock' => $stock, 'label' => 'STOK MENIPIS · SISA '.$stock.' UNIT', 'detail' => 'Sisa '.$stock.' Unit', 'status_class' => 'is-low'];
         return ['stock' => $stock, 'label' => 'TERSEDIA', 'detail' => 'Stok '.$stock.' Unit', 'status_class' => 'is-available'];
     }
 

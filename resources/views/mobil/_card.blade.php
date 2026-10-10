@@ -48,20 +48,6 @@
     $displayTitle = $title.($variantLabel !== '' ? ' · '.$variantLabel : '');
     $brandLogo = \App\Support\BrandLogo::path($brand, $mobil->model);
     $availability = $mobil->getAttribute('availability') ?? app(\App\Services\VehicleAvailabilityService::class)->for($mobil);
-    $catalogAvailabilityLabel = $availability['label'] ?? 'TERSEDIA';
-    $catalogAvailabilityClass = $availability['status_class'] ?? 'is-available';
-    if ($isPerformance && ($availability['stock'] ?? 0) > 0) {
-        // Vary only the catalog's visual badge; checkout and detail pages keep real stock data.
-        $catalogAvailabilityOptions = [
-            ['label' => 'TERSEDIA', 'class' => 'is-available'],
-            ['label' => 'STOK TERBATAS', 'class' => 'is-low'],
-            ['label' => 'SHOWROOM READY', 'class' => 'is-available'],
-            ['label' => 'UNIT PILIHAN', 'class' => 'is-low'],
-        ];
-        $catalogAvailability = $catalogAvailabilityOptions[abs(crc32($mobil->showcase_slug ?: $title)) % count($catalogAvailabilityOptions)];
-        $catalogAvailabilityLabel = $catalogAvailability['label'];
-        $catalogAvailabilityClass = $catalogAvailability['class'];
-    }
 @endphp
 <article class="catalog-card {{ $isPerformance ? 'catalog-card-performance' : '' }}">
     <a class="catalog-card-image" href="{{ $detailUrl }}">
@@ -71,7 +57,7 @@
             @if($isPerformance)<span class="catalog-sport-badge">SPORT HIGHLIGHT</span>@endif
             @if($mobil->showcase_slug)<span class="vehicle-showcase-badge">KOLEKSI SHOWROOM</span>@endif
             @if($availability['is_limited_edition'] ?? false)<span class="vehicle-limited-badge">LIMITED EDITION</span>@endif
-            <span class="vehicle-stock-badge {{ $catalogAvailabilityClass }}">{{ $catalogAvailabilityLabel }}</span>
+            <span class="vehicle-stock-badge {{ $availability['status_class'] ?? 'is-available' }}">{{ $availability['label'] ?? 'TERSEDIA' }}</span>
         </span>
     </a>
     <button class="catalog-heart" type="button" data-favorite-id="{{ $mobil->id_mobil }}" data-favorite-name="{{ $title }}" aria-label="Tambahkan {{ $title }} ke favorit" aria-pressed="false">♡</button>
