@@ -12,14 +12,14 @@ Settlement Sandbox untuk order sintetis berhasil diverifikasi melalui API resmi 
 
 ## Bukti Midtrans API
 
-Order: `YZA-19-H4QRHUVFEZ`  
-Database: `yza_automotive_laravel_staging`  
-Environment: `sandbox`  
-Production flag: `false`  
-Gross amount: IDR 10.000  
-Provider status dari Get Transaction Status API: `settlement`  
-Payment type: `bank_transfer`  
-Application payment record: `id_pembayaran=17`  
+Order: `YZA-19-H4QRHUVFEZ`
+Database: `yza_automotive_laravel_staging`
+Environment: `sandbox`
+Production flag: `false`
+Gross amount: IDR 10.000
+Provider status dari Get Transaction Status API: `settlement`
+Payment type: `bank_transfer`
+Application payment record: `id_pembayaran=17`
 Application transaction status: `lunas`
 
 Alur yang diverifikasi:
