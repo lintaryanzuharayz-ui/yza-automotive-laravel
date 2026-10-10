@@ -65,12 +65,14 @@
         .member-detail-parity .member-purchase-status .detail-button-text { min-width: 0; white-space: nowrap; text-align: center; }
         .member-detail-parity .member-purchase-status:hover { transform: none; }
         .member-detail-parity .detail-button-primary,
-        .member-detail-parity .member-purchase-status { position: relative; justify-content: center; }
-        .member-detail-parity .detail-button-primary .detail-inline-icon { position: absolute; left: 16px; }
+        .member-detail-parity .member-purchase-status { justify-content: center; }
+        .member-detail-parity .detail-actions-reference .detail-button-primary { display: grid; grid-template-columns: 40px minmax(0,1fr) 40px; align-items: center; }
+        .member-detail-parity .detail-actions-reference .detail-button-ghost { display: grid; grid-template-columns: 32px minmax(0,1fr) 28px; align-items: center; }
+        .member-detail-parity .detail-actions-reference .detail-button-ghost::before { content: ''; display: block; }
         .member-detail-parity .detail-button-primary > span:last-child,
-        .member-detail-parity .member-purchase-status > span:last-child { position: absolute; right: 17px; }
+        .member-detail-parity .member-purchase-status > span:last-child { position: static; }
         .member-detail-parity .detail-button-primary .detail-button-text,
-        .member-detail-parity .member-purchase-status .detail-button-text { flex: 1 1 auto; text-align: center; }
+        .member-detail-parity .member-purchase-status .detail-button-text { min-width: 0; white-space: nowrap; text-align: center; }
         .member-detail-parity .detail-status-badge,
         .member-detail-parity .detail-spec-status .detail-status-tag { border-color: rgba(72,210,139,.4); color: #c6f9d5; }
         .member-detail-parity .detail-status-badge.is-preorder,
