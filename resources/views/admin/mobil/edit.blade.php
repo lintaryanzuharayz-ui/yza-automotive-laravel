@@ -1,0 +1,1 @@
+@extends('layouts.app') @section('title','Edit Mobil') @section('content')<h1>Edit Mobil</h1><form class="yza-form" method="post" action="{{ route('admin.mobil.update',$mobil) }}" enctype="multipart/form-data">@method('PUT') @include('admin.mobil._form')</form>@endsection

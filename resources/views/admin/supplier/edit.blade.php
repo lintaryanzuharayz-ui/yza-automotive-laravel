@@ -1,0 +1,1 @@
+@extends('layouts.app') @section('title','Edit Supplier') @section('content')<h1>Edit Supplier</h1><form class="yza-form" method="post" action="{{ route('admin.supplier.update',$item) }}">@method('PUT') @include('admin.supplier._form')</form>@endsection

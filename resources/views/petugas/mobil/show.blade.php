@@ -1,0 +1,3 @@
+@extends('layouts.app')
+@section('title','Detail Mobil')
+@section('content')<h1>{{ $mobil->merk }} {{ $mobil->model }}</h1><div class="yza-photo-grid">@foreach($mobil->foto as $foto)<img class="yza-car-image" src="{{ $foto->url() }}" alt="Foto mobil">@endforeach</div><dl class="yza-detail-list"><dt>Kode</dt><dd>{{ $mobil->kode_mobil }}</dd><dt>Status</dt><dd>{{ $mobil->status }}</dd><dt>Kondisi</dt><dd>{{ $mobil->kondisi }}</dd><dt>Harga beli</dt><dd>Rp {{ number_format((float)$mobil->harga_beli,0,',','.') }}</dd><dt>Harga jual</dt><dd>Rp {{ number_format((float)$mobil->harga_jual,0,',','.') }}</dd></dl>@endsection

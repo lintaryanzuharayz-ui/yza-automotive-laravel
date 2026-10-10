@@ -1,0 +1,1 @@
+@extends('layouts.app') @section('title','Edit Paket Cuci') @section('content')<h1>Edit Paket Cuci</h1><form class="yza-form" method="post" action="{{ route('admin.paket-cuci.update',$item) }}">@method('PUT') @include('admin.paket-cuci._form')</form>@endsection

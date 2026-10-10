@@ -1,0 +1,1 @@
+@extends('layouts.app') @section('content')<div class="page-header"><h1>Trade-In</h1></div><article class="card">@foreach($rows as $row)<p><a href="{{ route(request()->routeIs('admin.*')?'admin.trade-in.show':'petugas.trade-in.show',$row) }}">{{ $row->kode_trade_in }}</a> · {{ $row->pelanggan?->nama_lengkap }} · {{ $row->status }}</p>@endforeach</article>@endsection

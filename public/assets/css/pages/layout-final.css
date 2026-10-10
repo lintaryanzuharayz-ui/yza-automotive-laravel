@@ -1,0 +1,61 @@
+:root{
+  --landing-max-width:1760px;
+  --landing-side-gap:clamp(32px,3.2vw,64px);
+  --landing-content-width:min(calc(100% - (var(--landing-side-gap) * 2)),var(--landing-max-width));
+}
+
+.landing .hero h1{
+  text-wrap:balance;
+}
+
+@media (min-width:1280px){
+  .landing .public-nav,
+  .landing .hero{
+    padding-inline:var(--landing-side-gap);
+  }
+
+  .landing .hero-copy{
+    max-width:none;
+    min-width:0;
+  }
+
+  .landing .service-section .section-intro h2{
+    width:100%;
+    max-width:none;
+    text-wrap:balance;
+  }
+
+  .landing .appointment-layout{
+    grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+    gap:clamp(48px,4vw,80px);
+  }
+
+  .landing .appointment-copy,
+  .landing .appointment-copy h2{
+    width:100%;
+    max-width:none;
+  }
+
+  .landing .appointment-copy h2{
+    text-wrap:balance;
+  }
+
+  .landing .inventory-section>.section-heading-public,
+  .landing .inventory-section>.vehicle-grid,
+  .landing .service-section>.section-intro,
+  .landing .service-section>.service-grid,
+  .landing .service-section>.section-cta,
+  .landing .appointment-layout,
+  .landing .trust-section>.section-intro,
+  .landing .trust-section>.why-grid,
+  .landing .trade-cta,
+  .landing .footer-top-grid,
+  .landing .landing-footer>.footer-bottom{
+    width:var(--landing-content-width);
+    max-width:none;
+  }
+
+  .landing .trade-cta{
+    padding-inline:var(--landing-side-gap);
+  }
+}

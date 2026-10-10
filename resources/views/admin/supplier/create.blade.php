@@ -1,0 +1,1 @@
+@extends('layouts.app') @section('title','Tambah Supplier') @section('content')<h1>Tambah Supplier</h1><form class="yza-form" method="post" action="{{ route('admin.supplier.store') }}">@include('admin.supplier._form')</form>@endsection

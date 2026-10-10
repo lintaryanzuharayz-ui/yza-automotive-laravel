@@ -1,0 +1,100 @@
+/* Shared membership presentation: registration Step 03 and activation payment. */
+.register-card .register-membership-summary,
+.register-card .register-data-summary{box-shadow:0 10px 26px rgba(16,24,40,.05)}
+
+@media (min-width:769px){
+    .register-card .register-membership-summary{padding:20px 22px;border-radius:16px}
+    .register-card .register-membership-summary .eyebrow,
+    .register-card .register-data-summary .eyebrow{font-size:12px;letter-spacing:.14em}
+    .register-card .register-membership-summary h3{margin:8px 0 5px;font-size:30px;line-height:1.05}
+    .register-card .register-summary-price{font-size:31px;line-height:1.05}
+    .register-card .register-summary-price small{font-size:13px}
+    .register-card .register-membership-summary p{margin:8px 0 13px;font-size:15px;line-height:1.5}
+    .register-card .register-membership-summary ul{gap:7px 22px;font-size:15px;line-height:1.35}
+    .register-card .register-membership-summary li::before{font-size:17px}
+    .register-card .register-data-summary{gap:10px 18px;margin-top:14px;padding:17px 18px;border-radius:15px}
+    .register-card .register-data-summary span{font-size:12px}
+    .register-card .register-data-summary strong{font-size:15px}
+    .register-card .register-confirm{margin:17px 0;font-size:13px;line-height:1.5}
+    .register-card .register-membership-price span{font-size:12px}
+    .register-card .register-membership-price strong{font-size:31px}
+    .register-card .register-membership-price small{font-size:14px}
+    .register-card .register-steps{font-size:13px;padding:11px 14px}
+    .register-card .register-steps b{font-size:13px}
+}
+
+/* Payment activation uses the same visual shell as registration, without the old app layout. */
+.membership-payment-page{height:auto;min-height:100vh;align-items:center;overflow:auto}
+.membership-payment-showcase{min-height:100vh}
+.membership-payment-card{width:min(94%,860px);max-height:none;margin:28px auto;padding:34px clamp(28px,3vw,44px);overflow:visible}
+.membership-payment-card h1{margin:10px 0 5px;color:#10151c;font-size:clamp(34px,3.2vw,48px);font-weight:900;line-height:1.02;letter-spacing:-.04em}
+.membership-payment-card h1 em{color:#ed1c24;font-style:normal}
+.membership-payment-card .intro{max-width:720px;margin:0 0 20px;color:#667085;font-size:16px;line-height:1.45}
+.membership-payment-steps{margin-bottom:20px}
+.membership-payment-steps span{justify-content:center;gap:7px}
+.membership-payment-steps b{display:grid;width:30px;height:30px;place-items:center;border:1px solid #c7d0dd;border-radius:50%;background:#eef2f7;color:#738095;font-size:12px}
+.membership-payment-steps span.complete b,.membership-payment-steps span.active b{border-color:#ed1c24;background:#ed1c24;color:#fff;box-shadow:0 5px 14px rgba(237,28,36,.18)}
+.membership-payment-steps span.complete,.membership-payment-steps span.active{color:#17202d}
+.membership-payment-summary,.membership-payment-status,.membership-payment-member{border:1px solid #dfe5ee;border-radius:16px;background:rgba(255,255,255,.74);box-shadow:0 10px 26px rgba(16,24,40,.05)}
+.membership-payment-summary{padding:20px 22px;border-color:rgba(237,28,36,.25);background:linear-gradient(135deg,#fff5f5,#f7f9fd)}
+.membership-payment-summary .eyebrow,.membership-payment-status .eyebrow,.membership-payment-member .eyebrow{color:#ed1c24;font-size:12px;font-weight:800;letter-spacing:.14em}
+.membership-payment-summary h2{margin:8px 0 3px;color:#10151c;font-size:28px;line-height:1.05}
+.membership-payment-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin-top:6px;color:#ed1c24;font-size:32px;font-weight:900;line-height:1.05}
+.membership-payment-price small{color:#667085;font-size:14px;font-weight:600}
+.membership-payment-summary>p{margin:7px 0 14px;color:#667085;font-size:15px;line-height:1.45}
+.membership-payment-benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 22px;margin:0;padding:0;list-style:none;color:#344054;font-size:15px;line-height:1.35}
+.membership-payment-benefits li:before{content:'✓';margin-right:8px;color:#ed1c24;font-size:17px;font-weight:900}
+.membership-payment-status{margin-top:14px;padding:18px 20px}
+.membership-payment-status h2{margin:7px 0 5px;color:#10151c;font-size:25px;line-height:1.1}
+.membership-payment-status p{margin:0;color:#667085;font-size:14px;line-height:1.45}
+.membership-payment-status.is-pending{border-color:#f2d59b;background:linear-gradient(135deg,#fffaf0,#fffdf8)}
+.membership-payment-status.is-pending .eyebrow{color:#c77b00}
+.membership-payment-status.is-processing{border-color:#c7d8f8;background:#f5f8ff}
+.membership-payment-status.is-processing .eyebrow{color:#3467bd}
+.membership-payment-status.is-failed{border-color:#f3b1b5;background:#fff5f5}
+.membership-status-badge{display:inline-flex;margin-top:10px;padding:6px 10px;border:1px solid #f0c875;border-radius:999px;background:#fff3cf;color:#a76000;font-size:11px;font-weight:900;letter-spacing:.06em}
+.membership-status-badge.is-active{border-color:#9bd8b3;background:#ecfff3;color:#15803d}
+.membership-status-badge.is-processing{border-color:#b9cdf4;background:#edf4ff;color:#3467bd}
+.membership-status-badge.is-failed{border-color:#f3b1b5;background:#fff0f1;color:#c5222b}
+.membership-payment-member{margin-top:14px;padding:18px 20px}
+.membership-payment-member-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 20px;margin-top:11px}
+.membership-payment-member-grid div{min-width:0}
+.membership-payment-member-grid span{display:block;margin-bottom:3px;color:#667085;font-size:12px}
+.membership-payment-member-grid strong{display:block;overflow:hidden;color:#18202c;font-size:15px;text-overflow:ellipsis;white-space:nowrap}
+.membership-payment-actions{margin-top:16px}
+.membership-payment-actions form{margin:0}
+.membership-payment-actions .button{min-height:50px;width:100%;border-radius:11px;font-size:15px;font-weight:900}
+.membership-payment-actions .form-actions{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0}
+.membership-payment-actions .button-primary{background:linear-gradient(135deg,#ff313b,#d90f18);box-shadow:0 14px 30px rgba(237,28,36,.24)}
+.membership-payment-actions .button-secondary{border-color:#667085;background:#fff;color:#18202c}
+.membership-success-copy{margin:16px 0;color:#475467;font-size:14px;line-height:1.45}
+
+@media(max-width:1200px) and (min-width:769px){
+    .membership-payment-card{padding-inline:28px}
+    .membership-payment-member-grid{grid-template-columns:1fr 1fr}
+    .membership-payment-member-grid div:last-child{grid-column:1/-1}
+}
+@media(max-width:768px){
+    .register-card .register-membership-summary{padding:18px}
+    .register-card .register-membership-summary h3{font-size:27px}
+    .register-card .register-summary-price{font-size:28px}
+    .register-card .register-membership-summary p{font-size:14px}
+    .register-card .register-membership-summary ul{font-size:14px}
+    .register-card .register-data-summary span{font-size:11px}
+    .register-card .register-data-summary strong{font-size:14px}
+    .register-card .register-confirm{font-size:12px}
+    .membership-payment-page{display:block;min-height:100vh;background-position:center top}
+    .membership-payment-showcase{display:block;min-height:300px;background:transparent}
+    .membership-payment-card{width:calc(100% - 28px);margin:-46px auto 30px;padding:24px 20px;border-radius:20px}
+    .membership-payment-card h1{font-size:35px}
+    .membership-payment-card .intro{font-size:15px}
+    .membership-payment-steps{align-items:stretch;gap:5px;padding:9px 8px;font-size:9px}
+    .membership-payment-steps b{width:25px;height:25px;font-size:10px}
+    .membership-payment-steps span{flex-direction:column;gap:3px;text-align:center}
+    .membership-payment-steps i{min-width:8px}
+    .membership-payment-summary h2{font-size:25px}
+    .membership-payment-price{font-size:28px}
+    .membership-payment-benefits{grid-template-columns:1fr;font-size:14px}
+    .membership-payment-member-grid{grid-template-columns:1fr;gap:10px}
+    .membership-payment-actions .form-actions{grid-template-columns:1fr}
+}

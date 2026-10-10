@@ -1,0 +1,4 @@
+<?php
+namespace App\Models;
+use Illuminate\Database\Eloquent\Model;
+class PengajuanMobil extends Model { protected $table='pengajuan_mobil';protected $primaryKey='id_pengajuan';protected $guarded=['id_pengajuan','id_pelanggan','status'];protected function casts():array{return ['tahun'=>'integer','kilometer'=>'integer','harga_harapan'=>'decimal:2'];}public function pelanggan(){return $this->belongsTo(Pelanggan::class,'id_pelanggan','id_pelanggan');}public function kendaraan(){return $this->belongsTo(KendaraanPelanggan::class,'id_kendaraan_pelanggan','id_kendaraan_pelanggan');}public function inspeksi(){return $this->hasMany(InspeksiMobil::class,'id_pengajuan','id_pengajuan')->latest('id_inspeksi');}public function pembelian(){return $this->hasOne(PembelianMobilBekas::class,'id_pengajuan','id_pengajuan');}}

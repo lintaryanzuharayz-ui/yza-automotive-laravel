@@ -1,0 +1,1 @@
+@extends('layouts.app') @section('title','Edit Spare Part') @section('content')<h1>Edit Spare Part</h1><form class="yza-form" method="post" action="{{ route('admin.sparepart.update',$item) }}" enctype="multipart/form-data">@method('PUT') @include('admin.sparepart._form')</form>@endsection

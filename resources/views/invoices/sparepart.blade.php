@@ -1,0 +1,5 @@
+@extends('layouts.app')
+@section('content')
+<div class="page-header"><div><span class="eyebrow">Invoice / Nota Spare Part</span><h1>{{ $transaksi->penjualanSparepart?->kode_penjualan }}</h1></div></div>
+<article class="card invoice-card"><p>Transaksi: {{ $transaksi->kode_transaksi }}</p><p>Tanggal: {{ $transaksi->tanggal }}</p><p>Pelanggan: {{ $transaksi->pelanggan?->nama_lengkap ?: 'Walk-in' }}</p><table class="data-table"><thead><tr><th>Spare Part</th><th>Qty</th><th>Harga</th><th>Subtotal</th></tr></thead><tbody>@foreach($transaksi->penjualanSparepart?->details ?? [] as $detail)<tr><td>{{ $detail->sparepart?->nama_sparepart }}</td><td>{{ $detail->jumlah }}</td><td>{{ $detail->harga_satuan }}</td><td>{{ $detail->subtotal }}</td></tr>@endforeach</tbody></table><p>Subtotal: {{ $transaksi->subtotal }}</p>@if($transaksi->id_promo)<p>Promo: {{ $transaksi->promo_code_snapshot }} · {{ $transaksi->promo_name_snapshot }}</p>@endif<p>Diskon: {{ $transaksi->diskon }}</p><h2>Total: {{ $transaksi->total }}</h2><p>Dibayar: {{ $paid }} · Sisa: {{ max(0,(float)$transaksi->total-(float)$paid) }}</p><p>Status transaksi: {{ $transaksi->status }}</p></article>
+@endsection

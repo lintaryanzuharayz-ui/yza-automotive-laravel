@@ -1,0 +1,1 @@
+@extends('layouts.app') @section('title','Tambah Spare Part') @section('content')<h1>Tambah Spare Part</h1><form class="yza-form" method="post" action="{{ route('admin.sparepart.store') }}" enctype="multipart/form-data">@include('admin.sparepart._form')</form>@endsection

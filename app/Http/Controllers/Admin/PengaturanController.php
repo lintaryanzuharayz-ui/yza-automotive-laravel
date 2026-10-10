@@ -1,0 +1,4 @@
+<?php
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;use App\Http\Requests\UpdatePengaturanRequest;use App\Models\Pengaturan;use App\Services\MasterAuditService;use App\Services\PengaturanService;use Illuminate\Http\RedirectResponse;use Illuminate\View\View;
+class PengaturanController extends Controller { public function index(PengaturanService $s):View{return view('admin.pengaturan.index',['items'=>Pengaturan::whereIn('kunci_pengaturan',$s::KEYS)->orderBy('id_pengaturan')->get()]);} public function update(UpdatePengaturanRequest $r, PengaturanService $s,MasterAuditService $a):RedirectResponse{$key=$r->settingKey();abort_unless(in_array($key,$s::KEYS,true),404);$i=Pengaturan::where('kunci_pengaturan',$key)->firstOrFail();$i->update(['nilai'=>$r->validated()['nilai']??null]);$a->record('update','pengaturan',$i->id_pengaturan,'Mengubah pengaturan '.$key);return back()->with('success','Pengaturan diperbarui.');} }

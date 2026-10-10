@@ -1,0 +1,5 @@
+@extends('layouts.app')
+@section('content')
+<div class="page-header"><div><span class="eyebrow">Invoice / Nota Car Wash</span><h1>{{ $transaksi->kode_transaksi }}</h1></div></div>
+<article class="card invoice-card"><p>Tanggal: {{ $transaksi->tanggal }}</p><p>Pelanggan: {{ $transaksi->pelanggan?->nama_lengkap ?: 'Walk-in' }}</p><p>Kode booking: {{ $transaksi->bookingCuci?->kode_booking }}</p><p>Kendaraan: {{ $transaksi->bookingCuci?->kendaraan?->merk }} {{ $transaksi->bookingCuci?->kendaraan?->model }}</p><p>Paket: {{ $transaksi->bookingCuci?->paket?->nama_paket }}</p><p>Subtotal: {{ $transaksi->subtotal }}</p>@if($transaksi->id_promo)<p>Promo: {{ $transaksi->promo_code_snapshot }} · {{ $transaksi->promo_name_snapshot }}</p>@endif<p>Diskon: {{ $transaksi->diskon }}</p><h2>Total: {{ $transaksi->total }}</h2><p>Dibayar: {{ $paid }} · Sisa: {{ max(0,(float)$transaksi->total-(float)$paid) }}</p><p>Status: {{ $transaksi->status }}</p><h3>Riwayat Pembayaran</h3><ul>@foreach($transaksi->pembayarans as $p)<li>{{ $p->tanggal }} · {{ $p->metode }} · {{ $p->jumlah }} · {{ $p->status }}</li>@endforeach</ul></article>
+@endsection

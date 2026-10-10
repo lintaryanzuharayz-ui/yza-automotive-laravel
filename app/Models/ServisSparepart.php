@@ -1,0 +1,3 @@
+<?php
+namespace App\Models; use Illuminate\Database\Eloquent\Model;
+class ServisSparepart extends Model { public $timestamps=false; protected $table='servis_sparepart'; protected $primaryKey='id_servis_sparepart'; protected $guarded=['id_servis_sparepart','id_servis','harga_satuan','subtotal']; protected function casts():array{return ['jumlah'=>'integer','harga_satuan'=>'decimal:2','subtotal'=>'decimal:2'];} public function servis(){return $this->belongsTo(Servis::class,'id_servis','id_servis');} public function sparepart(){return $this->belongsTo(Sparepart::class,'id_sparepart','id_sparepart');} }

@@ -1,0 +1,1 @@
+@extends('layouts.app') @section('title','Edit Kendaraan') @section('content')<h1>Edit Kendaraan</h1><form class="yza-form" method="post" action="{{ route('pelanggan.kendaraan.update',$item) }}">@method('PUT') @include('pelanggan.kendaraan._form')</form>@endsection

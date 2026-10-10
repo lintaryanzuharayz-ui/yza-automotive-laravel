@@ -1,0 +1,4 @@
+<?php
+namespace App\Http\Requests;
+use Illuminate\Foundation\Http\FormRequest;
+class SaveInspeksiMobilRequest extends FormRequest { public function authorize():bool{return in_array($this->user()?->roleName(),['admin','petugas'],true);} public function rules():array{return ['kondisi_mesin'=>'required|in:baik,cukup,perlu_perbaikan','kondisi_body'=>'required|in:baik,cukup,perlu_perbaikan','kondisi_interior'=>'required|in:baik,cukup,perlu_perbaikan','kondisi_kelistrikan'=>'required|in:baik,cukup,perlu_perbaikan','kondisi_ban'=>'required|in:baik,cukup,perlu_perbaikan','kondisi_suspensi'=>'required|in:baik,cukup,perlu_perbaikan','kondisi_ac'=>'required|in:baik,cukup,perlu_perbaikan','kondisi_dokumen'=>'required|in:lengkap,tidak_lengkap,bermasalah','kilometer'=>'required|integer|min:0','catatan'=>'nullable|string|max:2000'];}}

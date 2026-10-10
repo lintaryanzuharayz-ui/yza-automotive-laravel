@@ -1,0 +1,4 @@
+<?php
+namespace App\Models;
+use Illuminate\Database\Eloquent\Model;
+class PenjualanMobil extends Model { protected $table='penjualan_mobil';protected $primaryKey='id_penjualan';protected $guarded=['id_penjualan'];protected function casts():array{return ['tanggal_penjualan'=>'datetime','harga_mobil'=>'decimal:2','diskon'=>'decimal:2','dp'=>'decimal:2','total_akhir'=>'decimal:2'];} public function transaksi(){return $this->belongsTo(Transaksi::class,'id_transaksi','id_transaksi');}public function pelanggan(){return $this->belongsTo(Pelanggan::class,'id_pelanggan','id_pelanggan');}public function mobil(){return $this->belongsTo(Mobil::class,'id_mobil','id_mobil');}public function petugas(){return $this->belongsTo(Petugas::class,'id_petugas','id_petugas');}public function booking(){return $this->belongsTo(BookingMobil::class,'id_booking','id_booking');}}

@@ -1,0 +1,1 @@
+@csrf<label>Nama kategori<input name="nama_kategori" value="{{ old('nama_kategori',$item->nama_kategori) }}" required maxlength="80"></label><label>Deskripsi<textarea name="deskripsi" maxlength="255">{{ old('deskripsi',$item->deskripsi) }}</textarea></label><button class="yza-button">Simpan</button>

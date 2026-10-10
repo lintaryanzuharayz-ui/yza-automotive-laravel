@@ -1,0 +1,8 @@
+<?php
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+return new class extends Migration {
+ public function up():void{Schema::create('penjualan_mobil',function(Blueprint $t):void{$t->id('id_penjualan');$t->string('kode_penjualan',40)->unique('uq_penjualan_mobil_kode');$t->unsignedBigInteger('id_transaksi')->unique('uq_penjualan_mobil_transaksi');$t->unsignedBigInteger('id_pelanggan');$t->unsignedBigInteger('id_mobil');$t->unsignedBigInteger('id_petugas');$t->unsignedBigInteger('id_booking')->nullable();$t->dateTime('tanggal_penjualan')->useCurrent();$t->decimal('harga_mobil',15,2);$t->decimal('diskon',15,2)->default(0);$t->decimal('dp',15,2)->default(0);$t->decimal('total_akhir',15,2);$t->enum('metode_pembelian',['tunai','kredit'])->default('tunai');$t->enum('status',['proses','selesai','dibatalkan'])->default('proses');$t->text('catatan')->nullable();$t->timestamps();$t->index(['id_mobil','status'],'idx_penjualan_mobil_unit');$t->index('tanggal_penjualan','idx_penjualan_mobil_tanggal');$t->foreign('id_transaksi')->references('id_transaksi')->on('transaksi')->cascadeOnUpdate();$t->foreign('id_pelanggan')->references('id_pelanggan')->on('pelanggan')->cascadeOnUpdate();$t->foreign('id_mobil')->references('id_mobil')->on('mobil')->cascadeOnUpdate();$t->foreign('id_petugas')->references('id_petugas')->on('petugas')->cascadeOnUpdate();$t->foreign('id_booking')->references('id_booking')->on('booking_mobil')->nullOnDelete()->cascadeOnUpdate();});}
+ public function down():void{Schema::dropIfExists('penjualan_mobil');}
+};

@@ -1,0 +1,4 @@
+<?php
+namespace App\Models;
+use Illuminate\Database\Eloquent\Model;
+class PembayaranGateway extends Model { protected $table='pembayaran_gateway'; protected $primaryKey='id_pembayaran_gateway'; protected $guarded=['id_pembayaran_gateway','id_transaksi','id_membership','gross_amount','order_id']; protected function casts():array{return ['gross_amount'=>'decimal:2','processed_at'=>'datetime','last_synced_at'=>'datetime'];} public function transaksi(){return $this->belongsTo(Transaksi::class,'id_transaksi','id_transaksi');} public function membership(){return $this->belongsTo(Membership::class,'id_membership','id_membership');} public function pembayaran(){return $this->belongsTo(Pembayaran::class,'id_pembayaran','id_pembayaran');} public function events(){return $this->hasMany(EventPembayaranGateway::class,'id_pembayaran_gateway','id_pembayaran_gateway');} }

@@ -1,0 +1,1 @@
+@extends('layouts.app') @section('title','Edit Kategori') @section('content')<h1>Edit Kategori</h1><form class="yza-form" method="post" action="{{ route('admin.kategori-sparepart.update',$item) }}">@method('PUT') @include('admin.kategori-sparepart._form')</form>@endsection

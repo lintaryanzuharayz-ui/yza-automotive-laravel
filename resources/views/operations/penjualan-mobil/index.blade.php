@@ -1,0 +1,5 @@
+@extends('layouts.app')
+@section('content')
+<div class="page-header"><div><span class="eyebrow">Penjualan</span><h1>Penjualan Mobil</h1></div><a class="button button-primary" href="{{ route(request()->user()->roleName().'.penjualan-mobil.create') }}">Buat Penjualan</a></div>
+<article class="card content-card"><div class="table-wrapper"><table class="data-table"><thead><tr><th>Kode</th><th>Pelanggan</th><th>Unit</th><th>Total</th><th>Status</th><th>Aksi</th></tr></thead><tbody>@forelse($rows as $row)<tr><td>{{ $row->kode_penjualan }}</td><td>{{ $row->pelanggan->nama_lengkap }}</td><td>{{ $row->mobil->kode_mobil }} · {{ $row->mobil->merk }} {{ $row->mobil->model }}</td><td>{{ number_format((float)$row->total_akhir,0,',','.') }}</td><td>{{ ucfirst($row->status) }}</td><td><a class="action-link" href="{{ route(request()->user()->roleName().'.penjualan-mobil.show',$row) }}">Detail</a></td></tr>@empty<tr><td colspan="6">Belum ada penjualan.</td></tr>@endforelse</tbody></table></div>{{ $rows->links() }}</article>
+@endsection

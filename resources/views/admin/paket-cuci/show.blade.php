@@ -1,0 +1,1 @@
+@extends('layouts.app') @section('title','Detail Paket Cuci') @section('content')<h1>{{ $item->nama_paket }}</h1><p>{{ $item->status }} · Rp {{ number_format((float)$item->harga,0,',','.') }} · {{ $item->estimasi_menit ?: '-' }} menit</p><p>{{ $item->deskripsi ?: '-' }}</p><a class="yza-button" href="{{ route('admin.paket-cuci.edit',$item) }}">Edit</a>@endsection

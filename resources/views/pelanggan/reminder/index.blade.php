@@ -1,0 +1,6 @@
+@extends('layouts.app')
+@section('title','Pengingat Servis · YZA Automotive')
+@section('content')
+<section class="member-hero"><div><span class="yza-eyebrow">YZA Member</span><h1>Pengingat Servis</h1><p>Perkiraan berikut dihitung dari servis selesai terakhir dan interval {{ config('yza.service_reminder.interval_months') }} bulan.</p></div></section>
+<section class="member-grid">@forelse($reminders as $row)<article class="member-section"><div class="member-heading"><h2>{{ $row['vehicle']->merk }} {{ $row['vehicle']->model }}</h2><span class="member-status">{{ $row['statusLabel'] }}</span></div>@if($row['service'])<p>Servis terakhir: {{ $row['lastDate']->format('d M Y') }}@if($row['serviceType']) · {{ $row['serviceType'] }}@endif</p><p>Kilometer terakhir: {{ $row['kilometer'] ?? '—' }}</p><p>Servis berikutnya diperkirakan: {{ $row['nextDate']->format('d M Y') }}</p>@if($row['status']==='due_soon')<p>{{ $row['days'] }} hari lagi</p>@elseif($row['status']==='overdue')<p>Terlambat {{ abs($row['days']) }} hari</p>@endif @else<p>Belum ada riwayat servis.</p>@endif<a href="{{ $row['bookingUrl'] }}">Booking Servis</a></article>@empty<p class="member-empty">Belum ada kendaraan yang terdaftar.</p>@endforelse</section>
+@endsection

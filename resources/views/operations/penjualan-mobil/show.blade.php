@@ -1,0 +1,5 @@
+@extends('layouts.app')
+@section('content')
+<div class="page-header"><div><span class="eyebrow">Penjualan Mobil</span><h1>{{ $sale->kode_penjualan }}</h1><p>{{ $sale->pelanggan->nama_lengkap }} · {{ $sale->mobil->merk }} {{ $sale->mobil->model }}</p></div></div>
+<article class="card detail-card"><div class="info-grid"><div class="info-item"><small>Unit</small><strong>{{ $sale->mobil->kode_mobil }}</strong></div><div class="info-item"><small>Harga snapshot</small><strong>{{ number_format((float)$sale->harga_mobil,0,',','.') }}</strong></div><div class="info-item"><small>Diskon</small><strong>{{ number_format((float)$sale->diskon,0,',','.') }}</strong></div><div class="info-item"><small>Total</small><strong>{{ number_format((float)$sale->total_akhir,0,',','.') }}</strong></div><div class="info-item"><small>Status penjualan</small><strong>{{ ucfirst($sale->status) }}</strong></div><div class="info-item"><small>Status transaksi</small><strong>{{ ucfirst(str_replace('_',' ',$sale->transaksi->status)) }}</strong></div></div><p>Unit saat ini: {{ $sale->mobil->status }}. Tahap ini belum memproses pembayaran atau invoice.</p></article>
+@endsection
