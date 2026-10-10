@@ -1177,6 +1177,9 @@ html.yza-intro-playing,body.yza-intro-playing{overflow:hidden!important}
   .showroom .video-play,.showroom .video-tile-label{z-index:3}
 }
 .showroom .show-actions .show-login{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:10px 15px;border:1px solid rgba(255,255,255,.28);border-radius:8px;color:#fff;transition:color .2s ease,background .2s ease,border-color .2s ease,transform .2s ease}.showroom .show-actions .show-login:hover{border-color:var(--show-red);background:rgba(237,28,36,.12);transform:translateY(-2px)}.showroom .show-actions .show-member-primary{min-width:126px}.showroom .show-actions{gap:10px}
+/* The intro is visual chrome; it must never intercept the real navbar links. */
+.yza-intro{pointer-events:none}
+.yza-intro .yza-intro-enter{pointer-events:auto}
 @media(max-width:800px){.showroom .show-actions{gap:8px}.showroom .show-actions .show-login{display:inline-flex;min-height:38px;padding:9px 11px;font-size:11px}.showroom .show-actions .show-login b{font-size:15px}.showroom .show-actions .show-member-primary{min-width:0;padding-inline:12px;font-size:11px}}
 .public-navbar--guest .show-actions{margin-left:auto}
 

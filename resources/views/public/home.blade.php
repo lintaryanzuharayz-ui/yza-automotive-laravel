@@ -5,7 +5,7 @@
     <title>YZA Automotive · Showroom Premium</title>
     <link rel="icon" href="{{ asset('assets/images/branding/logo-yza.png') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/variables.css') }}"><link rel="stylesheet" href="{{ asset('assets/css/base.css') }}"><link rel="stylesheet" href="{{ asset('assets/css/components.css') }}"><link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}"><link rel="stylesheet" href="{{ asset('assets/css/pages/appointment-final.css') }}"><link rel="stylesheet" href="{{ asset('assets/css/showroom.css?v=services-membership-promo-20261004') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/showroom.css?v=carousel-scroll-detail-link-20261007') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/showroom.css?v=nav-pointer-fix-20261010') }}">
 </head>
 <body class="showroom landing">
 <div id="yza-intro" class="yza-intro" aria-label="Welcome to YZA Automotive" role="dialog">
