@@ -545,6 +545,11 @@ document.getElementById('appointment-form')?.addEventListener('submit',function(
             finishIntro(false);
         }, { once: true });
 
+        // Never leave the full-screen intro blocking the landing page when a
+        // browser session cannot persist sessionStorage or the animation is
+        // interrupted. The explicit showroom button remains the primary path.
+        timers.push(window.setTimeout(() => finishIntro(true), 4500));
+
         if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
             return;
         }
