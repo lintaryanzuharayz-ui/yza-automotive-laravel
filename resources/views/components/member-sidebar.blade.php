@@ -13,6 +13,7 @@
     </div>
 
     <nav class="member-sidebar-nav" aria-label="Menu member">
+        <a class="member-nav-link {{ request()->routeIs('pelanggan.pesanan-mobil.*') ? 'is-active' : '' }}" href="{{ route('pelanggan.pesanan-mobil.index') }}"><span class="member-nav-icon">•</span><span>Pesanan Mobil Saya</span></a>
         <a class="member-nav-link {{ request()->routeIs('pelanggan.kendaraan.*') ? 'is-active' : '' }}" href="{{ route('pelanggan.kendaraan.index') }}"><span class="member-nav-icon">▣</span><span>Kendaraan Saya</span></a>
 
         <div class="member-nav-group {{ $servicesActive ? 'is-open' : '' }}" data-member-nav-group>
