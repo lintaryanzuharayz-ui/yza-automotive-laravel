@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Pelanggan;
 use App\Http\Controllers\Controller;
 use App\Models\{MemberVehiclePreorder, Mobil};
 use App\Services\{MemberVehiclePreorderService, MemberVehiclePurchaseService, VehicleAvailabilityService};
-use Illuminate\Http\{RedirectResponse, Request};
+use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 class MemberVehiclePreorderController extends Controller
@@ -27,14 +28,20 @@ class MemberVehiclePreorderController extends Controller
         return view('pelanggan.preorder.create', ['car' => $car, 'customer' => $customer, 'availability' => $state]);
     }
 
-    public function store(Request $request, MemberVehiclePreorderService $service, MemberVehiclePurchaseService $purchase): RedirectResponse
+    public function store(Request $request, MemberVehiclePreorderService $service, MemberVehiclePurchaseService $purchase): Response
     {
         try {
             $customer = $purchase->customerFor($request->user());
             $car = $request->filled('slug') ? app(\App\Http\Controllers\Public\MobilController::class)->catalogPreorder((string) $request->string('slug')) : Mobil::findOrFail($request->integer('mobil'));
             $service->create($customer, $car);
+            if ($request->expectsJson()) {
+                return response()->json(['ok' => true, 'message' => 'Pre-order berhasil dicatat. Tidak ada pembayaran sampai stok benar-benar tersedia.', 'redirect' => route('pelanggan.preorder.index')]);
+            }
             return redirect()->route('pelanggan.preorder.index')->with('status', 'Pre-order berhasil dicatat. Tidak ada pembayaran sampai stok benar-benar tersedia.');
-        } catch (Throwable $e) { return back()->withInput()->withErrors($e->getMessage()); }
+        } catch (Throwable $e) {
+            if ($request->expectsJson()) return response()->json(['ok' => false, 'message' => $e->getMessage()], 422);
+            return back()->withInput()->withErrors($e->getMessage());
+        }
     }
 
     public function cancel(MemberVehiclePreorder $preorder, MemberVehiclePreorderService $service, MemberVehiclePurchaseService $purchase): RedirectResponse
