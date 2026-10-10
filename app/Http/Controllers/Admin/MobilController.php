@@ -7,6 +7,7 @@ use App\Http\Requests\StoreMobilRequest;
 use App\Http\Requests\UpdateMobilRequest;
 use App\Models\Mobil;
 use App\Services\MobilAuditService;
+use App\Services\VehicleAvailabilityService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,7 @@ use Illuminate\View\View;
 
 class MobilController extends Controller
 {
-    public function index(): View { return view('admin.mobil.index', ['cars' => Mobil::query()->when(request('q'), fn($q, $v) => $q->where(fn($x) => $x->where('kode_mobil','like','%'.$v.'%')->orWhere('merk','like','%'.$v.'%')->orWhere('model','like','%'.$v.'%')))->when(request('status'), fn($q, $v) => $q->where('status',$v))->when(request('kondisi'), fn($q, $v) => $q->where('kondisi',$v))->orderByDesc('id_mobil')->paginate(10)->withQueryString()]); }
+    public function index(VehicleAvailabilityService $availability): View { $cars = Mobil::query()->when(request('q'), fn($q, $v) => $q->where(fn($x) => $x->where('kode_mobil','like','%'.$v.'%')->orWhere('merk','like','%'.$v.'%')->orWhere('model','like','%'.$v.'%')->orWhere('showcase_slug','like','%'.$v.'%')))->when(request('status'), fn($q, $v) => $q->where('status',$v))->when(request('kondisi'), fn($q, $v) => $q->where('kondisi',$v))->orderByDesc('id_mobil')->paginate(10)->withQueryString(); $cars->setCollection($availability->decorate($cars->getCollection())); return view('admin.mobil.index', compact('cars')); }
     public function create(): View { return view('admin.mobil.create', ['mobil' => new Mobil(['status' => 'tersedia', 'kondisi' => 'baru', 'kilometer' => 0, 'harga_beli' => 0, 'harga_jual' => 0])]); }
     public function store(StoreMobilRequest $request, MobilAuditService $audit): RedirectResponse { $mobil = DB::transaction(function () use ($request, $audit) { $data = $request->validated(); unset($data['foto']); $data['sumber_mobil'] = 'dealer'; $mobil = Mobil::create($data); $this->storePhotos($mobil, $request->file('foto', [])); $audit->record('create', $mobil->id_mobil, 'Mobil dibuat'); return $mobil; }); return redirect()->route('admin.mobil.show', $mobil)->with('success', 'Mobil berhasil dibuat.'); }
     public function show(Mobil $mobil): View { $mobil->load('foto'); return view('admin.mobil.show', compact('mobil')); }

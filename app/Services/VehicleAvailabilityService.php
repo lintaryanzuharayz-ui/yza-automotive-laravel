@@ -30,15 +30,20 @@ class VehicleAvailabilityService
             ->where('status', '!=', 'nonaktif')->get(['id_mobil', 'status']);
 
         $availableIds = $units->where('status', 'tersedia')->pluck('id_mobil')->values();
-        $reservedIds = collect();
+        $bookingIds = collect();
+        $orderIds = collect();
         if ($availableIds->isNotEmpty()) {
-            $reservedIds = $reservedIds->merge($this->activeBookingIds($availableIds));
-            $reservedIds = $reservedIds->merge($this->activeMemberOrderIds($availableIds));
+            $bookingIds = $this->activeBookingIds($availableIds);
+            $orderIds = $this->activeMemberOrderIds($availableIds);
         }
 
+        $reservedIds = $bookingIds->merge($orderIds);
         $orderableIds = $availableIds->diff($reservedIds)->values();
         $base = $this->statusForStock($orderableIds->count());
         $base['is_limited_edition'] = (bool) $car->is_limited_edition;
+        $base['active_booking_count'] = $bookingIds->unique()->count();
+        $base['active_order_count'] = $orderIds->unique()->count();
+        $base['active_reservation_count'] = $reservedIds->unique()->count();
         $base['orderable_ids'] = $orderableIds->map(fn ($id): int => (int) $id)->all();
         $this->cache[$key] = $base;
         return $this->withCurrentUnitState($car, $base);
