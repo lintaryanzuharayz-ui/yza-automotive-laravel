@@ -22,7 +22,9 @@ use App\Http\Controllers\Pelanggan\MemberVehiclePurchaseController as MemberVehi
 use App\Http\Controllers\Admin\MemberVehiclePurchaseController as AdminMemberVehiclePurchaseController;
 use App\Services\PengaturanService;
 use App\Http\Controllers\Admin\{StokMasukController,InventoryController,NotifikasiController as AdminNotifikasiController};
+use App\Http\Controllers\Admin\MemberVehiclePreorderController as AdminMemberVehiclePreorderController;
 use App\Http\Controllers\Pelanggan\{BookingMobilController,TestDriveController};
+use App\Http\Controllers\Pelanggan\MemberVehiclePreorderController;
 use App\Http\Controllers\Pelanggan\PengajuanMobilController;
 use App\Http\Controllers\{OperationsBookingController,OperationsTestDriveController};
 use App\Http\Controllers\OperationsPengajuanMobilController;
@@ -132,6 +134,10 @@ Route::middleware('auth')->group(function (): void {
         Route::get('pesanan-mobil/create/{mobil}', [MemberVehiclePurchaseController::class, 'create'])->whereNumber('mobil')->name('pesanan-mobil.create');
         Route::post('pesanan-mobil/{mobil}', [MemberVehiclePurchaseController::class, 'store'])->whereNumber('mobil')->name('pesanan-mobil.store');
         Route::get('pesanan-mobil/{pesanan_mobil}', [MemberVehiclePurchaseController::class, 'show'])->name('pesanan-mobil.show');
+        Route::get('pre-order', [MemberVehiclePreorderController::class, 'index'])->name('preorder.index');
+        Route::get('pre-order/create', [MemberVehiclePreorderController::class, 'create'])->name('preorder.create');
+        Route::post('pre-order', [MemberVehiclePreorderController::class, 'store'])->name('preorder.store');
+        Route::patch('pre-order/{preorder}/cancel', [MemberVehiclePreorderController::class, 'cancel'])->name('preorder.cancel');
         Route::resource('kendaraan', KendaraanController::class)->only(['index','create','store','show','edit','update']);
         Route::patch('kendaraan/{kendaraan}/nonaktifkan', [KendaraanController::class, 'deactivate'])->name('kendaraan.deactivate');
         Route::get('booking-mobil', [BookingMobilController::class, 'index'])->name('booking.index');
@@ -233,6 +239,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi.index');
     Route::patch('notifikasi/{notifikasi}/read', [NotifikasiController::class, 'read'])->name('notifikasi.read');
     Route::resource('mobil', AdminMobilController::class)->only(['index', 'create', 'store', 'show', 'edit', 'update']);
+    Route::get('pre-order-mobil', [AdminMemberVehiclePreorderController::class, 'index'])->name('preorder-mobil.index');
     Route::get('pesanan-mobil', [AdminMemberVehiclePurchaseController::class, 'index'])->name('pesanan-mobil.index');
     Route::get('pesanan-mobil/{pesanan_mobil}', [AdminMemberVehiclePurchaseController::class, 'show'])->name('pesanan-mobil.show');
     Route::post('pesanan-mobil/{pesanan_mobil}/approve', [AdminMemberVehiclePurchaseController::class, 'approve'])->name('pesanan-mobil.approve');

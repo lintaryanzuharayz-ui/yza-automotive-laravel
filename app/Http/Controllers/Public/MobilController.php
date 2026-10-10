@@ -116,7 +116,7 @@ class MobilController extends Controller
         }
         $data = $showcases[$slug];
         $image = $data['image']; unset($data['image']);
-        $mobil = new Mobil($data); $mobil->setAttribute('status', 'tersedia'); $mobil->setAttribute('image', $image);
+        $mobil = new Mobil($data); $mobil->setAttribute('status', 'tersedia'); $mobil->setAttribute('image', $image); $mobil->setAttribute('showcase_slug', $slug);
         return $this->memberShowcaseView($mobil, $galleryService, $image);
     }
 
@@ -153,6 +153,13 @@ class MobilController extends Controller
             ->where('showcase_slug', $slug)
             ->where('status', '!=', 'nonaktif')
             ->first();
+    }
+
+    public function catalogPreorder(string $slug): Mobil
+    {
+        $car = $this->catalogShowcases()->first(fn (Mobil $item): bool => $item->showcase_slug === $slug);
+        abort_unless($car, 404);
+        return $car;
     }
 
     public function sportShowcases()
