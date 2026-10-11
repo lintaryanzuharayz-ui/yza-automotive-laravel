@@ -24,7 +24,7 @@ class MidtransSandboxStage11ATest extends TestCase
     {
         config(['midtrans.server_key'=>'test-server']); $this->fakeSnap(); $tx=$this->transaction(); $svc=app(MidtransPaymentService::class);
         $a=$svc->createAttempt($tx,$this->user('pelanggan')); $b=$svc->createAttempt($tx,$this->user('pelanggan'));
-        $this->assertSame($a->id_pembayaran_gateway,$b->id_pembayaran_gateway); $this->assertSame(1,PembayaranGateway::where('id_transaksi',$tx->id_transaksi)->count()); $this->assertTrue(Schema::hasTable('event_pembayaran_gateway')); Http::assertSent(fn($request)=>(string) data_get($request->data(),'callbacks.finish')===route('pelanggan.midtrans.returned',['order_id'=>$a->order_id]));
+        $this->assertSame($a->id_pembayaran_gateway,$b->id_pembayaran_gateway); $this->assertSame(1,PembayaranGateway::where('id_transaksi',$tx->id_transaksi)->count()); $this->assertTrue(Schema::hasTable('event_pembayaran_gateway')); Http::assertSent(fn($request)=>(string) data_get($request->data(),'callbacks.finish')===route('pelanggan.midtrans.returned',['order_id'=>$a->order_id])); if(Schema::hasColumn('pembayaran_gateway','finish_url'))$this->assertSame(route('pelanggan.midtrans.returned',['order_id'=>$a->order_id]),$a->finish_url);
     }
     public function test_remaining_amount_is_server_calculated_and_pending_manual_blocks(): void
     {

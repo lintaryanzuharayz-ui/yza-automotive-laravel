@@ -2,6 +2,7 @@
 namespace App\Services;
 use App\Models\{EventPembayaranGateway,PembayaranGateway,Transaksi};
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use RuntimeException;
@@ -15,9 +16,9 @@ class MidtransPaymentService
   if(!in_array($tx->jenis_transaksi,self::TYPES,true)||in_array($tx->status,['lunas','dibatalkan'],true))throw new RuntimeException('Transaksi tidak eligible untuk Midtrans.');
   app(GatewayPaymentGuard::class)->assertAttemptAllowed($tx);
   $paid=(float)$tx->pembayarans()->where('arah','masuk')->where('status','terverifikasi')->sum('jumlah');$remaining=(float)$tx->total-$paid;if($remaining<=0)throw new RuntimeException('Sisa tagihan kosong.');
-  $active=PembayaranGateway::where('id_transaksi',$tx->id_transaksi)->whereIn('status_provider',['created','pending'])->latest()->first();if($active&&abs((float)$active->gross_amount-$remaining)<.01)return$active;
-  $order='YZA-'.$tx->id_transaksi.'-'.strtoupper(Str::random(10));$attempt=new PembayaranGateway();$attempt->forceFill(['id_transaksi'=>$tx->id_transaksi,'provider'=>'midtrans','order_id'=>$order,'gross_amount'=>number_format($remaining,2,'.',''),'status_provider'=>'created','initiated_by'=>$user->id_user])->save();
-  try{$data=app(MidtransClient::class)->createSnapTransaction(['transaction_details'=>['order_id'=>$order,'gross_amount'=>(int)round($remaining)],'customer_details'=>['first_name'=>$tx->pelanggan->nama_lengkap,'email'=>$tx->pelanggan->user?->email,'phone'=>$tx->pelanggan->no_hp],'callbacks'=>['finish'=>route('pelanggan.midtrans.returned',['order_id'=>$order])]]);$attempt->forceFill(['status_provider'=>'pending','snap_token'=>$data['token'],'redirect_url'=>$data['redirect_url'],'last_synced_at'=>now()])->save();return$attempt->fresh();}catch(\Throwable $e){$attempt->forceFill(['status_provider'=>'failure','last_synced_at'=>now()])->save();throw new RuntimeException('Midtrans Sandbox gagal membuat pembayaran.');}
+  $active=PembayaranGateway::where('id_transaksi',$tx->id_transaksi)->whereIn('status_provider',['created','pending'])->latest()->first();if($active&&abs((float)$active->gross_amount-$remaining)<.01){$activeFinish=route('pelanggan.midtrans.returned',['order_id'=>$active->order_id]);if(!Schema::hasColumn('pembayaran_gateway','finish_url')||(string)$active->finish_url===$activeFinish)return$active;}
+  $order='YZA-'.$tx->id_transaksi.'-'.strtoupper(Str::random(10));$finishUrl=route('pelanggan.midtrans.returned',['order_id'=>$order]);$attempt=new PembayaranGateway();$gatewayFields=['id_transaksi'=>$tx->id_transaksi,'provider'=>'midtrans','order_id'=>$order,'gross_amount'=>number_format($remaining,2,'.',''),'status_provider'=>'created','initiated_by'=>$user->id_user];if(Schema::hasColumn('pembayaran_gateway','finish_url'))$gatewayFields['finish_url']=$finishUrl;$attempt->forceFill($gatewayFields)->save();
+  try{$data=app(MidtransClient::class)->createSnapTransaction(['transaction_details'=>['order_id'=>$order,'gross_amount'=>(int)round($remaining)],'customer_details'=>['first_name'=>$tx->pelanggan->nama_lengkap,'email'=>$tx->pelanggan->user?->email,'phone'=>$tx->pelanggan->no_hp],'callbacks'=>['finish'=>$finishUrl]]);$attempt->forceFill(['status_provider'=>'pending','snap_token'=>$data['token'],'redirect_url'=>$data['redirect_url'],'last_synced_at'=>now()])->save();return$attempt->fresh();}catch(\Throwable $e){$attempt->forceFill(['status_provider'=>'failure','last_synced_at'=>now()])->save();throw new RuntimeException('Midtrans Sandbox gagal membuat pembayaran.');}
  }
  public function processNotification(array $data,bool $verifySignature=true):PembayaranGateway
  {
