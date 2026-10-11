@@ -5,12 +5,14 @@ use App\Http\Requests\StoreKendaraanPelangganRequest;
 use App\Http\Requests\UpdateKendaraanPelangganRequest;
 use App\Models\KendaraanPelanggan;
 use App\Services\MasterAuditService;
+use App\Services\VehicleGalleryService;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 class KendaraanController extends Controller
 {
  private function customer(){ $p=auth()->user()->pelanggan; abort_unless($p,404); return $p; }
- public function index(): View { $p=$this->customer(); $ownership=app(\App\Services\VerifiedCarOwnershipService::class); $hasVerifiedPurchase=$ownership->customerHasVerifiedPurchase((int)$p->id_pelanggan); $items=$hasVerifiedPurchase ? $p->kendaraan()->where('status','aktif')->where(function($q){$q->whereNotNull('nomor_rangka')->orWhereNotNull('nomor_mesin');})->latest()->paginate(10) : $p->kendaraan()->whereRaw('1 = 0')->paginate(10); return view('pelanggan.kendaraan.index',compact('items','hasVerifiedPurchase')); }
+ public function index(): View { $p=$this->customer(); $ownership=app(\App\Services\VerifiedCarOwnershipService::class); $vehicles=$ownership->verifiedVehiclesFor((int)$p->id_pelanggan); $vehicles->each(fn (KendaraanPelanggan $vehicle) => $vehicle->load('penjualan.mobil')); $page=(int)request()->integer('page',1); $perPage=10; $items=new LengthAwarePaginator($vehicles->forPage($page,$perPage)->values(),$vehicles->count(),$perPage,$page,['path'=>request()->url(),'query'=>request()->query()]); $gallery=app(VehicleGalleryService::class); $items->getCollection()->each(function (KendaraanPelanggan $vehicle) use ($gallery): void { $mobil=$vehicle->penjualan?->mobil; $galleryData=$mobil ? $gallery->for($mobil) : []; $defaultKey=$mobil ? $gallery->defaultColor($mobil) : null; $selected=$galleryData[$defaultKey] ?? (reset($galleryData) ?: []); $vehicle->setAttribute('presentation_image',$selected['images'][0]['src'] ?? asset('assets/images/hero/yza-hero-reference-v3.png')); $vehicle->setAttribute('is_verified_ownership',true); }); $hasVerifiedPurchase=$vehicles->isNotEmpty(); return view('pelanggan.kendaraan.index',compact('items','hasVerifiedPurchase')); }
  public function create(): View { return view('pelanggan.kendaraan.create',['item'=>new KendaraanPelanggan(['kilometer'=>0])]); }
  public function store(StoreKendaraanPelangganRequest $request, MasterAuditService $audit): RedirectResponse { $p=$this->customer(); $item=$p->kendaraan()->create($request->validated()+['status'=>'aktif']); $audit->record('create','kendaraan_pelanggan',$item->id_kendaraan_pelanggan,'Pelanggan menambahkan kendaraan'); return redirect()->route('pelanggan.kendaraan.show',$item)->with('success','Kendaraan berhasil ditambahkan.'); }
  public function show(KendaraanPelanggan $kendaraan): View { $p=$this->customer(); abort_unless((int)$kendaraan->id_pelanggan===(int)$p->id_pelanggan,404); return view('pelanggan.kendaraan.show',['item'=>$kendaraan]); }
