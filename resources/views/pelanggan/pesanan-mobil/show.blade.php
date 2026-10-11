@@ -26,7 +26,7 @@
 <div class="order-detail-wrap">
     <header class="order-detail-heading">
         <a class="order-back-link" href="{{ route('pelanggan.pesanan-mobil.index') }}">&larr; Kembali ke Daftar Pesanan</a>
-        <div class="order-heading-row"><div><div class="order-number-row"><h1>{{ $order->nomor_pesanan }}</h1><span class="order-status-badge">{{ $statusLabel }}</span></div><p>Dibuat pada {{ $order->created_at?->format('d F Y') ?: '-' }} &middot; {{ $order->created_at?->format('H:i') ?: '--:--' }} WIB</p></div><span class="order-reference">YZA AUTOMOTIVE<br><small>PREMIUM MEMBER ORDER</small></span></div>
+        <div class="order-heading-row"><div><div class="order-number-row"><h1>{{ $order->nomor_pesanan }}</h1><span class="order-status-badge">{{ $statusLabel }}</span></div><p>Dibuat pada {{ $order->created_at?->format('d F Y') ?: '-' }} &middot; {{ $order->created_at?->format('H:i') ?: '--:--' }} WIB</p></div><section class="order-next-card order-next-card-top"><div class="order-next-icon">!</div><div><h2>Langkah Selanjutnya</h2><p>@if($order->status === 'menunggu_verifikasi')Pesanan menunggu verifikasi admin.@elseif($order->status === 'menunggu_pembayaran')Silakan lanjutkan pembayaran.@elseif($order->status === 'lunas')Tim kami melanjutkan proses PDI.@else>Status akan diperbarui oleh tim YZA Automotive.@endif</p></div></section></div>
     </header>
     <section class="order-timeline" aria-label="Tahapan pesanan">
         @foreach($timeline as $index => $step)<div class="order-timeline-step {{ $step['done'] ? 'is-done' : ($index === 1 ? 'is-current' : '') }}"><span class="order-timeline-dot">{{ $index + 1 }}</span><strong>{{ $step['label'] }}</strong><small>{{ $step['value'] }}</small></div>@endforeach
@@ -51,7 +51,6 @@
                     <a class="order-secondary-button" href="{{ route('pelanggan.invoice.car-sale', $order->transaksi) }}">Lihat Invoice</a>
                 @endif
             </section>
-            <section class="order-next-card"><div class="order-next-icon">!</div><div><h2>Langkah Selanjutnya</h2><p>@if($order->status === 'menunggu_verifikasi')Pesanan Anda sedang menunggu verifikasi oleh tim admin kami.@elseif($order->status === 'menunggu_pembayaran')Pesanan telah disetujui. Silakan lanjutkan pembayaran.@elseif($order->status === 'lunas')Pembayaran diterima. Tim kami akan melanjutkan proses PDI.@else>Status pesanan Anda akan diperbarui oleh tim YZA Automotive.@endif</p><small>Notifikasi akan dikirim melalui email atau WhatsApp setelah ada pembaruan.</small></div></section>
         </aside>
     </main>
 </div>
