@@ -3,27 +3,28 @@ body.member-checkout-page{min-height:100dvh;margin:0!important;padding:0!importa
 .member-checkout-page .member-horizontal-shell{width:100%;max-width:none;margin:0!important;background:#f5f6f8}
 .member-checkout-page .member-workspace{width:100%;min-height:0!important;flex:1 0 auto;margin-left:0!important;display:flex;flex-direction:column}
 .member-checkout-page .member-main-content{box-sizing:border-box;width:100%;min-height:0!important;flex:1 0 auto;padding:28px 24px 36px!important;background:linear-gradient(135deg,#f7f8fa 0%,#fff 48%,#f1f3f6 100%)}
-.member-checkout-page .member-main-content>.checkout-wrap{width:100%;max-width:1780px!important;margin-inline:auto}
+.member-checkout-page .member-main-content>.checkout-wrap{width:100%;max-width:none!important;margin-inline:auto}
 .member-checkout-page .member-shared-footer{position:relative;z-index:1;box-sizing:border-box;width:100%;max-width:none;flex:0 0 auto;margin-top:0;margin-left:0;padding-inline:clamp(28px,4vw,72px);min-height:96px;height:96px}
 @media(min-width:1400px){
-    .member-checkout-page .checkout-main{grid-template-columns:minmax(0,1.35fr) minmax(410px,1.2fr) minmax(300px,.85fr);gap:24px;align-items:stretch}
+    .member-checkout-page .checkout-heading{max-width:1800px;margin-inline:auto}
+    .member-checkout-page .checkout-main{grid-template-columns:minmax(0,1.35fr) minmax(0,1.25fr) minmax(320px,.92fr);gap:28px;align-items:stretch}
     .member-checkout-page .checkout-form-card{display:contents}
     .member-checkout-page .checkout-form-column,.member-checkout-page .checkout-summary-column{box-sizing:border-box;border:1px solid #e1e4e8;border-radius:18px;background:rgba(255,255,255,.96);box-shadow:0 15px 36px rgba(28,35,45,.08)}
-    .member-checkout-page .checkout-form-column{padding:30px 30px 28px}
-    .member-checkout-page .checkout-summary-column{padding:30px 26px 28px}
-    .member-checkout-page .checkout-vehicle-top{min-height:390px;padding:28px 32px 0}
-    .member-checkout-page .checkout-vehicle-image{height:300px;margin-top:14px}
-    .member-checkout-page .checkout-vehicle-body{padding:18px 32px 30px}
-    .member-checkout-page .checkout-vehicle-card h2{font-size:32px}
-    .member-checkout-page .checkout-section-title h2{font-size:24px}
+    .member-checkout-page .checkout-form-column{padding:36px 38px 34px}
+    .member-checkout-page .checkout-summary-column{padding:36px 32px 34px}
+    .member-checkout-page .checkout-vehicle-top{min-height:470px;padding:34px 38px 0}
+    .member-checkout-page .checkout-gallery-frame .checkout-vehicle-image{height:390px;margin-top:14px}
+    .member-checkout-page .checkout-vehicle-body{padding:22px 38px 36px}
+    .member-checkout-page .checkout-vehicle-card h2{font-size:38px}
+    .member-checkout-page .checkout-section-title h2{font-size:28px}
     .member-checkout-page .checkout-section-title p,.member-checkout-page .checkout-field label,.member-checkout-page .checkout-check{font-size:14px}
-    .member-checkout-page .checkout-control{min-height:52px;font-size:15px}
-    .member-checkout-page textarea.checkout-control{min-height:112px}
-    .member-checkout-page .checkout-summary-head strong,.member-checkout-page .checkout-summary-head span{font-size:16px}
+    .member-checkout-page .checkout-control{min-height:58px;font-size:16px}
+    .member-checkout-page textarea.checkout-control{min-height:132px}
+    .member-checkout-page .checkout-summary-head strong,.member-checkout-page .checkout-summary-head span{font-size:17px}
     .member-checkout-page .checkout-summary-row,.member-checkout-page .checkout-summary-row strong{font-size:14px}
     .member-checkout-page .checkout-summary-total{font-size:18px}
     .member-checkout-page .checkout-summary-total strong{font-size:26px}
-    .member-checkout-page .checkout-submit{min-height:60px;font-size:16px}
+    .member-checkout-page .checkout-submit{min-height:64px;font-size:17px}
 }
 @media(max-width:1399px) and (min-width:851px){.member-checkout-page .member-main-content{padding-inline:32px!important}.member-checkout-page .checkout-wrap{max-width:1700px}}
 @media(max-width:850px){
