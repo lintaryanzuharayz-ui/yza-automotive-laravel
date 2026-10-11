@@ -58,6 +58,10 @@ class MidtransSandboxStage11ATest extends TestCase
     {
         config(['midtrans.server_key'=>'test-server']); $this->fakeSnap(); $member=$this->user('pelanggan'); $tx=$this->transaction('penjualan_mobil','100000.00'); $gateway=app(MidtransPaymentService::class)->createAttempt($tx,$member); Http::fake(['*status'=>Http::response(['transaction_status'=>'pending','status_code'=>'201','gross_amount'=>'100000.00','payment_type'=>'qris'],200)]); $this->assertSame('pending',app(MidtransPaymentService::class)->sync($gateway,$member)->status_provider); $this->assertSame('belum_bayar',$tx->fresh()->status);
     }
+    public function test_settlement_can_finalize_when_another_legacy_gateway_is_still_pending(): void
+    {
+        config(['midtrans.server_key'=>'test-server']); $this->fakeSnap(); $tx=$this->transaction('penjualan_mobil','100000.00'); $service=app(MidtransPaymentService::class); $first=$service->createAttempt($tx,$this->user('pelanggan')); $first->forceFill(['status_provider'=>'pending'])->save(); $second=new PembayaranGateway(); $second->forceFill(['id_transaksi'=>$tx->id_transaksi,'provider'=>'midtrans','order_id'=>'YZA-'.$tx->id_transaksi.'-LEGACY','gross_amount'=>'100000.00','status_provider'=>'pending','initiated_by'=>$this->user('pelanggan')->id_user])->save(); Http::fake(['*status'=>Http::response(['transaction_status'=>'settlement','status_code'=>'200','gross_amount'=>'100000.00','payment_type'=>'qris','transaction_id'=>'provider-two'],200)]); $result=$service->sync($first,$this->user('pelanggan')); $this->assertSame('settlement',$result->status_provider); $this->assertSame('lunas',$tx->fresh()->status); $this->assertSame(1,Pembayaran::where('id_transaksi',$tx->id_transaksi)->count());
+    }
     public function test_midtrans_is_sandbox_only_and_no_secret_is_rendered(): void
     {
         $this->assertSame('sandbox',config('midtrans.environment')); $this->assertStringNotContainsString('SERVER_KEY',view('payments.midtrans-return')->render()); $this->assertFalse(Schema::hasTable('midtrans_orders'));
