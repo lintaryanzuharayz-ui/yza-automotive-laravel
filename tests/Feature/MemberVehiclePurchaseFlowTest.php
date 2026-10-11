@@ -50,6 +50,9 @@ class MemberVehiclePurchaseFlowTest extends TestCase
             ->assertSee('Ringkasan Pembayaran')
             ->assertSee('Langkah Selanjutnya')
             ->assertSee('Pearl White')
+            ->assertSee('order-vehicle-thumbs', false)
+            ->assertSee('Rear 3/4')
+            ->assertSee('Interior / cockpit')
             ->assertSee('member-order-detail.css', false);
     }
 

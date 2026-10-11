@@ -34,7 +34,7 @@
     <main class="order-detail-grid">
         <div class="order-detail-main">
             <section class="order-vehicle-card">
-                <div class="order-vehicle-media"><img src="{{ $vehicleImage }}" alt="{{ $vehicleName }}"></div>
+                <div class="order-vehicle-media"><img id="order-main-vehicle-image" src="{{ $vehicleImage }}" alt="{{ $vehicleName }}"><div class="order-vehicle-thumbs" role="list" aria-label="Galeri {{ $order->snapshot_warna }}">@foreach($selectedGallery['images'] ?? [] as $index => $image)<button class="order-vehicle-thumb {{ $index === 0 ? 'is-active' : '' }}" type="button" data-order-image="{{ $image['src'] }}" data-order-label="{{ $image['label'] }}" aria-label="Lihat {{ $image['label'] }}"><img src="{{ $image['src'] }}" alt="{{ $image['label'] }} {{ $vehicleName }}"></button>@endforeach</div></div>
                 <div class="order-vehicle-copy"><div class="order-brand-row"><span class="order-eyebrow">KENDARAAN PESANAN</span><span class="order-condition">UNIT BARU</span></div><h2>{{ $vehicleName }}</h2><p>{{ $vehicleMeta }}</p><strong class="order-vehicle-price">{{ $price }}</strong><div class="order-spec-grid"><div><span>Mesin</span><strong>{{ $order->mobil?->kapasitas_mesin ?: '3.0L Turbo 6-Cylinder' }}</strong></div><div><span>Transmisi</span><strong>{{ strtoupper($order->mobil?->transmisi ?: 'Automatic') }}</strong></div><div><span>Tipe</span><strong>{{ $order->snapshot_tipe ?: '-' }}</strong></div><div><span>Warna</span><strong>{{ $order->snapshot_warna ?: '-' }}</strong></div></div></div>
             </section>
             <section class="order-info-card"><div class="order-card-title"><span class="order-card-icon">DOC</span><div><h2>Informasi Pesanan</h2><p>Detail snapshot pesanan yang tersimpan saat checkout.</p></div></div><dl class="order-info-list"><div><dt>Nomor Pesanan</dt><dd>{{ $order->nomor_pesanan }}</dd></div><div><dt>Tanggal Pesanan</dt><dd>{{ $order->created_at?->format('d F Y, H:i') ?: '-' }} WIB</dd></div><div><dt>Status</dt><dd><span class="order-inline-status">{{ $statusLabel }}</span></dd></div><div><dt>Metode Pembayaran</dt><dd>{{ $order->transaksi?->metode_pembayaran ?: 'Menunggu verifikasi admin' }}</dd></div></dl></section>
@@ -55,3 +55,17 @@
     </main>
 </div>
 @endsection
+@push('scripts')
+<script>
+(() => {
+    const main = document.getElementById('order-main-vehicle-image');
+    const thumbs = [...document.querySelectorAll('.order-vehicle-thumb')];
+    if (!main || !thumbs.length) return;
+    thumbs.forEach(thumb => thumb.addEventListener('click', () => {
+        main.src = thumb.dataset.orderImage;
+        main.alt = thumb.dataset.orderLabel + ' {{ $vehicleName }}';
+        thumbs.forEach(item => item.classList.toggle('is-active', item === thumb));
+    }));
+})();
+</script>
+@endpush
