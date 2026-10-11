@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/vehicle-badges.css') }}?v=stock-badges-20261010">
     @php
         $isMemberShell = auth()->check() && auth()->user()->roleName() === 'pelanggan' && request()->routeIs('pelanggan.*') && !View::hasSection('member-portal');
+        $isCheckoutPage = $isMemberShell && request()->routeIs('pelanggan.pesanan-mobil.create');
     @endphp
     @if($isMemberShell)
         <link rel="stylesheet" href="{{ asset('assets/css/member-portal.css') }}?v={{ filemtime(public_path('assets/css/member-portal.css')) }}">
@@ -50,8 +51,13 @@
                     @if($errors->any())<div class="member-alert" role="alert">{{ $errors->first() }}</div>@endif
                     @yield('content')
                 </main>
-                @include('components.member-footer')
+                @unless($isCheckoutPage)
+                    @include('components.member-footer')
+                @endunless
             </div>
+            @if($isCheckoutPage)
+                @include('components.member-footer')
+            @endif
             <div class="member-overlay" data-member-overlay></div>
         </div>
     @else
