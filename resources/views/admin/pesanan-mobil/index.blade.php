@@ -21,7 +21,7 @@
             <label><input type="date" name="from" value="{{ request('from') }}" aria-label="Tanggal mulai"></label><label><input type="date" name="to" value="{{ request('to') }}" aria-label="Tanggal akhir"></label>
             <button class="admin-reset-button" type="submit">Terapkan</button><a class="admin-reset-button" href="{{ route('admin.pesanan-mobil.index') }}">Reset</a>
         </form>
-        <div class="admin-orders-table-wrap"><table class="admin-orders-table"><thead><tr><th>#</th><th>Order ID</th><th>Customer</th><th>Mobil</th><th>Tanggal Pesan</th><th>Pembayaran</th><th>Status</th><th>Total</th><th>Aksi</th></tr></thead><tbody>
+        <div class="admin-orders-table-wrap"><table class="admin-orders-table"><colgroup><col class="order-col-index"><col class="order-col-id"><col class="order-col-customer"><col class="order-col-car"><col class="order-col-date"><col class="order-col-payment"><col class="order-col-status"><col class="order-col-total"><col class="order-col-actions"></colgroup><thead><tr><th>#</th><th>Order ID</th><th>Customer</th><th>Mobil</th><th>Tanggal Pesan</th><th>Pembayaran</th><th>Status</th><th>Total</th><th>Aksi</th></tr></thead><tbody>
             @forelse($orders as $order)
                 <tr>
                     <td>{{ $orders->firstItem() + $loop->index }}</td><td><a class="admin-order-id" href="{{ route('admin.pesanan-mobil.show', $order) }}">{{ $order->nomor_pesanan }} &#8599;</a></td><td><strong>{{ $order->pelanggan?->nama_lengkap ?: $order->nama_pembeli }}</strong><small>{{ $order->email_pembeli }}</small></td>
