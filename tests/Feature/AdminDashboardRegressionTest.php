@@ -41,6 +41,8 @@ class AdminDashboardRegressionTest extends TestCase
         $response->assertOk()
             ->assertSee('Daftar Pesanan Mobil')
             ->assertSee('Menunggu Verifikasi')
+            ->assertSee('admin-confirm-modal', false)
+            ->assertDontSee('admin-more-button', false)
             ->assertSee('admin-orders-table', false)
             ->assertSee('Cari berdasarkan Order ID', false);
     }
