@@ -53,8 +53,11 @@
                             @csrf
                             <label for="offline-payment-method">Pembayaran offline</label>
                             <select id="offline-payment-method" name="metode" required><option value="transfer">Transfer langsung</option><option value="tunai">Tunai di dealer</option></select>
-                            <input type="file" name="bukti_transfer" accept=".jpg,.jpeg,.png,.webp,.pdf" aria-label="Bukti transfer (wajib untuk transfer)">
-                            <small>Transfer diverifikasi setelah dana masuk rekening resmi YZA. Tunai dikonfirmasi petugas setelah uang diterima.</small>
+                            <div class="order-offline-proof" data-offline-proof>
+                                <label for="offline-payment-proof">Bukti transfer</label>
+                                <input id="offline-payment-proof" type="file" name="bukti_transfer" accept=".jpg,.jpeg,.png,.webp,.pdf" aria-label="Bukti transfer">
+                            </div>
+                            <small data-offline-note>Transfer diverifikasi setelah dana masuk rekening resmi YZA. Bukti transfer wajib diunggah.</small>
                             <button class="order-secondary-button" type="submit">Ajukan Pembayaran Offline</button>
                         </form>
                     @endif
@@ -88,6 +91,24 @@
     thumbs.forEach((thumb, index) => thumb.addEventListener('click', () => showImage(index)));
     document.querySelector('.order-gallery-arrow-prev')?.addEventListener('click', () => showImage(activeIndex - 1));
     document.querySelector('.order-gallery-arrow-next')?.addEventListener('click', () => showImage(activeIndex + 1));
+})();
+(() => {
+    const method = document.getElementById('offline-payment-method');
+    const proof = document.querySelector('[data-offline-proof]');
+    const proofInput = document.getElementById('offline-payment-proof');
+    const note = document.querySelector('[data-offline-note]');
+    if (!method || !proof || !proofInput || !note) return;
+    const syncOfflineFields = () => {
+        const isTransfer = method.value === 'transfer';
+        proof.hidden = !isTransfer;
+        proofInput.required = isTransfer;
+        if (!isTransfer) proofInput.value = '';
+        note.textContent = isTransfer
+            ? 'Transfer diverifikasi setelah dana masuk rekening resmi YZA. Bukti transfer wajib diunggah.'
+            : 'Pembayaran tunai akan dikonfirmasi petugas setelah uang diterima di dealer.';
+    };
+    method.addEventListener('change', syncOfflineFields);
+    syncOfflineFields();
 })();
 </script>
 @endpush
