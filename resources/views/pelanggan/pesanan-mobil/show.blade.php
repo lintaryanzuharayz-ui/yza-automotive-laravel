@@ -32,14 +32,16 @@
         @foreach($timeline as $index => $step)<div class="order-timeline-step {{ $step['done'] ? 'is-done' : ($index === 1 ? 'is-current' : '') }}"><span class="order-timeline-dot">{{ $index + 1 }}</span><strong>{{ $step['label'] }}</strong><small>{{ $step['value'] }}</small></div>@endforeach
     </section>
     <main class="order-detail-grid">
+        <section class="order-vehicle-card order-vehicle-panel">
         <section class="order-vehicle-media order-gallery-card">
             <button class="order-gallery-arrow order-gallery-arrow-prev" type="button" aria-label="Foto sebelumnya">&#8249;</button>
             <img id="order-main-vehicle-image" src="{{ $vehicleImage }}" alt="{{ $vehicleName }}">
             <button class="order-gallery-arrow order-gallery-arrow-next" type="button" aria-label="Foto berikutnya">&#8250;</button>
             <div class="order-vehicle-thumbs" role="list" aria-label="Galeri {{ $order->snapshot_warna }}">@foreach($selectedGallery['images'] ?? [] as $index => $image)<button class="order-vehicle-thumb {{ $index === 0 ? 'is-active' : '' }}" type="button" data-order-image="{{ $image['src'] }}" data-order-label="{{ $image['label'] }}" aria-label="Lihat {{ $image['label'] }}"><img src="{{ $image['src'] }}" alt="{{ $image['label'] }} {{ $vehicleName }}"></button>@endforeach</div>
         </section>
-        <section class="order-vehicle-card order-vehicle-copy">
+        <section class="order-vehicle-copy">
             <div class="order-brand-row"><span class="order-eyebrow">KENDARAAN PESANAN</span><span class="order-condition">UNIT BARU</span></div><h2>{{ $vehicleName }}</h2><p>{{ $vehicleMeta }}</p><strong class="order-vehicle-price">{{ $price }}</strong><div class="order-spec-grid"><div><span>Mesin</span><strong>{{ $order->mobil?->kapasitas_mesin ?: '3.0L Turbo 6-Cylinder' }}</strong></div><div><span>Transmisi</span><strong>{{ strtoupper($order->mobil?->transmisi ?: 'Automatic') }}</strong></div><div><span>Tipe &amp; Warna</span><strong>{{ $order->snapshot_tipe ?: '-' }} · {{ $order->snapshot_warna ?: '-' }}</strong></div></div>
+        </section>
         </section>
         <div class="order-right-column">
         <section class="order-info-card order-buyer-card"><div class="order-card-title"><span class="order-card-icon">USER</span><div><h2>Informasi Pembeli</h2><p>Data yang digunakan untuk proses pesanan.</p></div></div><dl class="order-info-list"><div><dt>Nama Lengkap</dt><dd>{{ $order->nama_pembeli }}</dd></div><div><dt>Email</dt><dd>{{ $order->email_pembeli ?: '-' }}</dd></div><div><dt>Nomor HP</dt><dd>{{ $order->telepon_pembeli ?: '-' }}</dd></div><div><dt>Alamat</dt><dd>{{ $order->alamat_pembeli ?: '-' }}</dd></div></dl></section>
