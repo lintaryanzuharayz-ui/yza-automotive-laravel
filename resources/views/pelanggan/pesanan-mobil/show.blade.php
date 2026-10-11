@@ -7,8 +7,10 @@
 @php
     $statusLabel = ucwords(str_replace('_', ' ', $order->status));
     $paymentStatus = $order->transaksi?->status ? ucwords(str_replace('_', ' ', $order->transaksi->status)) : 'Menunggu persetujuan';
-    $pdiStatus = $order->pdi?->status ? ucwords(str_replace('_', ' ', $order->pdi->status)) : 'Belum diperiksa';
-    $pickupStatus = $order->jadwal_pengambilan?->format('d M Y H:i').' WIB' ?: 'Belum dijadwalkan';
+    $pdiCode = $order->pdi?->status ?: 'belum_diperiksa';
+    $pdiStatus = ['belum_diperiksa' => 'Belum diperiksa', 'sedang_diperiksa' => 'Sedang diperiksa', 'perlu_perbaikan' => 'Perlu tindak lanjut', 'gagal' => 'Perlu tindak lanjut', 'lulus' => 'Lulus'][ $pdiCode ] ?? ucwords(str_replace('_', ' ', $pdiCode));
+    $pickupCode = $order->status_pengambilan ?: 'belum_dijadwalkan';
+    $pickupStatus = $order->jadwal_pengambilan?->format('d M Y, H:i').' WIB' ?: 'Belum dijadwalkan';
     $handoverStatus = $order->diserahkan_at?->format('d M Y H:i').' WIB' ?: 'Belum selesai';
     $vehicleName = trim($order->snapshot_merk.' '.$order->snapshot_model);
     $vehicleMeta = implode(' | ', array_filter([$order->snapshot_tipe ?: 'Varian standar', $order->snapshot_tahun ?: '-', $order->snapshot_warna ?: '-']));
@@ -27,10 +29,11 @@
         ['label' => 'Checkout', 'value' => 'Selesai', 'done' => true],
         ['label' => 'Verifikasi Admin', 'value' => $order->diputuskan_at?->format('d M Y') ?: 'Menunggu', 'done' => (bool) $order->diputuskan_at],
         ['label' => 'Pembayaran', 'value' => $paymentStatus, 'done' => in_array($order->transaksi?->status, ['dp', 'lunas'], true)],
-        ['label' => 'PDI', 'value' => $pdiStatus, 'done' => $order->pdi?->status === 'lulus'],
-        ['label' => 'Pengambilan', 'value' => $pickupStatus, 'done' => (bool) $order->jadwal_pengambilan],
+        ['label' => 'PDI / Pemeriksaan', 'value' => $pdiStatus, 'done' => $pdiCode === 'lulus'],
+        ['label' => 'Pengambilan', 'value' => $order->diserahkan_at ? 'Selesai' : ($order->jadwal_pengambilan ? 'Terjadwal' : 'Menunggu'), 'done' => in_array($pickupCode, ['dijadwalkan', 'siap_diambil', 'diserahkan'], true)],
         ['label' => 'Selesai', 'value' => $handoverStatus, 'done' => (bool) $order->diserahkan_at],
     ];
+    $activeTimelineIndex = $order->diserahkan_at ? 5 : ($pdiCode === 'lulus' ? 4 : ($paymentIsSettled ? 3 : ($order->diputuskan_at ? 2 : 1)));
 @endphp
 @section('content')
 <div class="order-detail-wrap">
@@ -39,7 +42,7 @@
         <div class="order-heading-row"><div><div class="order-number-row"><h1>{{ $order->nomor_pesanan }}</h1><span class="order-status-badge">{{ $statusLabel }}</span></div><p>Dibuat pada {{ $order->created_at?->format('d F Y') ?: '-' }} &middot; {{ $order->created_at?->format('H:i') ?: '--:--' }} WIB</p></div><section class="order-next-card order-next-card-top"><div class="order-next-icon">!</div><div><h2>Langkah Selanjutnya</h2><p>@if($order->status === 'menunggu_verifikasi')Pesanan menunggu verifikasi admin.@elseif($order->status === 'menunggu_pembayaran')Silakan lanjutkan pembayaran.@elseif($order->status === 'lunas')Tim kami melanjutkan proses PDI.@else>Status akan diperbarui oleh tim YZA Automotive.@endif</p></div></section></div>
     </header>
     <section class="order-timeline" aria-label="Tahapan pesanan">
-        @foreach($timeline as $index => $step)<div class="order-timeline-step {{ $step['done'] ? 'is-done' : ($index === 1 ? 'is-current' : '') }}"><span class="order-timeline-dot">{{ $index + 1 }}</span><strong>{{ $step['label'] }}</strong><small>{{ $step['value'] }}</small></div>@endforeach
+        @foreach($timeline as $index => $step)<div class="order-timeline-step {{ $step['done'] ? 'is-done' : ($index === $activeTimelineIndex ? 'is-current' : '') }}"><span class="order-timeline-dot">{{ $index + 1 }}</span><strong>{{ $step['label'] }}</strong><small>{{ $step['value'] }}</small></div>@endforeach
     </section>
     <main class="order-detail-grid">
         <section class="order-vehicle-card order-vehicle-panel">
@@ -105,6 +108,19 @@
         </div>
         <section class="order-info-card order-order-info"><div class="order-card-title"><span class="order-card-icon">DOC</span><div><h2>Informasi Pesanan</h2><p>Detail snapshot pesanan yang tersimpan saat checkout.</p></div></div><dl class="order-info-list"><div><dt>Nomor Pesanan</dt><dd>{{ $order->nomor_pesanan }}</dd></div><div><dt>Tanggal Pesanan</dt><dd>{{ $order->created_at?->format('d F Y, H:i') ?: '-' }} WIB</dd></div><div><dt>Status</dt><dd><span class="order-inline-status">{{ $statusLabel }}</span></dd></div><div><dt>Metode Pembayaran</dt><dd>{{ $order->transaksi?->metode_pembayaran ?: 'Menunggu verifikasi admin' }}</dd></div></dl></section>
         <section class="order-info-card order-vehicle-summary-card"><div class="order-card-title"><span class="order-card-icon">CAR</span><div><h2>Kendaraan Pesanan</h2><p>Detail spesifikasi kendaraan yang dipesan.</p></div></div><dl class="order-info-list"><div><dt>Nama Kendaraan</dt><dd>{{ $vehicleName }}</dd></div><div><dt>Mesin</dt><dd>{{ $order->mobil?->kapasitas_mesin ?: '3.0L Turbo 6-Cylinder' }}</dd></div><div><dt>Transmisi</dt><dd>{{ strtoupper($order->mobil?->transmisi ?: 'Automatic') }}</dd></div><div><dt>Tipe</dt><dd>{{ $order->snapshot_tipe ?: '-' }}</dd></div><div><dt>Warna</dt><dd>{{ $order->snapshot_warna ?: '-' }}</dd></div></dl></section>
+        <section class="order-info-card order-post-payment-card"><div class="order-card-title"><span class="order-card-icon">PDI</span><div><h2>Status Pasca Pembayaran</h2><p>Informasi pemeriksaan dan pengambilan kendaraan Anda.</p></div></div>
+            <div class="order-post-payment-status"><div><span>Pemeriksaan PDI</span><strong class="{{ $pdiCode === 'lulus' ? 'is-success' : ($pdiCode === 'perlu_perbaikan' || $pdiCode === 'gagal' ? 'is-warning' : '') }}">{{ $pdiStatus }}</strong></div><div><span>Pengambilan</span><strong>{{ $order->diserahkan_at ? 'Selesai' : ($order->jadwal_pengambilan ? 'Terjadwal' : 'Menunggu jadwal') }}</strong></div></div>
+            @if($pdiCode === 'lulus' && $order->jadwal_pengambilan)
+                <div class="order-pickup-callout"><strong>{{ $order->diserahkan_at ? 'Kendaraan telah diserahterimakan.' : 'Jadwal pengambilan Anda' }}</strong><span>{{ $order->jadwal_pengambilan->format('d F Y, H:i') }} WIB · {{ $order->lokasi_pengambilan ?: 'YZA Automotive' }}</span>@if($order->catatan_pengambilan)<small>{{ $order->catatan_pengambilan }}</small>@endif</div>
+            @elseif($pdiCode === 'perlu_perbaikan' || $pdiCode === 'gagal')
+                <div class="order-pickup-callout is-warning"><strong>Pemeriksaan membutuhkan tindak lanjut.</strong><span>Tim YZA akan memperbarui status setelah perbaikan selesai.</span></div>
+            @else
+                <div class="order-pickup-callout"><strong>Proses berikutnya sedang disiapkan.</strong><span>Jadwal pengambilan akan muncul setelah PDI kendaraan dinyatakan lulus.</span></div>
+            @endif
+            @if($order->diserahkan_at)
+                <div class="order-success-actions"><strong>Pembelian selesai</strong><span>Kendaraan Anda telah berhasil diserahterimakan dan sekarang tersedia di My Garage.</span><div><a href="{{ route('pelanggan.kendaraan.index') }}">Lihat Kendaraan Saya</a>@if($order->transaksi)<button type="button" class="order-secondary-button order-invoice-trigger" data-invoice-url="{{ route('pelanggan.invoice.car-sale', [$order->transaksi, 'modal' => 1]) }}">Lihat Invoice</button>@endif<a href="{{ route('pelanggan.pesanan-mobil.index') }}">Riwayat Pembelian</a></div></div>
+            @endif
+        </section>
     </main>
 </div>
 <div class="order-invoice-modal" data-invoice-modal hidden aria-hidden="true">
@@ -122,14 +138,14 @@
     const modal = document.querySelector('[data-invoice-modal]');
     if (modal && modal.parentElement !== document.body) document.body.appendChild(modal);
     const body = modal?.querySelector('[data-invoice-body]');
-    const trigger = document.querySelector('[data-invoice-url]');
+    const triggers = [...document.querySelectorAll('[data-invoice-url]')];
     const close = () => { if (!modal) return; modal.hidden = true; modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('invoice-modal-open'); };
-    trigger?.addEventListener('click', async () => {
+    triggers.forEach(trigger => trigger.addEventListener('click', async () => {
         if (!modal || !body) return;
         modal.hidden = false; modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('invoice-modal-open');
         body.innerHTML = '<div class="order-invoice-loading"><span></span><strong>Menyiapkan invoice...</strong><small>Data pembayaran sedang dimuat dengan aman.</small></div>';
         try { const response = await fetch(trigger.dataset.invoiceUrl, { headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'text/html' } }); if (!response.ok) throw new Error('invoice'); body.innerHTML = await response.text(); } catch (error) { body.innerHTML = '<div class="order-invoice-error"><strong>Invoice belum dapat ditampilkan.</strong><span>Silakan coba lagi beberapa saat.</span></div>'; }
-    });
+    }));
     modal?.querySelectorAll('[data-invoice-close]').forEach(button => button.addEventListener('click', close));
     document.addEventListener('keydown', event => { if (event.key === 'Escape' && modal && !modal.hidden) close(); });
 })();

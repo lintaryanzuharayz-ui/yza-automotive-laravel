@@ -18,6 +18,7 @@ class PesananMobilMember extends Model
             'syarat_disetujui' => 'boolean',
             'diputuskan_at' => 'datetime',
             'jadwal_pengambilan' => 'datetime',
+            'jadwal_dikonfirmasi_at' => 'datetime',
             'diserahkan_at' => 'datetime',
         ];
     }

@@ -254,6 +254,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::post('pesanan-mobil/{pesanan_mobil}/approve', [AdminMemberVehiclePurchaseController::class, 'approve'])->name('pesanan-mobil.approve');
     Route::post('pesanan-mobil/{pesanan_mobil}/reject', [AdminMemberVehiclePurchaseController::class, 'reject'])->name('pesanan-mobil.reject');
     Route::post('pesanan-mobil/{pesanan_mobil}/schedule', [AdminMemberVehiclePurchaseController::class, 'schedule'])->name('pesanan-mobil.schedule');
+    Route::post('pesanan-mobil/{pesanan_mobil}/pdi/start', [AdminMemberVehiclePurchaseController::class, 'startPdi'])->name('pesanan-mobil.pdi.start');
     Route::post('pesanan-mobil/{pesanan_mobil}/pdi', [AdminMemberVehiclePurchaseController::class, 'pdi'])->name('pesanan-mobil.pdi');
     Route::post('pesanan-mobil/{pesanan_mobil}/handover', [AdminMemberVehiclePurchaseController::class, 'handover'])->name('pesanan-mobil.handover');
     Route::patch('mobil/{mobil}/nonaktifkan', [AdminMobilController::class, 'deactivate'])->name('mobil.deactivate');

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\{KendaraanPelanggan, Mobil, PenjualanMobil};
+use App\Models\{KendaraanPelanggan, Mobil, PenjualanMobil, SerahTerimaPesananMobil};
 use Illuminate\Database\Eloquent\Builder;
 
 class VerifiedCarOwnershipService
@@ -22,6 +22,7 @@ class VerifiedCarOwnershipService
         return KendaraanPelanggan::query()
             ->where('id_pelanggan', $customerId)
             ->where('status', 'aktif')
+            ->whereNotNull('id_penjualan')
             ->where(function (Builder $query) use ($identifiers): void {
                 foreach ($identifiers as [$column, $value]) $query->orWhere($column, $value);
             })
@@ -60,6 +61,10 @@ class VerifiedCarOwnershipService
             return false;
         }
 
+        if (!$vehicle->id_penjualan) {
+            return false;
+        }
+
         return $this->completedSalesFor($customerId)
             ->whereHas('mobil', function (Builder $query) use ($vehicle): void {
                 $query->where(function (Builder $match) use ($vehicle): void {
@@ -75,12 +80,21 @@ class VerifiedCarOwnershipService
             ->exists();
     }
 
-    public function syncVehicleFromCompletedSale(PenjualanMobil $sale): ?KendaraanPelanggan
+    public function syncVehicleFromCompletedSale(PenjualanMobil $sale, ?SerahTerimaPesananMobil $handover = null): ?KendaraanPelanggan
     {
         $sale->loadMissing(['mobil', 'transaksi', 'memberOrder']);
         $car = $sale->mobil;
         if (!$car || !$sale->id_pelanggan || !$sale->transaksi || $sale->transaksi->status !== 'lunas' || $sale->status !== 'selesai' || $sale->memberOrder?->status !== 'diserahkan') {
             return null;
+        }
+
+        $existing = KendaraanPelanggan::query()
+            ->where('id_penjualan', $sale->id_penjualan)
+            ->first();
+
+        if ($existing) {
+            $existing->forceFill(['status' => 'aktif', 'id_penjualan' => $sale->id_penjualan, 'id_pesanan' => $sale->memberOrder?->id_pesanan, 'id_serah_terima' => $handover?->id_serah_terima])->save();
+            return $existing;
         }
 
         $existing = KendaraanPelanggan::query()
@@ -92,9 +106,7 @@ class VerifiedCarOwnershipService
             ->first();
 
         if ($existing) {
-            if ($existing->status !== 'aktif') {
-                $existing->update(['status' => 'aktif']);
-            }
+            $existing->forceFill(['status' => 'aktif', 'id_penjualan' => $sale->id_penjualan, 'id_pesanan' => $sale->memberOrder?->id_pesanan, 'id_serah_terima' => $handover?->id_serah_terima])->save();
             return $existing;
         }
 
@@ -110,6 +122,9 @@ class VerifiedCarOwnershipService
             'nomor_mesin' => $car->nomor_mesin,
             'kilometer' => $car->kilometer,
             'status' => 'aktif',
+            'id_penjualan' => $sale->id_penjualan,
+            'id_pesanan' => $sale->memberOrder?->id_pesanan,
+            'id_serah_terima' => $handover?->id_serah_terima,
         ]);
         $vehicle->id_pelanggan = $sale->id_pelanggan;
         $vehicle->save();

@@ -32,6 +32,7 @@ class VehicleAggregateInventoryFlowTest extends TestCase
 
         $items = array_fill_keys(['mesin', 'eksterior', 'interior', 'rem', 'ban', 'kelistrikan', 'lampu', 'ac', 'dokumen', 'final_quality'], true);
         $purchase->savePdi($approved, $actor, $items);
+        $purchase->schedule($approved, now()->addDay()->setTime(10, 0)->toDateTimeString(), 'YZA Automotive', 'Aggregate pickup');
         $purchase->handover($approved, $actor, ['nama_penerima' => 'Aggregate QA', 'nomor_identitas' => 'AGGREGATE-QA']);
         $this->assertSame(1, $this->stock()['sold_units']);
         $this->assertSame(7, $this->stock()['stock']);

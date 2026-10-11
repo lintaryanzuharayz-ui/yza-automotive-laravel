@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\{Notifikasi, Servis};
+use App\Models\{Notifikasi, PesananMobilMember, Servis};
 
 class ServiceNotificationService
 {
@@ -54,6 +54,32 @@ class ServiceNotificationService
                 'tipe' => 'servis',
                 'referensi_tipe' => 'booking_servis',
                 'referensi_id' => $bookingId,
+                'is_read' => false,
+            ]);
+        }
+    }
+
+    public function forMemberVehicleOrder(PesananMobilMember $order, string $title, string $message): void
+    {
+        $userId = $order->pelanggan?->id_user ?? $order->pelanggan()->value('id_user');
+        if (!$userId) return;
+
+        $exists = Notifikasi::query()
+            ->where('id_user', $userId)
+            ->where('tipe', 'transaksi')
+            ->where('referensi_tipe', 'pesanan_mobil_member')
+            ->where('referensi_id', $order->id_pesanan)
+            ->where('judul', $title)
+            ->exists();
+
+        if (!$exists) {
+            Notifikasi::create([
+                'id_user' => $userId,
+                'judul' => $title,
+                'pesan' => $message,
+                'tipe' => 'transaksi',
+                'referensi_tipe' => 'pesanan_mobil_member',
+                'referensi_id' => $order->id_pesanan,
                 'is_read' => false,
             ]);
         }

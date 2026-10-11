@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\{KendaraanPelanggan, Mobil, User};
+use App\Models\{KendaraanPelanggan, Mobil, SerahTerimaPesananMobil, User};
 use App\Services\{MemberVehiclePurchaseService, PaymentService, VerifiedCarOwnershipService};
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use RuntimeException;
@@ -162,13 +162,15 @@ class MemberVehiclePurchaseFlowTest extends TestCase
         app(PaymentService::class)->create($order->id_transaksi, $this->actor(), (string) $order->total_tagihan, 'tunai', null, 'Stage 2 full payment');
         $items = array_fill_keys(['mesin', 'eksterior', 'interior', 'rem', 'ban', 'kelistrikan', 'lampu', 'ac', 'dokumen', 'final_quality'], true);
         $service->savePdi($order, $this->actor(), $items);
+        $service->schedule($order, now()->addDay()->setTime(10, 0)->toDateTimeString(), 'YZA Automotive', 'Stage 2 pickup');
         $this->assertSame(0, KendaraanPelanggan::where('id_pelanggan', $customer->id_pelanggan)->count());
         $service->handover($order, $this->actor(), ['nama_penerima' => 'Stage 2 Receiver', 'nomor_identitas' => 'SYNTHETIC-ID']);
         $this->assertSame('diserahkan', $order->fresh()->status);
         $this->assertSame('terjual', $car->fresh()->status);
         $this->assertTrue(app(VerifiedCarOwnershipService::class)->customerHasVerifiedPurchase($customer->id_pelanggan));
         $this->assertSame(1, KendaraanPelanggan::where('id_pelanggan', $customer->id_pelanggan)->count());
-        $this->expectException(RuntimeException::class);
-        $service->handover($order, $this->actor(), ['nama_penerima' => 'Stage 2 Receiver']);
+        $repeat = $service->handover($order, $this->actor(), ['nama_penerima' => 'Stage 2 Receiver']);
+        $this->assertSame(1, SerahTerimaPesananMobil::where('id_pesanan', $order->id_pesanan)->count());
+        $this->assertSame($repeat->id_serah_terima, SerahTerimaPesananMobil::where('id_pesanan', $order->id_pesanan)->value('id_serah_terima'));
     }
 }

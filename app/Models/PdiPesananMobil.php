@@ -12,7 +12,7 @@ class PdiPesananMobil extends Model
 
     protected function casts(): array
     {
-        return array_fill_keys(['mesin', 'eksterior', 'interior', 'rem', 'ban', 'kelistrikan', 'lampu', 'ac', 'dokumen', 'final_quality'], 'boolean') + ['diperiksa_at' => 'datetime'];
+        return array_fill_keys(['mesin', 'eksterior', 'interior', 'rem', 'ban', 'kelistrikan', 'lampu', 'ac', 'dokumen', 'final_quality'], 'boolean') + ['started_at' => 'datetime', 'completed_at' => 'datetime', 'diperiksa_at' => 'datetime', 'checklist' => 'array'];
     }
 
     public function pesanan() { return $this->belongsTo(PesananMobilMember::class, 'id_pesanan', 'id_pesanan'); }
