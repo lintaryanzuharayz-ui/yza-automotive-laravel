@@ -22,6 +22,13 @@ class VehicleAvailabilityService
             return $this->cache[$key] = $this->withCurrentUnitState($car, $this->syntheticAvailability($car));
         }
 
+        $inventory = app(VehicleInventoryService::class)->find($car);
+        if ($inventory) {
+            $base = $this->aggregateAvailability($car, $inventory);
+            $this->cache[$key] = $base;
+            return $this->withCurrentUnitState($car, $base);
+        }
+
         $units = Mobil::query()
             ->where('merk', $car->merk)->where('model', $car->model)->where('tipe', $car->tipe)
             ->where('tahun', $car->tahun)->where('warna', $car->warna)->where('transmisi', $car->transmisi)
@@ -84,6 +91,22 @@ class VehicleAvailabilityService
         if ($stock === 1) return ['stock' => 1, 'label' => 'SISA 1 UNIT', 'detail' => 'Sisa 1 Unit', 'status_class' => 'is-last'];
         if ($stock <= 3) return ['stock' => $stock, 'label' => 'STOK MENIPIS · SISA '.$stock.' UNIT', 'detail' => 'Sisa '.$stock.' Unit', 'status_class' => 'is-low'];
         return ['stock' => $stock, 'label' => 'TERSEDIA · '.$stock.' UNIT', 'detail' => 'Stok '.$stock.' Unit', 'status_class' => 'is-available'];
+    }
+
+    private function aggregateAvailability(Mobil $car, \App\Models\VehicleInventory $inventory): array
+    {
+        $reserved = app(VehicleInventoryService::class)->reserveCount($car);
+        $stock = max(0, (int) $inventory->stock_total - (int) $inventory->sold_units - $reserved);
+        $base = $this->statusForStock($stock);
+        $base['is_limited_edition'] = (bool) $car->is_limited_edition;
+        $base['is_aggregate'] = true;
+        $base['inventory_id'] = (int) $inventory->id_vehicle_inventory;
+        $base['stock_total'] = (int) $inventory->stock_total;
+        $base['sold_units'] = (int) $inventory->sold_units;
+        $base['reserved_units'] = $reserved;
+        $base['active_reservation_count'] = $reserved;
+        $base['orderable_ids'] = $stock > 0 ? [(int) $car->id_mobil] : [];
+        return $base;
     }
 
     private function identityKey(Mobil $car): string

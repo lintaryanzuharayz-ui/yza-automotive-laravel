@@ -239,6 +239,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi.index');
     Route::patch('notifikasi/{notifikasi}/read', [NotifikasiController::class, 'read'])->name('notifikasi.read');
     Route::resource('mobil', AdminMobilController::class)->only(['index', 'create', 'store', 'show', 'edit', 'update']);
+    Route::get('mobil/{mobil}/stok', [AdminMobilController::class, 'stock'])->name('mobil.stock');
+    Route::post('mobil/{mobil}/stok', [AdminMobilController::class, 'adjustStock'])->name('mobil.stock.adjust');
     Route::get('pre-order-mobil', [AdminMemberVehiclePreorderController::class, 'index'])->name('preorder-mobil.index');
     Route::get('pesanan-mobil', [AdminMemberVehiclePurchaseController::class, 'index'])->name('pesanan-mobil.index');
     Route::get('pesanan-mobil/{pesanan_mobil}', [AdminMemberVehiclePurchaseController::class, 'show'])->name('pesanan-mobil.show');

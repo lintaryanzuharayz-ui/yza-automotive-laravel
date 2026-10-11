@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\{Mobil, PdiPesananMobil, Pelanggan, PenjualanMobil, PesananMobilMember, SerahTerimaPesananMobil, Transaksi};
+use App\Models\{Mobil, PdiPesananMobil, Pelanggan, PenjualanMobil, PesananMobilMember, SerahTerimaPesananMobil, Transaksi, VehicleInventory};
 use Illuminate\Support\Facades\DB;
 use RuntimeException;
 
@@ -27,14 +27,22 @@ class MemberVehiclePurchaseService
     {
         return DB::transaction(function () use ($customer, $car, $input): PesananMobilMember {
             $car = Mobil::lockForUpdate()->findOrFail($car->id_mobil);
-            if ($car->status !== 'tersedia') {
+            $inventoryService = app(VehicleInventoryService::class);
+            $inventory = VehicleInventory::lockForUpdate()->where('inventory_key', $inventoryService->key($car))->first();
+            $isAggregate = (bool) $inventory;
+            if ($isAggregate) {
+                $available = (int) $inventory->stock_total - (int) $inventory->sold_units - $inventoryService->reserveCount($car);
+                if ($available < 1) throw new RuntimeException('Stok kendaraan sudah habis.');
+            } elseif ($car->status !== 'tersedia') {
                 throw new RuntimeException('Unit sudah tidak tersedia. Silakan pilih kendaraan lain.');
             }
 
-            $active = PesananMobilMember::where('id_mobil', $car->id_mobil)
-                ->whereNotIn('status', ['ditolak', 'dibatalkan', 'diserahkan'])
-                ->exists();
-            if ($active) throw new RuntimeException('Unit sedang diproses oleh pesanan lain.');
+            if (!$isAggregate) {
+                $active = PesananMobilMember::where('id_mobil', $car->id_mobil)
+                    ->whereNotIn('status', ['ditolak', 'dibatalkan', 'diserahkan'])
+                    ->exists();
+                if ($active) throw new RuntimeException('Unit sedang diproses oleh pesanan lain.');
+            }
 
             $order = new PesananMobilMember();
             $order->forceFill([
@@ -55,7 +63,7 @@ class MemberVehiclePurchaseService
                 'syarat_disetujui' => true,
                 'status' => 'menunggu_verifikasi',
             ])->save();
-            $car->forceFill(['status' => 'dibooking'])->save();
+            if (!$isAggregate) $car->forceFill(['status' => 'dibooking'])->save();
             return $order->fresh(['mobil', 'pelanggan']);
         });
     }
@@ -66,7 +74,8 @@ class MemberVehiclePurchaseService
             $order = PesananMobilMember::lockForUpdate()->findOrFail($order->id_pesanan);
             if ($order->status !== 'menunggu_verifikasi') throw new RuntimeException('Pesanan tidak menunggu verifikasi.');
             $car = Mobil::lockForUpdate()->findOrFail($order->id_mobil);
-            if ($car->status !== 'dibooking') throw new RuntimeException('Unit tidak lagi aman untuk diproses.');
+            $isAggregate = (bool) app(VehicleInventoryService::class)->find($car);
+            if (!$isAggregate && $car->status !== 'dibooking') throw new RuntimeException('Unit tidak lagi aman untuk diproses.');
 
             $tx = new Transaksi();
             $tx->forceFill([
@@ -109,7 +118,10 @@ class MemberVehiclePurchaseService
         return DB::transaction(function () use ($order, $petugasId, $note): PesananMobilMember {
             $order = PesananMobilMember::lockForUpdate()->findOrFail($order->id_pesanan);
             if ($order->status !== 'menunggu_verifikasi') throw new RuntimeException('Pesanan tidak menunggu verifikasi.');
-            Mobil::lockForUpdate()->whereKey($order->id_mobil)->where('status', 'dibooking')->update(['status' => 'tersedia']);
+            $car = Mobil::lockForUpdate()->findOrFail($order->id_mobil);
+            if (!app(VehicleInventoryService::class)->find($car)) {
+                Mobil::whereKey($order->id_mobil)->where('status', 'dibooking')->update(['status' => 'tersedia']);
+            }
             $order->forceFill(['status' => 'ditolak', 'id_petugas_keputusan' => $petugasId, 'diputuskan_at' => now(), 'catatan_admin' => $note])->save();
             return $order;
         });
@@ -147,7 +159,13 @@ class MemberVehiclePurchaseService
             $handover = SerahTerimaPesananMobil::firstOrNew(['id_pesanan' => $order->id_pesanan]);
             $handover->forceFill(['id_pesanan' => $order->id_pesanan, 'id_petugas' => $petugasId, 'nama_penerima' => trim($input['nama_penerima']), 'nomor_identitas' => $input['nomor_identitas'] ?? null, 'pelunasan_terverifikasi' => true, 'dokumen_lengkap' => true, 'kendaraan_sesuai' => true, 'catatan' => $input['catatan'] ?? null, 'diserahkan_at' => now()])->save();
             $order->penjualan->forceFill(['status' => 'selesai'])->save();
-            Mobil::lockForUpdate()->findOrFail($order->id_mobil)->forceFill(['status' => 'terjual'])->save();
+            $car = Mobil::lockForUpdate()->findOrFail($order->id_mobil);
+            $inventoryService = app(VehicleInventoryService::class);
+            if ($inventoryService->find($car)) {
+                $inventoryService->recordSale($car, 1, 'pesanan_mobil_member', $order->id_pesanan, 'Unit agregat diserahkan kepada pelanggan.');
+            } else {
+                $car->forceFill(['status' => 'terjual'])->save();
+            }
             $order->forceFill(['status' => 'diserahkan', 'diserahkan_at' => now()])->save();
             app(VerifiedCarOwnershipService::class)->syncVehicleFromCompletedSale($order->penjualan->fresh(['mobil', 'transaksi']));
             return $handover;

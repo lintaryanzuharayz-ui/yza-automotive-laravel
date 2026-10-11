@@ -13,12 +13,13 @@ class MemberVehiclePurchaseFlowTest extends TestCase
     use DatabaseTransactions;
 
     private function user(string $role): User { return User::whereHas('role', fn ($query) => $query->where('nama_role', $role))->firstOrFail(); }
+    private function car(): Mobil { return Mobil::where('status', 'tersedia')->whereNotIn('model', ['GR Supra', 'Supra MK4', 'Revuelto', 'SF90 Stradale', '911 GT3 RS', 'GT Black Series', 'DBS 770 Ultimate', 'Corvette Z06', 'Mustang Shelby GT500', 'Challenger SRT Hellcat Redeye', 'GT-R Nismo', 'LFA'])->firstOrFail(); }
     private function actor(): int { return (int) $this->user('petugas')->petugas->id_petugas; }
 
     public function test_member_checkout_snapshots_server_price_and_reserves_unit(): void
     {
         $customer = $this->user('pelanggan')->pelanggan;
-        $car = Mobil::where('status', 'tersedia')->firstOrFail();
+        $car = $this->car();
         $order = app(MemberVehiclePurchaseService::class)->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'email_pembeli' => $customer->user?->email, 'telepon_pembeli' => $customer->no_hp ?: '08123456789', 'alamat_pembeli' => $customer->alamat ?: 'Alamat QA']);
         $this->assertSame((string) $car->harga_jual, (string) $order->snapshot_harga);
         $this->assertSame('menunggu_verifikasi', $order->status);
@@ -28,7 +29,7 @@ class MemberVehiclePurchaseFlowTest extends TestCase
     public function test_admin_approval_reuses_existing_transaction_and_sale_tables(): void
     {
         $customer = $this->user('pelanggan')->pelanggan;
-        $car = Mobil::where('status', 'tersedia')->firstOrFail();
+        $car = $this->car();
         $service = app(MemberVehiclePurchaseService::class);
         $order = $service->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA']);
         $approved = $service->approve($order, $this->actor(), 'QA approval');
@@ -41,7 +42,7 @@ class MemberVehiclePurchaseFlowTest extends TestCase
     public function test_pdi_cannot_be_completed_before_full_payment(): void
     {
         $customer = $this->user('pelanggan')->pelanggan;
-        $car = Mobil::where('status', 'tersedia')->firstOrFail();
+        $car = $this->car();
         $service = app(MemberVehiclePurchaseService::class);
         $order = $service->approve($service->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA']), $this->actor());
         $this->expectException(RuntimeException::class);
@@ -51,7 +52,7 @@ class MemberVehiclePurchaseFlowTest extends TestCase
     public function test_second_checkout_cannot_double_sell_reserved_unit_and_rejection_releases_it(): void
     {
         $customer = $this->user('pelanggan')->pelanggan;
-        $car = Mobil::where('status', 'tersedia')->firstOrFail();
+        $car = $this->car();
         $service = app(MemberVehiclePurchaseService::class);
         $order = $service->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA']);
         $this->expectException(RuntimeException::class);
@@ -66,7 +67,7 @@ class MemberVehiclePurchaseFlowTest extends TestCase
     public function test_pending_payment_does_not_complete_sale_but_verified_payment_marks_order_lunas(): void
     {
         $customer = $this->user('pelanggan')->pelanggan;
-        $car = Mobil::where('status', 'tersedia')->firstOrFail();
+        $car = $this->car();
         $service = app(MemberVehiclePurchaseService::class);
         $order = $service->approve($service->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA']), $this->actor());
         $payment = app(PaymentService::class)->create($order->id_transaksi, $this->actor(), (string) $order->total_tagihan, 'transfer', null, 'Stage 2 pending');
@@ -82,7 +83,7 @@ class MemberVehiclePurchaseFlowTest extends TestCase
     public function test_failed_pdi_cannot_be_handed_over(): void
     {
         $customer = $this->user('pelanggan')->pelanggan;
-        $car = Mobil::where('status', 'tersedia')->firstOrFail();
+        $car = $this->car();
         $service = app(MemberVehiclePurchaseService::class);
         $order = $service->approve($service->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA']), $this->actor());
         app(PaymentService::class)->create($order->id_transaksi, $this->actor(), (string) $order->total_tagihan, 'tunai', null, 'Stage 2 full payment');
@@ -95,7 +96,7 @@ class MemberVehiclePurchaseFlowTest extends TestCase
     public function test_only_completed_handover_creates_verified_my_garage_vehicle_and_is_not_repeatable(): void
     {
         $customer = $this->user('pelanggan')->pelanggan;
-        $car = Mobil::where('status', 'tersedia')->firstOrFail();
+        $car = $this->car();
         $service = app(MemberVehiclePurchaseService::class);
         $order = $service->approve($service->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA']), $this->actor());
         app(PaymentService::class)->create($order->id_transaksi, $this->actor(), (string) $order->total_tagihan, 'tunai', null, 'Stage 2 full payment');

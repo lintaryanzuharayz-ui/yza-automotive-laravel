@@ -14,6 +14,7 @@ class CarSalesStage7ATest extends TestCase
 
     private function user(string $role): User { return User::whereHas('role', fn($q) => $q->where('nama_role', $role))->firstOrFail(); }
     private function actor(): int { return $this->user('petugas')->petugas->id_petugas; }
+    private function car(): Mobil { return Mobil::where('status','tersedia')->whereNotIn('model', ['GR Supra', 'Supra MK4', 'Revuelto', 'SF90 Stradale', '911 GT3 RS', 'GT Black Series', 'DBS 770 Ultimate', 'Corvette Z06', 'Mustang Shelby GT500', 'Challenger SRT Hellcat Redeye', 'GT-R Nismo', 'LFA'])->firstOrFail(); }
 
     public function test_native_baseline_is_imported_without_payment_or_unit_mutation(): void
     {
@@ -24,7 +25,7 @@ class CarSalesStage7ATest extends TestCase
 
     public function test_create_snapshots_price_creates_unpaid_process_sale_and_reserves_unit(): void
     {
-        $car = Mobil::where('status','tersedia')->firstOrFail();
+        $car = $this->car();
         $customer = $this->user('pelanggan')->pelanggan;
         $original = (string)$car->harga_jual;
         $sale = app(PenjualanMobilService::class)->create(['id_pelanggan'=>$customer->id_pelanggan,'id_mobil'=>$car->id_mobil,'diskon'=>1000,'dp'=>0,'metode_pembelian'=>'tunai','catatan'=>'QA'], $this->actor());
@@ -40,7 +41,7 @@ class CarSalesStage7ATest extends TestCase
 
     public function test_invalid_discount_or_dp_is_rejected_atomically(): void
     {
-        $car = Mobil::where('status','tersedia')->firstOrFail(); $customer=$this->user('pelanggan')->pelanggan; $before=DB::table('transaksi')->count();
+        $car = $this->car(); $customer=$this->user('pelanggan')->pelanggan; $before=DB::table('transaksi')->count();
         $this->expectException(RuntimeException::class);
         try { app(PenjualanMobilService::class)->create(['id_pelanggan'=>$customer->id_pelanggan,'id_mobil'=>$car->id_mobil,'diskon'=>(float)$car->harga_jual+1,'dp'=>0,'metode_pembelian'=>'tunai'], $this->actor()); }
         finally { $this->assertSame($before, DB::table('transaksi')->count()); $this->assertSame('tersedia', $car->fresh()->status); }
