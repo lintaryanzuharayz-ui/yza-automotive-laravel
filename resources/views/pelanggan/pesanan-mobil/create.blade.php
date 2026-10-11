@@ -1,96 +1,44 @@
 @extends('layouts.app')
-
-@section('title', 'Checkout Kendaraan · YZA Automotive')
+@section('title', 'Checkout Kendaraan - YZA Automotive')
 @section('body-class', 'member-checkout-page')
-
 @push('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/member-checkout.css') }}?v={{ filemtime(public_path('assets/css/member-checkout.css')) }}">
+<link rel="stylesheet" href="{{ asset('assets/css/member-checkout-gallery.css') }}?v={{ filemtime(public_path('assets/css/member-checkout-gallery.css')) }}">
 <link rel="stylesheet" href="{{ asset('assets/css/member-checkout-footer.css') }}?v={{ filemtime(public_path('assets/css/member-checkout-footer.css')) }}">
 @endpush
-
 @php
     $vehicleName = trim($mobil->merk.' '.$mobil->model);
-    $vehicleMeta = implode(' · ', array_filter([$mobil->tipe ?: 'Varian standar', $mobil->tahun ?: '-', $mobil->warna ?: 'Warna mengikuti unit']));
+    $selectedGallery = $defaultGallery ?: [];
+    $selectedColorLabel = $selectedGallery['label'] ?? ($mobil->warna ?: 'Pilihan tersedia');
+    $vehicleMeta = implode(' | ', array_filter([$mobil->tipe ?: 'Varian standar', $mobil->tahun ?: '-', $selectedColorLabel]));
     $price = 'Rp '.number_format((float) $mobil->harga_jual, 0, ',', '.');
-    $images = $defaultGallery['images'] ?? [];
-    $uiSpecs = [
-        ['icon' => '◈', 'label' => 'Tipe', 'value' => $mobil->tipe ?: 'Varian standar'],
-        ['icon' => '◌', 'label' => 'Tahun', 'value' => $mobil->tahun ?: '-'],
-        ['icon' => '⚙', 'label' => 'Transmisi', 'value' => strtoupper($mobil->transmisi ?: '-')],
-        ['icon' => '●', 'label' => 'Warna', 'value' => $mobil->warna ?: 'Pilihan tersedia'],
-    ];
+    $brandLogo = \App\Support\BrandLogo::path($mobil->merk, $mobil->model);
+    $images = $selectedGallery['images'] ?? [];
+    $uiSpecs = [['label' => 'Tipe', 'value' => $mobil->tipe ?: 'Varian standar'], ['label' => 'Tahun', 'value' => $mobil->tahun ?: '-'], ['label' => 'Transmisi', 'value' => strtoupper($mobil->transmisi ?: '-')], ['label' => 'Warna', 'value' => $selectedColorLabel]];
 @endphp
-
 @section('content')
 <div class="checkout-wrap">
-    <header class="checkout-heading">
-        <div>
-            <h1>Checkout Kendaraan</h1>
-            <p>Lengkapi data pembeli untuk melanjutkan pemesanan kendaraan impian Anda.</p>
-        </div>
-        <div class="checkout-steps" aria-label="Tahapan checkout">
-            <div class="checkout-step is-active"><span class="checkout-step-number">1</span><span>Data Pembeli</span></div>
-            <div class="checkout-step"><span class="checkout-step-number">2</span><span>Konfirmasi</span></div>
-            <div class="checkout-step"><span class="checkout-step-number">3</span><span>Selesai</span></div>
-        </div>
-    </header>
-
+    <header class="checkout-heading"><div><span class="checkout-kicker">PESANAN MOBIL</span><h1>Checkout <span>Kendaraan</span></h1><p>Lengkapi data pembeli untuk melanjutkan pemesanan kendaraan impian Anda.</p></div><div class="checkout-steps" aria-label="Tahapan checkout"><div class="checkout-step is-active"><span class="checkout-step-number">1</span><span>Data Pembeli</span></div><div class="checkout-step"><span class="checkout-step-number">2</span><span>Konfirmasi</span></div><div class="checkout-step"><span class="checkout-step-number">3</span><span>Selesai</span></div></div></header>
     <main class="checkout-main">
-        <article class="checkout-vehicle-card">
-            <div class="checkout-vehicle-top">
-                <span class="checkout-order-pill">Pesanan Baru</span>
-                <h2>{{ $vehicleName }}</h2>
-                <p class="checkout-vehicle-meta">{{ $vehicleMeta }}</p>
-                <img class="checkout-vehicle-image" src="{{ $primaryImage }}" alt="{{ $vehicleName }}">
-            </div>
-            <div class="checkout-vehicle-body">
-                <div class="checkout-dots" aria-label="Galeri kendaraan">
-                    @foreach($images as $index => $image)
-                        <span class="checkout-dot {{ $index === 0 ? 'is-active' : '' }}"></span>
-                    @endforeach
-                </div>
-                <div class="checkout-specs">
-                    @foreach($uiSpecs as $spec)
-                        <div class="checkout-spec"><span class="checkout-spec-icon" aria-hidden="true">{{ $spec['icon'] }}</span><span>{{ $spec['label'] }}</span><strong>{{ $spec['value'] }}</strong></div>
-                    @endforeach
-                </div>
-                <div class="checkout-price"><span>Harga Kendaraan</span><strong>{{ $price }}</strong></div>
-            </div>
-        </article>
-
-        <section class="checkout-form-card">
-            <div class="checkout-form-column">
-                <div class="checkout-section-title"><span class="checkout-section-icon" aria-hidden="true">♙</span><div><h2>Data Pembeli</h2><p>Mohon lengkapi data diri dengan benar untuk proses pemesanan.</p></div></div>
-                @if($errors->any())<div class="checkout-errors" role="alert">{{ $errors->first() }}</div>@endif
-                <form id="checkout-form" method="post" action="{{ route('pelanggan.pesanan-mobil.store', $mobil) }}">
-                    @csrf
-                    <div class="checkout-field"><label for="nama_pembeli">Nama lengkap <em>*</em></label><input id="nama_pembeli" class="checkout-control" name="nama_pembeli" value="{{ old('nama_pembeli', $customer->nama_lengkap) }}" required autocomplete="name"></div>
-                    <div class="checkout-field"><label for="email_pembeli">Email</label><input id="email_pembeli" class="checkout-control" type="email" name="email_pembeli" value="{{ old('email_pembeli', $customer->user?->email) }}" autocomplete="email"></div>
-                    <div class="checkout-field"><label for="telepon_pembeli">Nomor telepon <em>*</em></label><input id="telepon_pembeli" class="checkout-control" name="telepon_pembeli" value="{{ old('telepon_pembeli', $customer->no_hp) }}" required autocomplete="tel"></div>
-                    <div class="checkout-field"><label for="alamat_pembeli">Alamat lengkap <em>*</em></label><textarea id="alamat_pembeli" class="checkout-control" name="alamat_pembeli" required autocomplete="street-address">{{ old('alamat_pembeli', $customer->alamat) }}</textarea></div>
-                    <label class="checkout-check" for="terms"><input id="terms" type="checkbox" name="syarat_disetujui" value="1" required @checked(old('syarat_disetujui'))><span>Saya memahami harga dan spesifikasi disimpan sebagai snapshot, lalu menunggu verifikasi admin.</span></label>
-                </form>
-            </div>
-            <aside class="checkout-summary-column">
-                <div class="checkout-section-title"><span class="checkout-section-icon" aria-hidden="true">▣</span><div><h2>Ringkasan Pesanan</h2><p>Pastikan detail pesanan Anda sudah benar sebelum dikirim.</p></div></div>
-                <div class="checkout-summary-box">
-                    <div class="checkout-summary-head"><div><strong>{{ $vehicleName }}</strong><small>{{ $vehicleMeta }}</small></div><span>{{ $price }}</span></div>
-                    <div class="checkout-summary-list">
-                        @foreach($uiSpecs as $spec)<div class="checkout-summary-row"><span>{{ $spec['label'] }}</span><strong>{{ $spec['value'] }}</strong></div>@endforeach
-                        <div class="checkout-summary-row"><span>Ketersediaan</span><strong>{{ $stock['label'] }}</strong></div>
-                    </div>
-                    <div class="checkout-summary-total"><span>Total Harga</span><strong>{{ $price }}</strong></div>
-                </div>
-                <button class="checkout-submit" type="submit" form="checkout-form"><span aria-hidden="true">➤</span> Kirim Pesanan <span aria-hidden="true">→</span></button>
-                <p class="checkout-privacy"><span aria-hidden="true">🔒</span><span>Data Anda aman dan hanya digunakan untuk proses pemesanan oleh tim YZA Automotive.</span></p>
-            </aside>
-        </section>
+        <article class="checkout-vehicle-card"><div class="checkout-vehicle-top"><div class="checkout-vehicle-brand"><span class="checkout-order-pill">PESANAN BARU</span>@if($brandLogo)<img src="{{ $brandLogo }}" alt="Logo {{ $mobil->merk }}">@endif</div><h2>{{ $vehicleName }}</h2><p class="checkout-vehicle-meta" id="checkout-vehicle-meta">{{ $vehicleMeta }}</p><div class="checkout-gallery-frame"><button class="checkout-gallery-arrow is-prev" type="button" data-gallery-prev aria-label="Foto sebelumnya">&larr;</button><img id="checkout-main-image" class="checkout-vehicle-image" src="{{ $images[0]['src'] ?? $primaryImage }}" alt="{{ $vehicleName }}"><button class="checkout-gallery-arrow is-next" type="button" data-gallery-next aria-label="Foto berikutnya">&rarr;</button><div class="checkout-gallery-caption"><span id="checkout-gallery-counter">01 / {{ str_pad((string) count($images), 2, '0', STR_PAD_LEFT) }}</span><small id="checkout-gallery-caption">{{ $images[0]['label'] ?? 'Front view' }} - YZA Automotive</small></div></div><div id="checkout-thumbnails" class="checkout-thumbnails" role="list" aria-label="Galeri foto kendaraan">@foreach($images as $index => $image)<button class="checkout-thumbnail {{ $index === 0 ? 'is-active' : '' }}" type="button" data-gallery-index="{{ $index }}" role="listitem" aria-label="Lihat {{ $image['label'] }}"><img src="{{ $image['src'] }}" alt="{{ $image['label'] }} {{ $vehicleName }}"><span>0{{ $index + 1 }}</span></button>@endforeach</div></div><div class="checkout-vehicle-body"><div class="checkout-specs">@foreach($uiSpecs as $spec)<div class="checkout-spec"><span class="checkout-spec-icon" aria-hidden="true">{{ strtoupper(substr($spec['label'], 0, 1)) }}</span><span>{{ $spec['label'] }}</span><strong data-spec="{{ strtolower($spec['label']) }}">{{ $spec['value'] }}</strong></div>@endforeach</div><div class="checkout-price"><span>Harga Kendaraan</span><strong>{{ $price }}</strong></div><section class="checkout-color-picker" aria-labelledby="checkout-color-title"><div class="checkout-color-heading"><strong id="checkout-color-title">Pilih Warna</strong><span>Pilih warna kendaraan sesuai preferensi Anda.</span></div><div class="checkout-swatches" role="group" aria-label="Pilihan warna kendaraan">@foreach($galleryData as $colorKey => $color)<button class="checkout-swatch {{ $colorKey === $selectedColorKey ? 'is-active' : '' }}" type="button" data-color-key="{{ $colorKey }}" data-color-label="{{ $color['label'] }}" style="--swatch: {{ $color['swatch'] }}" aria-pressed="{{ $colorKey === $selectedColorKey ? 'true' : 'false' }}"><span class="checkout-swatch-dot"></span><span>{{ $color['label'] }}</span></button>@endforeach</div></section></div></article>
+        <section class="checkout-form-card"><div class="checkout-form-column"><div class="checkout-section-title"><span class="checkout-section-icon" aria-hidden="true">USER</span><div><h2>Data Pembeli</h2><p>Mohon lengkapi data diri dengan benar untuk proses pemesanan.</p></div></div>@if($errors->any())<div class="checkout-errors" role="alert">{{ $errors->first() }}</div>@endif<form id="checkout-form" method="post" action="{{ route('pelanggan.pesanan-mobil.store', $mobil) }}">@csrf<input type="hidden" id="checkout-color" name="warna_pilihan" value="{{ old('warna_pilihan', $selectedColorKey) }}"><div class="checkout-field"><label for="nama_pembeli">Nama lengkap <em>*</em></label><input id="nama_pembeli" class="checkout-control" name="nama_pembeli" value="{{ old('nama_pembeli', $customer->nama_lengkap) }}" required autocomplete="name"></div><div class="checkout-field"><label for="email_pembeli">Email</label><input id="email_pembeli" class="checkout-control" type="email" name="email_pembeli" value="{{ old('email_pembeli', $customer->user?->email) }}" autocomplete="email"></div><div class="checkout-field"><label for="telepon_pembeli">Nomor telepon <em>*</em></label><input id="telepon_pembeli" class="checkout-control" name="telepon_pembeli" value="{{ old('telepon_pembeli', $customer->no_hp) }}" required autocomplete="tel"></div><div class="checkout-field"><label for="alamat_pembeli">Alamat lengkap <em>*</em></label><textarea id="alamat_pembeli" class="checkout-control" name="alamat_pembeli" required autocomplete="street-address">{{ old('alamat_pembeli', $customer->alamat) }}</textarea></div><label class="checkout-check" for="terms"><input id="terms" type="checkbox" name="syarat_disetujui" value="1" required @checked(old('syarat_disetujui'))><span>Saya memahami harga dan spesifikasi disimpan sebagai snapshot, lalu menunggu verifikasi admin.</span></label></form></div><aside class="checkout-summary-column"><div class="checkout-section-title"><span class="checkout-section-icon" aria-hidden="true">DOC</span><div><h2>Ringkasan Pesanan</h2><p>Pastikan detail pesanan Anda sudah benar sebelum dikirim.</p></div></div><div class="checkout-summary-box"><div class="checkout-summary-head"><div class="checkout-summary-vehicle"><img id="checkout-summary-image" src="{{ $images[0]['src'] ?? $primaryImage }}" alt="{{ $vehicleName }}"><div><strong>{{ $vehicleName }}</strong><small id="checkout-summary-meta">{{ $vehicleMeta }}</small></div></div><span>{{ $price }}</span></div><div class="checkout-summary-list">@foreach($uiSpecs as $spec)<div class="checkout-summary-row"><span>{{ $spec['label'] }}</span><strong data-summary-spec="{{ strtolower($spec['label']) }}">{{ $spec['value'] }}</strong></div>@endforeach<div class="checkout-summary-row"><span>Ketersediaan</span><strong>{{ $stock['label'] }}</strong></div></div><div class="checkout-summary-total"><span>Total Harga</span><strong>{{ $price }}</strong></div></div><button class="checkout-submit" type="submit" form="checkout-form"><span aria-hidden="true">&#10148;</span> Kirim Pesanan <span aria-hidden="true">&rarr;</span></button><p class="checkout-privacy"><span aria-hidden="true">&#128274;</span><span>Data Anda aman dan hanya digunakan untuk proses pemesanan oleh tim YZA Automotive.</span></p></aside></section>
     </main>
-
-    <div class="checkout-trust" aria-label="Jaminan layanan YZA Automotive">
-        <div class="checkout-trust-item"><span class="checkout-trust-icon" aria-hidden="true">♢</span><div><strong>Transaksi Aman</strong><span>Data Anda terlindungi dengan enkripsi standar industri.</span></div></div>
-        <div class="checkout-trust-item"><span class="checkout-trust-icon" aria-hidden="true">▤</span><div><strong>Verifikasi oleh Admin</strong><span>Setiap pesanan akan diverifikasi oleh tim kami.</span></div></div>
-        <div class="checkout-trust-item"><span class="checkout-trust-icon" aria-hidden="true">◉</span><div><strong>Dukungan Member</strong><span>Tim kami siap membantu Anda kapan saja.</span></div></div>
-    </div>
+    <div class="checkout-trust" aria-label="Jaminan layanan YZA Automotive"><div class="checkout-trust-item"><span class="checkout-trust-icon" aria-hidden="true">&#10003;</span><div><strong>Transaksi Aman</strong><span>Data Anda terlindungi dengan enkripsi standar industri.</span></div></div><div class="checkout-trust-item"><span class="checkout-trust-icon" aria-hidden="true">&#128196;</span><div><strong>Verifikasi oleh Admin</strong><span>Setiap pesanan akan diverifikasi oleh tim kami.</span></div></div><div class="checkout-trust-item"><span class="checkout-trust-icon" aria-hidden="true">&#9742;</span><div><strong>Dukungan Member</strong><span>Tim kami siap membantu Anda kapan saja.</span></div></div></div>
 </div>
 @endsection
+@push('scripts')
+<script>
+(() => {
+    const galleryData = @json($galleryData), fallbackImage = @json($primaryImage), state = { color: @json(old('warna_pilihan', $selectedColorKey)), index: 0 };
+    const main = document.getElementById('checkout-main-image'), summary = document.getElementById('checkout-summary-image'), thumbs = document.getElementById('checkout-thumbnails'), counter = document.getElementById('checkout-gallery-counter'), caption = document.getElementById('checkout-gallery-caption'), hidden = document.getElementById('checkout-color'), meta = document.getElementById('checkout-vehicle-meta'), summaryMeta = document.getElementById('checkout-summary-meta'), swatches = [...document.querySelectorAll('.checkout-swatch')];
+    const getGallery = () => galleryData[state.color] || galleryData[@json($defaultColorKey)] || {};
+    const render = () => { const gallery = getGallery(), images = gallery.images || []; if (!images.length) return; state.index = Math.min(Math.max(state.index, 0), images.length - 1); const image = images[state.index], src = image.src || fallbackImage; main.src = src; main.alt = image.label + ' {{ $vehicleName }}'; summary.src = src; counter.textContent = String(state.index + 1).padStart(2, '0') + ' / ' + String(images.length).padStart(2, '0'); caption.textContent = image.label + ' - YZA Automotive'; meta.textContent = '{{ $mobil->tipe ?: "Varian standar" }} | {{ $mobil->tahun ?: "-" }} | ' + (gallery.label || '{{ $mobil->warna ?: "Pilihan tersedia" }}'); summaryMeta.textContent = meta.textContent; hidden.value = state.color; thumbs.innerHTML = images.map((item, index) => '<button class="checkout-thumbnail ' + (index === state.index ? 'is-active' : '') + '" type="button" data-gallery-index="' + index + '" role="listitem" aria-label="Lihat ' + item.label + '"><img src="' + (item.src || fallbackImage) + '" alt="' + item.label + ' {{ $vehicleName }}"><span>0' + (index + 1) + '</span></button>').join(''); document.querySelectorAll('[data-spec="warna"], [data-summary-spec="warna"]').forEach(item => item.textContent = gallery.label || ''); swatches.forEach(item => { const active = item.dataset.colorKey === state.color; item.classList.toggle('is-active', active); item.setAttribute('aria-pressed', active ? 'true' : 'false'); }); };
+    swatches.forEach(item => item.addEventListener('click', () => { const oldType = getGallery().images?.[state.index]?.type; state.color = galleryData[item.dataset.colorKey] ? item.dataset.colorKey : state.color; const next = (getGallery().images || []).findIndex(image => image.type === oldType); state.index = next >= 0 ? next : 0; render(); }));
+    thumbs.addEventListener('click', event => { const button = event.target.closest('[data-gallery-index]'); if (button) { state.index = Number(button.dataset.galleryIndex); render(); } });
+    document.querySelector('[data-gallery-prev]')?.addEventListener('click', () => { const count = getGallery().images?.length || 1; state.index = (state.index - 1 + count) % count; render(); });
+    document.querySelector('[data-gallery-next]')?.addEventListener('click', () => { const count = getGallery().images?.length || 1; state.index = (state.index + 1) % count; render(); });
+    main.addEventListener('error', () => { if (main.src !== fallbackImage) main.src = fallbackImage; });
+    render();
+})();
+</script>
+@endpush

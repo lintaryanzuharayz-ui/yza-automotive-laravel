@@ -26,6 +26,18 @@ class MemberVehiclePurchaseFlowTest extends TestCase
         $this->assertSame('dibooking', $car->fresh()->status);
     }
 
+    public function test_member_checkout_snapshots_validated_color_without_changing_price_or_inventory(): void
+    {
+        $customer = $this->user('pelanggan')->pelanggan;
+        $car = Mobil::where('model', 'GR Supra')->where('status', 'tersedia')->firstOrFail();
+        $price = (string) $car->harga_jual;
+        $order = app(MemberVehiclePurchaseService::class)->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA', 'warna_pilihan' => 'white']);
+
+        $this->assertSame('Pearl White', $order->snapshot_warna);
+        $this->assertSame($price, (string) $order->snapshot_harga);
+        $this->assertSame((string) $car->status, (string) $car->fresh()->status);
+    }
+
     public function test_admin_approval_reuses_existing_transaction_and_sale_tables(): void
     {
         $customer = $this->user('pelanggan')->pelanggan;

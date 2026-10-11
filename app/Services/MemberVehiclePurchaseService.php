@@ -44,6 +44,9 @@ class MemberVehiclePurchaseService
                 if ($active) throw new RuntimeException('Unit sedang diproses oleh pesanan lain.');
             }
 
+            $gallery = app(VehicleGalleryService::class)->for($car);
+            $requestedColor = strtolower(trim((string) ($input['warna_pilihan'] ?? '')));
+            $selectedColor = $gallery[$requestedColor]['label'] ?? $car->warna;
             $order = new PesananMobilMember();
             $order->forceFill([
                 'nomor_pesanan' => $this->code('ORD', 'pesanan_mobil_member', 'nomor_pesanan'),
@@ -57,7 +60,7 @@ class MemberVehiclePurchaseService
                 'snapshot_model' => $car->model,
                 'snapshot_tipe' => $car->tipe,
                 'snapshot_tahun' => $car->tahun,
-                'snapshot_warna' => $car->warna,
+                'snapshot_warna' => $selectedColor,
                 'snapshot_harga' => $car->harga_jual,
                 'total_tagihan' => $car->harga_jual,
                 'syarat_disetujui' => true,
