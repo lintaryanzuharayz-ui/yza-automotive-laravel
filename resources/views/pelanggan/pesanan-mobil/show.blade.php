@@ -120,6 +120,7 @@
 <script>
 (() => {
     const modal = document.querySelector('[data-invoice-modal]');
+    if (modal && modal.parentElement !== document.body) document.body.appendChild(modal);
     const body = modal?.querySelector('[data-invoice-body]');
     const trigger = document.querySelector('[data-invoice-url]');
     const close = () => { if (!modal) return; modal.hidden = true; modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('invoice-modal-open'); };

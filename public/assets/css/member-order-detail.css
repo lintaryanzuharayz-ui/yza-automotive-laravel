@@ -28,3 +28,4 @@
 
 /* Keep the page visible behind the invoice while using a light, full-screen blur. */
 .order-invoice-backdrop{background:rgba(255,255,255,.18);backdrop-filter:blur(14px) saturate(115%);-webkit-backdrop-filter:blur(14px) saturate(115%)}
+.order-invoice-modal{width:100vw;height:100vh;min-height:100dvh;box-sizing:border-box;left:0;top:0}.order-invoice-dialog{width:min(960px,100%);max-height:min(90vh,900px)}
