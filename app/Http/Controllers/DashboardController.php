@@ -7,13 +7,24 @@ use Illuminate\View\View;
 use App\Services\MemberDashboardService;
 use App\Services\VerifiedCarOwnershipService;
 use App\Services\ServiceOperationsDashboardService;
-use App\Models\Notifikasi;
+use App\Models\{BookingMobil, Mobil, Notifikasi, Pembayaran, PesananMobilMember, Pelanggan, TestDrive, Transaksi};
 
 class DashboardController extends Controller
 {
     public function admin(Request $request, ServiceOperationsDashboardService $operations): View
     {
-        return view('admin.dashboard', ['user' => $request->user(), 'area' => 'Admin', 'serviceData' => $operations->data()]);
+        $serviceData = $operations->data();
+        $metrics = [
+            ['label' => 'Pesanan Mobil', 'value' => PesananMobilMember::count(), 'hint' => 'Seluruh order member', 'tone' => 'red'],
+            ['label' => 'Transaksi Aktif', 'value' => Transaksi::whereNotIn('status', ['selesai', 'dibatalkan'])->count(), 'hint' => 'Belum ditutup', 'tone' => 'amber'],
+            ['label' => 'Booking Hari Ini', 'value' => BookingMobil::whereDate('tanggal', now('Asia/Jakarta')->toDateString())->count(), 'hint' => 'Agenda showroom', 'tone' => 'dark'],
+            ['label' => 'Mobil Aktif', 'value' => Mobil::where('status', 'aktif')->count(), 'hint' => 'Unit di katalog', 'tone' => 'green'],
+            ['label' => 'Pelanggan', 'value' => Pelanggan::count(), 'hint' => 'Data pelanggan terdaftar', 'tone' => 'red'],
+            ['label' => 'Test Drive', 'value' => TestDrive::whereNotIn('status', ['selesai', 'dibatalkan'])->count(), 'hint' => 'Agenda yang berjalan', 'tone' => 'amber'],
+        ];
+        $pendingOrders = PesananMobilMember::with(['pelanggan', 'mobil'])->latest('created_at')->limit(6)->get();
+        $pendingPayments = Pembayaran::where('status', 'menunggu')->count();
+        return view('admin.dashboard', compact('serviceData', 'metrics', 'pendingOrders', 'pendingPayments') + ['user' => $request->user(), 'area' => 'Admin']);
     }
 
     public function petugas(Request $request, ServiceOperationsDashboardService $operations): View

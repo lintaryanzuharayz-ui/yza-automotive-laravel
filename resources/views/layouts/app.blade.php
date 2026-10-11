@@ -9,15 +9,19 @@
     <link rel="stylesheet" href="{{ asset('assets/css/vehicle-badges.css') }}?v=stock-badges-20261010">
     @php
         $isMemberShell = auth()->check() && auth()->user()->roleName() === 'pelanggan' && request()->routeIs('pelanggan.*') && !View::hasSection('member-portal');
+        $isAdminShell = auth()->check() && auth()->user()->roleName() === 'admin' && request()->is('admin/*');
         $isCheckoutPage = $isMemberShell && request()->routeIs('pelanggan.pesanan-mobil.create');
     @endphp
     @if($isMemberShell)
         <link rel="stylesheet" href="{{ asset('assets/css/member-portal.css') }}?v={{ filemtime(public_path('assets/css/member-portal.css')) }}">
         <link rel="stylesheet" href="{{ asset('assets/css/member-navbar-final.css') }}?v={{ filemtime(public_path('assets/css/member-navbar-final.css')) }}">
     @endif
+    @if($isAdminShell)
+        <link rel="stylesheet" href="{{ asset('assets/css/admin-portal.css') }}?v={{ filemtime(public_path('assets/css/admin-portal.css')) }}">
+    @endif
     @stack('styles')
 </head>
-<body class="@yield('body-class') @if($isMemberShell) member-portal-page member-shell-page @endif">
+<body class="@yield('body-class') @if($isMemberShell) member-portal-page member-shell-page @endif @if($isAdminShell) admin-portal-page @endif">
     @if (View::hasSection('member-portal'))
         @yield('content')
     @elseif($isMemberShell)
@@ -59,6 +63,21 @@
                 @include('components.member-footer')
             @endif
             <div class="member-overlay" data-member-overlay></div>
+        </div>
+    @elseif($isAdminShell)
+        @php($adminUser = auth()->user())
+        <div class="admin-shell" data-admin-shell>
+            @include('components.admin-sidebar')
+            <header class="admin-topbar">
+                <div class="admin-topbar-left">
+                    <button class="admin-toggle" type="button" data-admin-toggle aria-label="Buka navigasi admin">☰</button>
+                    <div><h1>@yield('admin-page-title', 'Dashboard Utama')</h1><div class="admin-breadcrumb">Admin Management · YZA Automotive</div></div>
+                </div>
+                <div class="admin-topbar-right"><span aria-hidden="true">●</span><div class="admin-user"><span class="admin-avatar">{{ strtoupper(substr($adminUser->displayName(), 0, 1)) }}</span><div><strong>{{ $adminUser->displayName() }}</strong><small>Administrator</small></div></div><form method="post" action="{{ route('logout') }}">@csrf<button class="admin-logout" type="submit">Keluar</button></form></div>
+            </header>
+            <main class="admin-main"><div class="admin-content">@if(session('status'))<div class="yza-alert" role="status">{{ session('status') }}</div>@endif @if($errors->any())<div class="yza-alert yza-alert-error" role="alert">{{ $errors->first() }}</div>@endif @yield('content')</div></main>
+            <footer class="admin-footer"><span>© {{ now()->year }} YZA Automotive</span><span>Admin Management System</span></footer>
+            <div class="admin-backdrop" data-admin-backdrop></div>
         </div>
     @else
         <div class="yza-shell">
@@ -123,6 +142,11 @@
         profileToggle?.addEventListener('click', event => { event.stopPropagation(); const open = profileMenu?.hidden ?? true; if (profileMenu) profileMenu.hidden = !open; profileToggle.setAttribute('aria-expanded', open ? 'true' : 'false'); });
         document.addEventListener('click', event => { if (profileMenu && !profileMenu.contains(event.target) && !profileToggle?.contains(event.target)) closeProfile(); });
     })();
+    </script>
+    @endif
+    @if($isAdminShell)
+    <script>
+    (() => { const shell=document.querySelector('[data-admin-shell]'); if(!shell)return; const sidebar=shell.querySelector('[data-admin-sidebar]'),toggle=shell.querySelector('[data-admin-toggle]'),backdrop=shell.querySelector('[data-admin-backdrop]'); const close=()=>{sidebar?.classList.remove('is-open');backdrop?.classList.remove('is-visible')}; toggle?.addEventListener('click',()=>{sidebar?.classList.toggle('is-open');backdrop?.classList.toggle('is-visible')}); backdrop?.addEventListener('click',close); sidebar?.querySelectorAll('a').forEach(a=>a.addEventListener('click',close)); })();
     </script>
     @endif
     @stack('scripts')
