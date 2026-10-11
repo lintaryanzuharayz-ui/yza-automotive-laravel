@@ -67,6 +67,7 @@
         </section>
         </div>
         <section class="order-info-card order-order-info"><div class="order-card-title"><span class="order-card-icon">DOC</span><div><h2>Informasi Pesanan</h2><p>Detail snapshot pesanan yang tersimpan saat checkout.</p></div></div><dl class="order-info-list"><div><dt>Nomor Pesanan</dt><dd>{{ $order->nomor_pesanan }}</dd></div><div><dt>Tanggal Pesanan</dt><dd>{{ $order->created_at?->format('d F Y, H:i') ?: '-' }} WIB</dd></div><div><dt>Status</dt><dd><span class="order-inline-status">{{ $statusLabel }}</span></dd></div><div><dt>Metode Pembayaran</dt><dd>{{ $order->transaksi?->metode_pembayaran ?: 'Menunggu verifikasi admin' }}</dd></div></dl></section>
+        <section class="order-info-card order-vehicle-summary-card"><div class="order-card-title"><span class="order-card-icon">CAR</span><div><h2>Kendaraan Pesanan</h2><p>Detail spesifikasi kendaraan yang dipesan.</p></div></div><dl class="order-info-list"><div><dt>Nama Kendaraan</dt><dd>{{ $vehicleName }}</dd></div><div><dt>Mesin</dt><dd>{{ $order->mobil?->kapasitas_mesin ?: '3.0L Turbo 6-Cylinder' }}</dd></div><div><dt>Transmisi</dt><dd>{{ strtoupper($order->mobil?->transmisi ?: 'Automatic') }}</dd></div><div><dt>Tipe</dt><dd>{{ $order->snapshot_tipe ?: '-' }}</dd></div><div><dt>Warna</dt><dd>{{ $order->snapshot_warna ?: '-' }}</dd></div></dl></section>
     </main>
 </div>
 @endsection
