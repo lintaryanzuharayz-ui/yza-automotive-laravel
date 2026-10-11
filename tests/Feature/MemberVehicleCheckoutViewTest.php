@@ -28,5 +28,8 @@ class MemberVehicleCheckoutViewTest extends TestCase
             ->assertSee('Transaksi Aman')
             ->assertSee('syarat_disetujui', false)
             ->assertSee(route('pelanggan.pesanan-mobil.store', $car), false);
+
+        $html = $response->getContent();
+        $this->assertGreaterThan(strrpos($html, '</main>'), strpos($html, '<footer class="yza-home-footer member-shared-footer"'));
     }
 }
