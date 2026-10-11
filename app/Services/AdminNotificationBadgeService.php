@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\{BookingMobil, MemberVehiclePreorder, Notifikasi, Pembayaran, PesananMobilMember, Sparepart, TestDrive, TradeIn};
+use App\Models\{BookingMobil, MemberVehiclePreorder, Notifikasi, Pembayaran, PembayaranGateway, PesananMobilMember, Sparepart, TestDrive, TradeIn};
 
 class AdminNotificationBadgeService
 {
@@ -11,7 +11,7 @@ class AdminNotificationBadgeService
         return [
             'orders' => PesananMobilMember::where('status', 'menunggu_verifikasi')->count(),
             'preorders' => MemberVehiclePreorder::where('status', 'menunggu_stok')->count(),
-            'payments' => Pembayaran::where('status', 'menunggu')->count(),
+            'payments' => Pembayaran::where('arah', 'masuk')->where('status', 'menunggu')->count() + PembayaranGateway::where('status_provider', 'requires_review')->count(),
             'bookings' => BookingMobil::where('status', 'menunggu')->count(),
             'testDrives' => TestDrive::where('status', 'menunggu')->count(),
             'tradeIns' => TradeIn::where('status', 'proses')->count(),

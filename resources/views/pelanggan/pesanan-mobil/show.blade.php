@@ -46,6 +46,16 @@
         <section class="order-payment-card order-payment-summary"><div class="order-card-title"><span class="order-card-icon">PAY</span><div><h2>Ringkasan Pembayaran</h2><p>Nilai transaksi berdasarkan harga server.</p></div></div><div class="order-payment-row"><span>Harga Kendaraan</span><strong>{{ $price }}</strong></div><div class="order-payment-total"><span>Total</span><strong>{{ $price }}</strong></div>
                 @if($order->transaksi && in_array($order->status, ['menunggu_pembayaran', 'lunas']))
                     <form method="post" action="{{ route('pelanggan.midtrans.create', $order->transaksi) }}">@csrf<button class="order-primary-button" type="submit">Bayar melalui Midtrans <span>&rarr;</span></button></form>
+                    @if($order->transaksi->status !== 'lunas')
+                        <form method="post" action="{{ route('pelanggan.pesanan-mobil.payment.offline', $order) }}" enctype="multipart/form-data" class="order-offline-payment-form">
+                            @csrf
+                            <label for="offline-payment-method">Pembayaran offline</label>
+                            <select id="offline-payment-method" name="metode" required><option value="transfer">Transfer langsung</option><option value="tunai">Tunai di dealer</option></select>
+                            <input type="file" name="bukti_transfer" accept=".jpg,.jpeg,.png,.webp,.pdf" aria-label="Bukti transfer (wajib untuk transfer)">
+                            <small>Transfer diverifikasi setelah dana masuk rekening resmi YZA. Tunai dikonfirmasi petugas setelah uang diterima.</small>
+                            <button class="order-secondary-button" type="submit">Ajukan Pembayaran Offline</button>
+                        </form>
+                    @endif
                 @elseif($order->status === 'menunggu_verifikasi')
                     <a class="order-primary-button" href="{{ yza_whatsapp_url('Halo Admin YZA Automotive, saya ingin menanyakan pesanan '.$order->nomor_pesanan) }}" target="_blank" rel="noopener">Hubungi Admin <span>&rarr;</span></a>
                 @endif

@@ -16,8 +16,8 @@
             ['label' => 'Serah Terima', 'icon' => '⇄', 'route' => 'admin.pesanan-mobil.index'],
         ]],
         ['title' => 'Keuangan', 'items' => [
-            ['label' => 'Dashboard Keuangan', 'icon' => 'Rp', 'route' => 'admin.penjualan-mobil.index'],
-            ['label' => 'Pembayaran Online / Offline', 'icon' => '▥', 'route' => 'admin.pesanan-mobil.index', 'badge' => 'payments'],
+            ['label' => 'Dashboard Keuangan', 'icon' => 'Rp', 'route' => 'admin.payments.index'],
+            ['label' => 'Pembayaran Online / Offline', 'icon' => '▥', 'route' => 'admin.payments.index', 'badge' => 'payments'],
             ['label' => 'Semua Transaksi', 'icon' => '≡', 'route' => 'admin.penjualan-sparepart.index'],
             ['label' => 'Invoice & Kwitansi', 'icon' => '▧', 'route' => 'admin.penjualan-mobil.index'],
             ['label' => 'Rekonsiliasi / Pencairan', 'icon' => '⇆', 'route' => 'admin.pesanan-mobil.index'],

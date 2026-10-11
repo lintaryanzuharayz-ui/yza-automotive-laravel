@@ -22,6 +22,7 @@ use App\Http\Controllers\Pelanggan\MemberVehiclePurchaseController as MemberVehi
 use App\Http\Controllers\Admin\MemberVehiclePurchaseController as AdminMemberVehiclePurchaseController;
 use App\Services\PengaturanService;
 use App\Http\Controllers\Admin\{StokMasukController,InventoryController,NotifikasiController as AdminNotifikasiController};
+use App\Http\Controllers\Admin\PaymentManagementController;
 use App\Http\Controllers\Admin\MemberVehiclePreorderController as AdminMemberVehiclePreorderController;
 use App\Http\Controllers\Pelanggan\{BookingMobilController,TestDriveController};
 use App\Http\Controllers\Pelanggan\MemberVehiclePreorderController;
@@ -134,6 +135,7 @@ Route::middleware('auth')->group(function (): void {
         Route::get('pesanan-mobil/create/{mobil}', [MemberVehiclePurchaseController::class, 'create'])->whereNumber('mobil')->name('pesanan-mobil.create');
         Route::post('pesanan-mobil/{mobil}', [MemberVehiclePurchaseController::class, 'store'])->whereNumber('mobil')->name('pesanan-mobil.store');
         Route::get('pesanan-mobil/{pesanan_mobil}', [MemberVehiclePurchaseController::class, 'show'])->name('pesanan-mobil.show');
+        Route::post('pesanan-mobil/{pesanan_mobil}/pembayaran-offline', [MemberVehiclePurchaseController::class, 'offlinePayment'])->name('pesanan-mobil.payment.offline');
         Route::get('pre-order', [MemberVehiclePreorderController::class, 'index'])->name('preorder.index');
         Route::get('pre-order/create', [MemberVehiclePreorderController::class, 'create'])->name('preorder.create');
         Route::post('pre-order', [MemberVehiclePreorderController::class, 'store'])->name('preorder.store');
@@ -188,6 +190,11 @@ Route::middleware('auth')->group(function (): void {
 });
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function (): void {
+    Route::get('pembayaran', [PaymentManagementController::class, 'index'])->name('payments.index');
+    Route::get('pembayaran/{pembayaran}', [PaymentManagementController::class, 'show'])->name('payments.show');
+    Route::post('pembayaran/{pembayaran}/confirm', [PaymentManagementController::class, 'verify'])->name('payments.confirm');
+    Route::post('pembayaran/{pembayaran}/reject', [PaymentManagementController::class, 'reject'])->name('payments.reject');
+    Route::post('pembayaran-online/{gateway}/sync', [PaymentManagementController::class, 'sync'])->name('payments.online.sync');
     Route::get('membership', [AdminMembershipController::class, 'index'])->name('membership.index');
     Route::resource('jenis-servis', JenisServisController::class)->only(['index','create','store','show','edit','update'])->parameters(['jenis-servis'=>'jenis_servis']);
     Route::patch('jenis-servis/{jenis_servis}/toggle', [JenisServisController::class, 'toggle'])->name('jenis-servis.toggle');
@@ -296,7 +303,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('transaksi-mobil/{transaksi}/pembayaran/create', [CarSalePaymentController::class, 'create'])->name('car-sale.payment.create');
     Route::post('transaksi-mobil/{transaksi}/pembayaran', [CarSalePaymentController::class, 'store'])->name('car-sale.payment.store');
     Route::post('pembayaran/{pembayaran}/verify', [PaymentController::class, 'verify'])->name('payment.verify');
-    Route::post('pembayaran/{pembayaran}/reject', [PaymentController::class, 'reject'])->name('payment.reject');
+    Route::post('pembayaran/{pembayaran}/reject', [PaymentManagementController::class, 'reject'])->name('payment.reject');
     Route::get('invoice/servis/{transaksi}', [InvoiceController::class, 'show'])->name('invoice.servis');
     Route::get('invoice/car-wash/{transaksi}', [InvoiceController::class, 'show'])->name('invoice.carwash');
     Route::get('invoice/sparepart/{transaksi}', [InvoiceController::class, 'show'])->name('invoice.sparepart');
