@@ -64,7 +64,23 @@
         @endforelse
     </section>
 
-    @if($orders->hasPages())<nav class="member-orders-pagination" aria-label="Pagination">{{ $orders->links() }}</nav>@endif
+    @if($orders->hasPages())
+        <nav class="member-orders-pagination" aria-label="Navigasi halaman pesanan">
+            <span class="member-orders-page-summary">Halaman {{ $orders->currentPage() }} dari {{ $orders->lastPage() }}</span>
+            <div class="member-orders-page-controls">
+                @if($orders->onFirstPage())
+                    <span class="is-disabled" aria-disabled="true">← Sebelumnya</span>
+                @else
+                    <a href="{{ $orders->previousPageUrl() }}">← Sebelumnya</a>
+                @endif
+                @if($orders->hasMorePages())
+                    <a class="is-next" href="{{ $orders->nextPageUrl() }}">Selanjutnya →</a>
+                @else
+                    <span class="is-disabled" aria-disabled="true">Selanjutnya →</span>
+                @endif
+            </div>
+        </nav>
+    @endif
 </div>
 @endsection
 
