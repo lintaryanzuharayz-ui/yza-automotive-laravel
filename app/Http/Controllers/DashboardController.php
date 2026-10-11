@@ -16,9 +16,9 @@ class DashboardController extends Controller
         $serviceData = $operations->data();
         $metrics = [
             ['label' => 'Pesanan Mobil', 'value' => PesananMobilMember::count(), 'hint' => 'Seluruh order member', 'tone' => 'red'],
-            ['label' => 'Transaksi Aktif', 'value' => Transaksi::whereNotIn('status', ['selesai', 'dibatalkan'])->count(), 'hint' => 'Belum ditutup', 'tone' => 'amber'],
-            ['label' => 'Booking Hari Ini', 'value' => BookingMobil::whereDate('tanggal', now('Asia/Jakarta')->toDateString())->count(), 'hint' => 'Agenda showroom', 'tone' => 'dark'],
-            ['label' => 'Mobil Aktif', 'value' => Mobil::where('status', 'aktif')->count(), 'hint' => 'Unit di katalog', 'tone' => 'green'],
+            ['label' => 'Transaksi Aktif', 'value' => Transaksi::whereIn('status', ['draft', 'belum_bayar', 'dp'])->count(), 'hint' => 'Belum ditutup', 'tone' => 'amber'],
+            ['label' => 'Booking Hari Ini', 'value' => BookingMobil::whereDate('tanggal_booking', now('Asia/Jakarta')->toDateString())->whereNotIn('status', ['dibatalkan', 'kadaluarsa'])->count(), 'hint' => 'Agenda showroom', 'tone' => 'dark'],
+            ['label' => 'Mobil Aktif', 'value' => Mobil::whereIn('status', ['tersedia', 'dibooking', 'dalam_pemeriksaan', 'terjual'])->count(), 'hint' => 'Unit di katalog', 'tone' => 'green'],
             ['label' => 'Pelanggan', 'value' => Pelanggan::count(), 'hint' => 'Data pelanggan terdaftar', 'tone' => 'red'],
             ['label' => 'Test Drive', 'value' => TestDrive::whereNotIn('status', ['selesai', 'dibatalkan'])->count(), 'hint' => 'Agenda yang berjalan', 'tone' => 'amber'],
         ];
