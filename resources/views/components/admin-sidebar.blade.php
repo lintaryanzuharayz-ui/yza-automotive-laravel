@@ -62,7 +62,11 @@
                     @if(!empty($item['disabled']) || !Route::has($item['route']))
                         <span class="admin-nav-item is-disabled"><i>{{ $item['icon'] }}</i><span>{{ $item['label'] }}</span></span>
                     @else
-                        <a class="admin-nav-item {{ request()->routeIs($item['route']) ? 'is-active' : '' }}" href="{{ route($item['route']) }}">
+                        @php
+                            $fallbackLabels = ['Aktivitas & Tugas Admin', 'Katalog & Showroom', 'PDI', 'Jadwal Pengambilan', 'Serah Terima', 'Dashboard Keuangan', 'Pembayaran Online / Offline', 'Invoice & Kwitansi', 'Rekonsiliasi / Pencairan', 'My Garage', 'User & Role', 'Laporan Penjualan', 'Laporan Keuangan', 'Audit Log', 'Profil Admin'];
+                            $isAdminNavActive = !in_array($item['label'], $fallbackLabels, true) && request()->routeIs($item['route']);
+                        @endphp
+                        <a class="admin-nav-item {{ $isAdminNavActive ? 'is-active' : '' }}" href="{{ route($item['route']) }}">
                             <i>{{ $item['icon'] }}</i><span>{{ $item['label'] }}</span>@if(isset($item['badge']) && ($adminBadges[$item['badge']] ?? 0) > 0)<b class="admin-nav-badge">{{ ($adminBadges[$item['badge']] ?? 0) > 99 ? '99+' : $adminBadges[$item['badge']] }}</b>@endif
                         </a>
                     @endif
