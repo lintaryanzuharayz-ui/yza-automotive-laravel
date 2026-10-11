@@ -38,6 +38,21 @@ class MemberVehiclePurchaseFlowTest extends TestCase
         $this->assertSame((string) $car->status, (string) $car->fresh()->status);
     }
 
+    public function test_member_order_detail_renders_premium_dashboard_for_owned_order(): void
+    {
+        $customer = $this->user('pelanggan')->pelanggan;
+        $car = Mobil::where('model', 'GR Supra')->where('status', 'tersedia')->firstOrFail();
+        $order = app(MemberVehiclePurchaseService::class)->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA', 'warna_pilihan' => 'white']);
+
+        $this->actingAs($customer->user)->get(route('pelanggan.pesanan-mobil.show', $order))
+            ->assertOk()
+            ->assertSee('Informasi Pembeli')
+            ->assertSee('Ringkasan Pembayaran')
+            ->assertSee('Langkah Selanjutnya')
+            ->assertSee('Pearl White')
+            ->assertSee('member-order-detail.css', false);
+    }
+
     public function test_admin_approval_reuses_existing_transaction_and_sale_tables(): void
     {
         $customer = $this->user('pelanggan')->pelanggan;
