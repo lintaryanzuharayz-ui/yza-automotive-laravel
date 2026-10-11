@@ -53,6 +53,7 @@ class MemberVehiclePurchaseFlowTest extends TestCase
             ->assertSee('order-vehicle-thumbs', false)
             ->assertSee('Rear 3/4')
             ->assertSee('Interior / cockpit')
+            ->assertSee('data-invoice-url', false)
             ->assertSee('member-order-detail.css', false);
     }
 
@@ -84,6 +85,18 @@ class MemberVehiclePurchaseFlowTest extends TestCase
         $this->assertNotNull($approved->id_penjualan);
         $this->assertSame('penjualan_mobil', $approved->transaksi->jenis_transaksi);
         $this->assertSame('belum_bayar', $approved->transaksi->status);
+    }
+    public function test_member_car_invoice_modal_returns_owned_invoice_fragment(): void
+    {
+        $customer = $this->user('pelanggan')->pelanggan;
+        $car = $this->car();
+        $service = app(MemberVehiclePurchaseService::class);
+        $order = $service->approve($service->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA']), $this->actor());
+        $this->actingAs($customer->user)->get(route('pelanggan.invoice.car-sale', [$order->transaksi, 'modal' => 1]))
+            ->assertOk()
+            ->assertSee('Invoice Pembayaran')
+            ->assertSee('Kendaraan Pesanan')
+            ->assertDontSee('<!doctype html>', false);
     }
 
     public function test_pdi_cannot_be_completed_before_full_payment(): void

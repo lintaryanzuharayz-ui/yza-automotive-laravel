@@ -99,7 +99,7 @@
                     <a class="order-primary-button" href="{{ yza_whatsapp_url('Halo Admin YZA Automotive, saya ingin menanyakan pesanan '.$order->nomor_pesanan) }}" target="_blank" rel="noopener">Hubungi Admin <span>&rarr;</span></a>
                 @endif
                 @if($order->transaksi)
-                    <a class="order-secondary-button" href="{{ route('pelanggan.invoice.car-sale', $order->transaksi) }}">Lihat Invoice</a>
+                    <button class="order-secondary-button order-invoice-trigger" type="button" data-invoice-url="{{ route('pelanggan.invoice.car-sale', [$order->transaksi, 'modal' => 1]) }}">Lihat Invoice</button>
                 @endif
         </section>
         </div>
@@ -107,9 +107,31 @@
         <section class="order-info-card order-vehicle-summary-card"><div class="order-card-title"><span class="order-card-icon">CAR</span><div><h2>Kendaraan Pesanan</h2><p>Detail spesifikasi kendaraan yang dipesan.</p></div></div><dl class="order-info-list"><div><dt>Nama Kendaraan</dt><dd>{{ $vehicleName }}</dd></div><div><dt>Mesin</dt><dd>{{ $order->mobil?->kapasitas_mesin ?: '3.0L Turbo 6-Cylinder' }}</dd></div><div><dt>Transmisi</dt><dd>{{ strtoupper($order->mobil?->transmisi ?: 'Automatic') }}</dd></div><div><dt>Tipe</dt><dd>{{ $order->snapshot_tipe ?: '-' }}</dd></div><div><dt>Warna</dt><dd>{{ $order->snapshot_warna ?: '-' }}</dd></div></dl></section>
     </main>
 </div>
+<div class="order-invoice-modal" data-invoice-modal hidden aria-hidden="true">
+    <div class="order-invoice-backdrop" data-invoice-close></div>
+    <section class="order-invoice-dialog" role="dialog" aria-modal="true" aria-labelledby="order-invoice-title">
+        <header class="order-invoice-header"><div><span class="order-invoice-kicker">YZA AUTOMOTIVE · PAYMENT DOCUMENT</span><h2 id="order-invoice-title">Invoice Pembayaran</h2><p>Ringkasan transaksi resmi pesanan kendaraan Anda.</p></div><button type="button" class="order-invoice-close" data-invoice-close aria-label="Tutup invoice">&times;</button></header>
+        <div class="order-invoice-body" data-invoice-body><div class="order-invoice-loading"><span></span><strong>Menyiapkan invoice...</strong><small>Data pembayaran sedang dimuat dengan aman.</small></div></div>
+        <footer class="order-invoice-footer"><span>Dokumen digital YZA Automotive</span><button type="button" class="order-invoice-footer-close" data-invoice-close>Tutup</button></footer>
+    </section>
+</div>
 @endsection
 @push('scripts')
 <script>
+(() => {
+    const modal = document.querySelector('[data-invoice-modal]');
+    const body = modal?.querySelector('[data-invoice-body]');
+    const trigger = document.querySelector('[data-invoice-url]');
+    const close = () => { if (!modal) return; modal.hidden = true; modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('invoice-modal-open'); };
+    trigger?.addEventListener('click', async () => {
+        if (!modal || !body) return;
+        modal.hidden = false; modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('invoice-modal-open');
+        body.innerHTML = '<div class="order-invoice-loading"><span></span><strong>Menyiapkan invoice...</strong><small>Data pembayaran sedang dimuat dengan aman.</small></div>';
+        try { const response = await fetch(trigger.dataset.invoiceUrl, { headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'text/html' } }); if (!response.ok) throw new Error('invoice'); body.innerHTML = await response.text(); } catch (error) { body.innerHTML = '<div class="order-invoice-error"><strong>Invoice belum dapat ditampilkan.</strong><span>Silakan coba lagi beberapa saat.</span></div>'; }
+    });
+    modal?.querySelectorAll('[data-invoice-close]').forEach(button => button.addEventListener('click', close));
+    document.addEventListener('keydown', event => { if (event.key === 'Escape' && modal && !modal.hidden) close(); });
+})();
 (() => {
     const actions = document.querySelector('[data-payment-actions]');
     const panels = [...document.querySelectorAll('[data-payment-panel]')];
