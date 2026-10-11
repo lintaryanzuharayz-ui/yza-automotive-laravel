@@ -28,7 +28,7 @@
     $price = 'Rp '.number_format((float) $mobil->harga_jual, 0, ',', '.');
     $colorName = $defaultGallery['label'] ?? ($mobil->warna ?: 'Pilihan warna tersedia');
     $availability = $mobil->getAttribute('availability') ?? app(\App\Services\VehicleAvailabilityService::class)->for($mobil);
-    $statusMeta = ['label' => ucwords(strtolower($availability['label'] ?? 'Tersedia')), 'class' => $availability['status_class'] ?? 'is-neutral'];
+    $statusMeta = ['label' => $availability['label'] ?? 'TERSEDIA', 'class' => $availability['status_class'] ?? 'is-neutral'];
     $isAvailable = (bool) ($availability['can_purchase'] ?? false);
     $canPreorder = (bool) ($availability['can_preorder'] ?? (($availability['stock'] ?? 0) === 0));
     $isLimitedEdition = (bool) ($availability['is_limited_edition'] ?? false);

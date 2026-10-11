@@ -57,7 +57,7 @@
     ], fn ($value) => filled($value)));
     $tradeInCtaUrl = $isActiveTradeInMember ? $tradeInEntryUrl : $tradeInMembershipUrl;
     $availability = $mobil->getAttribute('availability') ?? app(\App\Services\VehicleAvailabilityService::class)->for($mobil);
-    $availabilityLabel = ucwords(strtolower($availability['label'] ?? 'Tersedia'));
+    $availabilityLabel = $availability['label'] ?? 'TERSEDIA';
     $availabilityClass = $availability['status_class'] ?? 'is-neutral';
 @endphp
 <!doctype html>
