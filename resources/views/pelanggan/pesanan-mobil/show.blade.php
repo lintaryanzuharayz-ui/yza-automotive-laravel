@@ -13,6 +13,16 @@
     $vehicleName = trim($order->snapshot_merk.' '.$order->snapshot_model);
     $vehicleMeta = implode(' | ', array_filter([$order->snapshot_tipe ?: 'Varian standar', $order->snapshot_tahun ?: '-', $order->snapshot_warna ?: '-']));
     $price = 'Rp '.number_format((float) $order->total_tagihan, 0, ',', '.');
+    $payments = $order->transaksi?->pembayarans?->where('arah', 'masuk') ?? collect();
+    $gatewayPayments = $order->transaksi?->gatewayPayments ?? collect();
+    $verifiedPayment = $payments->where('status', 'terverifikasi')->sortByDesc(fn ($payment) => $payment->verified_at ?: $payment->tanggal)->first();
+    $pendingOfflinePayment = $payments->where('status', 'menunggu')->sortByDesc(fn ($payment) => $payment->tanggal)->first();
+    $activeGateway = $gatewayPayments->whereIn('status_provider', ['created', 'pending'])->sortByDesc('created_at')->first();
+    $settledGateway = $gatewayPayments->whereIn('status_provider', ['settlement', 'capture'])->sortByDesc('processed_at')->first();
+    $paymentIsSettled = $order->transaksi?->status === 'lunas';
+    $paymentMethodLabel = $settledGateway ? 'Midtrans' : ($verifiedPayment?->metode === 'tunai' ? 'Tunai di Dealer' : ($verifiedPayment ? 'Transfer Langsung' : null));
+    $paymentTimestamp = $verifiedPayment?->verified_at ?: $verifiedPayment?->tanggal;
+    $paymentStatusLabel = $paymentIsSettled ? 'LUNAS' : ($pendingOfflinePayment ? 'MENUNGGU VERIFIKASI ADMIN' : ($activeGateway ? 'MENUNGGU PEMBAYARAN ONLINE' : 'MENUNGGU PEMBAYARAN'));
     $timeline = [
         ['label' => 'Checkout', 'value' => 'Selesai', 'done' => true],
         ['label' => 'Verifikasi Admin', 'value' => $order->diputuskan_at?->format('d M Y') ?: 'Menunggu', 'done' => (bool) $order->diputuskan_at],
@@ -45,22 +55,47 @@
         </section>
         <div class="order-right-column">
         <section class="order-info-card order-buyer-card"><div class="order-card-title"><span class="order-card-icon">USER</span><div><h2>Informasi Pembeli</h2><p>Data yang digunakan untuk proses pesanan.</p></div></div><dl class="order-info-list"><div><dt>Nama Lengkap</dt><dd>{{ $order->nama_pembeli }}</dd></div><div><dt>Email</dt><dd>{{ $order->email_pembeli ?: '-' }}</dd></div><div><dt>Nomor HP</dt><dd>{{ $order->telepon_pembeli ?: '-' }}</dd></div><div><dt>Alamat</dt><dd>{{ $order->alamat_pembeli ?: '-' }}</dd></div></dl></section>
-        <section class="order-payment-card order-payment-summary"><div class="order-card-title"><span class="order-card-icon">PAY</span><div><h2>Ringkasan Pembayaran</h2><p>Nilai transaksi berdasarkan harga server.</p></div></div><div class="order-payment-row"><span>Harga Kendaraan</span><strong>{{ $price }}</strong></div><div class="order-payment-total"><span>Total</span><strong>{{ $price }}</strong></div>
-                @if($order->transaksi && in_array($order->status, ['menunggu_pembayaran', 'lunas']))
-                    <form method="post" action="{{ route('pelanggan.midtrans.create', $order->transaksi) }}">@csrf<button class="order-primary-button" type="submit">Bayar melalui Midtrans <span>&rarr;</span></button></form>
-                    @if($order->transaksi->status !== 'lunas')
+        <section class="order-payment-card order-payment-summary"><div class="order-card-title"><span class="order-card-icon">PAY</span><div><h2>Ringkasan Pembayaran</h2><p>Detail tagihan dan metode pembayaran pesanan Anda.</p></div></div>
+                <div class="order-payment-vehicle"><img src="{{ $vehicleImage }}" alt="{{ $vehicleName }}"><div><strong>{{ $vehicleName }}</strong><span>{{ $order->snapshot_tipe ?: 'Varian standar' }} &middot; {{ $order->snapshot_tahun ?: '-' }}</span><span>{{ $order->snapshot_warna ?: '-' }}</span></div></div>
+                <div class="order-payment-row"><span>Harga Kendaraan</span><strong>{{ $price }}</strong></div><div class="order-payment-total"><span>Total Pembayaran</span><strong>{{ $price }}</strong></div>
+                <div class="order-payment-row order-payment-status-row"><span>Status Pembayaran</span><strong class="order-payment-status {{ $paymentIsSettled ? 'is-paid' : '' }}">{{ $paymentStatusLabel }}</strong></div>
+                @if($paymentIsSettled)
+                    <div class="order-payment-row"><span>Metode</span><strong>{{ $paymentMethodLabel ?: 'Pembayaran terverifikasi' }}</strong></div>
+                    <div class="order-payment-row"><span>Tanggal Pembayaran</span><strong>{{ $paymentTimestamp?->format('d F Y, H:i') ?: '-' }} WIB</strong></div>
+                    <div class="order-payment-row"><span>Total Dibayar</span><strong>{{ $price }}</strong></div>
+                    @if($settledGateway?->order_id)
+                        <div class="order-payment-row"><span>Payment Reference</span><strong>{{ $settledGateway->order_id }}</strong></div>
+                    @endif
+                @elseif($pendingOfflinePayment)
+                    <div class="order-payment-choice-state"><strong>Pengajuan {{ $pendingOfflinePayment->metode === 'tunai' ? 'tunai di dealer' : 'transfer langsung' }} sudah diterima.</strong><span>Diajukan pada {{ $pendingOfflinePayment->tanggal?->format('d F Y, H:i') ?: '-' }} WIB. Menunggu verifikasi admin.</span></div>
+                @elseif($activeGateway)
+                    <div class="order-payment-choice-state"><strong>Pembayaran online belum selesai.</strong><span>Lanjutkan pembayaran melalui Midtrans menggunakan sesi yang sudah dibuat.</span></div>
+                    <form method="post" action="{{ route('pelanggan.midtrans.create', $order->transaksi) }}">@csrf<button class="order-primary-button" type="submit">Lanjutkan Pembayaran Midtrans <span>&rarr;</span></button></form>
+                @elseif($order->transaksi && $order->status === 'menunggu_pembayaran')
+                    <div class="order-payment-actions" data-payment-actions>
+                        <p class="order-payment-actions-label">Pilih cara pembayaran</p>
+                        <button class="order-primary-button" type="button" data-payment-choice="online">Bayar Online melalui Midtrans <span>&rarr;</span></button>
+                        <button class="order-secondary-button" type="button" data-payment-choice="offline">Pembayaran Offline <span>&rarr;</span></button>
+                    </div>
+                    <div class="order-payment-method-panel" data-payment-panel="online" hidden>
+                        <div class="order-payment-choice-state"><strong>Pembayaran Online</strong><span>Anda akan diarahkan ke halaman pembayaran Midtrans.</span></div>
+                        <form method="post" action="{{ route('pelanggan.midtrans.create', $order->transaksi) }}">@csrf<button class="order-primary-button" type="submit">Bayar Sekarang melalui Midtrans <span>&rarr;</span></button></form>
+                        <button class="order-secondary-button" type="button" data-payment-back>Kembali ke pilihan pembayaran</button>
+                    </div>
+                    <div class="order-payment-method-panel" data-payment-panel="offline" hidden>
                         <form method="post" action="{{ route('pelanggan.pesanan-mobil.payment.offline', $order) }}" enctype="multipart/form-data" class="order-offline-payment-form">
                             @csrf
-                            <label for="offline-payment-method">Pembayaran offline</label>
+                            <label for="offline-payment-method">Pilih pembayaran offline</label>
                             <select id="offline-payment-method" name="metode" required><option value="transfer">Transfer langsung</option><option value="tunai">Tunai di dealer</option></select>
-                            <div class="order-offline-proof" data-offline-proof>
+                            <div class="order-offline-proof" data-offline-proof hidden>
                                 <label for="offline-payment-proof">Bukti transfer</label>
                                 <input id="offline-payment-proof" type="file" name="bukti_transfer" accept=".jpg,.jpeg,.png,.webp,.pdf" aria-label="Bukti transfer">
                             </div>
                             <small data-offline-note>Transfer diverifikasi setelah dana masuk rekening resmi YZA. Bukti transfer wajib diunggah.</small>
-                            <button class="order-secondary-button" type="submit">Ajukan Pembayaran Offline</button>
+                            <button class="order-primary-button" type="submit">Ajukan Verifikasi Pembayaran <span>&rarr;</span></button>
                         </form>
-                    @endif
+                        <button class="order-secondary-button" type="button" data-payment-back>Kembali ke pilihan pembayaran</button>
+                    </div>
                 @elseif($order->status === 'menunggu_verifikasi')
                     <a class="order-primary-button" href="{{ yza_whatsapp_url('Halo Admin YZA Automotive, saya ingin menanyakan pesanan '.$order->nomor_pesanan) }}" target="_blank" rel="noopener">Hubungi Admin <span>&rarr;</span></a>
                 @endif
@@ -76,6 +111,19 @@
 @endsection
 @push('scripts')
 <script>
+(() => {
+    const actions = document.querySelector('[data-payment-actions]');
+    const panels = [...document.querySelectorAll('[data-payment-panel]')];
+    const showPanel = (name) => {
+        if (actions) actions.hidden = true;
+        panels.forEach(panel => { panel.hidden = panel.dataset.paymentPanel !== name; });
+    };
+    document.querySelectorAll('[data-payment-choice]').forEach(button => button.addEventListener('click', () => showPanel(button.dataset.paymentChoice)));
+    document.querySelectorAll('[data-payment-back]').forEach(button => button.addEventListener('click', () => {
+        panels.forEach(panel => { panel.hidden = true; });
+        if (actions) actions.hidden = false;
+    }));
+})();
 (() => {
     const main = document.getElementById('order-main-vehicle-image');
     const thumbs = [...document.querySelectorAll('.order-vehicle-thumb')];
