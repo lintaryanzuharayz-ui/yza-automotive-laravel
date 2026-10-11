@@ -33,4 +33,15 @@ class AdminDashboardRegressionTest extends TestCase
     {
         $this->actingAs($this->user('pelanggan'))->get(route('admin.dashboard'))->assertForbidden();
     }
+
+    public function test_admin_order_index_renders_premium_table_and_filters(): void
+    {
+        $response = $this->actingAs($this->user('admin'))->get(route('admin.pesanan-mobil.index', ['status' => 'menunggu_verifikasi']));
+
+        $response->assertOk()
+            ->assertSee('Daftar Pesanan Mobil')
+            ->assertSee('Menunggu Verifikasi')
+            ->assertSee('admin-orders-table', false)
+            ->assertSee('Cari berdasarkan Order ID', false);
+    }
 }

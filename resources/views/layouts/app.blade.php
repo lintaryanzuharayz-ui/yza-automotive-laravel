@@ -66,6 +66,7 @@
         </div>
     @elseif($isAdminShell)
         @php($adminUser = auth()->user())
+        @php($adminBadges = app(\App\Services\AdminNotificationBadgeService::class)->for((int) $adminUser->id_user))
         <div class="admin-shell" data-admin-shell>
             @include('components.admin-sidebar')
             <header class="admin-topbar">
@@ -73,7 +74,7 @@
                     <button class="admin-toggle" type="button" data-admin-toggle aria-label="Buka navigasi admin">☰</button>
                     <div><h1>@yield('admin-page-title', 'Dashboard Utama')</h1><div class="admin-breadcrumb">Admin Management · YZA Automotive</div></div>
                 </div>
-                <div class="admin-topbar-right"><span aria-hidden="true">●</span><div class="admin-user"><span class="admin-avatar">{{ strtoupper(substr($adminUser->displayName(), 0, 1)) }}</span><div><strong>{{ $adminUser->displayName() }}</strong><small>Administrator</small></div></div><form method="post" action="{{ route('logout') }}">@csrf<button class="admin-logout" type="submit">Keluar</button></form></div>
+                <div class="admin-topbar-right"><a class="admin-notification-button" href="{{ route('admin.notifikasi.index') }}" aria-label="Notifikasi">♧ @if(($adminBadges['notifications'] ?? 0) > 0)<b>{{ ($adminBadges['notifications'] ?? 0) > 99 ? '99+' : $adminBadges['notifications'] }}</b>@endif</a><div class="admin-user"><span class="admin-avatar">{{ strtoupper(substr($adminUser->displayName(), 0, 1)) }}</span><div><strong>{{ $adminUser->displayName() }}</strong><small>Administrator</small></div></div><form method="post" action="{{ route('logout') }}">@csrf<button class="admin-logout" type="submit">Keluar</button></form></div>
             </header>
             <main class="admin-main"><div class="admin-content">@if(session('status'))<div class="yza-alert" role="status">{{ session('status') }}</div>@endif @if($errors->any())<div class="yza-alert yza-alert-error" role="alert">{{ $errors->first() }}</div>@endif @yield('content')</div></main>
             <footer class="admin-footer"><span>© {{ now()->year }} YZA Automotive</span><span>Admin Management System</span></footer>

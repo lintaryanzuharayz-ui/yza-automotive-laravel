@@ -2,14 +2,14 @@
     $adminSections = [
         ['title' => 'Overview', 'items' => [
             ['label' => 'Dashboard Utama', 'icon' => '⌂', 'route' => 'admin.dashboard'],
-            ['label' => 'Pusat Notifikasi', 'icon' => '!', 'route' => 'admin.notifikasi.index'],
+            ['label' => 'Pusat Notifikasi', 'icon' => '!', 'route' => 'admin.notifikasi.index', 'badge' => 'notifications'],
             ['label' => 'Aktivitas & Tugas Admin', 'icon' => '◌', 'route' => 'admin.notifikasi.index'],
         ]],
         ['title' => 'Penjualan Mobil', 'items' => [
-            ['label' => 'Pesanan Mobil', 'icon' => '▣', 'route' => 'admin.pesanan-mobil.index'],
+            ['label' => 'Pesanan Mobil', 'icon' => '▣', 'route' => 'admin.pesanan-mobil.index', 'badge' => 'orders'],
             ['label' => 'Penjualan Mobil', 'icon' => '↗', 'route' => 'admin.penjualan-mobil.index'],
-            ['label' => 'Pre-Order', 'icon' => '◷', 'route' => 'admin.preorder-mobil.index'],
-            ['label' => 'Inventori & Stok Mobil', 'icon' => '▤', 'route' => 'admin.mobil.index'],
+            ['label' => 'Pre-Order', 'icon' => '◷', 'route' => 'admin.preorder-mobil.index', 'badge' => 'preorders'],
+            ['label' => 'Inventori & Stok Mobil', 'icon' => '▤', 'route' => 'admin.mobil.index', 'badge' => 'stock'],
             ['label' => 'Katalog & Showroom', 'icon' => '◇', 'route' => 'admin.mobil.index'],
             ['label' => 'PDI', 'icon' => '✓', 'route' => 'admin.pesanan-mobil.index'],
             ['label' => 'Jadwal Pengambilan', 'icon' => '◫', 'route' => 'admin.pesanan-mobil.index'],
@@ -17,18 +17,18 @@
         ]],
         ['title' => 'Keuangan', 'items' => [
             ['label' => 'Dashboard Keuangan', 'icon' => 'Rp', 'route' => 'admin.penjualan-mobil.index'],
-            ['label' => 'Pembayaran Online / Offline', 'icon' => '▥', 'route' => 'admin.pesanan-mobil.index'],
+            ['label' => 'Pembayaran Online / Offline', 'icon' => '▥', 'route' => 'admin.pesanan-mobil.index', 'badge' => 'payments'],
             ['label' => 'Semua Transaksi', 'icon' => '≡', 'route' => 'admin.penjualan-sparepart.index'],
             ['label' => 'Invoice & Kwitansi', 'icon' => '▧', 'route' => 'admin.penjualan-mobil.index'],
             ['label' => 'Rekonsiliasi / Pencairan', 'icon' => '⇆', 'route' => 'admin.pesanan-mobil.index'],
         ]],
         ['title' => 'Layanan & Operasional', 'items' => [
-            ['label' => 'Booking Mobil', 'icon' => '▣', 'route' => 'admin.booking.index'],
-            ['label' => 'Test Drive', 'icon' => '◉', 'route' => 'admin.test-drive.index'],
+            ['label' => 'Booking Mobil', 'icon' => '▣', 'route' => 'admin.booking.index', 'badge' => 'bookings'],
+            ['label' => 'Test Drive', 'icon' => '◉', 'route' => 'admin.test-drive.index', 'badge' => 'testDrives'],
             ['label' => 'Servis / Work Order', 'icon' => '⚙', 'route' => 'admin.servis.index'],
             ['label' => 'Car Wash', 'icon' => '✦', 'route' => 'admin.booking-cuci.index'],
             ['label' => 'Sparepart & Inventori', 'icon' => '▦', 'route' => 'admin.sparepart.index'],
-            ['label' => 'Trade-In', 'icon' => '⇄', 'route' => 'admin.trade-in.index'],
+            ['label' => 'Trade-In', 'icon' => '⇄', 'route' => 'admin.trade-in.index', 'badge' => 'tradeIns'],
             ['label' => 'Pembelian Mobil Bekas', 'icon' => '▰', 'route' => 'admin.pengajuan-mobil.index'],
         ]],
         ['title' => 'Pelanggan & Membership', 'items' => [
@@ -63,7 +63,7 @@
                         <span class="admin-nav-item is-disabled"><i>{{ $item['icon'] }}</i><span>{{ $item['label'] }}</span></span>
                     @else
                         <a class="admin-nav-item {{ request()->routeIs($item['route']) ? 'is-active' : '' }}" href="{{ route($item['route']) }}">
-                            <i>{{ $item['icon'] }}</i><span>{{ $item['label'] }}</span>
+                            <i>{{ $item['icon'] }}</i><span>{{ $item['label'] }}</span>@if(isset($item['badge']) && ($adminBadges[$item['badge']] ?? 0) > 0)<b class="admin-nav-badge">{{ ($adminBadges[$item['badge']] ?? 0) > 99 ? '99+' : $adminBadges[$item['badge']] }}</b>@endif
                         </a>
                     @endif
                 @endforeach
