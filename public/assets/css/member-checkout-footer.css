@@ -1,0 +1,5 @@
+.member-checkout-page .member-app-shell{min-height:100vh;display:flex;flex-direction:column}
+.member-checkout-page .member-workspace{width:100%;min-height:100vh;display:flex;flex-direction:column}
+.member-checkout-page .member-main-content{width:100%;flex:1 0 auto;padding-bottom:36px!important}
+.member-checkout-page .member-shared-footer{position:relative;z-index:1;width:100%;flex:0 0 auto;margin-top:auto}
+@media(max-width:850px){.member-checkout-page .member-shared-footer{min-height:154px;padding:20px 18px}.member-checkout-page .member-shared-footer nav{gap:10px 16px}.member-checkout-page .member-shared-footer .yza-home-footer-meta{flex-wrap:wrap;gap:8px 14px}.member-checkout-page .member-shared-footer .yza-home-footer-meta>span{white-space:normal}}

@@ -5,6 +5,7 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/member-checkout.css') }}?v={{ filemtime(public_path('assets/css/member-checkout.css')) }}">
+<link rel="stylesheet" href="{{ asset('assets/css/member-checkout-footer.css') }}?v={{ filemtime(public_path('assets/css/member-checkout-footer.css')) }}">
 @endpush
 
 @php

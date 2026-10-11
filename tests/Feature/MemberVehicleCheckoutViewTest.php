@@ -24,6 +24,8 @@ class MemberVehicleCheckoutViewTest extends TestCase
             ->assertSee('Kirim Pesanan')
             ->assertSee('Toyota GR Supra')
             ->assertSee('Rp 2.350.000.000')
+            ->assertSee('member-checkout-footer.css', false)
+            ->assertSee('Transaksi Aman')
             ->assertSee('syarat_disetujui', false)
             ->assertSee(route('pelanggan.pesanan-mobil.store', $car), false);
     }
