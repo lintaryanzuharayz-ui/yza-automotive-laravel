@@ -1,5 +1,33 @@
-.member-checkout-page .member-app-shell{min-height:100vh;display:flex;flex-direction:column}
-.member-checkout-page .member-workspace{width:100%;min-height:100vh;display:flex;flex-direction:column}
-.member-checkout-page .member-main-content{width:100%;flex:1 0 auto;padding-bottom:36px!important}
-.member-checkout-page .member-shared-footer{position:relative;z-index:1;width:100%;flex:0 0 auto;margin-top:auto}
-@media(max-width:850px){.member-checkout-page .member-shared-footer{min-height:154px;padding:20px 18px}.member-checkout-page .member-shared-footer nav{gap:10px 16px}.member-checkout-page .member-shared-footer .yza-home-footer-meta{flex-wrap:wrap;gap:8px 14px}.member-checkout-page .member-shared-footer .yza-home-footer-meta>span{white-space:normal}}
+.member-checkout-page .member-app-shell{min-height:100dvh;display:flex;flex-direction:column}
+.member-checkout-page .member-workspace{width:100%;min-height:100dvh;margin-left:0!important;display:flex;flex-direction:column}
+.member-checkout-page .member-main-content{box-sizing:border-box;width:100%;flex:1 0 auto;padding-inline:24px!important;padding-bottom:36px!important}
+.member-checkout-page .checkout-wrap{width:100%;max-width:1780px;margin-inline:auto}
+.member-checkout-page .member-shared-footer{position:relative;z-index:1;box-sizing:border-box;width:100vw;max-width:none;flex:0 0 auto;margin-top:auto;margin-left:calc((100% - 100vw)/2);padding-inline:clamp(28px,4vw,72px);min-height:96px;height:96px}
+@media(min-width:1400px){
+    .member-checkout-page .checkout-main{grid-template-columns:minmax(0,1.35fr) minmax(410px,1.2fr) minmax(300px,.85fr);gap:24px;align-items:stretch}
+    .member-checkout-page .checkout-form-card{display:contents}
+    .member-checkout-page .checkout-form-column,.member-checkout-page .checkout-summary-column{box-sizing:border-box;border:1px solid #e1e4e8;border-radius:18px;background:rgba(255,255,255,.96);box-shadow:0 15px 36px rgba(28,35,45,.08)}
+    .member-checkout-page .checkout-form-column{padding:30px 30px 28px}
+    .member-checkout-page .checkout-summary-column{padding:30px 26px 28px}
+    .member-checkout-page .checkout-vehicle-top{min-height:390px;padding:28px 32px 0}
+    .member-checkout-page .checkout-vehicle-image{height:300px;margin-top:14px}
+    .member-checkout-page .checkout-vehicle-body{padding:18px 32px 30px}
+    .member-checkout-page .checkout-vehicle-card h2{font-size:32px}
+    .member-checkout-page .checkout-section-title h2{font-size:24px}
+    .member-checkout-page .checkout-section-title p,.member-checkout-page .checkout-field label,.member-checkout-page .checkout-check{font-size:14px}
+    .member-checkout-page .checkout-control{min-height:52px;font-size:15px}
+    .member-checkout-page textarea.checkout-control{min-height:112px}
+    .member-checkout-page .checkout-summary-head strong,.member-checkout-page .checkout-summary-head span{font-size:16px}
+    .member-checkout-page .checkout-summary-row,.member-checkout-page .checkout-summary-row strong{font-size:14px}
+    .member-checkout-page .checkout-summary-total{font-size:18px}
+    .member-checkout-page .checkout-summary-total strong{font-size:26px}
+    .member-checkout-page .checkout-submit{min-height:60px;font-size:16px}
+}
+@media(max-width:1399px) and (min-width:851px){.member-checkout-page .member-main-content{padding-inline:32px!important}.member-checkout-page .checkout-wrap{max-width:1700px}}
+@media(max-width:850px){
+    .member-checkout-page .member-main-content{padding-inline:14px!important}
+    .member-checkout-page .member-shared-footer{width:100%;margin-left:0;min-height:154px;height:auto;padding:20px 18px}
+    .member-checkout-page .member-shared-footer nav{gap:10px 16px}
+    .member-checkout-page .member-shared-footer .yza-home-footer-meta{flex-wrap:wrap;gap:8px 14px}
+    .member-checkout-page .member-shared-footer .yza-home-footer-meta>span{white-space:normal}
+}
