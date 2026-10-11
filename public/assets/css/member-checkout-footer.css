@@ -1,6 +1,6 @@
 .member-checkout-page .member-app-shell{min-height:100dvh;display:flex;flex-direction:column}
 .member-checkout-page .member-workspace{width:100%;min-height:100dvh;margin-left:0!important;display:flex;flex-direction:column}
-.member-checkout-page .member-main-content{box-sizing:border-box;width:100%;flex:1 0 auto;padding-inline:24px!important;padding-bottom:36px!important}
+.member-checkout-page .member-main-content{box-sizing:border-box;width:100%;min-height:0!important;flex:1 0 auto;padding-inline:24px!important;padding-bottom:36px!important}
 .member-checkout-page .checkout-wrap{width:100%;max-width:1780px;margin-inline:auto}
 .member-checkout-page .member-shared-footer{position:relative;z-index:1;box-sizing:border-box;width:100vw;max-width:none;flex:0 0 auto;margin-top:auto;margin-left:calc((100% - 100vw)/2);padding-inline:clamp(28px,4vw,72px);min-height:96px;height:96px}
 @media(min-width:1400px){
