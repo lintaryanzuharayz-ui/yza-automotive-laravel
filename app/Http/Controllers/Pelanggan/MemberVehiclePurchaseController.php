@@ -15,7 +15,95 @@ use App\Services\PaymentService;
 
 class MemberVehiclePurchaseController extends Controller
 {
-    public function index(MemberVehiclePurchaseService $service): View { $customer = $service->customerFor(request()->user()); $orders = PesananMobilMember::with(['mobil', 'pdi', 'transaksi', 'serahTerima'])->where('id_pelanggan', $customer->id_pelanggan)->latest()->paginate(10); return view('pelanggan.pesanan-mobil.index', compact('orders')); }
+    public function index(Request $request, MemberVehiclePurchaseService $service, VehicleGalleryService $gallery): View
+    {
+        $customer = $service->customerFor($request->user());
+        $supportedStatuses = ['menunggu_verifikasi', 'menunggu_pembayaran', 'lunas', 'pdi_lulus', 'pdi_gagal', 'siap_diambil', 'diserahkan', 'ditolak', 'dibatalkan'];
+        $base = PesananMobilMember::query()->where('id_pelanggan', $customer->id_pelanggan);
+        $query = (clone $base)->with(['mobil.warnaPilihan.galeri', 'pdi', 'transaksi.pembayarans', 'serahTerima']);
+        $keyword = trim((string) $request->query('q', ''));
+        if ($keyword !== '') {
+            $query->where(function ($builder) use ($keyword): void {
+                $builder->where('nomor_pesanan', 'like', "%{$keyword}%")
+                    ->orWhere('snapshot_merk', 'like', "%{$keyword}%")
+                    ->orWhere('snapshot_model', 'like', "%{$keyword}%")
+                    ->orWhere('snapshot_tipe', 'like', "%{$keyword}%");
+            });
+        }
+        $status = (string) $request->query('status', '');
+        if (in_array($status, $supportedStatuses, true)) $query->where('status', $status);
+        $sort = (string) $request->query('sort', 'newest');
+        match ($sort) {
+            'oldest' => $query->orderBy('created_at'),
+            'action' => $query->orderByRaw("CASE WHEN status IN ('menunggu_pembayaran','siap_diambil') THEN 0 WHEN status = 'menunggu_verifikasi' THEN 1 WHEN status IN ('ditolak','dibatalkan') THEN 3 ELSE 2 END")->orderByDesc('created_at'),
+            'completed' => $query->orderByRaw("CASE WHEN status = 'diserahkan' THEN 0 ELSE 1 END")->orderByDesc('created_at'),
+            default => $query->latest('created_at'),
+        };
+        $orders = $query->paginate(5)->withQueryString();
+        $orders->getCollection()->each(fn (PesananMobilMember $order) => $this->decorateOrder($order, $gallery));
+        $total = (clone $base)->count();
+        $action = (clone $base)->whereIn('status', ['menunggu_pembayaran', 'siap_diambil'])->count();
+        $completed = (clone $base)->where('status', 'diserahkan')->count();
+        return view('pelanggan.pesanan-mobil.index', compact('orders', 'total', 'action', 'completed', 'keyword', 'status', 'sort'));
+    }
+
+    private function decorateOrder(PesananMobilMember $order, VehicleGalleryService $gallery): void
+    {
+        $galleryData = $order->mobil ? $gallery->for($order->mobil) : [];
+        $selected = collect($galleryData)->first(fn (array $item) => strcasecmp((string) ($item['label'] ?? ''), (string) $order->snapshot_warna) === 0) ?: collect($galleryData)->first();
+        $images = $selected['images'] ?? [];
+        $payment = $order->transaksi?->pembayarans?->sortByDesc(fn ($item) => $item->verified_at ?: $item->tanggal)->first();
+        $stage = match ($order->status) {
+            'menunggu_verifikasi' => 2,
+            'menunggu_pembayaran' => 3,
+            'lunas' => 4,
+            'pdi_lulus' => 5,
+            'siap_diambil' => 6,
+            'diserahkan' => 7,
+            default => 2,
+        };
+        $order->setAttribute('presentation_gallery', $images);
+        $order->setAttribute('presentation_image', $images[0]['src'] ?? asset('assets/images/hero/yza-hero-reference-v3.png'));
+        $order->setAttribute('presentation_photo_count', count($images));
+        $order->setAttribute('presentation_color', $order->snapshot_warna ?: $order->mobil?->warna ?: 'Warna pilihan');
+        $order->setAttribute('presentation_status', $this->statusMeta($order));
+        $order->setAttribute('presentation_timeline', $this->timeline($order, $stage, $payment));
+    }
+
+    private function statusMeta(PesananMobilMember $order): array
+    {
+        return match ($order->status) {
+            'menunggu_verifikasi' => ['label' => 'Menunggu Verifikasi Admin', 'tone' => 'warning', 'description' => 'Pesanan Anda sedang diperiksa oleh tim YZA Automotive.'],
+            'menunggu_pembayaran' => ['label' => 'Menunggu Pembayaran', 'tone' => 'warning', 'description' => 'Pesanan telah disetujui. Silakan lanjutkan pembayaran melalui detail pesanan.'],
+            'lunas' => ['label' => 'Pembayaran Terverifikasi', 'tone' => 'success', 'description' => 'Pembayaran Anda telah diterima dan kendaraan masuk ke tahap persiapan.'],
+            'pdi_lulus' => ['label' => 'PDI Selesai', 'tone' => 'success', 'description' => 'Pemeriksaan kendaraan selesai. Kami menyiapkan jadwal serah terima Anda.'],
+            'siap_diambil' => ['label' => 'Menunggu Serah Terima', 'tone' => 'success', 'description' => 'Kendaraan siap memasuki proses serah terima sesuai jadwal.'],
+            'diserahkan' => ['label' => 'Pesanan Selesai', 'tone' => 'success', 'description' => 'Kendaraan telah diserahkan dan tercatat di koleksi kendaraan Anda.'],
+            'pdi_gagal' => ['label' => 'PDI Memerlukan Tindak Lanjut', 'tone' => 'danger', 'description' => 'Tim kami sedang menindaklanjuti hasil pemeriksaan kendaraan.'],
+            'ditolak' => ['label' => 'Pesanan Ditolak', 'tone' => 'danger', 'description' => 'Pesanan ini tidak dapat dilanjutkan. Silakan hubungi admin bila memerlukan bantuan.'],
+            'dibatalkan' => ['label' => 'Pesanan Dibatalkan', 'tone' => 'danger', 'description' => 'Pesanan ini sudah dibatalkan dan tidak lagi diproses.'],
+            default => ['label' => ucwords(str_replace('_', ' ', $order->status)), 'tone' => 'neutral', 'description' => 'Status pesanan sedang diperbarui.'],
+        };
+    }
+
+    private function timeline(PesananMobilMember $order, int $stage, $payment): array
+    {
+        $time = fn ($value) => $value?->format('d M Y H:i');
+        $paymentTime = $payment?->status === 'terverifikasi' ? ($payment->verified_at ?: $payment->tanggal) : null;
+        $steps = [
+            ['label' => 'Checkout', 'date' => $time($order->created_at)],
+            ['label' => 'Verifikasi Admin', 'date' => $time($order->diputuskan_at)],
+            ['label' => 'Pembayaran', 'date' => $time($paymentTime)],
+            ['label' => 'PDI', 'date' => $time($order->pdi?->diperiksa_at)],
+            ['label' => 'Serah Terima', 'date' => $time($order->serahTerima?->diserahkan_at ?: $order->jadwal_pengambilan)],
+            ['label' => 'Selesai', 'date' => $time($order->diserahkan_at)],
+        ];
+        return collect($steps)->map(function (array $item, int $index) use ($stage, $order): array {
+            $number = $index + 1;
+            $state = $order->status === 'ditolak' || $order->status === 'dibatalkan' ? ($index === 0 ? 'done' : 'cancelled') : ($number < $stage ? 'done' : ($number === $stage ? 'current' : 'upcoming'));
+            return $item + ['state' => $state, 'icon' => $state === 'done' ? '✓' : ($state === 'current' ? '●' : '○')];
+        })->all();
+    }
     public function create(Request $request, Mobil $mobil, MemberVehiclePurchaseService $service, VehicleAvailabilityService $availability, VehicleGalleryService $gallery): View
     {
         $stock = $availability->for($mobil);

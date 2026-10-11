@@ -56,6 +56,23 @@ class MemberVehiclePurchaseFlowTest extends TestCase
             ->assertSee('member-order-detail.css', false);
     }
 
+    public function test_member_order_index_renders_tracking_dashboard_and_filters_owned_orders(): void
+    {
+        $member = $this->user('pelanggan');
+        $customer = $member->pelanggan;
+        $car = $this->car();
+        app(MemberVehiclePurchaseService::class)->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA']);
+        $response = $this->actingAs($member)->get(route('pelanggan.pesanan-mobil.index', ['q' => 'ORD-', 'sort' => 'action']));
+
+        $response->assertOk()
+            ->assertSee('Pesanan Mobil Saya')
+            ->assertSee('Total Pesanan')
+            ->assertSee('Butuh Tindakan')
+            ->assertSee('member-order-card', false)
+            ->assertSee('member-order-timeline', false)
+            ->assertSee('Lihat Detail');
+    }
+
     public function test_admin_approval_reuses_existing_transaction_and_sale_tables(): void
     {
         $customer = $this->user('pelanggan')->pelanggan;
