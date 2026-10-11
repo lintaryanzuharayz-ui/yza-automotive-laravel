@@ -1,9 +1,9 @@
 .member-checkout-page{min-height:100dvh;background:#0b0c0f}
-.member-checkout-page .member-app-shell{min-height:100dvh;display:flex;flex-direction:column}
+.member-checkout-page .member-app-shell{width:100%!important;max-width:none!important;min-height:100dvh;display:flex;flex-direction:column}
 .member-checkout-page .member-horizontal-shell{width:100%;max-width:none;margin:0!important;background:#f5f6f8}
 .member-checkout-page .member-workspace{width:100%;min-height:0!important;flex:1 0 auto;margin-left:0!important;display:flex;flex-direction:column}
 .member-checkout-page .member-main-content{box-sizing:border-box;width:100%;min-height:0!important;flex:1 0 auto;padding-inline:24px!important;padding-bottom:36px!important}
-.member-checkout-page .checkout-wrap{width:100%;max-width:1780px;margin-inline:auto}
+.member-checkout-page .member-main-content>.checkout-wrap{width:100%;max-width:1780px!important;margin-inline:auto}
 .member-checkout-page .member-shared-footer{position:relative;z-index:1;box-sizing:border-box;width:100%;max-width:none;flex:0 0 auto;margin-top:0;margin-left:0;padding-inline:clamp(28px,4vw,72px);min-height:96px;height:96px}
 @media(min-width:1400px){
     .member-checkout-page .checkout-main{grid-template-columns:minmax(0,1.35fr) minmax(410px,1.2fr) minmax(300px,.85fr);gap:24px;align-items:stretch}
