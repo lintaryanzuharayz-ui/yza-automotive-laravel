@@ -37,7 +37,7 @@ class VerifiedCarOwnershipService
             ->whereHas('transaksi', fn (Builder $query) => $query
                 ->where('jenis_transaksi', 'penjualan_mobil')
                 ->where('status', 'lunas'))
-            ->whereHas('mobil', fn (Builder $query) => $query->where('status', 'terjual'));
+            ->whereHas('memberOrder', fn (Builder $query) => $query->where('status', 'diserahkan'));
     }
 
     public function customerHasVerifiedPurchase(int $customerId): bool
@@ -77,9 +77,9 @@ class VerifiedCarOwnershipService
 
     public function syncVehicleFromCompletedSale(PenjualanMobil $sale): ?KendaraanPelanggan
     {
-        $sale->loadMissing(['mobil', 'transaksi']);
+        $sale->loadMissing(['mobil', 'transaksi', 'memberOrder']);
         $car = $sale->mobil;
-        if (!$car || !$sale->id_pelanggan || !$sale->transaksi || $sale->transaksi->status !== 'lunas') {
+        if (!$car || !$sale->id_pelanggan || !$sale->transaksi || $sale->transaksi->status !== 'lunas' || $sale->status !== 'selesai' || $sale->memberOrder?->status !== 'diserahkan') {
             return null;
         }
 

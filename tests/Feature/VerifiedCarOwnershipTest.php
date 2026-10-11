@@ -27,7 +27,7 @@ class VerifiedCarOwnershipTest extends TestCase
         $this->assertFalse(app(VerifiedCarOwnershipService::class)->vehicleBelongsToVerifiedPurchase($customer->id_pelanggan, $vehicle->id_kendaraan_pelanggan));
     }
 
-    public function test_completed_sale_creates_verified_customer_vehicle_and_unlocks_services(): void
+    public function test_payment_does_not_create_verified_ownership_before_handover(): void
     {
         $customerUser = $this->user('pelanggan');
         $customer = $customerUser->pelanggan;
@@ -51,9 +51,9 @@ class VerifiedCarOwnershipTest extends TestCase
 
         $vehicle = KendaraanPelanggan::where('id_pelanggan', $customer->id_pelanggan)
             ->where('nomor_rangka', $car->nomor_rangka)->first();
-        $this->assertNotNull($vehicle);
-        $this->assertTrue(app(VerifiedCarOwnershipService::class)->customerHasVerifiedPurchase($customer->id_pelanggan));
-        $this->assertTrue(app(VerifiedCarOwnershipService::class)->vehicleBelongsToVerifiedPurchase($customer->id_pelanggan, $vehicle->id_kendaraan_pelanggan));
-        $this->actingAs($customerUser)->get('/pelanggan/booking-servis/create')->assertOk();
+        $this->assertNull($vehicle);
+        $this->assertFalse(app(VerifiedCarOwnershipService::class)->customerHasVerifiedPurchase($customer->id_pelanggan));
+        $this->assertFalse(app(VerifiedCarOwnershipService::class)->vehicleBelongsToVerifiedPurchase($customer->id_pelanggan, 999999));
+        $this->actingAs($customerUser)->get('/pelanggan/booking-servis/create')->assertForbidden();
     }
 }

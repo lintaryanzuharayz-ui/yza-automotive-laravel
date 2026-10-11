@@ -36,7 +36,10 @@ class PenjualanMobilService
                 if (!$booking) throw new RuntimeException('Unit dibooking pelanggan lain atau booking belum dikonfirmasi.');
             } elseif ($inventory) {
                 if (((int) $inventory->stock_total - (int) $inventory->sold_units - $inventoryService->reserveCount($car)) < 1) throw new RuntimeException('Stok kendaraan tidak tersedia.');
-                $bookingId = null;
+                if ($bookingId) {
+                    $booking = BookingMobil::lockForUpdate()->whereKey($bookingId)->where('id_mobil', $car->id_mobil)->where('id_pelanggan', $customer->id_pelanggan)->where('status', 'dikonfirmasi')->first();
+                    if (!$booking) throw new RuntimeException('Booking kendaraan tidak valid atau belum dikonfirmasi.');
+                }
             } else { $bookingId = null; }
             $note = trim((string)($input['catatan'] ?? ''));
             $tx = new Transaksi();

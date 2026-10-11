@@ -55,7 +55,14 @@ class VehicleInventoryService
         if ($ids->isEmpty()) return 0;
         $bookings = DB::table('booking_mobil')->whereIn('id_mobil', $ids)->whereIn('status', ['menunggu', 'dikonfirmasi'])->count();
         $orders = DB::table('pesanan_mobil_member')->whereIn('id_mobil', $ids)->whereNotIn('status', ['ditolak', 'dibatalkan', 'diserahkan'])->count();
-        return $bookings + $orders;
+        $directSales = DB::table('penjualan_mobil as sale')
+            ->join('transaksi as tx', 'tx.id_transaksi', '=', 'sale.id_transaksi')
+            ->whereIn('sale.id_mobil', $ids)
+            ->where('sale.status', 'proses')
+            ->whereNotExists(fn ($query) => $query->selectRaw('1')->from('pesanan_mobil_member as member_order')->whereColumn('member_order.id_penjualan', 'sale.id_penjualan')->whereNotIn('member_order.status', ['ditolak', 'dibatalkan', 'diserahkan']))
+            ->whereNotIn('tx.status', ['lunas', 'dibatalkan'])
+            ->count();
+        return $bookings + $orders + $directSales;
     }
 
     public function recordSale(Mobil $car, int $quantity, ?string $referenceType, ?int $referenceId, ?string $note = null): void
