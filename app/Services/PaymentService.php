@@ -16,6 +16,31 @@ class PaymentService{
  private function assertCarSaleStage(Transaksi $tx):void{if($tx->jenis_transaksi!=='penjualan_mobil')return;$order=PesananMobilMember::where('id_transaksi',$tx->id_transaksi)->first();if($order&&!in_array($order->status,['menunggu_pembayaran','lunas'],true))throw new RuntimeException('Pembayaran belum dibuka. Pesanan harus disetujui admin terlebih dahulu.');}
  public function create(int $transactionId,int $actorId,string $amount,string $method,?string $proof,?string $note):Pembayaran{return DB::transaction(function()use($transactionId,$actorId,$amount,$method,$proof,$note){$tx=Transaksi::lockForUpdate()->findOrFail($transactionId);$this->assertSupported($tx);if(in_array($tx->status,['dibatalkan','lunas'],true))throw new RuntimeException('Transaksi tidak tersedia untuk pembayaran baru.');if((float)$amount<=0)throw new RuntimeException('Jumlah pembayaran harus lebih dari 0.');$paid=$this->paid($tx);$state=$method==='tunai'?'terverifikasi':'menunggu';if($state==='terverifikasi'&&(float)$paid+(float)$amount>(float)$tx->total)throw new RuntimeException('Pembayaran melebihi total transaksi.');$p=new Pembayaran();$p->forceFill(array_merge(['kode_pembayaran'=>$this->code(),'id_transaksi'=>$tx->id_transaksi,'tanggal'=>now(),'arah'=>'masuk','metode'=>$method,'jumlah'=>$amount,'bukti_transfer'=>$proof,'status'=>$state,'catatan'=>$note],$this->verificationFields($actorId,$state)))->save();if($state==='terverifikasi'){$new=$this->status((string)$tx->total,(string)((float)$paid+(float)$amount));$tx->forceFill(['status'=>$new])->save();$this->notifyVerified($tx);$this->sync($tx,$new);}return$p;});}
  public function verify(int $paymentId,int $actorId,?CarbonInterface $verifiedAt=null):Pembayaran{return DB::transaction(function()use($paymentId,$actorId,$verifiedAt){$p=Pembayaran::lockForUpdate()->findOrFail($paymentId);if($p->status!=='menunggu')throw new RuntimeException('Pembayaran tidak menunggu verifikasi.');$tx=Transaksi::lockForUpdate()->findOrFail($p->id_transaksi);$this->assertSupported($tx);$paid=$this->paid($tx);if((float)$paid+(float)$p->jumlah>(float)$tx->total)throw new RuntimeException('Pembayaran menyebabkan overpayment.');$p->forceFill(array_merge(['status'=>'terverifikasi'],$this->verificationFields($actorId,'terverifikasi',$verifiedAt)))->save();$new=$this->status((string)$tx->total,(string)((float)$paid+(float)$p->jumlah));$tx->forceFill(['status'=>$new])->save();$this->notifyVerified($tx);$this->sync($tx,$new);return$p;});}
- public function reject(int $paymentId,int $actorId):Pembayaran{return DB::transaction(function()use($paymentId,$actorId){$p=Pembayaran::lockForUpdate()->findOrFail($paymentId);if($p->status!=='menunggu')throw new RuntimeException('Pembayaran tidak menunggu penolakan.');$p->forceFill(['status'=>'ditolak'])->save();$tx=Transaksi::lockForUpdate()->findOrFail($p->id_transaksi);if($tx->jenis_transaksi==='penjualan_mobil'){$sale=PenjualanMobil::lockForUpdate()->where('id_transaksi',$tx->id_transaksi)->first();$order=$sale?PesananMobilMember::lockForUpdate()->where('id_penjualan',$sale->id_penjualan)->first():null;if($order&&in_array($order->status,['menunggu_pembayaran','lunas'],true)){$car=Mobil::lockForUpdate()->find($order->id_mobil);$order->forceFill(['status'=>'dibatalkan','catatan_admin'=>'Pembayaran ditolak; alokasi stok dilepas.'])->save();$tx->forceFill(['status'=>'dibatalkan'])->save();if($car&&!app(VehicleInventoryService::class)->find($car))$car->forceFill(['status'=>'tersedia'])->save();}}return$p;});}
+ public function reject(int $paymentId,int $actorId):Pembayaran
+ {
+  return DB::transaction(function()use($paymentId,$actorId){
+   $p=Pembayaran::lockForUpdate()->findOrFail($paymentId);
+   if($p->status!=='menunggu')throw new RuntimeException('Pembayaran tidak menunggu penolakan.');
+   $p->forceFill(['status'=>'ditolak'])->save();
+   $tx=Transaksi::lockForUpdate()->findOrFail($p->id_transaksi);
+   if($tx->jenis_transaksi==='penjualan_mobil'){
+    $sale=PenjualanMobil::lockForUpdate()->where('id_transaksi',$tx->id_transaksi)->first();
+    $order=$sale?PesananMobilMember::lockForUpdate()->where('id_penjualan',$sale->id_penjualan)->first():null;
+    if($order&&in_array($order->status,['menunggu_pembayaran','lunas'],true)){
+     $order->forceFill(['status'=>'dibatalkan','catatan_admin'=>'Pembayaran ditolak; silakan pilih metode pembayaran kembali.'])->save();
+     $tx->forceFill(['status'=>'dibatalkan'])->save();
+     $sale->forceFill(['status'=>'proses'])->save();
+     $car=Mobil::lockForUpdate()->find($order->id_mobil);
+     if($car&&!app(VehicleInventoryService::class)->find($car))$car->forceFill(['status'=>'tersedia'])->save();
+     app(ServiceNotificationService::class)->forMemberVehicleOrder(
+      $order->fresh('pelanggan'),
+      'Pembayaran ditolak',
+      'Pembayaran pesanan '.$order->nomor_pesanan.' ditolak. Silakan pilih metode pembayaran kembali.'
+     );
+    }
+   }
+   return$p;
+  });
+ }
  public function summary(int $transactionId):array{$tx=Transaksi::findOrFail($transactionId);$paid=$this->paid($tx);return['paid'=>$paid,'remaining'=>(string)DB::selectOne('SELECT CAST(? - ? AS DECIMAL(15,2)) AS value',[$tx->total,$paid])->value,'status'=>$tx->status];}
 }

@@ -25,7 +25,12 @@
             </ul>
         </div>
     </section>
-    <form class="card register-card" method="post" action="{{ route('register.store') }}" autocomplete="off" novalidate id="register-form">
+    @php
+        $registrationFrom = $registrationFrom ?? 'login';
+        $registrationBack = $registrationFrom === 'membership' ? url('/#janji-temu') : route('login');
+        $registrationBackLabel = $registrationFrom === 'membership' ? 'KEMBALI KE MEMBERSHIP' : 'KEMBALI KE LOGIN';
+    @endphp
+    <form class="card register-card" method="post" action="{{ route('register.store', ['from' => $registrationFrom]) }}" autocomplete="off" novalidate id="register-form">
         @csrf
         <input type="hidden" name="current_step" id="current_step" value="{{ old('current_step', request()->query('step', 1)) }}">
         <div class="register-card-heading"><span class="eyebrow">YZA AUTOMOTIVE</span><span class="register-heading-line"></span></div>
@@ -44,7 +49,7 @@
                 <div class="form-group"><label class="form-label" for="jenis_kelamin">Jenis Kelamin</label><div class="register-input"><select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required><option value="">Pilih jenis kelamin</option><option value="L" @selected(old('jenis_kelamin') === 'L')>Laki-laki</option><option value="P" @selected(old('jenis_kelamin') === 'P')>Perempuan</option></select></div></div>
                 <div class="form-group"><label class="form-label" for="tanggal_lahir">Tanggal Lahir</label><div class="register-input"><input class="form-control" id="tanggal_lahir" name="tanggal_lahir" type="date" value="{{ old('tanggal_lahir') }}" required></div></div>
             </div>
-            <div class="form-actions"><a class="button button-secondary" href="{{ route('login') }}">Kembali ke Login</a><button class="button button-primary" type="button" data-next-step="1">LANJUT KE ALAMAT&nbsp; →</button></div>
+            <div class="form-actions"><a class="button button-secondary" href="{{ $registrationBack }}">{{ $registrationBackLabel }}</a><button class="button button-primary" type="button" data-next-step="1">LANJUT KE ALAMAT&nbsp; →</button></div>
         </div>
         <div class="register-flow-step" data-step="2" hidden>
             <div class="register-address-heading"><span class="eyebrow">ALAMAT TEMPAT TINGGAL</span><h3>Lengkapi wilayah tempat tinggal</h3><p>Lengkapi wilayah tempat tinggal Anda untuk melanjutkan pendaftaran YZA Member.</p></div>
@@ -94,8 +99,8 @@
     const loadRegions = async (select, parent) => { select.disabled = true; select.innerHTML = '<option value="">Memuat...</option>'; try { const response = await fetch(`{{ url('/register/regions') }}/${select.dataset.regionLevel}/${parent || ''}`); const payload = await response.json(); select.innerHTML = `<option value="">Pilih ${select.id === 'province_code' ? 'Provinsi' : select.id === 'city_code' ? 'Kota / Kabupaten' : select.id === 'district_code' ? 'Kecamatan' : 'Kelurahan / Desa'}</option>`; payload.data.forEach((item) => { const option = new Option(item.name, item.code); select.add(option); }); select.disabled = payload.data.length === 0; if (!payload.data.length) select.innerHTML = '<option value="">Data wilayah tidak tersedia</option>'; } catch { select.innerHTML = '<option value="">Data wilayah tidak tersedia</option>'; } };
     const updateAddressSummary = () => { regionSelects.forEach((select) => { const target = document.querySelector(`[data-address-summary="${summaryNames[select.id]}"]`); if (target) target.textContent = select.selectedOptions[0]?.value ? select.selectedOptions[0].textContent : '—'; }); };
     regionSelects.forEach((select, index) => select.addEventListener('change', async () => { document.getElementById(regionNames[select.id]).value = select.selectedOptions[0]?.textContent || ''; resetChildren(index); updateAddressSummary(); if (select.value && regionSelects[index + 1]) await loadRegions(regionSelects[index + 1], select.value); }));
-    const oldRegionValues = {!! json_encode($oldRegionValues) !!};
-    const oldRegionNames = {!! json_encode($oldRegionNames) !!};
+    const oldRegionValues = {!! json_encode(['province_code' => old('province_code'), 'city_code' => old('city_code'), 'district_code' => old('district_code'), 'village_code' => old('village_code')]) !!};
+    const oldRegionNames = {!! json_encode(['province_name' => old('province_name'), 'city_name' => old('city_name'), 'district_name' => old('district_name'), 'village_name' => old('village_name')]) !!};
     const draftStorageKey = 'yza-registration-draft-v1';
     let storedDraft = {};
     try { storedDraft = initialStep > 1 ? JSON.parse(window.sessionStorage.getItem(draftStorageKey) || '{}') : {}; if (initialStep === 1) window.sessionStorage.removeItem(draftStorageKey); } catch { storedDraft = {}; }

@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </section>
 
     <section class="yza-home-section" aria-labelledby="yza-home-services-title">
-        <div class="yza-home-section-head"><div><span class="yza-home-kicker">MEMBER ACCESS</span><h2 id="yza-home-services-title">Layanan Eksklusif YZA</h2><p>Temukan layanan otomotif yang sesuai dengan kebutuhan kendaraan dan perjalanan Anda.</p></div><a href="{{ route('pelanggan.katalog-mobil.index') }}">Jelajahi Koleksi <b>→</b></a></div>
+        <div class="yza-home-section-head"><div><span class="yza-home-kicker">MEMBER ACCESS</span><h2 id="yza-home-services-title">Layanan Eksklusif YZA</h2><p>Temukan layanan otomotif yang sesuai dengan kebutuhan kendaraan dan perjalanan Anda.</p></div><a href="{{ route('pelanggan.katalog-mobil.index') }}">Jelajahi Koleksi Mobil <b>→</b></a></div>
         <div class="yza-home-service-grid">
             @foreach($services as $service)
                 <article class="yza-home-service-card {{ $service['locked'] ? 'is-locked' : '' }}" style="--service-image: url('{{ asset('assets/images/member/'.$service['image']) }}')">

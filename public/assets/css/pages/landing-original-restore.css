@@ -1,0 +1,32 @@
+/* Restore-only layer: keeps the original static vehicle composition usable on small screens. */
+@media (max-width: 800px) {
+    .showroom .show-hero-inner {
+        width: 100%;
+        min-height: 680px;
+        padding: 60px 24px 20px;
+        grid-template-columns: 1fr;
+    }
+
+    .showroom .hero-car-stage {
+        width: 100%;
+        min-width: 0;
+        min-height: 360px;
+        overflow: hidden;
+    }
+
+    .showroom .hero-car-stage .hero-360-car {
+        display: block !important;
+        left: 50%;
+        top: 50%;
+        width: min(90vw, 650px);
+        height: 360px;
+        transform: translate(-50%, -44%);
+    }
+
+    .showroom .hero-vehicle-info {
+        right: 0;
+        top: 8%;
+        transform: scale(.82);
+        transform-origin: right top;
+    }
+}

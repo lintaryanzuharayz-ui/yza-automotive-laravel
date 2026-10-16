@@ -101,6 +101,24 @@
                 <div class="detail-gallery-note"><span>✦</span> Pilih warna dan sudut kendaraan untuk melihat detail showroom.</div>
             </div>
         </section>
+        @if(($recommendations ?? collect())->isNotEmpty())
+            <section class="detail-recommendations" aria-labelledby="detail-recommendations-title" data-detail-recommendations>
+                <div class="detail-recommendations-head">
+                    <div><p class="detail-kicker">YZA PERFORMANCE COLLECTION</p><h2 id="detail-recommendations-title">MUNGKIN ANDA JUGA SUKA</h2><p>Temukan pilihan mobil sport eksklusif lainnya dari koleksi YZA Automotive.</p></div>
+                </div>
+                <div class="detail-recommendations-viewport" data-recommendation-viewport tabindex="0">
+                    <div class="detail-recommendations-track">
+                        @foreach($recommendations as $recommendation)
+                            @php($recommendationTitle = trim(($recommendation->merk ?: 'YZA').' '.($recommendation->model ?: 'Vehicle')))
+                            <article class="detail-recommendation-card">
+                                <a class="detail-recommendation-media" href="{{ route('mobil.show', ['mobil' => $recommendation]) }}"><img src="{{ $recommendation->recommendation_image }}" alt="{{ $recommendationTitle }}" loading="lazy"><span>{{ strtoupper($recommendation->kondisi ?: 'KOLEKSI') }}</span></a>
+                                <div class="detail-recommendation-body"><small>{{ $recommendation->merk ?: 'YZA AUTOMOTIVE' }}</small><h3>{{ $recommendationTitle }}</h3><p>{{ $recommendation->recommendation_category ?: 'SPORT COUPE' }} <i>•</i> {{ $recommendation->tahun ?: '—' }} <i>•</i> {{ ucfirst($recommendation->transmisi ?: 'Automatic') }}</p><div><strong>{{ (float) $recommendation->harga_jual > 0 ? 'Rp '.number_format((float) $recommendation->harga_jual, 0, ',', '.') : 'Hubungi Kami' }}</strong><a href="{{ route('mobil.show', ['mobil' => $recommendation]) }}" aria-label="Lihat detail {{ $recommendationTitle }}"><span aria-hidden="true">→</span></a></div></div>
+                            </article>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+        @endif
         <section class="detail-bottom-cta"><div><p class="detail-kicker">READY TO DRIVE?</p><h2>Jadikan kendaraan ini milik Anda.</h2><p>Tim YZA Automotive siap membantu menjawab pertanyaan, menjadwalkan kunjungan, dan memproses pembelian.</p></div><div class="detail-bottom-actions"><a class="detail-button detail-button-primary" href="{{ yza_whatsapp_url($whatsappText) }}" target="_blank" rel="noopener">Hubungi showroom <span>↗</span></a><a class="detail-button detail-button-ghost" href="{{ $tradeInCtaUrl }}" data-trade-in-trigger>Tukar tambah <span>→</span></a></div></section>
     </main>
     <x-trade-in-membership-modal :entry-url="$tradeInEntryUrl" :membership-url="$tradeInMembershipUrl" :is-active-member="$isActiveTradeInMember" />
@@ -179,6 +197,11 @@
             document.querySelector('.detail-gallery-arrow-next')?.addEventListener('click', () => { const count = (galleryData[state.color] || galleryData.default).images.length; state.index = (state.index + 1) % count; renderGallery(); });
             mainImage.addEventListener('error', () => { if (mainImage.src !== fallbackImage) { mainImage.src = fallbackImage; } });
             renderGallery();
+            const recommendationRoot = document.querySelector('[data-detail-recommendations]');
+            const recommendationViewport = recommendationRoot?.querySelector('[data-recommendation-viewport]');
+            const recommendationStep = () => recommendationViewport ? Math.max(280, recommendationViewport.clientWidth * (window.innerWidth <= 600 ? .84 : window.innerWidth <= 1000 ? .52 : .27)) : 0;
+            recommendationRoot?.querySelector('[data-recommendation-prev]')?.addEventListener('click', () => recommendationViewport?.scrollBy({ left: -recommendationStep(), behavior: 'smooth' }));
+            recommendationRoot?.querySelector('[data-recommendation-next]')?.addEventListener('click', () => recommendationViewport?.scrollBy({ left: recommendationStep(), behavior: 'smooth' }));
         })();
     </script>
 </body>

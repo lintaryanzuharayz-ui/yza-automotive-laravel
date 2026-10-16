@@ -16,7 +16,88 @@ use Illuminate\View\View;
 
 class MobilController extends Controller
 {
-    public function index(VehicleAvailabilityService $availability): View { $cars = Mobil::query()->when(request('q'), fn($q, $v) => $q->where(fn($x) => $x->where('kode_mobil','like','%'.$v.'%')->orWhere('merk','like','%'.$v.'%')->orWhere('model','like','%'.$v.'%')->orWhere('showcase_slug','like','%'.$v.'%')))->when(request('status'), fn($q, $v) => $q->where('status',$v))->when(request('kondisi'), fn($q, $v) => $q->where('kondisi',$v))->orderByDesc('id_mobil')->paginate(10)->withQueryString(); $cars->setCollection($availability->decorate($cars->getCollection())); return view('admin.mobil.index', compact('cars')); }
+    public function index(VehicleAvailabilityService $availability): View
+    {
+        $q = request('q');
+        $merk = request('merk');
+        $status = request('status');
+        $kondisi = request('kondisi');
+        $tahunMin = request('tahun_min');
+        $tahunMaks = request('tahun_maks');
+        $hargaMin = request('harga_min');
+        $hargaMaks = request('harga_maks');
+        $perPage = (int) (request('per_page', 10) ?: 10);
+
+        $carsQuery = Mobil::query()
+            ->with(['foto'])
+            ->when($q, function ($query, $v) {
+                $query->where(function ($sub) use ($v) {
+                    $sub->where('kode_mobil', 'like', "%{$v}%")
+                        ->orWhere('merk', 'like', "%{$v}%")
+                        ->orWhere('model', 'like', "%{$v}%")
+                        ->orWhere('tipe', 'like', "%{$v}%")
+                        ->orWhere('tahun', 'like', "%{$v}%")
+                        ->orWhere('warna', 'like', "%{$v}%")
+                        ->orWhere('showcase_slug', 'like', "%{$v}%");
+                });
+            })
+            ->when($merk, fn($query, $v) => $query->where('merk', $v))
+            ->when($status, fn($query, $v) => $query->where('status', $v))
+            ->when($kondisi, fn($query, $v) => $query->where('kondisi', $v))
+            ->when($tahunMin, fn($query, $v) => $query->where('tahun', '>=', (int) $v))
+            ->when($tahunMaks, fn($query, $v) => $query->where('tahun', '<=', (int) $v))
+            ->when($hargaMin, fn($query, $v) => $query->where('harga_jual', '>=', (float) $v))
+            ->when($hargaMaks, fn($query, $v) => $query->where('harga_jual', '<=', (float) $v))
+            ->orderByDesc('id_mobil');
+
+        $cars = $carsQuery->paginate($perPage)->withQueryString();
+        $cars->setCollection($availability->decorate($cars->getCollection()));
+
+        // Daftar Merek Unik untuk Filter Dropdown
+        $brands = Mobil::distinct()->whereNotNull('merk')->where('merk', '!=', '')->orderBy('merk')->pluck('merk');
+
+        // Kalkulasi 6 Kartu Statistik Inventori Nyata
+        $allCars = Mobil::all();
+        $totalUnit = $allCars->count();
+        $mobilTersedia = $allCars->where('status', 'tersedia')->count();
+        $mobilTerjual = $allCars->where('status', 'terjual')->count();
+
+        // Reservasi aktif: Pesanan member aktif + Booking aktif
+        $activeOrders = \Illuminate\Support\Facades\Schema::hasTable('pesanan_mobil_member')
+            ? DB::table('pesanan_mobil_member')->whereNotIn('status', ['ditolak', 'dibatalkan', 'diserahkan'])->count()
+            : 0;
+        $activeBookings = \Illuminate\Support\Facades\Schema::hasTable('booking_mobil')
+            ? DB::table('booking_mobil')->whereIn('status', ['menunggu', 'dikonfirmasi'])->count()
+            : 0;
+        $mobilDipesan = $activeOrders + $activeBookings;
+
+        // Stok Menipis: unit dengan stok tersedia <= 3
+        $stokMenipis = 0;
+        foreach (\App\Models\VehicleInventory::all() as $inv) {
+            $reserveCount = $inv->mobil ? app(\App\Services\VehicleInventoryService::class)->reserveCount($inv->mobil) : 0;
+            $avail = max(0, (int) $inv->stock_total - (int) $inv->sold_units - $reserveCount);
+            if ($avail <= 3 && $avail > 0) {
+                $stokMenipis++;
+            }
+        }
+
+        // Unit Perlu Perhatian: unit nonaktif atau dalam pemeriksaan
+        $unitPerhatian = $allCars->whereIn('status', ['nonaktif', 'dalam_pemeriksaan'])->count();
+        if ($unitPerhatian === 0) {
+            $unitPerhatian = $allCars->where('status', 'nonaktif')->count();
+        }
+
+        $stats = [
+            'total_unit' => $totalUnit,
+            'tersedia' => $mobilTersedia,
+            'dipesan' => $mobilDipesan,
+            'terjual' => $mobilTerjual,
+            'stok_menipis' => $stokMenipis,
+            'perlu_perhatian' => $unitPerhatian,
+        ];
+
+        return view('admin.mobil.index', compact('cars', 'stats', 'brands', 'q', 'merk', 'status', 'kondisi', 'tahunMin', 'tahunMaks', 'hargaMin', 'hargaMaks', 'perPage'));
+    }
     public function create(): View { return view('admin.mobil.create', ['mobil' => new Mobil(['status' => 'tersedia', 'kondisi' => 'baru', 'kilometer' => 0, 'harga_beli' => 0, 'harga_jual' => 0])]); }
     public function store(StoreMobilRequest $request, MobilAuditService $audit): RedirectResponse { $mobil = DB::transaction(function () use ($request, $audit) { $data = $request->validated(); unset($data['foto']); $data['sumber_mobil'] = 'dealer'; $mobil = Mobil::create($data); if ($mobil->status !== 'nonaktif') app(\App\Services\VehicleInventoryService::class)->registerPhysicalUnit($mobil); $this->storePhotos($mobil, $request->file('foto', [])); $audit->record('create', $mobil->id_mobil, 'Mobil dibuat'); return $mobil; }); app(\App\Services\MemberVehiclePreorderService::class)->notifyForRestock($mobil->fresh()); return redirect()->route('admin.mobil.show', $mobil)->with('success', 'Mobil berhasil dibuat.'); }
     public function show(Mobil $mobil): View { $mobil->load('foto'); return view('admin.mobil.show', compact('mobil')); }

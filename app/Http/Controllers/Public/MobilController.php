@@ -187,12 +187,7 @@ class MobilController extends Controller
         abort_if(str_starts_with((string) $mobil->kode_mobil, 'PREM-') && !$galleryService->isReady($mobil), 404);
         $mobil->load('foto');
         $mobil->setAttribute('availability', $availabilityService->for($mobil));
-        return view('mobil.show', [
-            'mobil' => $mobil,
-            'galleryData' => $galleryService->for($mobil),
-            'defaultColorKey' => $galleryService->defaultColor($mobil),
-            ...$this->detailNavigation($request),
-        ]);
+        return view('mobil.show', $this->detailViewData($request, $mobil, $galleryService));
     }
 
     public function tradeInEntry(Request $request)
@@ -257,12 +252,12 @@ class MobilController extends Controller
     {
         $premium = Mobil::query()->where('kode_mobil', 'like', 'PREM-%')->where('status', 'tersedia')->get()->first(fn (Mobil $car): bool => Str::slug($car->merk.' '.$car->model) === $slug);
         if ($premium && app(VehicleGalleryService::class)->isReady($premium)) {
-            return view('mobil.show', ['mobil' => $premium, 'galleryData' => app(VehicleGalleryService::class)->for($premium), 'defaultColorKey' => app(VehicleGalleryService::class)->defaultColor($premium), ...$this->detailNavigation($request)]);
+            return view('mobil.show', $this->detailViewData($request, $premium, app(VehicleGalleryService::class)));
         }
         if ($slug === 'toyota-gr-supra') {
             $mobil = Mobil::query()->where('kode_mobil', 'YZA-TOYOTA-GR-SUPRA-2024')->where('status', 'tersedia')->firstOrFail();
             $showcaseImage = asset('assets/images/catalog/toyota-gr-supra/front.png');
-            return view('mobil.show', ['mobil' => $mobil, 'showcaseImage' => $showcaseImage, 'galleryData' => app(VehicleGalleryService::class)->for($mobil, $showcaseImage), 'defaultColorKey' => app(VehicleGalleryService::class)->defaultColor($mobil), ...$this->detailNavigation($request)]);
+            return view('mobil.show', $this->detailViewData($request, $mobil, app(VehicleGalleryService::class), $showcaseImage));
         }
 
         if ($slug === 'toyota-supra') {
@@ -272,7 +267,7 @@ class MobilController extends Controller
         if ($slug === 'toyota-supra-mk4') {
             $mobil = Mobil::query()->whereIn('kode_mobil', ['YZA-TOYOTA-SUPRA-MK4-2025', 'YZA-TOYOTA-SUPRA-3-0-2025'])->where('status', 'tersedia')->firstOrFail();
             $showcaseImage = asset('assets/images/catalog/toyota-supra-mk4/front.png');
-            return view('mobil.show', ['mobil' => $mobil, 'showcaseImage' => $showcaseImage, 'galleryData' => app(VehicleGalleryService::class)->for($mobil, $showcaseImage), 'defaultColorKey' => app(VehicleGalleryService::class)->defaultColor($mobil), ...$this->detailNavigation($request)]);
+            return view('mobil.show', $this->detailViewData($request, $mobil, app(VehicleGalleryService::class), $showcaseImage));
         }
 
         $showcases = [
@@ -288,14 +283,91 @@ class MobilController extends Controller
             $inventory->setAttribute('showcase_slug', $slug);
             $inventory->setAttribute('image', $showcaseImage);
             $galleryService = app(VehicleGalleryService::class);
-            return view('mobil.show', ['mobil' => $inventory, 'showcaseImage' => $showcaseImage, 'galleryData' => $galleryService->for($inventory, $showcaseImage), 'defaultColorKey' => $galleryService->defaultColor($inventory), ...$this->detailNavigation($request)]);
+            return view('mobil.show', $this->detailViewData($request, $inventory, $galleryService, $showcaseImage));
         }
         $data = $showcases[$slug];
         $showcaseImage = $data['image'];
         unset($data['image']);
         $mobil = new Mobil($data);
         $mobil->setAttribute('status', 'tersedia');
-        return view('mobil.show', ['mobil' => $mobil, 'showcaseImage' => $showcaseImage, 'galleryData' => app(VehicleGalleryService::class)->for($mobil, $showcaseImage), 'defaultColorKey' => app(VehicleGalleryService::class)->defaultColor($mobil), ...$this->detailNavigation($request)]);
+        return view('mobil.show', $this->detailViewData($request, $mobil, app(VehicleGalleryService::class), $showcaseImage));
+    }
+
+    private function detailViewData(Request $request, Mobil $mobil, VehicleGalleryService $galleryService, ?string $showcaseImage = null): array
+    {
+        return [
+            'mobil' => $mobil,
+            'showcaseImage' => $showcaseImage,
+            'galleryData' => $galleryService->for($mobil, $showcaseImage),
+            'defaultColorKey' => $galleryService->defaultColor($mobil),
+            'recommendations' => $this->detailRecommendations($mobil, $galleryService),
+            ...$this->detailNavigation($request),
+        ];
+    }
+
+    private function detailRecommendations(Mobil $current, VehicleGalleryService $galleryService)
+    {
+        $currentId = $current->exists ? (int) $current->getKey() : null;
+        $currentProfile = $this->sportTwoDoorProfile($current);
+        if (!$currentProfile) {
+            return collect();
+        }
+
+        $eligible = Mobil::query()
+            ->where('status', '!=', 'nonaktif')
+            ->when($currentId, fn ($query) => $query->where('id_mobil', '<>', $currentId))
+            ->with('foto')
+            ->get()
+            ->map(function (Mobil $car) use ($galleryService): ?Mobil {
+                if (!$this->sportTwoDoorProfile($car)) {
+                    return null;
+                }
+
+                $photo = $car->foto->first(fn ($item): bool => $item->existsOnDisk());
+                $image = $photo?->url() ?: $galleryService->defaultImage($car);
+                if (!$image) {
+                    $gallery = $galleryService->for($car);
+                    $image = collect($gallery)->pluck('images')->flatten(1)->pluck('src')->filter()->first();
+                }
+                if (!$image) {
+                    return null;
+                }
+
+                return $car->setAttribute('recommendation_image', $image);
+            })
+            ->filter()
+            ->values();
+
+        $diverse = $eligible
+            ->groupBy(fn (Mobil $car): string => strtolower(trim((string) $car->merk)))
+            ->map(fn ($brandCars) => $brandCars->shuffle()->first())
+            ->filter()
+            ->values();
+
+        return $diverse
+            ->concat($eligible->reject(fn (Mobil $car): bool => $diverse->contains(fn (Mobil $selected): bool => $selected->getKey() === $car->getKey())))
+            ->shuffle()
+            ->take(4)
+            ->values();
+    }
+
+    private function sportTwoDoorProfile(Mobil $car): ?array
+    {
+        $identity = trim((string) preg_replace('/[^a-z0-9]+/i', ' ', strtolower(($car->merk ?? '').' '.($car->model ?? ''))));
+        $verifiedTwoDoorModels = [
+            'lamborghini revuelto', 'ferrari sf90 stradale', 'porsche 911 gt3 rs',
+            'mercedes amg gt black series', 'aston martin dbs 770 ultimate',
+            'chevrolet corvette z06', 'ford mustang shelby gt500',
+            'dodge challenger srt hellcat redeye', 'nissan gt r nismo',
+            'lexus lfa', 'toyota gr supra', 'toyota supra mk4', 'audi r8',
+            'bmw m4', 'bugatti chiron', 'mclaren 720s',
+        ];
+
+        if (in_array($identity, $verifiedTwoDoorModels, true)) {
+            return ['label' => 'SPORT COUPE'];
+        }
+
+        return null;
     }
 
     private function detailNavigation(Request $request): array

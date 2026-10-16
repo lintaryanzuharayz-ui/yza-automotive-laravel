@@ -30,4 +30,5 @@ class Petugas extends Model
     public function transaksi(): HasMany { return $this->hasMany(Transaksi::class, 'id_petugas', 'id_petugas'); }
     public function penjualanMobil(): HasMany { return $this->hasMany(PenjualanMobil::class, 'id_petugas', 'id_petugas'); }
     public function inspeksiMobil(): HasMany { return $this->hasMany(InspeksiMobil::class, 'id_petugas', 'id_petugas'); }
+    public function serviceStaffProfile() { return $this->hasOne(ServiceStaffProfile::class, 'id_petugas', 'id_petugas'); }
 }

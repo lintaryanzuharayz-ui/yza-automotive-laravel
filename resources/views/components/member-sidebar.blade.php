@@ -1,7 +1,7 @@
 @php
     $memberCustomer = auth()->user()?->pelanggan;
     $servicesActive = request()->routeIs('pelanggan.booking-servis.*', 'pelanggan.test-drive.*', 'pelanggan.booking-cuci.*', 'pelanggan.trade-in.*');
-    $activityActive = request()->routeIs('pelanggan.booking.*', 'pelanggan.booking.index');
+    $activityActive = request()->routeIs('pelanggan.booking.*', 'pelanggan.booking.index', 'pelanggan.servis.*');
     $benefitActive = request()->routeIs('pelanggan.promo.*', 'pelanggan.poin');
 @endphp
 <aside class="member-sidebar" data-member-sidebar aria-label="Navigasi YZA Member">
@@ -13,11 +13,12 @@
     </div>
 
     <nav class="member-sidebar-nav" aria-label="Menu member">
-        <a class="member-nav-link {{ request()->routeIs('pelanggan.pesanan-mobil.*') ? 'is-active' : '' }}" href="{{ route('pelanggan.pesanan-mobil.index') }}"><span class="member-nav-icon">•</span><span>Pesanan Mobil Saya</span></a>
+        <div class="member-nav-group {{ request()->routeIs('pelanggan.katalog-mobil.*','pelanggan.preorder.*') ? 'is-open' : '' }}" data-member-nav-group><button class="member-nav-link member-nav-button {{ request()->routeIs('pelanggan.katalog-mobil.*','pelanggan.preorder.*') ? 'is-active' : '' }}" type="button" aria-expanded="{{ request()->routeIs('pelanggan.katalog-mobil.*','pelanggan.preorder.*') ? 'true' : 'false' }}"><span class="member-nav-icon">▱</span><span>Beli Mobil</span><b>⌄</b></button><div class="member-subnav" {{ request()->routeIs('pelanggan.katalog-mobil.*','pelanggan.preorder.*') ? '' : 'hidden' }}><a class="{{ request()->routeIs('pelanggan.katalog-mobil.*') ? 'is-active' : '' }}" href="{{ route('pelanggan.katalog-mobil.index') }}">Katalog Mobil</a><a class="{{ request()->routeIs('pelanggan.preorder.*') ? 'is-active' : '' }}" href="{{ route('pelanggan.preorder.index') }}">Pre-Order</a></div></div>
+        <a class="member-nav-link {{ request()->routeIs('pelanggan.pesanan-mobil.*') ? 'is-active' : '' }}" href="{{ route('pelanggan.pesanan-mobil.index') }}"><span class="member-nav-icon">•</span><span>Pesanan Saya</span></a>
         <a class="member-nav-link {{ request()->routeIs('pelanggan.kendaraan.*') ? 'is-active' : '' }}" href="{{ route('pelanggan.kendaraan.index') }}"><span class="member-nav-icon">▣</span><span>Kendaraan Saya</span></a>
 
         <div class="member-nav-group {{ $servicesActive ? 'is-open' : '' }}" data-member-nav-group>
-            <button class="member-nav-link member-nav-button {{ $servicesActive ? 'is-active' : '' }}" type="button" aria-expanded="{{ $servicesActive ? 'true' : 'false' }}"><span class="member-nav-icon">⚙</span><span>Layanan</span><b>⌄</b></button>
+            <button class="member-nav-link member-nav-button {{ $servicesActive ? 'is-active' : '' }}" type="button" aria-expanded="{{ $servicesActive ? 'true' : 'false' }}"><span class="member-nav-icon">⚙</span><span>Layanan Otomotif</span><b>⌄</b></button>
             <div class="member-subnav" {{ $servicesActive ? '' : 'hidden' }}>
                 <a class="{{ request()->routeIs('pelanggan.booking-servis.*') ? 'is-active' : '' }}" href="{{ route('pelanggan.booking-servis.index') }}">Booking Servis</a>
                 <a class="{{ request()->routeIs('pelanggan.test-drive.*') ? 'is-active' : '' }}" href="{{ route('pelanggan.test-drive.index') }}">Test Drive</a>
@@ -27,7 +28,7 @@
         </div>
 
         <div class="member-nav-group {{ $activityActive ? 'is-open' : '' }}" data-member-nav-group>
-            <button class="member-nav-link member-nav-button {{ $activityActive ? 'is-active' : '' }}" type="button" aria-expanded="{{ $activityActive ? 'true' : 'false' }}"><span class="member-nav-icon">◷</span><span>Aktivitas</span><b>⌄</b></button>
+            <button class="member-nav-link member-nav-button {{ $activityActive ? 'is-active' : '' }}" type="button" aria-expanded="{{ $activityActive ? 'true' : 'false' }}"><span class="member-nav-icon">◷</span><span>Aktivitas Saya</span><b>⌄</b></button>
             <div class="member-subnav" {{ $activityActive ? '' : 'hidden' }}>
                 <a class="{{ request()->routeIs('pelanggan.booking.*') ? 'is-active' : '' }}" href="{{ route('pelanggan.booking.index') }}">Booking Saya</a>
                 <a href="{{ route('pelanggan.member') }}#transaksi">Transaksi &amp; Pembayaran</a>
@@ -35,7 +36,7 @@
         </div>
 
         <div class="member-nav-group {{ $benefitActive ? 'is-open' : '' }}" data-member-nav-group>
-            <button class="member-nav-link member-nav-button {{ $benefitActive ? 'is-active' : '' }}" type="button" aria-expanded="{{ $benefitActive ? 'true' : 'false' }}"><span class="member-nav-icon">♕</span><span>Keuntungan Member</span><b>⌄</b></button>
+            <button class="member-nav-link member-nav-button {{ $benefitActive ? 'is-active' : '' }}" type="button" aria-expanded="{{ $benefitActive ? 'true' : 'false' }}"><span class="member-nav-icon">♕</span><span>Benefit Member</span><b>⌄</b></button>
             <div class="member-subnav" {{ $benefitActive ? '' : 'hidden' }}>
                 <a class="{{ request()->routeIs('pelanggan.promo.*') ? 'is-active' : '' }}" href="{{ route('pelanggan.promo.index') }}">Promo Member</a>
                 <a class="{{ request()->routeIs('pelanggan.poin') ? 'is-active' : '' }}" href="{{ route('pelanggan.poin') }}">YZA Points</a>

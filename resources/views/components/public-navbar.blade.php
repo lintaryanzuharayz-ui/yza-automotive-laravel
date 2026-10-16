@@ -10,7 +10,7 @@
         ? route('pelanggan.member')
         : (in_array($memberState, ['pending_payment', 'cancelled'], true)
             ? route('pelanggan.membership.activation')
-            : ($isLanding ? '#yza-member' : url('/#yza-member')));
+            : route('login'));
     $href = static fn (string $section): string => $isLanding ? '#'.$section : url('/#'.$section);
 @endphp
 
@@ -19,22 +19,24 @@
         <img src="{{ asset('assets/images/branding/logo-yza.png') }}" alt="YZA Automotive">
         <span><strong>YZA</strong><small>Automotive</small></span>
     </a>
-    @if($memberState === 'active')
-        <button class="show-mobile-toggle show-search" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="show-nav-links">☰</button>
-        <nav class="show-nav-links" id="show-nav-links" aria-label="Navigasi publik">
-            <a class="{{ $isLanding ? 'active' : '' }}" href="{{ $href('beranda') }}" @if($isLanding) aria-current="page" @endif>Beranda</a>
-            <a class="{{ $isMobil ? 'active' : '' }}" href="{{ $isLanding ? '#mobil' : route('mobil.index') }}" @if($isMobil) aria-current="page" @endif>Mobil</a>
-            <a href="{{ $memberHref }}">YZA Member</a>
-            <a href="{{ $href('jual-mobil') }}">Jual Mobil</a>
-            <a href="{{ $href('jual-mobil') }}">Trade-In</a>
-            <a href="{{ $href('servis') }}">Servis</a>
-            <a href="{{ $href('tentang') }}">Tentang Kami</a>
-            <a href="{{ $href('kontak') }}">Kontak</a>
-        </nav>
-    @endif
+    <button class="show-mobile-toggle show-search" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="show-nav-links">☰</button>
+    <nav class="show-nav-links" id="show-nav-links" aria-label="Navigasi publik">
+        <a class="{{ $isLanding ? 'active' : '' }}" href="{{ $href('beranda') }}" @if($isLanding) aria-current="page" @endif>Beranda</a>
+        <a class="{{ $isMobil ? 'active' : '' }}" href="{{ $isLanding ? '#mobil' : route('mobil.index') }}" @if($isMobil) aria-current="page" @endif>Mobil</a>
+        <a href="{{ $memberHref }}">YZA Member</a>
+        <a href="{{ $href('jual-mobil') }}">Jual Mobil</a>
+        <a href="{{ $href('jual-mobil') }}">Trade-In</a>
+        <a href="{{ $href('servis') }}">Servis</a>
+        <a href="{{ $href('tentang') }}">Tentang Kami</a>
+        <a href="{{ $href('kontak') }}">Kontak</a>
+    </nav>
     <div class="show-actions">
-        <a class="show-login" href="{{ route('login') }}"><span>MASUK MEMBER</span><b aria-hidden="true">→</b></a>
-        <a class="show-cta show-member-primary" href="{{ route('register') }}">BUAT MEMBER</a>
+        @if($memberState === 'active')
+            <a class="show-login" href="{{ route('pelanggan.member') }}" aria-label="Buka Member Center"><span>MEMBER CENTER</span><b aria-hidden="true">→</b></a>
+        @else
+            <a class="show-login" href="{{ route('login') }}" aria-label="Masuk sebagai member"><span>MASUK MEMBER</span><b aria-hidden="true">→</b></a>
+            <a class="show-cta show-member-primary" href="{{ route('register', ['from' => 'membership']) }}">BUAT MEMBER</a>
+        @endif
     </div>
 </header>
 

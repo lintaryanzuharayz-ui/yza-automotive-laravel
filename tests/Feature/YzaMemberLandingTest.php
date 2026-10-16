@@ -22,7 +22,7 @@ class YzaMemberLandingTest extends TestCase
         $response->assertOk()
             ->assertSee('YZA EXCLUSIVE MEMBERSHIP')
             ->assertSee('BERGABUNG JADI MEMBER')
-            ->assertSee('href="'.route('register').'"', false)
+            ->assertSee('href="'.route('register', ['from' => 'membership']).'"', false)
             ->assertSee('Rp '.number_format((float) app(\App\Services\PengaturanService::class)->membershipFee(), 0, ',', '.'), false);
     }
 

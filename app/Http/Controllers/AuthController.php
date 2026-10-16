@@ -17,8 +17,12 @@ class AuthController extends Controller
     {
     }
 
-    public function create(): View
+    public function create(): View|RedirectResponse
     {
+        if (Auth::check()) {
+            return redirect()->route($this->dashboardRoute(Auth::user()->roleName()));
+        }
+
         return view('auth.login');
     }
 
@@ -99,10 +103,12 @@ class AuthController extends Controller
     private function dashboardRoute(string $role): string
     {
         return match ($role) {
-            'admin' => 'admin.dashboard',
+            'admin', 'super_admin' => 'admin.dashboard',
+            'sales' => 'sales.dashboard',
+            'owner' => 'owner.dashboard',
             'petugas' => 'petugas.dashboard',
-            'pelanggan' => 'pelanggan.dashboard',
-            default => 'login',
+            'pelanggan' => 'pelanggan.member',
+            default => 'staff.dashboard',
         };
     }
 }

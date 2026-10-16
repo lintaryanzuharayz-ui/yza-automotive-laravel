@@ -16,40 +16,52 @@ class PaymentManagementController extends Controller
         $tab = $request->input('tab', 'offline');
         $status = trim((string) $request->input('status'));
         $q = trim((string) $request->input('q'));
-        $from = $request->date('from');
-        $to = $request->date('to');
+        $from = $request->input('from');
+        $to = $request->input('to');
+        $perPage = (int) $request->input('per_page', 10);
+        if (!in_array($perPage, [10, 25, 50, 100], true)) {
+            $perPage = 10;
+        }
 
-        $online = PembayaranGateway::with(['transaksi.pelanggan', 'transaksi.pesananMobilMember', 'transaksi.penjualanMobil.mobil'])
+        $online = PembayaranGateway::with(['transaksi.pelanggan', 'transaksi.pesananMobilMember.mobil.foto', 'transaksi.penjualanMobil.mobil.foto', 'membership.pelanggan'])
             ->whereHas('transaksi', fn ($query) => $query->where('jenis_transaksi', 'penjualan_mobil'))
             ->when($q !== '', fn ($query) => $query->where(function ($search) use ($q): void {
                 $search->where('order_id', 'like', "%{$q}%")
-                    ->orWhereHas('transaksi.pelanggan', fn ($customer) => $customer->where('nama_lengkap', 'like', "%{$q}%"));
+                    ->orWhereHas('transaksi.pelanggan', fn ($customer) => $customer->where('nama_lengkap', 'like', "%{$q}%")->orWhere('kode_pelanggan', 'like', "%{$q}%"))
+                    ->orWhereHas('transaksi', fn ($trx) => $trx->where('kode_transaksi', 'like', "%{$q}%"));
             }))
             ->when($status !== '' && $tab === 'online', fn ($query) => $query->where('status_provider', $status))
             ->when($from, fn ($query) => $query->whereDate('created_at', '>=', $from))
             ->when($to, fn ($query) => $query->whereDate('created_at', '<=', $to))
-            ->latest('created_at')->paginate(12, ['*'], 'online_page')->withQueryString();
+            ->latest('created_at')->paginate($perPage, ['*'], 'online_page')->withQueryString();
 
-        $offline = Pembayaran::with(['transaksi.pelanggan', 'transaksi.pesananMobilMember', 'transaksi.penjualanMobil.mobil'])
+        $offline = Pembayaran::with(['transaksi.pelanggan', 'transaksi.pesananMobilMember.mobil.foto', 'transaksi.penjualanMobil.mobil.foto'])
             ->where('arah', 'masuk')->whereIn('metode', ['tunai', 'transfer'])
             ->when($q !== '', fn ($query) => $query->where(function ($search) use ($q): void {
                 $search->where('kode_pembayaran', 'like', "%{$q}%")
-                    ->orWhereHas('transaksi.pelanggan', fn ($customer) => $customer->where('nama_lengkap', 'like', "%{$q}%"));
+                    ->orWhereHas('transaksi.pelanggan', fn ($customer) => $customer->where('nama_lengkap', 'like', "%{$q}%")->orWhere('kode_pelanggan', 'like', "%{$q}%"))
+                    ->orWhereHas('transaksi.pesananMobilMember', fn ($order) => $order->where('nomor_pesanan', 'like', "%{$q}%"))
+                    ->orWhereHas('transaksi.penjualanMobil', fn ($sale) => $sale->where('kode_penjualan', 'like', "%{$q}%"))
+                    ->orWhereHas('transaksi', fn ($trx) => $trx->where('kode_transaksi', 'like', "%{$q}%"));
             }))
             ->when($status !== '' && $tab === 'offline', fn ($query) => $query->where('status', $status))
             ->when($from, fn ($query) => $query->whereDate('tanggal', '>=', $from))
             ->when($to, fn ($query) => $query->whereDate('tanggal', '<=', $to))
-            ->latest('tanggal')->paginate(12, ['*'], 'offline_page')->withQueryString();
+            ->latest('tanggal')->paginate($perPage, ['*'], 'offline_page')->withQueryString();
 
         $stats = [
             'online_verified' => PembayaranGateway::whereIn('status_provider', ['settlement', 'capture'])->sum('gross_amount'),
+            'online_verified_count' => PembayaranGateway::whereIn('status_provider', ['settlement', 'capture'])->count(),
             'offline_verified' => Pembayaran::where('arah', 'masuk')->where('status', 'terverifikasi')->sum('jumlah'),
+            'offline_verified_count' => Pembayaran::where('arah', 'masuk')->where('status', 'terverifikasi')->count(),
             'waiting_payment' => \App\Models\Transaksi::where('jenis_transaksi', 'penjualan_mobil')->where('status', 'belum_bayar')->count(),
             'waiting_confirmation' => Pembayaran::where('arah', 'masuk')->where('status', 'menunggu')->count(),
             'paid_transactions' => \App\Models\Transaksi::where('status', 'lunas')->count(),
+            'total_transaction_value' => \App\Models\Transaksi::where('jenis_transaksi', 'penjualan_mobil')->sum('total'),
+            'total_transaction_count' => \App\Models\Transaksi::where('jenis_transaksi', 'penjualan_mobil')->count(),
         ];
 
-        return view('admin.pembayaran.index', compact('tab', 'status', 'q', 'online', 'offline', 'stats'));
+        return view('admin.pembayaran.index', compact('tab', 'status', 'q', 'from', 'to', 'perPage', 'online', 'offline', 'stats'));
     }
 
     public function show(Pembayaran $pembayaran): View

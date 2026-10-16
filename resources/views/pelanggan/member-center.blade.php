@@ -8,7 +8,7 @@
 <div class="member-center-dashboard">
 <section class="member-center-hero"><div><span class="member-center-eyebrow">YZA PREMIUM MEMBER</span><h1>Selamat Datang Kembali,<br><span>{{ $customer->nama_lengkap }}</span></h1><p>Kelola kendaraan, nikmati layanan eksklusif, dan jelajahi pengalaman otomotif premium bersama YZA.</p><div class="member-center-hero-meta"><span class="member-center-status"><i></i>{{ strtoupper($customer->membership?->status??'aktif') }} MEMBER</span><span>Member sejak {{ optional($memberSince)->format('d M Y') }}</span></div></div><article class="member-center-id-card"><img src="{{ asset('images/branding/logo-yza.png') }}" alt="YZA Automotive"><span>PREMIUM MEMBER</span><strong>{{ $memberId }}</strong><b>{{ strtoupper($customer->nama_lengkap) }}</b><div><small>MEMBER SINCE<strong>{{ optional($memberSince)->format('d M Y') }}</strong></small><small>STATUS<strong>ACTIVE</strong></small></div></article></section>
 <section class="member-center-stats"><a href="{{ route('pelanggan.kendaraan.index') }}"><span>Kendaraan YZA</span><strong>{{ $verifiedVehicles->count() }}</strong><small>Unit terverifikasi</small></a><a href="{{ route('pelanggan.booking.index') }}"><span>Booking Aktif</span><strong>{{ $activeBookingCount }}</strong><small>Perlu perhatian</small></a><a href="{{ route('pelanggan.poin') }}"><span>YZA Points</span><strong>{{ number_format($points,0,',','.') }}</strong><small>Points tersedia</small></a><a href="{{ route('pelanggan.promo.index') }}"><span>Promo Member</span><strong>{{ $activePromoCount }}</strong><small>Promo aktif</small></a></section>
-<section class="member-center-section"><div class="member-center-section-head"><div><span class="member-center-eyebrow">MEMBER ACCESS</span><h2>Layanan Eksklusif YZA</h2><p>Pilih layanan yang sesuai dengan kebutuhan kendaraan Anda.</p></div><a href="{{ route('pelanggan.katalog-mobil.index') }}">Jelajahi Koleksi →</a></div><div class="member-center-service-grid">@foreach($serviceCards as $card)<article class="member-center-service-card {{ $card['locked']?'is-locked':'' }}" style="--service-image:url('{{ asset('assets/images/member/'.$card['image']) }}')"><div><span>{{ $card['locked']?'TERSEDIA SETELAH PEMBELIAN YZA':'YZA MEMBER' }}</span><h3>{{ $card['title'] }}</h3><p>{{ $card['copy'] }}</p></div>@if($card['locked'])<span class="member-center-service-locked">Belum tersedia</span>@else<a href="{{ route($card['route']) }}">{{ $card['cta'] }} <b>→</b></a>@endif</article>@endforeach</div></section>
+<section class="member-center-section"><div class="member-center-section-head"><div><span class="member-center-eyebrow">MEMBER ACCESS</span><h2>Layanan Eksklusif YZA</h2><p>Pilih layanan yang sesuai dengan kebutuhan kendaraan Anda.</p></div><a href="{{ route('pelanggan.katalog-mobil.index') }}">Jelajahi Koleksi →</a></div><div class="member-center-service-grid">@foreach($serviceCards as $card)<article class="member-center-service-card {{ $card['locked']?'is-locked':'' }}" style="--service-image:url('{{ asset('assets/images/member/'.$card['image']) }}')"><div class="member-center-service-copy"><span class="member-center-service-eyebrow">{{ $card['locked']?'TERSEDIA SETELAH PEMBELIAN YZA':'YZA MEMBER' }}</span><h3>{{ $card['title'] }}</h3><p>{{ $card['copy'] }}</p></div>@if($card['locked'])<span class="member-center-service-locked">Belum tersedia</span>@else<a class="member-center-service-cta" href="{{ route($card['route']) }}">{{ $card['cta'] }} <b>→</b></a>@endif</article>@endforeach</div></section>
 <section class="member-center-section"><div class="member-center-section-head"><div><span class="member-center-eyebrow">MY YZA GARAGE</span><h2>Garasi YZA Anda</h2><p>Kendaraan yang terhubung melalui pembelian YZA terverifikasi.</p></div><a href="{{ route('pelanggan.katalog-mobil.index') }}">Jelajahi Koleksi Mobil →</a></div>@if($hasVerifiedOwnership)<div class="member-center-vehicle-grid">@foreach($verifiedVehicles as $vehicle)<article><span class="member-center-vehicle-icon">▣</span><div><strong>{{ $vehicle->merk }} {{ $vehicle->model }}</strong><small>{{ $vehicle->tahun }} · {{ $vehicle->warna ?: 'Warna tercatat di data kendaraan' }}</small><small>Nomor rangka: {{ $vehicle->nomor_rangka ?: 'Terverifikasi' }}</small></div><a href="{{ route('pelanggan.kendaraan.show',$vehicle) }}">Detail →</a></article>@endforeach</div>@else<div class="member-center-empty"><span class="member-center-empty-icon">＋</span><h3>Belum ada kendaraan YZA di garasi Anda.</h3><p>Garasi akan terisi otomatis setelah pembelian kendaraan YZA selesai dan pembayaran terverifikasi. Tambahkan kendaraan secara manual tidak membuka akses layanan ownership.</p><a class="member-center-button" href="{{ route('pelanggan.katalog-mobil.index') }}">Jelajahi Koleksi Mobil <b>→</b></a></div>@endif</section>
 </div><span class="sr-only">Belum ada transaksi.</span>
 @push('styles')
@@ -45,6 +45,128 @@
 .member-center-section:not(.member-center-collection-section) .member-center-promo-grid a small{color:#687281!important}
 .member-center-section:not(.member-center-collection-section) .member-center-promo-grid a b{color:#30363e!important}
 @media(max-width:700px){.member-main-content:has(.member-center-dashboard){padding:18px!important}.member-center-hero{padding:28px 22px!important}.member-center-panel{padding:22px 18px!important}.member-center-section:not(.member-center-collection-section){padding:0!important}}
+</style>
+@endpush
+
+@push('styles')
+<style>
+/* Compact service copy panels: keep the photography visible and the CTA separate. */
+.member-center-service-card {
+    min-height: 280px !important;
+    padding: 0 !important;
+    background-image: var(--service-image) !important;
+    background-position: center !important;
+    background-size: cover !important;
+    isolation: isolate;
+}
+
+.member-center-service-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(180deg, rgba(4, 5, 8, .08) 0%, rgba(4, 5, 8, .08) 48%, rgba(4, 5, 8, .44) 100%);
+    pointer-events: none;
+}
+
+.member-center-service-card::after {
+    content: "";
+    position: absolute;
+    top: 44px;
+    left: 22px;
+    width: 4px;
+    height: 54px;
+    z-index: 2;
+    background: #ef233c;
+    transform: skewX(-18deg) rotate(10deg);
+    box-shadow: 0 0 14px rgba(239, 35, 60, .45);
+    pointer-events: none;
+}
+
+.member-center-service-copy {
+    position: absolute !important;
+    top: 34px;
+    left: 18px;
+    z-index: 3 !important;
+    width: max-content;
+    max-width: 76%;
+    padding: 13px 20px 15px !important;
+    border-radius: 3px;
+    background: rgba(4, 5, 8, .9);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, .24);
+}
+
+.member-center-service-copy::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    right: -11px;
+    width: 4px;
+    height: 48px;
+    background: #ef233c;
+    transform: skewX(-18deg) rotate(10deg);
+    box-shadow: 0 0 12px rgba(239, 35, 60, .35);
+}
+
+.member-center-service-eyebrow {
+    display: block;
+    margin: 0 0 5px;
+    color: #ff6673 !important;
+    font-size: 10px !important;
+    font-weight: 900;
+    letter-spacing: .12em;
+}
+
+.member-center-service-copy h3 {
+    margin: 0 0 5px !important;
+    color: #fff !important;
+    font-size: clamp(24px, 2vw, 32px) !important;
+    line-height: 1.05;
+    white-space: nowrap;
+}
+
+.member-center-service-copy p {
+    max-width: 250px;
+    margin: 0 !important;
+    color: #f0f2f5 !important;
+    font-size: 14px !important;
+    line-height: 1.4;
+}
+
+.member-center-service-cta,
+.member-center-service-locked {
+    position: absolute !important;
+    left: 18px;
+    bottom: 18px;
+    z-index: 3 !important;
+}
+
+.member-center-service-cta {
+    padding: 11px 14px !important;
+    border-radius: 6px !important;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, .24);
+    transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease;
+}
+
+.member-center-service-cta:hover {
+    transform: translateY(-2px);
+    background: #ff304d !important;
+    box-shadow: 0 12px 24px rgba(239, 35, 60, .3);
+}
+
+@media (max-width: 1000px) {
+    .member-center-service-card { min-height: 270px !important; }
+    .member-center-service-copy h3 { font-size: clamp(23px, 3.2vw, 30px) !important; }
+}
+
+@media (max-width: 700px) {
+    .member-center-service-card { min-height: 245px !important; }
+    .member-center-service-copy { top: 26px; left: 14px; max-width: 82%; padding: 11px 15px 13px !important; }
+    .member-center-service-card::after { top: 36px; left: 17px; }
+    .member-center-service-copy h3 { font-size: 25px !important; }
+    .member-center-service-copy p { max-width: 210px; font-size: 13px !important; }
+    .member-center-service-cta, .member-center-service-locked { left: 14px; bottom: 14px; }
+}
 </style>
 @endpush
 

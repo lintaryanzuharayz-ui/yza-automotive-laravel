@@ -67,7 +67,9 @@ class MemberVehiclePurchaseController extends Controller
             $detailOrder = PesananMobilMember::with(['pelanggan', 'mobil.foto', 'transaksi.pembayarans', 'penjualan', 'pdi', 'serahTerima'])->find($request->input('detail'));
         }
 
-        return view('admin.pesanan-mobil.index', compact('orders', 'stats', 'keyword', 'status', 'from', 'to', 'detailOrder'));
+        $checklistDefinition = app(MemberVehiclePurchaseService::class)->checklistDefinition();
+
+        return view('admin.pesanan-mobil.index', compact('orders', 'stats', 'keyword', 'status', 'from', 'to', 'detailOrder', 'checklistDefinition'));
     }
     public function show(PesananMobilMember $pesanan_mobil) {
         return redirect()->route('admin.pesanan-mobil.index', ['detail' => $pesanan_mobil->id_pesanan]);

@@ -17,6 +17,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->validateCsrfTokens(except: ['payment/midtrans/notification']);
         $middleware->alias([
             'role' => \App\Http\Middleware\RoleMiddleware::class,
+            'permission' => \App\Http\Middleware\PermissionMiddleware::class,
+            'module.access' => \App\Http\Middleware\RoleModuleAccessMiddleware::class,
+            'assigned.wo' => \App\Http\Middleware\AssignedWorkOrderMiddleware::class,
             'member' => \App\Http\Middleware\EnsureActiveMembership::class,
             'verified.owner' => \App\Http\Middleware\EnsureVerifiedCarOwnership::class,
         ]);

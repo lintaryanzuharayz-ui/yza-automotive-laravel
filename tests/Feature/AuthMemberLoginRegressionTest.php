@@ -32,8 +32,25 @@ class AuthMemberLoginRegressionTest extends TestCase
             ->assertRedirect(route('pelanggan.member'));
 
         $this->get('/pelanggan/member')->assertOk();
+        $this->get('/pelanggan/servis')->assertOk();
         $this->post('/logout')->assertRedirect(route('login'));
         $this->get('/pelanggan/member')->assertRedirect(route('login'));
+    }
+
+    public function test_active_member_can_login_by_email_and_open_my_garage_without_changing_credential(): void
+    {
+        $user = $this->activeMember();
+        $password = Str::random(32);
+        $user->forceFill(['password' => Hash::make($password)])->save();
+        $hashBeforeGarage = $user->fresh()->getRawOriginal('password');
+
+        $this->withoutMiddleware(VerifyCsrfToken::class)
+            ->post('/login', ['identity' => $user->email, 'password' => $password])
+            ->assertRedirect(route('pelanggan.member'));
+
+        $this->get(route('pelanggan.kendaraan.index'))->assertOk();
+        $this->assertAuthenticatedAs($user->fresh());
+        $this->assertSame($hashBeforeGarage, $user->fresh()->getRawOriginal('password'));
     }
 
     public function test_invalid_password_and_inactive_member_are_rejected(): void

@@ -1,0 +1,12 @@
+<?php
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
+use App\Models\{ServiceSpecialization,ServiceStaffProfile,TechnicianTimeOff,TechnicianWorkingHour};
+use Illuminate\Http\{RedirectResponse,Request}; use Illuminate\View\View;
+class ServicePersonnelController extends Controller {
+ public function index():View{$profiles=ServiceStaffProfile::with(['petugas','specializations','workingHours'])->get()->sortBy('petugas.nama_lengkap')->values();return view('admin.servis.personel',['profiles'=>$profiles,'specializations'=>ServiceSpecialization::where('is_active',true)->orderBy('name')->get(),'timeOffs'=>TechnicianTimeOff::with('petugas')->whereDate('date','>=',now()->toDateString())->orderBy('date')->limit(50)->get()]);}
+ public function updateProfile(Request $r,ServiceStaffProfile $profile):RedirectResponse{$d=$r->validate(['can_be_technician'=>'nullable|boolean','can_be_service_advisor'=>'nullable|boolean','experience_years'=>'required|integer|min:0|max:60','is_bookable'=>'nullable|boolean','specializations'=>'array','specializations.*'=>'integer|exists:service_specializations,id_service_specialization']);$profile->update(['can_be_technician'=>(bool)($d['can_be_technician']??false),'can_be_service_advisor'=>(bool)($d['can_be_service_advisor']??false),'experience_years'=>$d['experience_years'],'is_bookable'=>(bool)($d['is_bookable']??false)]);$profile->specializations()->sync($d['specializations']??[]);return back()->with('success','Profil personnel servis diperbarui.');}
+ public function updateHours(Request $r,ServiceStaffProfile $profile):RedirectResponse{$d=$r->validate(['hours'=>'required|array','hours.*.is_working'=>'nullable|boolean','hours.*.open_time'=>'nullable|date_format:H:i','hours.*.close_time'=>'nullable|date_format:H:i']);foreach($d['hours'] as $id=>$row)TechnicianWorkingHour::where('id_petugas',$profile->id_petugas)->whereKey($id)->update(array_merge($row,['is_working'=>(bool)($row['is_working']??false)]));return back()->with('success','Jam kerja teknisi diperbarui.');}
+ public function storeTimeOff(Request $r):RedirectResponse{$d=$r->validate(['id_petugas'=>'required|exists:petugas,id_petugas','date'=>'required|date','reason'=>'required|string|max:255']);TechnicianTimeOff::updateOrCreate(['id_petugas'=>$d['id_petugas'],'date'=>$d['date']],['reason'=>$d['reason']]);return back()->with('success','Time off ditambahkan.');}
+ public function destroyTimeOff(TechnicianTimeOff $timeOff):RedirectResponse{$timeOff->delete();return back()->with('success','Time off dihapus.');}
+}

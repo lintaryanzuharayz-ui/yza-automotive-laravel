@@ -20,7 +20,7 @@ class AdminDashboardRegressionTest extends TestCase
         $response = $this->actingAs($this->user('admin'))->get(route('admin.dashboard'));
 
         $response->assertOk()
-            ->assertSee('Dashboard Utama')
+            ->assertSee('Super Admin Dashboard')
             ->assertSee('Pesanan Mobil')
             ->assertSee('Transaksi Aktif')
             ->assertSee('Booking Hari Ini')

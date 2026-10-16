@@ -24,7 +24,7 @@ class DashboardController extends Controller
         ];
         $pendingOrders = PesananMobilMember::with(['pelanggan', 'mobil'])->latest('created_at')->limit(6)->get();
         $pendingPayments = Pembayaran::where('status', 'menunggu')->count();
-        return view('admin.dashboard', compact('serviceData', 'metrics', 'pendingOrders', 'pendingPayments') + ['user' => $request->user(), 'area' => 'Admin']);
+        return view('admin.dashboard', compact('serviceData', 'metrics', 'pendingOrders', 'pendingPayments') + ['user' => $request->user(), 'area' => 'Super Admin']);
     }
 
     public function petugas(Request $request, ServiceOperationsDashboardService $operations): View

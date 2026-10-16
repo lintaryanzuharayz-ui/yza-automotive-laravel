@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\{Mobil, PdiPesananMobil, Pelanggan, PenjualanMobil, PesananMobilMember, SerahTerimaPesananMobil, Transaksi, VehicleInventory};
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use RuntimeException;
@@ -129,6 +130,7 @@ class MemberVehiclePurchaseService
             ])->save();
 
             $order->forceFill(['id_transaksi' => $tx->id_transaksi, 'id_penjualan' => $sale->id_penjualan, 'status' => 'menunggu_pembayaran', 'id_petugas_keputusan' => $petugasId, 'diputuskan_at' => now(), 'catatan_admin' => $note])->save();
+            $this->notify($order, 'Pesanan disetujui', 'Pesanan '.$order->nomor_pesanan.' telah disetujui admin. Silakan pilih metode pembayaran.');
             return $order->fresh(['mobil', 'pelanggan', 'transaksi', 'penjualan']);
         });
     }
@@ -143,7 +145,61 @@ class MemberVehiclePurchaseService
                 Mobil::whereKey($order->id_mobil)->where('status', 'dibooking')->update(['status' => 'tersedia']);
             }
             $order->forceFill(['status' => 'ditolak', 'id_petugas_keputusan' => $petugasId, 'diputuskan_at' => now(), 'catatan_admin' => $note])->save();
+            $this->notify($order, 'Pesanan ditolak', 'Pesanan '.$order->nomor_pesanan.' ditolak admin. Silakan periksa catatan pada detail pesanan.');
             return $order;
+        });
+    }
+
+    public function reopenRejectedPayment(PesananMobilMember $order, int $customerId): PesananMobilMember
+    {
+        return DB::transaction(function () use ($order, $customerId): PesananMobilMember {
+            $order = PesananMobilMember::lockForUpdate()
+                ->with(['transaksi', 'penjualan', 'mobil'])
+                ->findOrFail($order->id_pesanan);
+
+            if ((int) $order->id_pelanggan !== $customerId) {
+                abort(404);
+            }
+
+            $reason = mb_strtolower((string) $order->catatan_admin);
+            if ($order->status !== 'dibatalkan' || !str_contains($reason, 'pembayaran ditolak')) {
+                throw new RuntimeException('Pesanan ini tidak dapat dibuka kembali untuk pembayaran.');
+            }
+            if (!$order->transaksi || !$order->penjualan || $order->transaksi->status !== 'dibatalkan') {
+                throw new RuntimeException('Data transaksi pesanan tidak memenuhi syarat pemulihan.');
+            }
+
+            $car = Mobil::lockForUpdate()->findOrFail($order->id_mobil);
+            $inventoryService = app(VehicleInventoryService::class);
+            $inventory = $inventoryService->find($car);
+            if ($inventory) {
+                $available = (int) $inventory->stock_total - (int) $inventory->sold_units - $inventoryService->reserveCount($car);
+                if ($available < 1) {
+                    throw new RuntimeException('Stok kendaraan sudah tidak tersedia. Silakan pilih kendaraan lain.');
+                }
+            } elseif (!in_array($car->status, ['tersedia', 'dibooking'], true)) {
+                throw new RuntimeException('Unit kendaraan sudah tidak tersedia. Silakan pilih kendaraan lain.');
+            }
+
+            if (!$inventory && PesananMobilMember::where('id_mobil', $car->id_mobil)
+                ->where('id_pesanan', '<>', $order->id_pesanan)
+                ->whereNotIn('status', ['ditolak', 'dibatalkan', 'diserahkan'])
+                ->exists()) {
+                throw new RuntimeException('Unit kendaraan sudah diproses oleh pesanan lain.');
+            }
+
+            if (!$inventory) {
+                $car->forceFill(['status' => 'dibooking'])->save();
+            }
+            $order->transaksi->forceFill(['status' => 'belum_bayar'])->save();
+            $order->penjualan->forceFill(['status' => 'proses'])->save();
+            $order->forceFill([
+                'status' => 'menunggu_pembayaran',
+                'catatan_admin' => 'Pembayaran sebelumnya ditolak. Silakan pilih metode pembayaran kembali.',
+            ])->save();
+
+            $this->audit('payment_reopened', $order);
+            return $order->fresh(['mobil', 'transaksi', 'penjualan']);
         });
     }
 
@@ -155,6 +211,8 @@ class MemberVehiclePurchaseService
                 throw new RuntimeException('Jadwal pengambilan hanya dapat dibuat setelah PDI lulus dan pembayaran lunas.');
             }
             if (!$order->pdi || $order->pdi->status !== 'lulus') throw new RuntimeException('PDI belum lulus.');
+            $pickupAt = Carbon::parse($schedule, config('app.timezone'));
+            if ($pickupAt->isPast()) throw new RuntimeException('Jadwal pengambilan harus berada di masa depan.');
             $order->forceFill(['status' => 'siap_diambil', 'jadwal_pengambilan' => $schedule, 'lokasi_pengambilan' => $location ?: 'YZA Automotive', 'status_pengambilan' => 'dijadwalkan', 'jadwal_dikonfirmasi_at' => now(), 'catatan_pengambilan' => $notes])->save();
             $this->notify($order, 'Jadwal pengambilan tersedia', 'Jadwal pengambilan kendaraan Anda telah tersedia.');
             $this->notify($order, 'Kendaraan siap diserahkan', 'Kendaraan Anda siap diserahkan sesuai jadwal pengambilan.');
@@ -242,6 +300,7 @@ class MemberVehiclePurchaseService
             if ($order->status !== 'siap_diambil' || !$order->transaksi || $order->transaksi->status !== 'lunas') throw new RuntimeException('Pesanan belum memenuhi syarat serah-terima.');
             if (!$order->pdi || $order->pdi->status !== 'lulus') throw new RuntimeException('PDI belum lulus.');
             if (!$order->jadwal_pengambilan || !in_array($order->status_pengambilan, ['dijadwalkan', 'siap_diambil'], true)) throw new RuntimeException('Jadwal pengambilan belum valid.');
+            if ($order->jadwal_pengambilan->isFuture()) throw new RuntimeException('Serah-terima belum dapat dilakukan sebelum jadwal pengambilan tiba.');
             $pdi = PdiPesananMobil::where('id_pesanan', $order->id_pesanan)->where('status', 'lulus')->exists();
             if (!$pdi) throw new RuntimeException('PDI belum lulus.');
             $handover = SerahTerimaPesananMobil::firstOrNew(['id_pesanan' => $order->id_pesanan]);

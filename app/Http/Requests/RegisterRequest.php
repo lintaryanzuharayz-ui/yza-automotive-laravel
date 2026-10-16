@@ -3,6 +3,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Validator;
+use Illuminate\Validation\ValidationException;
 use App\Services\IndonesiaRegionService;
 class RegisterRequest extends FormRequest
 {
@@ -30,5 +31,17 @@ class RegisterRequest extends FormRequest
              $validator->errors()->add('village_code', 'Kombinasi wilayah tidak valid. Silakan pilih ulang alamat secara berjenjang.');
          }
      });
+ }
+
+ protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator): void
+ {
+     $from = in_array($this->query('from'), ['membership', 'login'], true)
+         ? $this->query('from')
+         : 'login';
+     $parameters = ['from' => $from];
+     if ($this->filled('current_step')) $parameters['step'] = $this->integer('current_step');
+
+     throw (new ValidationException($validator))
+         ->redirectTo(route('register', $parameters));
  }
 }

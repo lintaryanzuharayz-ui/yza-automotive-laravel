@@ -1,1 +1,35 @@
-@extends('layouts.app') @section('content')<article class="card invoice-card"><div class="invoice-head"><div><h1>YZA AUTOMOTIVE</h1><p>Invoice / Nota Penjualan Mobil</p></div><div><strong>{{ $transaksi->penjualanMobil?->kode_penjualan }}</strong><p>{{ $transaksi->tanggal }}</p></div></div><div class="info-grid"><div class="info-item"><small>Pelanggan</small><strong>{{ $transaksi->pelanggan?->nama_lengkap }}</strong></div><div class="info-item"><small>Petugas</small><strong>{{ $transaksi->petugas?->nama_lengkap }}</strong></div><div class="info-item"><small>Transaksi</small><strong>{{ $transaksi->kode_transaksi }}</strong></div><div class="info-item"><small>Unit</small><strong>{{ $transaksi->penjualanMobil?->mobil?->kode_mobil }} · {{ $transaksi->penjualanMobil?->mobil?->merk }} {{ $transaksi->penjualanMobil?->mobil?->model }}</strong></div><div class="info-item"><small>Harga Snapshot</small><strong>{{ $transaksi->penjualanMobil?->harga_mobil }}</strong></div><div class="info-item"><small>Diskon Manual</small><strong>{{ $transaksi->penjualanMobil?->diskon }}</strong></div><div class="info-item"><small>Promo</small><strong>{{ $transaksi->promo_name_snapshot ?: 'Tanpa promo' }}</strong></div><div class="info-item"><small>Potongan Promo</small><strong>{{ $transaksi->promo_code_snapshot ? $transaksi->diskon : 0 }}</strong></div><div class="info-item"><small>Metode</small><strong>{{ ucfirst($transaksi->penjualanMobil?->metode_pembelian ?? '') }}</strong></div><div class="info-item"><small>Status</small><strong>{{ str_replace('_',' ',ucfirst($transaksi->status)) }}</strong></div></div><h2>Total: {{ $transaksi->total }}</h2><p>Dibayar terverifikasi: {{ $paid }} · Sisa: {{ max(0,(float)$transaksi->total-(float)$paid) }}</p><h3>Riwayat Pembayaran</h3><ul>@foreach($transaksi->pembayarans as $payment)<li>{{ $payment->tanggal }} · {{ $payment->metode }} · {{ $payment->jumlah }} · {{ $payment->status }}</li>@endforeach</ul></article>@endsection
+@extends('layouts.app')
+
+@section('content')
+<article class="card invoice-card">
+    <div class="invoice-head">
+        <div><h1>YZA AUTOMOTIVE</h1><p>Invoice / Nota Penjualan Mobil</p></div>
+        <div><strong>{{ $transaksi->penjualanMobil?->kode_penjualan }}</strong><p>{{ $transaksi->tanggal }}</p></div>
+    </div>
+    <div class="info-grid">
+        <div class="info-item"><small>Pelanggan</small><strong>{{ $transaksi->pelanggan?->nama_lengkap }}</strong></div>
+        <div class="info-item"><small>Petugas</small><strong>{{ $transaksi->petugas?->nama_lengkap }}</strong></div>
+        <div class="info-item"><small>Transaksi</small><strong>{{ $transaksi->kode_transaksi }}</strong></div>
+        <div class="info-item"><small>Unit</small><strong>{{ $transaksi->penjualanMobil?->mobil?->kode_mobil }} · {{ $transaksi->penjualanMobil?->mobil?->merk }} {{ $transaksi->penjualanMobil?->mobil?->model }}</strong></div>
+        <div class="info-item"><small>Harga Snapshot</small><strong>{{ $transaksi->penjualanMobil?->harga_mobil }}</strong></div>
+        <div class="info-item"><small>Diskon Manual</small><strong>{{ $transaksi->penjualanMobil?->diskon }}</strong></div>
+        <div class="info-item"><small>Promo</small><strong>{{ $transaksi->promo_name_snapshot ?: 'Tanpa promo' }}</strong></div>
+        <div class="info-item"><small>Potongan Promo</small><strong>{{ $transaksi->promo_code_snapshot ? $transaksi->diskon : 0 }}</strong></div>
+        <div class="info-item"><small>Metode</small><strong>{{ ucfirst($transaksi->penjualanMobil?->metode_pembelian ?? '') }}</strong></div>
+        <div class="info-item"><small>Status Pembayaran</small><strong>{{ $paymentStatusLabel }}</strong></div>
+        <div class="info-item"><small>Total Tagihan</small><strong>{{ number_format($totalBill, 0, ',', '.') }}</strong></div>
+        <div class="info-item"><small>Total Dibayar</small><strong>{{ number_format($paid, 0, ',', '.') }}</strong></div>
+        <div class="info-item"><small>Sisa Tagihan</small><strong>{{ number_format($remaining, 0, ',', '.') }}</strong></div>
+    </div>
+    <h2>Total Tagihan: {{ number_format($totalBill, 0, ',', '.') }}</h2>
+    <p>{{ $paymentMessage }}</p>
+    <h3>Riwayat Pembayaran</h3>
+    <ul>
+        @forelse($transaksi->pembayarans as $payment)
+            <li>{{ $payment->tanggal }} · {{ $payment->metode }} · {{ $payment->jumlah }} · {{ $payment->status }}</li>
+        @empty
+            <li>Belum ada pembayaran.</li>
+        @endforelse
+    </ul>
+</article>
+@endsection

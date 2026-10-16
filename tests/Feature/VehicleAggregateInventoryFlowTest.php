@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\{Mobil, User};
 use App\Services\{MemberVehiclePurchaseService, PaymentService, VehicleAvailabilityService, VehicleInventoryService};
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Carbon;
 use Tests\TestCase;
 
 class VehicleAggregateInventoryFlowTest extends TestCase
@@ -32,8 +33,13 @@ class VehicleAggregateInventoryFlowTest extends TestCase
 
         $items = array_fill_keys(['mesin', 'eksterior', 'interior', 'rem', 'ban', 'kelistrikan', 'lampu', 'ac', 'dokumen', 'final_quality'], true);
         $purchase->savePdi($approved, $actor, $items);
-        $purchase->schedule($approved, now()->addDay()->setTime(10, 0)->toDateTimeString(), 'YZA Automotive', 'Aggregate pickup');
-        $purchase->handover($approved, $actor, ['nama_penerima' => 'Aggregate QA', 'nomor_identitas' => 'AGGREGATE-QA']);
+        $purchase->schedule($approved, now()->addHour()->toDateTimeString(), 'YZA Automotive', 'Aggregate pickup');
+        Carbon::setTestNow(now()->addHours(2));
+        try {
+            $purchase->handover($approved, $actor, ['nama_penerima' => 'Aggregate QA', 'nomor_identitas' => 'AGGREGATE-QA']);
+        } finally {
+            Carbon::setTestNow();
+        }
         $this->assertSame(1, $this->stock()['sold_units']);
         $this->assertSame(7, $this->stock()['stock']);
 
@@ -47,6 +53,7 @@ class VehicleAggregateInventoryFlowTest extends TestCase
         $this->assertSame(6, $this->stock()['stock']);
         app(PaymentService::class)->reject($payment->id_pembayaran, $actor);
         $this->assertSame('dibatalkan', $third->fresh()->status);
+        $this->assertSame('dibatalkan', $third->transaksi->fresh()->status);
         $this->assertSame(7, $this->stock()['stock']);
     }
 

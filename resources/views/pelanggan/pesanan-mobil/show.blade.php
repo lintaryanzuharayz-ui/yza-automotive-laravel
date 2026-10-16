@@ -6,7 +6,6 @@
 @endpush
 @php
     $statusLabel = ucwords(str_replace('_', ' ', $order->status));
-    $paymentStatus = $order->transaksi?->status ? ucwords(str_replace('_', ' ', $order->transaksi->status)) : 'Menunggu persetujuan';
     $pdiCode = $order->pdi?->status ?: 'belum_diperiksa';
     $pdiStatus = ['belum_diperiksa' => 'Belum diperiksa', 'sedang_diperiksa' => 'Sedang diperiksa', 'perlu_perbaikan' => 'Perlu tindak lanjut', 'gagal' => 'Perlu tindak lanjut', 'lulus' => 'Lulus'][ $pdiCode ] ?? ucwords(str_replace('_', ' ', $pdiCode));
     $pickupCode = $order->status_pengambilan ?: 'belum_dijadwalkan';
@@ -21,10 +20,15 @@
     $pendingOfflinePayment = $payments->where('status', 'menunggu')->sortByDesc(fn ($payment) => $payment->tanggal)->first();
     $activeGateway = $gatewayPayments->whereIn('status_provider', ['created', 'pending'])->sortByDesc('created_at')->first();
     $settledGateway = $gatewayPayments->whereIn('status_provider', ['settlement', 'capture'])->sortByDesc('processed_at')->first();
+    $hasPendingOfflinePayment = (bool) $pendingOfflinePayment;
+    $paymentRejected = $order->status === 'dibatalkan' && str_contains(mb_strtolower((string) $order->catatan_admin), 'pembayaran ditolak');
+    if ($paymentRejected) $statusLabel = 'Pembayaran Ditolak';
+    if ($hasPendingOfflinePayment) $statusLabel = 'Menunggu Verifikasi Admin';
+    $paymentStatus = $hasPendingOfflinePayment ? 'Menunggu Verifikasi Admin' : ($paymentRejected ? 'Pembayaran Ditolak' : ($order->transaksi?->status ? ucwords(str_replace('_', ' ', $order->transaksi->status)) : 'Menunggu persetujuan'));
     $paymentIsSettled = $order->transaksi?->status === 'lunas';
     $paymentMethodLabel = $settledGateway ? 'Midtrans' : ($verifiedPayment?->metode === 'tunai' ? 'Tunai di Dealer' : ($verifiedPayment ? 'Transfer Langsung' : null));
     $paymentTimestamp = $verifiedPayment?->verified_at ?: $verifiedPayment?->tanggal;
-    $paymentStatusLabel = $paymentIsSettled ? 'LUNAS' : ($pendingOfflinePayment ? 'MENUNGGU VERIFIKASI ADMIN' : ($activeGateway ? 'MENUNGGU PEMBAYARAN ONLINE' : 'MENUNGGU PEMBAYARAN'));
+    $paymentStatusLabel = $paymentIsSettled ? 'LUNAS' : ($pendingOfflinePayment ? 'MENUNGGU VERIFIKASI ADMIN' : ($paymentRejected ? 'PEMBAYARAN DITOLAK' : ($activeGateway ? 'MENUNGGU PEMBAYARAN ONLINE' : 'MENUNGGU PEMBAYARAN')));
     $timeline = [
         ['label' => 'Checkout', 'value' => 'Selesai', 'done' => true],
         ['label' => 'Verifikasi Admin', 'value' => $order->diputuskan_at?->format('d M Y') ?: 'Menunggu', 'done' => (bool) $order->diputuskan_at],
@@ -36,10 +40,21 @@
     $activeTimelineIndex = $order->diserahkan_at ? 5 : ($pdiCode === 'lulus' ? 4 : ($paymentIsSettled ? 3 : ($order->diputuskan_at ? 2 : 1)));
 @endphp
 @section('content')
-<div class="order-detail-wrap">
+<div class="order-detail-wrap" data-order-live-state="{{ sha1(implode('|', [
+    $order->status,
+    $order->catatan_admin,
+    optional($order->updated_at)->toISOString(),
+    optional($order->transaksi)->status,
+    optional($order->transaksi?->updated_at)->toISOString(),
+    optional($pendingOfflinePayment)->id_pembayaran,
+    optional($pendingOfflinePayment?->updated_at)->toISOString(),
+    optional($activeGateway)->status_provider,
+    optional($activeGateway?->updated_at)->toISOString(),
+    optional($order->diputuskan_at)->toISOString(),
+])) }}">
     <header class="order-detail-heading">
         <a class="order-back-link" href="{{ route('pelanggan.pesanan-mobil.index') }}">&larr; Kembali ke Daftar Pesanan</a>
-        <div class="order-heading-row"><div><div class="order-number-row"><h1>{{ $order->nomor_pesanan }}</h1><span class="order-status-badge">{{ $statusLabel }}</span></div><p>Dibuat pada {{ $order->created_at?->format('d F Y') ?: '-' }} &middot; {{ $order->created_at?->format('H:i') ?: '--:--' }} WIB</p></div><section class="order-next-card order-next-card-top"><div class="order-next-icon">!</div><div><h2>Langkah Selanjutnya</h2><p>@if($order->status === 'menunggu_verifikasi')Pesanan menunggu verifikasi admin.@elseif($order->status === 'menunggu_pembayaran')Silakan lanjutkan pembayaran.@elseif($order->status === 'lunas')Tim kami melanjutkan proses PDI.@else>Status akan diperbarui oleh tim YZA Automotive.@endif</p></div></section></div>
+        <div class="order-heading-row"><div><div class="order-number-row"><h1>{{ $order->nomor_pesanan }}</h1><span class="order-status-badge">{{ $statusLabel }}</span></div><p>Dibuat pada {{ $order->created_at?->format('d F Y') ?: '-' }} &middot; {{ $order->created_at?->format('H:i') ?: '--:--' }} WIB</p></div><section class="order-next-card order-next-card-top"><div class="order-next-icon">!</div><div><h2>Langkah Selanjutnya</h2><p>@if($hasPendingOfflinePayment)Pengajuan pembayaran sudah diterima. Menunggu verifikasi admin.@elseif($paymentRejected)Pembayaran ditolak. Pilih metode pembayaran lagi untuk melanjutkan pesanan.@elseif($order->status === 'menunggu_verifikasi')Pesanan menunggu verifikasi admin.@elseif($order->status === 'menunggu_pembayaran')Silakan lanjutkan pembayaran.@elseif($order->status === 'lunas')Tim kami melanjutkan proses PDI.@else>Status akan diperbarui oleh tim YZA Automotive.@endif</p></div></section></div>
     </header>
     <section class="order-timeline" aria-label="Tahapan pesanan">
         @foreach($timeline as $index => $step)<div class="order-timeline-step {{ $step['done'] ? 'is-done' : ($index === $activeTimelineIndex ? 'is-current' : '') }}"><span class="order-timeline-dot">{{ $index + 1 }}</span><strong>{{ $step['label'] }}</strong><small>{{ $step['value'] }}</small></div>@endforeach
@@ -72,7 +87,33 @@
                     <div class="order-payment-choice-state"><strong>Pengajuan {{ $pendingOfflinePayment->metode === 'tunai' ? 'tunai di dealer' : 'transfer langsung' }} sudah diterima.</strong><span>Diajukan pada {{ $pendingOfflinePayment->tanggal?->format('d F Y, H:i') ?: '-' }} WIB. Menunggu verifikasi admin.</span></div>
                 @elseif($activeGateway)
                     <div class="order-payment-choice-state"><strong>Pembayaran online belum selesai.</strong><span>Lanjutkan pembayaran melalui Midtrans menggunakan sesi yang sudah dibuat.</span></div>
-                    <form method="post" action="{{ route('pelanggan.midtrans.create', $order->transaksi) }}">@csrf<button class="order-primary-button" type="submit">Lanjutkan Pembayaran Midtrans <span>&rarr;</span></button></form>
+                    <div class="order-payment-actions" data-payment-actions>
+                        <form method="post" action="{{ route('pelanggan.midtrans.create', $order->transaksi) }}">@csrf<button class="order-primary-button" type="submit">Lanjutkan Pembayaran Midtrans <span>&rarr;</span></button></form>
+                        <button class="order-secondary-button" type="button" data-payment-choice="offline">Pilih Pembayaran Offline <span>&rarr;</span></button>
+                    </div>
+                    <div class="order-payment-method-panel" data-payment-panel="offline" hidden>
+                        <form method="post" action="{{ route('pelanggan.pesanan-mobil.payment.offline', $order) }}" enctype="multipart/form-data" class="order-offline-payment-form">
+                            @csrf
+                            <label for="offline-payment-method">Pilih pembayaran offline</label>
+                            <select id="offline-payment-method" name="metode" required><option value="transfer">Transfer langsung</option><option value="tunai">Tunai di dealer</option></select>
+                            <div class="order-offline-proof" data-offline-proof hidden>
+                                <label for="offline-payment-proof">Bukti transfer</label>
+                                <input id="offline-payment-proof" type="file" name="bukti_transfer" accept=".jpg,.jpeg,.png,.webp,.pdf" aria-label="Bukti transfer">
+                            </div>
+                            <small data-offline-note>Pengajuan offline akan diverifikasi admin. Selesaikan atau batalkan sesi Midtrans sebelumnya sebelum melakukan pembayaran lain.</small>
+                            <button class="order-primary-button" type="submit">Ajukan Verifikasi Pembayaran <span>&rarr;</span></button>
+                        </form>
+                        <button class="order-secondary-button" type="button" data-payment-back>Kembali ke pilihan pembayaran</button>
+                    </div>
+                @elseif($paymentRejected)
+                    <div class="order-payment-choice-state order-payment-choice-state--rejected">
+                        <strong>Pembayaran sebelumnya ditolak.</strong>
+                        <span>Pesanan ini dapat dibuka kembali agar Anda memilih pembayaran online atau offline.</span>
+                    </div>
+                    <form method="post" action="{{ route('pelanggan.pesanan-mobil.payment.reopen', $order) }}" class="order-payment-actions">
+                        @csrf
+                        <button class="order-primary-button" type="submit">Pilih Metode Pembayaran Lagi <span>&rarr;</span></button>
+                    </form>
                 @elseif($order->transaksi && $order->status === 'menunggu_pembayaran')
                     <div class="order-payment-actions" data-payment-actions>
                         <p class="order-payment-actions-label">Pilih cara pembayaran</p>

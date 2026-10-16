@@ -43,6 +43,24 @@ class VehicleGalleryService
         return $resolved;
     }
 
+    /**
+     * Resolve the gallery for an already selected/purchased color.
+     * An empty result is intentional: callers must not silently present another color.
+     */
+    public function forColor(Mobil $mobil, ?string $colorLabel): array
+    {
+        $needle = strtolower(trim((string) $colorLabel));
+        if ($needle === '') return [];
+
+        foreach ($this->for($mobil) as $variant) {
+            if (strtolower(trim((string) ($variant['label'] ?? ''))) === $needle) {
+                return $variant;
+            }
+        }
+
+        return [];
+    }
+
     public function defaultColor(Mobil $mobil): string
     {
         $colors = $mobil->warnaPilihan()->with('galeri')->get();

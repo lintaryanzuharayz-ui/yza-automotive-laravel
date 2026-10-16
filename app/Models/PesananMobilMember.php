@@ -27,6 +27,7 @@ class PesananMobilMember extends Model
     public function mobil() { return $this->belongsTo(Mobil::class, 'id_mobil', 'id_mobil'); }
     public function transaksi() { return $this->belongsTo(Transaksi::class, 'id_transaksi', 'id_transaksi'); }
     public function penjualan() { return $this->belongsTo(PenjualanMobil::class, 'id_penjualan', 'id_penjualan'); }
+    public function sales() { return $this->belongsTo(Petugas::class, 'id_sales', 'id_petugas'); }
     public function pdi() { return $this->hasOne(PdiPesananMobil::class, 'id_pesanan', 'id_pesanan'); }
     public function serahTerima() { return $this->hasOne(SerahTerimaPesananMobil::class, 'id_pesanan', 'id_pesanan'); }
 }

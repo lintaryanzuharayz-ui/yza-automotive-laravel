@@ -213,6 +213,14 @@
 @media (max-width:650px){.showroom .featured-catalog .show-section-heading{gap:18px}.showroom .featured-carousel-actions{width:100%;justify-content:space-between;gap:12px}.showroom .featured-carousel-controls{gap:6px}.showroom .featured-carousel-button{width:38px;height:38px}.showroom .featured-carousel-track{gap:14px}.showroom .featured-carousel-track>.featured-card{flex-basis:calc(100% - 28px)}.showroom .featured-carousel-footer{gap:12px;margin-top:20px}.showroom .featured-carousel-progress{width:150px;height:4px}.showroom .featured-carousel-counter{font-size:12px}.showroom .featured-carousel-hint{display:block;flex-basis:100%;font-size:10px;text-align:center}}
 @media (prefers-reduced-motion:reduce){.showroom .featured-carousel-track,.showroom .featured-carousel-progress span{transition:none!important}.showroom .featured-carousel-track .featured-media img{transition:none!important}}
 
+/* Keep the campaign hero inside narrow viewports after the desktop composition overrides. */
+@media (max-width:800px){
+  .showroom .show-hero-inner{width:calc(100% - 32px);max-width:none;min-height:680px;grid-template-columns:minmax(0,1fr);padding:60px 0 20px}
+  .showroom .hero-copy-premium{max-width:100%;min-width:0}
+  .showroom .hero-copy-premium h1{white-space:normal;overflow-wrap:anywhere}
+  .showroom .hero-car-stage{min-width:0}
+}
+
 /* Middle landing composition: dense black/red automotive campaign treatment. */
 .showroom .trade-banner{min-height:330px;padding:58px 0;background-image:linear-gradient(90deg,rgba(3,4,6,.96) 0%,rgba(3,4,6,.72) 43%,rgba(3,4,6,.3) 100%),url('../images/middle/trade-in-neon.png');background-position:center;background-size:cover}
 .showroom .trade-layout{width:min(92vw,1600px);min-height:214px}

@@ -40,7 +40,7 @@ class MidtransSandboxStage11ATest extends TestCase
     {
         config(['midtrans.server_key'=>'test-server']); $this->fakeSnap(); $tx=$this->transaction(); $gateway=app(MidtransPaymentService::class)->createAttempt($tx,$this->user('pelanggan')); $payload=['order_id'=>$gateway->order_id,'status_code'=>'200','gross_amount'=>'100000.00','signature_key'=>$this->signature($gateway->order_id,'200','100000.00'),'transaction_status'=>'settlement','payment_type'=>'qris','transaction_id'=>'provider-1'];
         app(MidtransPaymentService::class)->processNotification($payload); app(MidtransPaymentService::class)->processNotification($payload);
-        $this->assertSame(1,Pembayaran::where('id_transaksi',$tx->id_transaksi)->count()); $this->assertSame('lunas',$tx->fresh()->status); $this->assertSame(1,PembayaranGateway::find($gateway->id_pembayaran_gateway)->id_pembayaran ? 1 : 0);
+        $this->assertSame(1,Pembayaran::where('id_transaksi',$tx->id_transaksi)->count()); $this->assertSame('lunas',$tx->fresh()->status); $this->assertSame('settlement',PembayaranGateway::find($gateway->id_pembayaran_gateway)->status_provider); $this->assertSame(1,PembayaranGateway::find($gateway->id_pembayaran_gateway)->id_pembayaran ? 1 : 0);
     }
     public function test_invalid_signature_unknown_order_and_amount_mismatch_do_not_pay(): void
     {
@@ -61,6 +61,14 @@ class MidtransSandboxStage11ATest extends TestCase
     public function test_settlement_can_finalize_when_another_legacy_gateway_is_still_pending(): void
     {
         config(['midtrans.server_key'=>'test-server']); $this->fakeSnap(); $tx=$this->transaction('penjualan_mobil','100000.00'); $service=app(MidtransPaymentService::class); $first=$service->createAttempt($tx,$this->user('pelanggan')); $first->forceFill(['status_provider'=>'pending'])->save(); $second=new PembayaranGateway(); $second->forceFill(['id_transaksi'=>$tx->id_transaksi,'provider'=>'midtrans','order_id'=>'YZA-'.$tx->id_transaksi.'-LEGACY','gross_amount'=>'100000.00','status_provider'=>'pending','initiated_by'=>$this->user('pelanggan')->id_user])->save(); Http::fake(['*status'=>Http::response(['transaction_status'=>'settlement','status_code'=>'200','gross_amount'=>'100000.00','payment_type'=>'qris','transaction_id'=>'provider-two'],200)]); $result=$service->sync($first,$this->user('pelanggan')); $this->assertSame('settlement',$result->status_provider); $this->assertSame('lunas',$tx->fresh()->status); $this->assertSame(1,Pembayaran::where('id_transaksi',$tx->id_transaksi)->count());
+    }
+    public function test_gateway_selected_for_manual_payment_fails_closed_on_late_settlement(): void
+    {
+        config(['midtrans.server_key'=>'test-server']); $this->fakeSnap(); $tx=$this->transaction('penjualan_mobil','100000.00'); $service=app(MidtransPaymentService::class); $gateway=$service->createAttempt($tx,$this->user('pelanggan')); $gateway->forceFill(['status_provider'=>'manual_selected'])->save();
+        $payload=['order_id'=>$gateway->order_id,'status_code'=>'200','gross_amount'=>'100000.00','signature_key'=>$this->signature($gateway->order_id,'200','100000.00'),'transaction_status'=>'settlement','payment_type'=>'qris','transaction_id'=>'late-provider'];
+        $result=$service->processNotification($payload);
+        $this->assertSame('requires_review',$result->status_provider);
+        $this->assertSame(0,Pembayaran::where('id_transaksi',$tx->id_transaksi)->count());
     }
     public function test_midtrans_is_sandbox_only_and_no_secret_is_rendered(): void
     {

@@ -84,6 +84,8 @@ class VerifiedCarOwnershipService
     {
         $sale->loadMissing(['mobil', 'transaksi', 'memberOrder']);
         $car = $sale->mobil;
+        $order = $sale->memberOrder;
+        $purchasedColor = trim((string) ($order?->snapshot_warna ?: $car?->warna));
         if (!$car || !$sale->id_pelanggan || !$sale->transaksi || $sale->transaksi->status !== 'lunas' || $sale->status !== 'selesai' || $sale->memberOrder?->status !== 'diserahkan') {
             return null;
         }
@@ -93,7 +95,7 @@ class VerifiedCarOwnershipService
             ->first();
 
         if ($existing) {
-            $existing->forceFill(['status' => 'aktif', 'id_penjualan' => $sale->id_penjualan, 'id_pesanan' => $sale->memberOrder?->id_pesanan, 'id_serah_terima' => $handover?->id_serah_terima])->save();
+            $existing->forceFill(['status' => 'aktif', 'id_penjualan' => $sale->id_penjualan, 'id_pesanan' => $order?->id_pesanan, 'id_serah_terima' => $handover?->id_serah_terima, 'warna' => $purchasedColor])->save();
             return $existing;
         }
 
@@ -106,7 +108,7 @@ class VerifiedCarOwnershipService
             ->first();
 
         if ($existing) {
-            $existing->forceFill(['status' => 'aktif', 'id_penjualan' => $sale->id_penjualan, 'id_pesanan' => $sale->memberOrder?->id_pesanan, 'id_serah_terima' => $handover?->id_serah_terima])->save();
+            $existing->forceFill(['status' => 'aktif', 'id_penjualan' => $sale->id_penjualan, 'id_pesanan' => $order?->id_pesanan, 'id_serah_terima' => $handover?->id_serah_terima, 'warna' => $purchasedColor])->save();
             return $existing;
         }
 
@@ -115,7 +117,7 @@ class VerifiedCarOwnershipService
             'model' => $car->model,
             'tipe' => $car->tipe,
             'tahun' => $car->tahun,
-            'warna' => $car->warna,
+            'warna' => $purchasedColor,
             'transmisi' => $car->transmisi,
             'bahan_bakar' => $car->bahan_bakar,
             'nomor_rangka' => $car->nomor_rangka,
@@ -123,7 +125,7 @@ class VerifiedCarOwnershipService
             'kilometer' => $car->kilometer,
             'status' => 'aktif',
             'id_penjualan' => $sale->id_penjualan,
-            'id_pesanan' => $sale->memberOrder?->id_pesanan,
+            'id_pesanan' => $order?->id_pesanan,
             'id_serah_terima' => $handover?->id_serah_terima,
         ]);
         $vehicle->id_pelanggan = $sale->id_pelanggan;
