@@ -1,0 +1,5915 @@
+[
+  {
+    "role": "public",
+    "route": "",
+    "uri": "/",
+    "status": 200,
+    "file": "public---.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "public",
+    "route": "mobil.index",
+    "uri": "mobil",
+    "status": 200,
+    "file": "public--mobil-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "public",
+    "route": "mobil.show",
+    "uri": "mobil/1",
+    "status": 200,
+    "file": "public--mobil-show.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "public",
+    "route": "login",
+    "uri": "login",
+    "status": 200,
+    "file": "public--login.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "public",
+    "route": "register",
+    "uri": "register",
+    "status": 200,
+    "file": "public--register.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "owner.dashboard",
+    "uri": "owner/dashboard",
+    "status": 200,
+    "file": "admin--owner-dashboard.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "owner.sales-report",
+    "uri": "owner/penjualan",
+    "status": 200,
+    "file": "admin--owner-sales-report.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "owner.service-report",
+    "uri": "owner/servis",
+    "status": 200,
+    "file": "admin--owner-service-report.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "owner.performance-report",
+    "uri": "owner/performa-sales",
+    "status": 200,
+    "file": "admin--owner-performance-report.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "owner.inventory-report",
+    "uri": "owner/inventori-kendaraan",
+    "status": 200,
+    "file": "admin--owner-inventory-report.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "owner.sales-awards",
+    "uri": "owner/sales-awards",
+    "status": 200,
+    "file": "admin--owner-sales-awards.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "sales.dashboard",
+    "uri": "sales/dashboard",
+    "status": 200,
+    "file": "admin--sales-dashboard.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "sales.awards",
+    "uri": "sales/awards",
+    "status": 200,
+    "file": "admin--sales-awards.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "sales.leads.index",
+    "uri": "sales/prospek",
+    "status": 200,
+    "file": "admin--sales-leads-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "sales.leads.create",
+    "uri": "sales/prospek/create",
+    "status": 200,
+    "file": "admin--sales-leads-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "sales.test-drives.index",
+    "uri": "sales/test-drive",
+    "status": 200,
+    "file": "admin--sales-test-drives-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "sales.orders.index",
+    "uri": "sales/pesanan",
+    "status": 200,
+    "file": "admin--sales-orders-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "sales.sales.index",
+    "uri": "sales/penjualan",
+    "status": 200,
+    "file": "admin--sales-sales-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "sales.targets.index",
+    "uri": "sales/target",
+    "status": 200,
+    "file": "admin--sales-targets-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.dashboard",
+    "uri": "admin/dashboard",
+    "status": 200,
+    "file": "admin--admin-dashboard.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "account.password",
+    "uri": "akun/password",
+    "status": 200,
+    "file": "admin--account-password.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "notifications.index",
+    "uri": "notifikasi",
+    "status": 200,
+    "file": "admin--notifications-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.aktivitas.index",
+    "uri": "admin/aktivitas",
+    "status": 200,
+    "file": "admin--admin-aktivitas-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.katalog-showroom.index",
+    "uri": "admin/katalog-showroom",
+    "status": 200,
+    "file": "admin--admin-katalog-showroom-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.pdi.index",
+    "uri": "admin/pdi",
+    "status": 200,
+    "file": "admin--admin-pdi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.pengambilan.index",
+    "uri": "admin/jadwal-pengambilan",
+    "status": 200,
+    "file": "admin--admin-pengambilan-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.serah-terima.index",
+    "uri": "admin/serah-terima",
+    "status": 200,
+    "file": "admin--admin-serah-terima-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.transaksi.index",
+    "uri": "admin/transaksi",
+    "status": 200,
+    "file": "admin--admin-transaksi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.invoices.index",
+    "uri": "admin/invoice",
+    "status": 200,
+    "file": "admin--admin-invoices-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.garage.index",
+    "uri": "admin/garage",
+    "status": 200,
+    "file": "admin--admin-garage-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.roles.index",
+    "uri": "admin/roles-permissions",
+    "status": 200,
+    "file": "admin--admin-roles-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.audit-log.index",
+    "uri": "admin/audit-log",
+    "status": 200,
+    "file": "admin--admin-audit-log-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.finance-dashboard.index",
+    "uri": "admin/keuangan",
+    "status": 200,
+    "file": "admin--admin-finance-dashboard-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.payments.index",
+    "uri": "admin/pembayaran",
+    "status": 200,
+    "file": "admin--admin-payments-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.financial-adjustments.index",
+    "uri": "admin/financial-adjustments",
+    "status": 200,
+    "file": "admin--admin-financial-adjustments-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.payments.show",
+    "uri": "admin/pembayaran/1",
+    "status": 200,
+    "file": "admin--admin-payments-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.membership.index",
+    "uri": "admin/membership",
+    "status": 200,
+    "file": "admin--admin-membership-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.jenis-servis.index",
+    "uri": "admin/jenis-servis",
+    "status": 200,
+    "file": "admin--admin-jenis-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.jenis-servis.create",
+    "uri": "admin/jenis-servis/create",
+    "status": 200,
+    "file": "admin--admin-jenis-servis-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.paket-cuci.index",
+    "uri": "admin/paket-cuci",
+    "status": 200,
+    "file": "admin--admin-paket-cuci-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.paket-cuci.create",
+    "uri": "admin/paket-cuci/create",
+    "status": 200,
+    "file": "admin--admin-paket-cuci-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.promo-member.index",
+    "uri": "admin/promo-member",
+    "status": 200,
+    "file": "admin--admin-promo-member-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.promo-member.create",
+    "uri": "admin/promo-member/create",
+    "status": 200,
+    "file": "admin--admin-promo-member-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.promo-simulations.index",
+    "uri": "admin/promo-simulations",
+    "status": 200,
+    "file": "admin--admin-promo-simulations-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.promo-simulations.create",
+    "uri": "admin/promo-simulations/create",
+    "status": 200,
+    "file": "admin--admin-promo-simulations-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.promo-analytics.index",
+    "uri": "admin/promo-analytics",
+    "status": 200,
+    "file": "admin--admin-promo-analytics-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.laporan-servis.index",
+    "uri": "admin/laporan-servis",
+    "status": 200,
+    "file": "admin--admin-laporan-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.pengaturan.index",
+    "uri": "admin/pengaturan",
+    "status": 200,
+    "file": "admin--admin-pengaturan-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.pelanggan.index",
+    "uri": "admin/pelanggan",
+    "status": 200,
+    "file": "admin--admin-pelanggan-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.pelanggan.create",
+    "uri": "admin/pelanggan/create",
+    "status": 200,
+    "file": "admin--admin-pelanggan-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.pelanggan.show",
+    "uri": "admin/pelanggan/1",
+    "status": 200,
+    "file": "admin--admin-pelanggan-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.pelanggan.edit",
+    "uri": "admin/pelanggan/1/edit",
+    "status": 200,
+    "file": "admin--admin-pelanggan-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.petugas.index",
+    "uri": "admin/petugas",
+    "status": 200,
+    "file": "admin--admin-petugas-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.petugas.create",
+    "uri": "admin/petugas/create",
+    "status": 200,
+    "file": "admin--admin-petugas-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.petugas.show",
+    "uri": "admin/petugas/1",
+    "status": 200,
+    "file": "admin--admin-petugas-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.petugas.edit",
+    "uri": "admin/petugas/1/edit",
+    "status": 200,
+    "file": "admin--admin-petugas-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.kategori-sparepart.index",
+    "uri": "admin/kategori-sparepart",
+    "status": 200,
+    "file": "admin--admin-kategori-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.kategori-sparepart.create",
+    "uri": "admin/kategori-sparepart/create",
+    "status": 200,
+    "file": "admin--admin-kategori-sparepart-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.kategori-sparepart.edit",
+    "uri": "admin/kategori-sparepart/1/edit",
+    "status": 200,
+    "file": "admin--admin-kategori-sparepart-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.supplier.index",
+    "uri": "admin/supplier",
+    "status": 200,
+    "file": "admin--admin-supplier-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.supplier.create",
+    "uri": "admin/supplier/create",
+    "status": 200,
+    "file": "admin--admin-supplier-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.supplier.show",
+    "uri": "admin/supplier/1",
+    "status": 200,
+    "file": "admin--admin-supplier-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.supplier.edit",
+    "uri": "admin/supplier/1/edit",
+    "status": 200,
+    "file": "admin--admin-supplier-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.sparepart.index",
+    "uri": "admin/sparepart",
+    "status": 200,
+    "file": "admin--admin-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.sparepart.create",
+    "uri": "admin/sparepart/create",
+    "status": 200,
+    "file": "admin--admin-sparepart-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.sparepart.show",
+    "uri": "admin/sparepart/1",
+    "status": 200,
+    "file": "admin--admin-sparepart-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.sparepart.edit",
+    "uri": "admin/sparepart/1/edit",
+    "status": 200,
+    "file": "admin--admin-sparepart-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.inventory.stock",
+    "uri": "admin/inventory/stok",
+    "status": 200,
+    "file": "admin--admin-inventory-stock.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.inventory.history",
+    "uri": "admin/inventory/riwayat",
+    "status": 200,
+    "file": "admin--admin-inventory-history.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.inventory.adjustment",
+    "uri": "admin/inventory/penyesuaian/1",
+    "status": 200,
+    "file": "admin--admin-inventory-adjustment.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.stok-masuk.index",
+    "uri": "admin/stok-masuk",
+    "status": 200,
+    "file": "admin--admin-stok-masuk-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.stok-masuk.create",
+    "uri": "admin/stok-masuk/create",
+    "status": 200,
+    "file": "admin--admin-stok-masuk-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.notifikasi.index",
+    "uri": "admin/notifikasi",
+    "status": 200,
+    "file": "admin--admin-notifikasi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.mobil.index",
+    "uri": "admin/mobil",
+    "status": 200,
+    "file": "admin--admin-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.mobil.create",
+    "uri": "admin/mobil/create",
+    "status": 200,
+    "file": "admin--admin-mobil-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.mobil.show",
+    "uri": "admin/mobil/1",
+    "status": 200,
+    "file": "admin--admin-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.mobil.edit",
+    "uri": "admin/mobil/1/edit",
+    "status": 200,
+    "file": "admin--admin-mobil-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.mobil.stock",
+    "uri": "admin/mobil/1/stok",
+    "status": 200,
+    "file": "admin--admin-mobil-stock.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.preorder-mobil.index",
+    "uri": "admin/pre-order-mobil",
+    "status": 200,
+    "file": "admin--admin-preorder-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.pesanan-mobil.index",
+    "uri": "admin/pesanan-mobil",
+    "status": 200,
+    "file": "admin--admin-pesanan-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.booking.index",
+    "uri": "admin/booking-mobil",
+    "status": 200,
+    "file": "admin--admin-booking-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.booking.show",
+    "uri": "admin/booking-mobil/1",
+    "status": 200,
+    "file": "admin--admin-booking-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.pengajuan-mobil.index",
+    "uri": "admin/pengajuan-mobil",
+    "status": 200,
+    "file": "admin--admin-pengajuan-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.pengajuan-mobil.show",
+    "uri": "admin/pengajuan-mobil/1",
+    "status": 200,
+    "file": "admin--admin-pengajuan-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.trade-in.index",
+    "uri": "admin/trade-in",
+    "status": 200,
+    "file": "admin--admin-trade-in-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.trade-in.show",
+    "uri": "admin/trade-in/1",
+    "status": 200,
+    "file": "admin--admin-trade-in-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.invoice.trade-in",
+    "uri": "admin/invoice/trade-in/1",
+    "status": 200,
+    "file": "admin--admin-invoice-trade-in.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.trade-in.payment.create",
+    "uri": "admin/transaksi-trade-in/4/pembayaran/create",
+    "status": 200,
+    "file": "admin--admin-trade-in-payment-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.test-drive.index",
+    "uri": "admin/test-drive",
+    "status": 200,
+    "file": "admin--admin-test-drive-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.test-drive.show",
+    "uri": "admin/test-drive/1",
+    "status": 200,
+    "file": "admin--admin-test-drive-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.booking-servis.index",
+    "uri": "admin/booking-servis",
+    "status": 200,
+    "file": "admin--admin-booking-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.booking-servis.show",
+    "uri": "admin/booking-servis/1",
+    "status": 200,
+    "file": "admin--admin-booking-servis-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.servis.index",
+    "uri": "admin/servis",
+    "status": 200,
+    "file": "admin--admin-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.servis.schedule",
+    "uri": "admin/servis/jadwal",
+    "status": 200,
+    "file": "admin--admin-servis-schedule.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.servis.personnel",
+    "uri": "admin/servis/personel",
+    "status": 200,
+    "file": "admin--admin-servis-personnel.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.servis.pemeriksaan",
+    "uri": "admin/servis/1/pemeriksaan",
+    "status": 200,
+    "file": "admin--admin-servis-pemeriksaan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.servis.persetujuan",
+    "uri": "admin/servis/1/persetujuan",
+    "status": 200,
+    "file": "admin--admin-servis-persetujuan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.servis.pengerjaan",
+    "uri": "admin/servis/1/pengerjaan",
+    "status": 200,
+    "file": "admin--admin-servis-pengerjaan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.servis.quality-control",
+    "uri": "admin/servis/1/quality-control",
+    "status": 200,
+    "file": "admin--admin-servis-quality-control.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.servis.finalisasi",
+    "uri": "admin/servis/1/finalisasi",
+    "status": 200,
+    "file": "admin--admin-servis-finalisasi.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.payment.create",
+    "uri": "admin/transaksi-servis/4/pembayaran/create",
+    "status": 200,
+    "file": "admin--admin-payment-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.invoice.servis",
+    "uri": "admin/invoice/servis/4",
+    "status": 200,
+    "file": "admin--admin-invoice-servis.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.invoice.carwash",
+    "uri": "admin/invoice/car-wash/4",
+    "status": 200,
+    "file": "admin--admin-invoice-carwash.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.invoice.sparepart",
+    "uri": "admin/invoice/sparepart/4",
+    "status": 200,
+    "file": "admin--admin-invoice-sparepart.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.booking-cuci.index",
+    "uri": "admin/booking-cuci",
+    "status": 200,
+    "file": "admin--admin-booking-cuci-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.booking-cuci.show",
+    "uri": "admin/booking-cuci/1",
+    "status": 200,
+    "file": "admin--admin-booking-cuci-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.penjualan-sparepart.index",
+    "uri": "admin/penjualan-sparepart",
+    "status": 200,
+    "file": "admin--admin-penjualan-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.penjualan-sparepart.create",
+    "uri": "admin/penjualan-sparepart/create",
+    "status": 200,
+    "file": "admin--admin-penjualan-sparepart-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.penjualan-sparepart.show",
+    "uri": "admin/penjualan-sparepart/1",
+    "status": 200,
+    "file": "admin--admin-penjualan-sparepart-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.penjualan-mobil.index",
+    "uri": "admin/penjualan-mobil",
+    "status": 200,
+    "file": "admin--admin-penjualan-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.penjualan-mobil.create",
+    "uri": "admin/penjualan-mobil/create",
+    "status": 200,
+    "file": "admin--admin-penjualan-mobil-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "admin.penjualan-mobil.show",
+    "uri": "admin/penjualan-mobil/1",
+    "status": 200,
+    "file": "admin--admin-penjualan-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.sparepart.index",
+    "uri": "petugas/sparepart",
+    "status": 200,
+    "file": "admin--petugas-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.sparepart.show",
+    "uri": "petugas/sparepart/1",
+    "status": 200,
+    "file": "admin--petugas-sparepart-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.mobil.index",
+    "uri": "petugas/mobil",
+    "status": 200,
+    "file": "admin--petugas-mobil-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.mobil.show",
+    "uri": "petugas/mobil/1",
+    "status": 200,
+    "file": "admin--petugas-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.booking.index",
+    "uri": "petugas/booking-mobil",
+    "status": 200,
+    "file": "admin--petugas-booking-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.booking.show",
+    "uri": "petugas/booking-mobil/1",
+    "status": 200,
+    "file": "admin--petugas-booking-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.pengajuan-mobil.index",
+    "uri": "petugas/pengajuan-mobil",
+    "status": 200,
+    "file": "admin--petugas-pengajuan-mobil-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.pengajuan-mobil.show",
+    "uri": "petugas/pengajuan-mobil/1",
+    "status": 200,
+    "file": "admin--petugas-pengajuan-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.trade-in.index",
+    "uri": "petugas/trade-in",
+    "status": 200,
+    "file": "admin--petugas-trade-in-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.trade-in.show",
+    "uri": "petugas/trade-in/1",
+    "status": 200,
+    "file": "admin--petugas-trade-in-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.invoice.trade-in",
+    "uri": "petugas/invoice/trade-in/1",
+    "status": 200,
+    "file": "admin--petugas-invoice-trade-in.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.trade-in.payment.create",
+    "uri": "petugas/transaksi-trade-in/4/pembayaran/create",
+    "status": 200,
+    "file": "admin--petugas-trade-in-payment-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.test-drive.index",
+    "uri": "petugas/test-drive",
+    "status": 200,
+    "file": "admin--petugas-test-drive-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.test-drive.show",
+    "uri": "petugas/test-drive/1",
+    "status": 200,
+    "file": "admin--petugas-test-drive-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.booking-servis.index",
+    "uri": "petugas/booking-servis",
+    "status": 200,
+    "file": "admin--petugas-booking-servis-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.booking-servis.show",
+    "uri": "petugas/booking-servis/1",
+    "status": 200,
+    "file": "admin--petugas-booking-servis-show.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.servis.index",
+    "uri": "petugas/servis",
+    "status": 200,
+    "file": "admin--petugas-servis-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.servis.pemeriksaan",
+    "uri": "petugas/servis/1/pemeriksaan",
+    "status": 200,
+    "file": "admin--petugas-servis-pemeriksaan.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.servis.persetujuan",
+    "uri": "petugas/servis/1/persetujuan",
+    "status": 200,
+    "file": "admin--petugas-servis-persetujuan.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.servis.pengerjaan",
+    "uri": "petugas/servis/1/pengerjaan",
+    "status": 200,
+    "file": "admin--petugas-servis-pengerjaan.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.servis.quality-control",
+    "uri": "petugas/servis/1/quality-control",
+    "status": 200,
+    "file": "admin--petugas-servis-quality-control.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.servis.finalisasi",
+    "uri": "petugas/servis/1/finalisasi",
+    "status": 200,
+    "file": "admin--petugas-servis-finalisasi.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.payment.create",
+    "uri": "petugas/transaksi-servis/4/pembayaran/create",
+    "status": 200,
+    "file": "admin--petugas-payment-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.invoice.servis",
+    "uri": "petugas/invoice/servis/4",
+    "status": 200,
+    "file": "admin--petugas-invoice-servis.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.invoice.carwash",
+    "uri": "petugas/invoice/car-wash/4",
+    "status": 200,
+    "file": "admin--petugas-invoice-carwash.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.invoice.sparepart",
+    "uri": "petugas/invoice/sparepart/4",
+    "status": 200,
+    "file": "admin--petugas-invoice-sparepart.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.booking-cuci.index",
+    "uri": "petugas/booking-cuci",
+    "status": 200,
+    "file": "admin--petugas-booking-cuci-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.booking-cuci.show",
+    "uri": "petugas/booking-cuci/1",
+    "status": 200,
+    "file": "admin--petugas-booking-cuci-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.penjualan-sparepart.index",
+    "uri": "petugas/penjualan-sparepart",
+    "status": 200,
+    "file": "admin--petugas-penjualan-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.penjualan-sparepart.create",
+    "uri": "petugas/penjualan-sparepart/create",
+    "status": 200,
+    "file": "admin--petugas-penjualan-sparepart-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.penjualan-sparepart.show",
+    "uri": "petugas/penjualan-sparepart/1",
+    "status": 200,
+    "file": "admin--petugas-penjualan-sparepart-show.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.penjualan-mobil.index",
+    "uri": "petugas/penjualan-mobil",
+    "status": 200,
+    "file": "admin--petugas-penjualan-mobil-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.penjualan-mobil.create",
+    "uri": "petugas/penjualan-mobil/create",
+    "status": 200,
+    "file": "admin--petugas-penjualan-mobil-create.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "admin",
+    "route": "petugas.penjualan-mobil.show",
+    "uri": "petugas/penjualan-mobil/1",
+    "status": 200,
+    "file": "admin--petugas-penjualan-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "staff.dashboard",
+    "uri": "staff/dashboard",
+    "status": 200,
+    "file": "petugas--staff-dashboard.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.dashboard",
+    "uri": "petugas/dashboard",
+    "status": 200,
+    "file": "petugas--petugas-dashboard.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.profile",
+    "uri": "petugas/profil",
+    "status": 200,
+    "file": "petugas--petugas-profile.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "account.password",
+    "uri": "akun/password",
+    "status": 200,
+    "file": "petugas--account-password.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "notifications.index",
+    "uri": "notifikasi",
+    "status": 200,
+    "file": "petugas--notifications-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "admin.servis.pemeriksaan",
+    "uri": "admin/servis/1/pemeriksaan",
+    "status": 200,
+    "file": "petugas--admin-servis-pemeriksaan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "admin.servis.persetujuan",
+    "uri": "admin/servis/1/persetujuan",
+    "status": 200,
+    "file": "petugas--admin-servis-persetujuan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "admin.servis.pengerjaan",
+    "uri": "admin/servis/1/pengerjaan",
+    "status": 200,
+    "file": "petugas--admin-servis-pengerjaan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "admin.servis.quality-control",
+    "uri": "admin/servis/1/quality-control",
+    "status": 200,
+    "file": "petugas--admin-servis-quality-control.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "admin.servis.finalisasi",
+    "uri": "admin/servis/1/finalisasi",
+    "status": 200,
+    "file": "petugas--admin-servis-finalisasi.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.sparepart.index",
+    "uri": "petugas/sparepart",
+    "status": 200,
+    "file": "petugas--petugas-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.sparepart.show",
+    "uri": "petugas/sparepart/1",
+    "status": 200,
+    "file": "petugas--petugas-sparepart-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.mobil.index",
+    "uri": "petugas/mobil",
+    "status": 200,
+    "file": "petugas--petugas-mobil-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.mobil.show",
+    "uri": "petugas/mobil/1",
+    "status": 200,
+    "file": "petugas--petugas-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.booking.index",
+    "uri": "petugas/booking-mobil",
+    "status": 200,
+    "file": "petugas--petugas-booking-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.booking.show",
+    "uri": "petugas/booking-mobil/1",
+    "status": 200,
+    "file": "petugas--petugas-booking-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.pengajuan-mobil.index",
+    "uri": "petugas/pengajuan-mobil",
+    "status": 200,
+    "file": "petugas--petugas-pengajuan-mobil-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.pengajuan-mobil.show",
+    "uri": "petugas/pengajuan-mobil/1",
+    "status": 200,
+    "file": "petugas--petugas-pengajuan-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.trade-in.index",
+    "uri": "petugas/trade-in",
+    "status": 200,
+    "file": "petugas--petugas-trade-in-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.trade-in.show",
+    "uri": "petugas/trade-in/1",
+    "status": 200,
+    "file": "petugas--petugas-trade-in-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.invoice.trade-in",
+    "uri": "petugas/invoice/trade-in/1",
+    "status": 200,
+    "file": "petugas--petugas-invoice-trade-in.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.trade-in.payment.create",
+    "uri": "petugas/transaksi-trade-in/4/pembayaran/create",
+    "status": 200,
+    "file": "petugas--petugas-trade-in-payment-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.test-drive.index",
+    "uri": "petugas/test-drive",
+    "status": 200,
+    "file": "petugas--petugas-test-drive-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.test-drive.show",
+    "uri": "petugas/test-drive/1",
+    "status": 200,
+    "file": "petugas--petugas-test-drive-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.booking-servis.index",
+    "uri": "petugas/booking-servis",
+    "status": 200,
+    "file": "petugas--petugas-booking-servis-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.booking-servis.show",
+    "uri": "petugas/booking-servis/1",
+    "status": 200,
+    "file": "petugas--petugas-booking-servis-show.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.servis.index",
+    "uri": "petugas/servis",
+    "status": 200,
+    "file": "petugas--petugas-servis-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.servis.pemeriksaan",
+    "uri": "petugas/servis/1/pemeriksaan",
+    "status": 200,
+    "file": "petugas--petugas-servis-pemeriksaan.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.servis.persetujuan",
+    "uri": "petugas/servis/1/persetujuan",
+    "status": 200,
+    "file": "petugas--petugas-servis-persetujuan.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.servis.pengerjaan",
+    "uri": "petugas/servis/1/pengerjaan",
+    "status": 200,
+    "file": "petugas--petugas-servis-pengerjaan.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.servis.quality-control",
+    "uri": "petugas/servis/1/quality-control",
+    "status": 200,
+    "file": "petugas--petugas-servis-quality-control.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.servis.finalisasi",
+    "uri": "petugas/servis/1/finalisasi",
+    "status": 200,
+    "file": "petugas--petugas-servis-finalisasi.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.payment.create",
+    "uri": "petugas/transaksi-servis/4/pembayaran/create",
+    "status": 200,
+    "file": "petugas--petugas-payment-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.invoice.servis",
+    "uri": "petugas/invoice/servis/4",
+    "status": 200,
+    "file": "petugas--petugas-invoice-servis.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.invoice.carwash",
+    "uri": "petugas/invoice/car-wash/4",
+    "status": 200,
+    "file": "petugas--petugas-invoice-carwash.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.invoice.sparepart",
+    "uri": "petugas/invoice/sparepart/4",
+    "status": 200,
+    "file": "petugas--petugas-invoice-sparepart.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.booking-cuci.index",
+    "uri": "petugas/booking-cuci",
+    "status": 200,
+    "file": "petugas--petugas-booking-cuci-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.booking-cuci.show",
+    "uri": "petugas/booking-cuci/1",
+    "status": 200,
+    "file": "petugas--petugas-booking-cuci-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.penjualan-sparepart.index",
+    "uri": "petugas/penjualan-sparepart",
+    "status": 200,
+    "file": "petugas--petugas-penjualan-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.penjualan-sparepart.create",
+    "uri": "petugas/penjualan-sparepart/create",
+    "status": 200,
+    "file": "petugas--petugas-penjualan-sparepart-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.penjualan-sparepart.show",
+    "uri": "petugas/penjualan-sparepart/1",
+    "status": 200,
+    "file": "petugas--petugas-penjualan-sparepart-show.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.penjualan-mobil.index",
+    "uri": "petugas/penjualan-mobil",
+    "status": 200,
+    "file": "petugas--petugas-penjualan-mobil-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.penjualan-mobil.create",
+    "uri": "petugas/penjualan-mobil/create",
+    "status": 200,
+    "file": "petugas--petugas-penjualan-mobil-create.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.penjualan-mobil.show",
+    "uri": "petugas/penjualan-mobil/1",
+    "status": 200,
+    "file": "petugas--petugas-penjualan-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.dashboard",
+    "uri": "pelanggan/dashboard",
+    "status": 200,
+    "file": "pelanggan--pelanggan-dashboard.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.member",
+    "uri": "pelanggan/member",
+    "status": 200,
+    "file": "pelanggan--pelanggan-member.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.profile",
+    "uri": "pelanggan/profil",
+    "status": 200,
+    "file": "pelanggan--pelanggan-profile.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "account.password",
+    "uri": "akun/password",
+    "status": 200,
+    "file": "pelanggan--account-password.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "notifications.index",
+    "uri": "notifikasi",
+    "status": 200,
+    "file": "pelanggan--notifications-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.katalog-mobil.index",
+    "uri": "pelanggan/katalog-mobil",
+    "status": 200,
+    "file": "pelanggan--pelanggan-katalog-mobil-index.html",
+    "scroll": 1396,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.katalog-mobil.show",
+    "uri": "pelanggan/katalog-mobil/1",
+    "status": 200,
+    "file": "pelanggan--pelanggan-katalog-mobil-show.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.pesanan-mobil.index",
+    "uri": "pelanggan/pesanan-mobil",
+    "status": 200,
+    "file": "pelanggan--pelanggan-pesanan-mobil-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.pesanan-mobil.create",
+    "uri": "pelanggan/pesanan-mobil/create/1",
+    "status": 200,
+    "file": "pelanggan--pelanggan-pesanan-mobil-create.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.preorder.index",
+    "uri": "pelanggan/pre-order",
+    "status": 200,
+    "file": "pelanggan--pelanggan-preorder-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.kendaraan.index",
+    "uri": "pelanggan/kendaraan",
+    "status": 200,
+    "file": "pelanggan--pelanggan-kendaraan-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.kendaraan.create",
+    "uri": "pelanggan/kendaraan/create",
+    "status": 200,
+    "file": "pelanggan--pelanggan-kendaraan-create.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.booking.index",
+    "uri": "pelanggan/booking-mobil",
+    "status": 200,
+    "file": "pelanggan--pelanggan-booking-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.pengajuan-mobil.index",
+    "uri": "pelanggan/pengajuan-mobil",
+    "status": 200,
+    "file": "pelanggan--pelanggan-pengajuan-mobil-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.pengajuan-mobil.create",
+    "uri": "pelanggan/pengajuan-mobil/create",
+    "status": 200,
+    "file": "pelanggan--pelanggan-pengajuan-mobil-create.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.trade-in.index",
+    "uri": "pelanggan/trade-in",
+    "status": 200,
+    "file": "pelanggan--pelanggan-trade-in-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.trade-in.show",
+    "uri": "pelanggan/trade-in/1",
+    "status": 200,
+    "file": "pelanggan--pelanggan-trade-in-show.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.invoice.trade-in",
+    "uri": "pelanggan/invoice/trade-in/1",
+    "status": 200,
+    "file": "pelanggan--pelanggan-invoice-trade-in.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.test-drive.index",
+    "uri": "pelanggan/test-drive",
+    "status": 200,
+    "file": "pelanggan--pelanggan-test-drive-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.booking-servis.index",
+    "uri": "pelanggan/booking-servis",
+    "status": 200,
+    "file": "pelanggan--pelanggan-booking-servis-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.booking-cuci.index",
+    "uri": "pelanggan/booking-cuci",
+    "status": 200,
+    "file": "pelanggan--pelanggan-booking-cuci-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.servis.index",
+    "uri": "pelanggan/servis",
+    "status": 200,
+    "file": "pelanggan--pelanggan-servis-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.invoice.servis",
+    "uri": "pelanggan/invoice/servis/4",
+    "status": 200,
+    "file": "pelanggan--pelanggan-invoice-servis.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.invoice.carwash",
+    "uri": "pelanggan/invoice/car-wash/4",
+    "status": 200,
+    "file": "pelanggan--pelanggan-invoice-carwash.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.invoice.sparepart",
+    "uri": "pelanggan/invoice/sparepart/4",
+    "status": 200,
+    "file": "pelanggan--pelanggan-invoice-sparepart.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.poin",
+    "uri": "pelanggan/poin",
+    "status": 200,
+    "file": "pelanggan--pelanggan-poin.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.promo.index",
+    "uri": "pelanggan/promo",
+    "status": 200,
+    "file": "pelanggan--pelanggan-promo-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.pengingat-servis",
+    "uri": "pelanggan/pengingat-servis",
+    "status": 200,
+    "file": "pelanggan--pelanggan-pengingat-servis.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "owner.dashboard",
+    "uri": "owner/dashboard",
+    "status": 200,
+    "file": "super_admin--owner-dashboard.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "owner.sales-report",
+    "uri": "owner/penjualan",
+    "status": 200,
+    "file": "super_admin--owner-sales-report.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "owner.service-report",
+    "uri": "owner/servis",
+    "status": 200,
+    "file": "super_admin--owner-service-report.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "owner.performance-report",
+    "uri": "owner/performa-sales",
+    "status": 200,
+    "file": "super_admin--owner-performance-report.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "owner.inventory-report",
+    "uri": "owner/inventori-kendaraan",
+    "status": 200,
+    "file": "super_admin--owner-inventory-report.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "owner.sales-awards",
+    "uri": "owner/sales-awards",
+    "status": 200,
+    "file": "super_admin--owner-sales-awards.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "sales.dashboard",
+    "uri": "sales/dashboard",
+    "status": 200,
+    "file": "super_admin--sales-dashboard.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "sales.awards",
+    "uri": "sales/awards",
+    "status": 200,
+    "file": "super_admin--sales-awards.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "sales.leads.index",
+    "uri": "sales/prospek",
+    "status": 200,
+    "file": "super_admin--sales-leads-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "sales.leads.create",
+    "uri": "sales/prospek/create",
+    "status": 200,
+    "file": "super_admin--sales-leads-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "sales.test-drives.index",
+    "uri": "sales/test-drive",
+    "status": 200,
+    "file": "super_admin--sales-test-drives-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "sales.orders.index",
+    "uri": "sales/pesanan",
+    "status": 200,
+    "file": "super_admin--sales-orders-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "sales.sales.index",
+    "uri": "sales/penjualan",
+    "status": 200,
+    "file": "super_admin--sales-sales-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "sales.targets.index",
+    "uri": "sales/target",
+    "status": 200,
+    "file": "super_admin--sales-targets-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.dashboard",
+    "uri": "admin/dashboard",
+    "status": 200,
+    "file": "super_admin--admin-dashboard.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "account.password",
+    "uri": "akun/password",
+    "status": 200,
+    "file": "super_admin--account-password.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "notifications.index",
+    "uri": "notifikasi",
+    "status": 200,
+    "file": "super_admin--notifications-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.aktivitas.index",
+    "uri": "admin/aktivitas",
+    "status": 200,
+    "file": "super_admin--admin-aktivitas-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.katalog-showroom.index",
+    "uri": "admin/katalog-showroom",
+    "status": 200,
+    "file": "super_admin--admin-katalog-showroom-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.pdi.index",
+    "uri": "admin/pdi",
+    "status": 200,
+    "file": "super_admin--admin-pdi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.pengambilan.index",
+    "uri": "admin/jadwal-pengambilan",
+    "status": 200,
+    "file": "super_admin--admin-pengambilan-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.serah-terima.index",
+    "uri": "admin/serah-terima",
+    "status": 200,
+    "file": "super_admin--admin-serah-terima-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.transaksi.index",
+    "uri": "admin/transaksi",
+    "status": 200,
+    "file": "super_admin--admin-transaksi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.invoices.index",
+    "uri": "admin/invoice",
+    "status": 200,
+    "file": "super_admin--admin-invoices-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.garage.index",
+    "uri": "admin/garage",
+    "status": 200,
+    "file": "super_admin--admin-garage-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.roles.index",
+    "uri": "admin/roles-permissions",
+    "status": 200,
+    "file": "super_admin--admin-roles-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.audit-log.index",
+    "uri": "admin/audit-log",
+    "status": 200,
+    "file": "super_admin--admin-audit-log-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.finance-dashboard.index",
+    "uri": "admin/keuangan",
+    "status": 200,
+    "file": "super_admin--admin-finance-dashboard-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.payments.index",
+    "uri": "admin/pembayaran",
+    "status": 200,
+    "file": "super_admin--admin-payments-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.financial-adjustments.index",
+    "uri": "admin/financial-adjustments",
+    "status": 200,
+    "file": "super_admin--admin-financial-adjustments-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.payments.show",
+    "uri": "admin/pembayaran/1",
+    "status": 200,
+    "file": "super_admin--admin-payments-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.membership.index",
+    "uri": "admin/membership",
+    "status": 200,
+    "file": "super_admin--admin-membership-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.jenis-servis.index",
+    "uri": "admin/jenis-servis",
+    "status": 200,
+    "file": "super_admin--admin-jenis-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.jenis-servis.create",
+    "uri": "admin/jenis-servis/create",
+    "status": 200,
+    "file": "super_admin--admin-jenis-servis-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.paket-cuci.index",
+    "uri": "admin/paket-cuci",
+    "status": 200,
+    "file": "super_admin--admin-paket-cuci-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.paket-cuci.create",
+    "uri": "admin/paket-cuci/create",
+    "status": 200,
+    "file": "super_admin--admin-paket-cuci-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.promo-member.index",
+    "uri": "admin/promo-member",
+    "status": 200,
+    "file": "super_admin--admin-promo-member-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.promo-member.create",
+    "uri": "admin/promo-member/create",
+    "status": 200,
+    "file": "super_admin--admin-promo-member-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.promo-simulations.index",
+    "uri": "admin/promo-simulations",
+    "status": 200,
+    "file": "super_admin--admin-promo-simulations-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.promo-simulations.create",
+    "uri": "admin/promo-simulations/create",
+    "status": 200,
+    "file": "super_admin--admin-promo-simulations-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.promo-analytics.index",
+    "uri": "admin/promo-analytics",
+    "status": 200,
+    "file": "super_admin--admin-promo-analytics-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.laporan-servis.index",
+    "uri": "admin/laporan-servis",
+    "status": 200,
+    "file": "super_admin--admin-laporan-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.pengaturan.index",
+    "uri": "admin/pengaturan",
+    "status": 200,
+    "file": "super_admin--admin-pengaturan-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.pelanggan.index",
+    "uri": "admin/pelanggan",
+    "status": 200,
+    "file": "super_admin--admin-pelanggan-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.pelanggan.create",
+    "uri": "admin/pelanggan/create",
+    "status": 200,
+    "file": "super_admin--admin-pelanggan-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.pelanggan.show",
+    "uri": "admin/pelanggan/1",
+    "status": 200,
+    "file": "super_admin--admin-pelanggan-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.pelanggan.edit",
+    "uri": "admin/pelanggan/1/edit",
+    "status": 200,
+    "file": "super_admin--admin-pelanggan-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.petugas.index",
+    "uri": "admin/petugas",
+    "status": 200,
+    "file": "super_admin--admin-petugas-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.petugas.create",
+    "uri": "admin/petugas/create",
+    "status": 200,
+    "file": "super_admin--admin-petugas-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.petugas.show",
+    "uri": "admin/petugas/1",
+    "status": 200,
+    "file": "super_admin--admin-petugas-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.petugas.edit",
+    "uri": "admin/petugas/1/edit",
+    "status": 200,
+    "file": "super_admin--admin-petugas-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.kategori-sparepart.index",
+    "uri": "admin/kategori-sparepart",
+    "status": 200,
+    "file": "super_admin--admin-kategori-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.kategori-sparepart.create",
+    "uri": "admin/kategori-sparepart/create",
+    "status": 200,
+    "file": "super_admin--admin-kategori-sparepart-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.kategori-sparepart.edit",
+    "uri": "admin/kategori-sparepart/1/edit",
+    "status": 200,
+    "file": "super_admin--admin-kategori-sparepart-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.supplier.index",
+    "uri": "admin/supplier",
+    "status": 200,
+    "file": "super_admin--admin-supplier-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.supplier.create",
+    "uri": "admin/supplier/create",
+    "status": 200,
+    "file": "super_admin--admin-supplier-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.supplier.show",
+    "uri": "admin/supplier/1",
+    "status": 200,
+    "file": "super_admin--admin-supplier-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.supplier.edit",
+    "uri": "admin/supplier/1/edit",
+    "status": 200,
+    "file": "super_admin--admin-supplier-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.sparepart.index",
+    "uri": "admin/sparepart",
+    "status": 200,
+    "file": "super_admin--admin-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.sparepart.create",
+    "uri": "admin/sparepart/create",
+    "status": 200,
+    "file": "super_admin--admin-sparepart-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.sparepart.show",
+    "uri": "admin/sparepart/1",
+    "status": 200,
+    "file": "super_admin--admin-sparepart-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.sparepart.edit",
+    "uri": "admin/sparepart/1/edit",
+    "status": 200,
+    "file": "super_admin--admin-sparepart-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.inventory.stock",
+    "uri": "admin/inventory/stok",
+    "status": 200,
+    "file": "super_admin--admin-inventory-stock.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.inventory.history",
+    "uri": "admin/inventory/riwayat",
+    "status": 200,
+    "file": "super_admin--admin-inventory-history.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.inventory.adjustment",
+    "uri": "admin/inventory/penyesuaian/1",
+    "status": 200,
+    "file": "super_admin--admin-inventory-adjustment.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.stok-masuk.index",
+    "uri": "admin/stok-masuk",
+    "status": 200,
+    "file": "super_admin--admin-stok-masuk-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.stok-masuk.create",
+    "uri": "admin/stok-masuk/create",
+    "status": 200,
+    "file": "super_admin--admin-stok-masuk-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.notifikasi.index",
+    "uri": "admin/notifikasi",
+    "status": 200,
+    "file": "super_admin--admin-notifikasi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.mobil.index",
+    "uri": "admin/mobil",
+    "status": 200,
+    "file": "super_admin--admin-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.mobil.create",
+    "uri": "admin/mobil/create",
+    "status": 200,
+    "file": "super_admin--admin-mobil-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.mobil.show",
+    "uri": "admin/mobil/1",
+    "status": 200,
+    "file": "super_admin--admin-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.mobil.edit",
+    "uri": "admin/mobil/1/edit",
+    "status": 200,
+    "file": "super_admin--admin-mobil-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.mobil.stock",
+    "uri": "admin/mobil/1/stok",
+    "status": 200,
+    "file": "super_admin--admin-mobil-stock.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.preorder-mobil.index",
+    "uri": "admin/pre-order-mobil",
+    "status": 200,
+    "file": "super_admin--admin-preorder-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.pesanan-mobil.index",
+    "uri": "admin/pesanan-mobil",
+    "status": 200,
+    "file": "super_admin--admin-pesanan-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.booking.index",
+    "uri": "admin/booking-mobil",
+    "status": 200,
+    "file": "super_admin--admin-booking-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.booking.show",
+    "uri": "admin/booking-mobil/1",
+    "status": 200,
+    "file": "super_admin--admin-booking-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.pengajuan-mobil.index",
+    "uri": "admin/pengajuan-mobil",
+    "status": 200,
+    "file": "super_admin--admin-pengajuan-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.pengajuan-mobil.show",
+    "uri": "admin/pengajuan-mobil/1",
+    "status": 200,
+    "file": "super_admin--admin-pengajuan-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.trade-in.index",
+    "uri": "admin/trade-in",
+    "status": 200,
+    "file": "super_admin--admin-trade-in-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.trade-in.show",
+    "uri": "admin/trade-in/1",
+    "status": 200,
+    "file": "super_admin--admin-trade-in-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.invoice.trade-in",
+    "uri": "admin/invoice/trade-in/1",
+    "status": 200,
+    "file": "super_admin--admin-invoice-trade-in.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.trade-in.payment.create",
+    "uri": "admin/transaksi-trade-in/4/pembayaran/create",
+    "status": 200,
+    "file": "super_admin--admin-trade-in-payment-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.test-drive.index",
+    "uri": "admin/test-drive",
+    "status": 200,
+    "file": "super_admin--admin-test-drive-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.test-drive.show",
+    "uri": "admin/test-drive/1",
+    "status": 200,
+    "file": "super_admin--admin-test-drive-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.booking-servis.index",
+    "uri": "admin/booking-servis",
+    "status": 200,
+    "file": "super_admin--admin-booking-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.booking-servis.show",
+    "uri": "admin/booking-servis/1",
+    "status": 200,
+    "file": "super_admin--admin-booking-servis-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.servis.index",
+    "uri": "admin/servis",
+    "status": 200,
+    "file": "super_admin--admin-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.servis.schedule",
+    "uri": "admin/servis/jadwal",
+    "status": 200,
+    "file": "super_admin--admin-servis-schedule.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.servis.personnel",
+    "uri": "admin/servis/personel",
+    "status": 200,
+    "file": "super_admin--admin-servis-personnel.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.servis.pemeriksaan",
+    "uri": "admin/servis/1/pemeriksaan",
+    "status": 200,
+    "file": "super_admin--admin-servis-pemeriksaan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.servis.persetujuan",
+    "uri": "admin/servis/1/persetujuan",
+    "status": 200,
+    "file": "super_admin--admin-servis-persetujuan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.servis.pengerjaan",
+    "uri": "admin/servis/1/pengerjaan",
+    "status": 200,
+    "file": "super_admin--admin-servis-pengerjaan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.servis.quality-control",
+    "uri": "admin/servis/1/quality-control",
+    "status": 200,
+    "file": "super_admin--admin-servis-quality-control.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.servis.finalisasi",
+    "uri": "admin/servis/1/finalisasi",
+    "status": 200,
+    "file": "super_admin--admin-servis-finalisasi.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.payment.create",
+    "uri": "admin/transaksi-servis/4/pembayaran/create",
+    "status": 200,
+    "file": "super_admin--admin-payment-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.invoice.servis",
+    "uri": "admin/invoice/servis/4",
+    "status": 200,
+    "file": "super_admin--admin-invoice-servis.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.invoice.carwash",
+    "uri": "admin/invoice/car-wash/4",
+    "status": 200,
+    "file": "super_admin--admin-invoice-carwash.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.invoice.sparepart",
+    "uri": "admin/invoice/sparepart/4",
+    "status": 200,
+    "file": "super_admin--admin-invoice-sparepart.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.booking-cuci.index",
+    "uri": "admin/booking-cuci",
+    "status": 200,
+    "file": "super_admin--admin-booking-cuci-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.booking-cuci.show",
+    "uri": "admin/booking-cuci/1",
+    "status": 200,
+    "file": "super_admin--admin-booking-cuci-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.penjualan-sparepart.index",
+    "uri": "admin/penjualan-sparepart",
+    "status": 200,
+    "file": "super_admin--admin-penjualan-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.penjualan-sparepart.create",
+    "uri": "admin/penjualan-sparepart/create",
+    "status": 200,
+    "file": "super_admin--admin-penjualan-sparepart-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.penjualan-sparepart.show",
+    "uri": "admin/penjualan-sparepart/1",
+    "status": 200,
+    "file": "super_admin--admin-penjualan-sparepart-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.penjualan-mobil.index",
+    "uri": "admin/penjualan-mobil",
+    "status": 200,
+    "file": "super_admin--admin-penjualan-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.penjualan-mobil.create",
+    "uri": "admin/penjualan-mobil/create",
+    "status": 200,
+    "file": "super_admin--admin-penjualan-mobil-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.penjualan-mobil.show",
+    "uri": "admin/penjualan-mobil/1",
+    "status": 200,
+    "file": "super_admin--admin-penjualan-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.sparepart.index",
+    "uri": "petugas/sparepart",
+    "status": 200,
+    "file": "super_admin--petugas-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.sparepart.show",
+    "uri": "petugas/sparepart/1",
+    "status": 200,
+    "file": "super_admin--petugas-sparepart-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.mobil.index",
+    "uri": "petugas/mobil",
+    "status": 200,
+    "file": "super_admin--petugas-mobil-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.mobil.show",
+    "uri": "petugas/mobil/1",
+    "status": 200,
+    "file": "super_admin--petugas-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.booking.index",
+    "uri": "petugas/booking-mobil",
+    "status": 200,
+    "file": "super_admin--petugas-booking-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.booking.show",
+    "uri": "petugas/booking-mobil/1",
+    "status": 200,
+    "file": "super_admin--petugas-booking-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.pengajuan-mobil.index",
+    "uri": "petugas/pengajuan-mobil",
+    "status": 200,
+    "file": "super_admin--petugas-pengajuan-mobil-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.pengajuan-mobil.show",
+    "uri": "petugas/pengajuan-mobil/1",
+    "status": 200,
+    "file": "super_admin--petugas-pengajuan-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.trade-in.index",
+    "uri": "petugas/trade-in",
+    "status": 200,
+    "file": "super_admin--petugas-trade-in-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.trade-in.show",
+    "uri": "petugas/trade-in/1",
+    "status": 200,
+    "file": "super_admin--petugas-trade-in-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.invoice.trade-in",
+    "uri": "petugas/invoice/trade-in/1",
+    "status": 200,
+    "file": "super_admin--petugas-invoice-trade-in.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.trade-in.payment.create",
+    "uri": "petugas/transaksi-trade-in/4/pembayaran/create",
+    "status": 200,
+    "file": "super_admin--petugas-trade-in-payment-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.test-drive.index",
+    "uri": "petugas/test-drive",
+    "status": 200,
+    "file": "super_admin--petugas-test-drive-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.test-drive.show",
+    "uri": "petugas/test-drive/1",
+    "status": 200,
+    "file": "super_admin--petugas-test-drive-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.booking-servis.index",
+    "uri": "petugas/booking-servis",
+    "status": 200,
+    "file": "super_admin--petugas-booking-servis-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.booking-servis.show",
+    "uri": "petugas/booking-servis/1",
+    "status": 200,
+    "file": "super_admin--petugas-booking-servis-show.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.servis.index",
+    "uri": "petugas/servis",
+    "status": 200,
+    "file": "super_admin--petugas-servis-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.servis.pemeriksaan",
+    "uri": "petugas/servis/1/pemeriksaan",
+    "status": 200,
+    "file": "super_admin--petugas-servis-pemeriksaan.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.servis.persetujuan",
+    "uri": "petugas/servis/1/persetujuan",
+    "status": 200,
+    "file": "super_admin--petugas-servis-persetujuan.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.servis.pengerjaan",
+    "uri": "petugas/servis/1/pengerjaan",
+    "status": 200,
+    "file": "super_admin--petugas-servis-pengerjaan.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.servis.quality-control",
+    "uri": "petugas/servis/1/quality-control",
+    "status": 200,
+    "file": "super_admin--petugas-servis-quality-control.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.servis.finalisasi",
+    "uri": "petugas/servis/1/finalisasi",
+    "status": 200,
+    "file": "super_admin--petugas-servis-finalisasi.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.payment.create",
+    "uri": "petugas/transaksi-servis/4/pembayaran/create",
+    "status": 200,
+    "file": "super_admin--petugas-payment-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.invoice.servis",
+    "uri": "petugas/invoice/servis/4",
+    "status": 200,
+    "file": "super_admin--petugas-invoice-servis.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.invoice.carwash",
+    "uri": "petugas/invoice/car-wash/4",
+    "status": 200,
+    "file": "super_admin--petugas-invoice-carwash.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.invoice.sparepart",
+    "uri": "petugas/invoice/sparepart/4",
+    "status": 200,
+    "file": "super_admin--petugas-invoice-sparepart.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.booking-cuci.index",
+    "uri": "petugas/booking-cuci",
+    "status": 200,
+    "file": "super_admin--petugas-booking-cuci-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.booking-cuci.show",
+    "uri": "petugas/booking-cuci/1",
+    "status": 200,
+    "file": "super_admin--petugas-booking-cuci-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.penjualan-sparepart.index",
+    "uri": "petugas/penjualan-sparepart",
+    "status": 200,
+    "file": "super_admin--petugas-penjualan-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.penjualan-sparepart.create",
+    "uri": "petugas/penjualan-sparepart/create",
+    "status": 200,
+    "file": "super_admin--petugas-penjualan-sparepart-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.penjualan-sparepart.show",
+    "uri": "petugas/penjualan-sparepart/1",
+    "status": 200,
+    "file": "super_admin--petugas-penjualan-sparepart-show.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.penjualan-mobil.index",
+    "uri": "petugas/penjualan-mobil",
+    "status": 200,
+    "file": "super_admin--petugas-penjualan-mobil-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.penjualan-mobil.create",
+    "uri": "petugas/penjualan-mobil/create",
+    "status": 200,
+    "file": "super_admin--petugas-penjualan-mobil-create.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.penjualan-mobil.show",
+    "uri": "petugas/penjualan-mobil/1",
+    "status": 200,
+    "file": "super_admin--petugas-penjualan-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "staff.dashboard",
+    "uri": "staff/dashboard",
+    "status": 200,
+    "file": "owner--staff-dashboard.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "owner.dashboard",
+    "uri": "owner/dashboard",
+    "status": 200,
+    "file": "owner--owner-dashboard.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "owner.sales-report",
+    "uri": "owner/penjualan",
+    "status": 200,
+    "file": "owner--owner-sales-report.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "owner.service-report",
+    "uri": "owner/servis",
+    "status": 200,
+    "file": "owner--owner-service-report.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "owner.performance-report",
+    "uri": "owner/performa-sales",
+    "status": 200,
+    "file": "owner--owner-performance-report.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "owner.inventory-report",
+    "uri": "owner/inventori-kendaraan",
+    "status": 200,
+    "file": "owner--owner-inventory-report.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "owner.sales-awards",
+    "uri": "owner/sales-awards",
+    "status": 200,
+    "file": "owner--owner-sales-awards.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "account.password",
+    "uri": "akun/password",
+    "status": 200,
+    "file": "owner--account-password.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "notifications.index",
+    "uri": "notifikasi",
+    "status": 200,
+    "file": "owner--notifications-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.aktivitas.index",
+    "uri": "admin/aktivitas",
+    "status": 200,
+    "file": "owner--admin-aktivitas-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.katalog-showroom.index",
+    "uri": "admin/katalog-showroom",
+    "status": 200,
+    "file": "owner--admin-katalog-showroom-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.pdi.index",
+    "uri": "admin/pdi",
+    "status": 200,
+    "file": "owner--admin-pdi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.pengambilan.index",
+    "uri": "admin/jadwal-pengambilan",
+    "status": 200,
+    "file": "owner--admin-pengambilan-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.serah-terima.index",
+    "uri": "admin/serah-terima",
+    "status": 200,
+    "file": "owner--admin-serah-terima-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.transaksi.index",
+    "uri": "admin/transaksi",
+    "status": 200,
+    "file": "owner--admin-transaksi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.invoices.index",
+    "uri": "admin/invoice",
+    "status": 200,
+    "file": "owner--admin-invoices-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.garage.index",
+    "uri": "admin/garage",
+    "status": 200,
+    "file": "owner--admin-garage-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.finance-dashboard.index",
+    "uri": "admin/keuangan",
+    "status": 200,
+    "file": "owner--admin-finance-dashboard-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.payments.index",
+    "uri": "admin/pembayaran",
+    "status": 200,
+    "file": "owner--admin-payments-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.financial-adjustments.index",
+    "uri": "admin/financial-adjustments",
+    "status": 200,
+    "file": "owner--admin-financial-adjustments-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.payments.show",
+    "uri": "admin/pembayaran/1",
+    "status": 200,
+    "file": "owner--admin-payments-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.membership.index",
+    "uri": "admin/membership",
+    "status": 200,
+    "file": "owner--admin-membership-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.jenis-servis.index",
+    "uri": "admin/jenis-servis",
+    "status": 200,
+    "file": "owner--admin-jenis-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.jenis-servis.create",
+    "uri": "admin/jenis-servis/create",
+    "status": 200,
+    "file": "owner--admin-jenis-servis-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.paket-cuci.index",
+    "uri": "admin/paket-cuci",
+    "status": 200,
+    "file": "owner--admin-paket-cuci-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.paket-cuci.create",
+    "uri": "admin/paket-cuci/create",
+    "status": 200,
+    "file": "owner--admin-paket-cuci-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.promo-member.index",
+    "uri": "admin/promo-member",
+    "status": 200,
+    "file": "owner--admin-promo-member-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.promo-member.create",
+    "uri": "admin/promo-member/create",
+    "status": 200,
+    "file": "owner--admin-promo-member-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.promo-simulations.index",
+    "uri": "admin/promo-simulations",
+    "status": 200,
+    "file": "owner--admin-promo-simulations-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.promo-simulations.create",
+    "uri": "admin/promo-simulations/create",
+    "status": 200,
+    "file": "owner--admin-promo-simulations-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.promo-analytics.index",
+    "uri": "admin/promo-analytics",
+    "status": 200,
+    "file": "owner--admin-promo-analytics-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.laporan-servis.index",
+    "uri": "admin/laporan-servis",
+    "status": 200,
+    "file": "owner--admin-laporan-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.pelanggan.index",
+    "uri": "admin/pelanggan",
+    "status": 200,
+    "file": "owner--admin-pelanggan-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.pelanggan.create",
+    "uri": "admin/pelanggan/create",
+    "status": 200,
+    "file": "owner--admin-pelanggan-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.pelanggan.show",
+    "uri": "admin/pelanggan/1",
+    "status": 200,
+    "file": "owner--admin-pelanggan-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.pelanggan.edit",
+    "uri": "admin/pelanggan/1/edit",
+    "status": 200,
+    "file": "owner--admin-pelanggan-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.kategori-sparepart.index",
+    "uri": "admin/kategori-sparepart",
+    "status": 200,
+    "file": "owner--admin-kategori-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.kategori-sparepart.create",
+    "uri": "admin/kategori-sparepart/create",
+    "status": 200,
+    "file": "owner--admin-kategori-sparepart-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.kategori-sparepart.edit",
+    "uri": "admin/kategori-sparepart/1/edit",
+    "status": 200,
+    "file": "owner--admin-kategori-sparepart-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.supplier.index",
+    "uri": "admin/supplier",
+    "status": 200,
+    "file": "owner--admin-supplier-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.supplier.create",
+    "uri": "admin/supplier/create",
+    "status": 200,
+    "file": "owner--admin-supplier-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.supplier.show",
+    "uri": "admin/supplier/1",
+    "status": 200,
+    "file": "owner--admin-supplier-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.supplier.edit",
+    "uri": "admin/supplier/1/edit",
+    "status": 200,
+    "file": "owner--admin-supplier-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.sparepart.index",
+    "uri": "admin/sparepart",
+    "status": 200,
+    "file": "owner--admin-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.sparepart.create",
+    "uri": "admin/sparepart/create",
+    "status": 200,
+    "file": "owner--admin-sparepart-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.sparepart.show",
+    "uri": "admin/sparepart/1",
+    "status": 200,
+    "file": "owner--admin-sparepart-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.sparepart.edit",
+    "uri": "admin/sparepart/1/edit",
+    "status": 200,
+    "file": "owner--admin-sparepart-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.inventory.stock",
+    "uri": "admin/inventory/stok",
+    "status": 200,
+    "file": "owner--admin-inventory-stock.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.inventory.history",
+    "uri": "admin/inventory/riwayat",
+    "status": 200,
+    "file": "owner--admin-inventory-history.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.inventory.adjustment",
+    "uri": "admin/inventory/penyesuaian/1",
+    "status": 200,
+    "file": "owner--admin-inventory-adjustment.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.stok-masuk.index",
+    "uri": "admin/stok-masuk",
+    "status": 200,
+    "file": "owner--admin-stok-masuk-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.stok-masuk.create",
+    "uri": "admin/stok-masuk/create",
+    "status": 200,
+    "file": "owner--admin-stok-masuk-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.notifikasi.index",
+    "uri": "admin/notifikasi",
+    "status": 200,
+    "file": "owner--admin-notifikasi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.mobil.index",
+    "uri": "admin/mobil",
+    "status": 200,
+    "file": "owner--admin-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.mobil.create",
+    "uri": "admin/mobil/create",
+    "status": 200,
+    "file": "owner--admin-mobil-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.mobil.show",
+    "uri": "admin/mobil/1",
+    "status": 200,
+    "file": "owner--admin-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.mobil.edit",
+    "uri": "admin/mobil/1/edit",
+    "status": 200,
+    "file": "owner--admin-mobil-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.mobil.stock",
+    "uri": "admin/mobil/1/stok",
+    "status": 200,
+    "file": "owner--admin-mobil-stock.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.preorder-mobil.index",
+    "uri": "admin/pre-order-mobil",
+    "status": 200,
+    "file": "owner--admin-preorder-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.pesanan-mobil.index",
+    "uri": "admin/pesanan-mobil",
+    "status": 200,
+    "file": "owner--admin-pesanan-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.booking.index",
+    "uri": "admin/booking-mobil",
+    "status": 200,
+    "file": "owner--admin-booking-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.booking.show",
+    "uri": "admin/booking-mobil/1",
+    "status": 200,
+    "file": "owner--admin-booking-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.pengajuan-mobil.index",
+    "uri": "admin/pengajuan-mobil",
+    "status": 200,
+    "file": "owner--admin-pengajuan-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.pengajuan-mobil.show",
+    "uri": "admin/pengajuan-mobil/1",
+    "status": 200,
+    "file": "owner--admin-pengajuan-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.trade-in.index",
+    "uri": "admin/trade-in",
+    "status": 200,
+    "file": "owner--admin-trade-in-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.trade-in.show",
+    "uri": "admin/trade-in/1",
+    "status": 200,
+    "file": "owner--admin-trade-in-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.invoice.trade-in",
+    "uri": "admin/invoice/trade-in/1",
+    "status": 200,
+    "file": "owner--admin-invoice-trade-in.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.trade-in.payment.create",
+    "uri": "admin/transaksi-trade-in/4/pembayaran/create",
+    "status": 200,
+    "file": "owner--admin-trade-in-payment-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.test-drive.index",
+    "uri": "admin/test-drive",
+    "status": 200,
+    "file": "owner--admin-test-drive-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.test-drive.show",
+    "uri": "admin/test-drive/1",
+    "status": 200,
+    "file": "owner--admin-test-drive-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.booking-servis.index",
+    "uri": "admin/booking-servis",
+    "status": 200,
+    "file": "owner--admin-booking-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.booking-servis.show",
+    "uri": "admin/booking-servis/1",
+    "status": 200,
+    "file": "owner--admin-booking-servis-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.servis.index",
+    "uri": "admin/servis",
+    "status": 200,
+    "file": "owner--admin-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.servis.schedule",
+    "uri": "admin/servis/jadwal",
+    "status": 200,
+    "file": "owner--admin-servis-schedule.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.servis.personnel",
+    "uri": "admin/servis/personel",
+    "status": 200,
+    "file": "owner--admin-servis-personnel.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.servis.pemeriksaan",
+    "uri": "admin/servis/1/pemeriksaan",
+    "status": 200,
+    "file": "owner--admin-servis-pemeriksaan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.servis.persetujuan",
+    "uri": "admin/servis/1/persetujuan",
+    "status": 200,
+    "file": "owner--admin-servis-persetujuan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.servis.pengerjaan",
+    "uri": "admin/servis/1/pengerjaan",
+    "status": 200,
+    "file": "owner--admin-servis-pengerjaan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.servis.quality-control",
+    "uri": "admin/servis/1/quality-control",
+    "status": 200,
+    "file": "owner--admin-servis-quality-control.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.servis.finalisasi",
+    "uri": "admin/servis/1/finalisasi",
+    "status": 200,
+    "file": "owner--admin-servis-finalisasi.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.payment.create",
+    "uri": "admin/transaksi-servis/4/pembayaran/create",
+    "status": 200,
+    "file": "owner--admin-payment-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.invoice.servis",
+    "uri": "admin/invoice/servis/4",
+    "status": 200,
+    "file": "owner--admin-invoice-servis.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.invoice.carwash",
+    "uri": "admin/invoice/car-wash/4",
+    "status": 200,
+    "file": "owner--admin-invoice-carwash.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.invoice.sparepart",
+    "uri": "admin/invoice/sparepart/4",
+    "status": 200,
+    "file": "owner--admin-invoice-sparepart.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.booking-cuci.index",
+    "uri": "admin/booking-cuci",
+    "status": 200,
+    "file": "owner--admin-booking-cuci-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.booking-cuci.show",
+    "uri": "admin/booking-cuci/1",
+    "status": 200,
+    "file": "owner--admin-booking-cuci-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.penjualan-sparepart.index",
+    "uri": "admin/penjualan-sparepart",
+    "status": 200,
+    "file": "owner--admin-penjualan-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.penjualan-sparepart.create",
+    "uri": "admin/penjualan-sparepart/create",
+    "status": 200,
+    "file": "owner--admin-penjualan-sparepart-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.penjualan-sparepart.show",
+    "uri": "admin/penjualan-sparepart/1",
+    "status": 200,
+    "file": "owner--admin-penjualan-sparepart-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.penjualan-mobil.index",
+    "uri": "admin/penjualan-mobil",
+    "status": 200,
+    "file": "owner--admin-penjualan-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.penjualan-mobil.create",
+    "uri": "admin/penjualan-mobil/create",
+    "status": 200,
+    "file": "owner--admin-penjualan-mobil-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "owner",
+    "route": "admin.penjualan-mobil.show",
+    "uri": "admin/penjualan-mobil/1",
+    "status": 200,
+    "file": "owner--admin-penjualan-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "staff.dashboard",
+    "uri": "staff/dashboard",
+    "status": 200,
+    "file": "sales--staff-dashboard.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "sales.dashboard",
+    "uri": "sales/dashboard",
+    "status": 200,
+    "file": "sales--sales-dashboard.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "sales.awards",
+    "uri": "sales/awards",
+    "status": 200,
+    "file": "sales--sales-awards.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "sales.leads.index",
+    "uri": "sales/prospek",
+    "status": 200,
+    "file": "sales--sales-leads-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "sales.leads.create",
+    "uri": "sales/prospek/create",
+    "status": 200,
+    "file": "sales--sales-leads-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "sales.test-drives.index",
+    "uri": "sales/test-drive",
+    "status": 200,
+    "file": "sales--sales-test-drives-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "sales.orders.index",
+    "uri": "sales/pesanan",
+    "status": 200,
+    "file": "sales--sales-orders-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "sales.sales.index",
+    "uri": "sales/penjualan",
+    "status": 200,
+    "file": "sales--sales-sales-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "sales.targets.index",
+    "uri": "sales/target",
+    "status": 200,
+    "file": "sales--sales-targets-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "account.password",
+    "uri": "akun/password",
+    "status": 200,
+    "file": "sales--account-password.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "notifications.index",
+    "uri": "notifikasi",
+    "status": 200,
+    "file": "sales--notifications-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.pdi.index",
+    "uri": "admin/pdi",
+    "status": 200,
+    "file": "sales--admin-pdi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.pengambilan.index",
+    "uri": "admin/jadwal-pengambilan",
+    "status": 200,
+    "file": "sales--admin-pengambilan-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.serah-terima.index",
+    "uri": "admin/serah-terima",
+    "status": 200,
+    "file": "sales--admin-serah-terima-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.garage.index",
+    "uri": "admin/garage",
+    "status": 200,
+    "file": "sales--admin-garage-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.membership.index",
+    "uri": "admin/membership",
+    "status": 200,
+    "file": "sales--admin-membership-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.pelanggan.index",
+    "uri": "admin/pelanggan",
+    "status": 200,
+    "file": "sales--admin-pelanggan-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.pelanggan.create",
+    "uri": "admin/pelanggan/create",
+    "status": 200,
+    "file": "sales--admin-pelanggan-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.pelanggan.show",
+    "uri": "admin/pelanggan/1",
+    "status": 200,
+    "file": "sales--admin-pelanggan-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.pelanggan.edit",
+    "uri": "admin/pelanggan/1/edit",
+    "status": 200,
+    "file": "sales--admin-pelanggan-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.notifikasi.index",
+    "uri": "admin/notifikasi",
+    "status": 200,
+    "file": "sales--admin-notifikasi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.preorder-mobil.index",
+    "uri": "admin/pre-order-mobil",
+    "status": 200,
+    "file": "sales--admin-preorder-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.pesanan-mobil.index",
+    "uri": "admin/pesanan-mobil",
+    "status": 200,
+    "file": "sales--admin-pesanan-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.booking.index",
+    "uri": "admin/booking-mobil",
+    "status": 200,
+    "file": "sales--admin-booking-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.booking.show",
+    "uri": "admin/booking-mobil/1",
+    "status": 200,
+    "file": "sales--admin-booking-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.pengajuan-mobil.index",
+    "uri": "admin/pengajuan-mobil",
+    "status": 200,
+    "file": "sales--admin-pengajuan-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.pengajuan-mobil.show",
+    "uri": "admin/pengajuan-mobil/1",
+    "status": 200,
+    "file": "sales--admin-pengajuan-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.trade-in.index",
+    "uri": "admin/trade-in",
+    "status": 200,
+    "file": "sales--admin-trade-in-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.trade-in.show",
+    "uri": "admin/trade-in/1",
+    "status": 200,
+    "file": "sales--admin-trade-in-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.test-drive.index",
+    "uri": "admin/test-drive",
+    "status": 200,
+    "file": "sales--admin-test-drive-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.test-drive.show",
+    "uri": "admin/test-drive/1",
+    "status": 200,
+    "file": "sales--admin-test-drive-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.penjualan-sparepart.index",
+    "uri": "admin/penjualan-sparepart",
+    "status": 200,
+    "file": "sales--admin-penjualan-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.penjualan-sparepart.create",
+    "uri": "admin/penjualan-sparepart/create",
+    "status": 200,
+    "file": "sales--admin-penjualan-sparepart-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.penjualan-sparepart.show",
+    "uri": "admin/penjualan-sparepart/1",
+    "status": 200,
+    "file": "sales--admin-penjualan-sparepart-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.penjualan-mobil.index",
+    "uri": "admin/penjualan-mobil",
+    "status": 200,
+    "file": "sales--admin-penjualan-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.penjualan-mobil.create",
+    "uri": "admin/penjualan-mobil/create",
+    "status": 200,
+    "file": "sales--admin-penjualan-mobil-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "sales",
+    "route": "admin.penjualan-mobil.show",
+    "uri": "admin/penjualan-mobil/1",
+    "status": 200,
+    "file": "sales--admin-penjualan-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "staff.dashboard",
+    "uri": "staff/dashboard",
+    "status": 200,
+    "file": "service_advisor--staff-dashboard.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "account.password",
+    "uri": "akun/password",
+    "status": 200,
+    "file": "service_advisor--account-password.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "notifications.index",
+    "uri": "notifikasi",
+    "status": 200,
+    "file": "service_advisor--notifications-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.garage.index",
+    "uri": "admin/garage",
+    "status": 200,
+    "file": "service_advisor--admin-garage-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.membership.index",
+    "uri": "admin/membership",
+    "status": 200,
+    "file": "service_advisor--admin-membership-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.jenis-servis.index",
+    "uri": "admin/jenis-servis",
+    "status": 200,
+    "file": "service_advisor--admin-jenis-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.jenis-servis.create",
+    "uri": "admin/jenis-servis/create",
+    "status": 200,
+    "file": "service_advisor--admin-jenis-servis-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.paket-cuci.index",
+    "uri": "admin/paket-cuci",
+    "status": 200,
+    "file": "service_advisor--admin-paket-cuci-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.paket-cuci.create",
+    "uri": "admin/paket-cuci/create",
+    "status": 200,
+    "file": "service_advisor--admin-paket-cuci-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.pelanggan.index",
+    "uri": "admin/pelanggan",
+    "status": 200,
+    "file": "service_advisor--admin-pelanggan-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.pelanggan.create",
+    "uri": "admin/pelanggan/create",
+    "status": 200,
+    "file": "service_advisor--admin-pelanggan-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.pelanggan.show",
+    "uri": "admin/pelanggan/1",
+    "status": 200,
+    "file": "service_advisor--admin-pelanggan-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.pelanggan.edit",
+    "uri": "admin/pelanggan/1/edit",
+    "status": 200,
+    "file": "service_advisor--admin-pelanggan-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.notifikasi.index",
+    "uri": "admin/notifikasi",
+    "status": 200,
+    "file": "service_advisor--admin-notifikasi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.booking-servis.index",
+    "uri": "admin/booking-servis",
+    "status": 200,
+    "file": "service_advisor--admin-booking-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.booking-servis.show",
+    "uri": "admin/booking-servis/1",
+    "status": 200,
+    "file": "service_advisor--admin-booking-servis-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.servis.index",
+    "uri": "admin/servis",
+    "status": 200,
+    "file": "service_advisor--admin-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.servis.schedule",
+    "uri": "admin/servis/jadwal",
+    "status": 200,
+    "file": "service_advisor--admin-servis-schedule.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.servis.personnel",
+    "uri": "admin/servis/personel",
+    "status": 200,
+    "file": "service_advisor--admin-servis-personnel.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.servis.pemeriksaan",
+    "uri": "admin/servis/1/pemeriksaan",
+    "status": 200,
+    "file": "service_advisor--admin-servis-pemeriksaan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.servis.persetujuan",
+    "uri": "admin/servis/1/persetujuan",
+    "status": 200,
+    "file": "service_advisor--admin-servis-persetujuan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.servis.pengerjaan",
+    "uri": "admin/servis/1/pengerjaan",
+    "status": 200,
+    "file": "service_advisor--admin-servis-pengerjaan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.servis.quality-control",
+    "uri": "admin/servis/1/quality-control",
+    "status": 200,
+    "file": "service_advisor--admin-servis-quality-control.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.servis.finalisasi",
+    "uri": "admin/servis/1/finalisasi",
+    "status": 200,
+    "file": "service_advisor--admin-servis-finalisasi.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.booking-cuci.index",
+    "uri": "admin/booking-cuci",
+    "status": 200,
+    "file": "service_advisor--admin-booking-cuci-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.booking-cuci.show",
+    "uri": "admin/booking-cuci/1",
+    "status": 200,
+    "file": "service_advisor--admin-booking-cuci-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "petugas.booking-servis.index",
+    "uri": "petugas/booking-servis",
+    "status": 200,
+    "file": "service_advisor--petugas-booking-servis-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "petugas.booking-servis.show",
+    "uri": "petugas/booking-servis/1",
+    "status": 200,
+    "file": "service_advisor--petugas-booking-servis-show.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "petugas.servis.index",
+    "uri": "petugas/servis",
+    "status": 200,
+    "file": "service_advisor--petugas-servis-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "petugas.servis.pemeriksaan",
+    "uri": "petugas/servis/1/pemeriksaan",
+    "status": 200,
+    "file": "service_advisor--petugas-servis-pemeriksaan.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "petugas.servis.persetujuan",
+    "uri": "petugas/servis/1/persetujuan",
+    "status": 200,
+    "file": "service_advisor--petugas-servis-persetujuan.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "petugas.servis.pengerjaan",
+    "uri": "petugas/servis/1/pengerjaan",
+    "status": 200,
+    "file": "service_advisor--petugas-servis-pengerjaan.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "petugas.servis.quality-control",
+    "uri": "petugas/servis/1/quality-control",
+    "status": 200,
+    "file": "service_advisor--petugas-servis-quality-control.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "petugas.servis.finalisasi",
+    "uri": "petugas/servis/1/finalisasi",
+    "status": 200,
+    "file": "service_advisor--petugas-servis-finalisasi.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "petugas.booking-cuci.index",
+    "uri": "petugas/booking-cuci",
+    "status": 200,
+    "file": "service_advisor--petugas-booking-cuci-index.html",
+    "scroll": 1351,
+    "width": 1366
+  },
+  {
+    "role": "service_advisor",
+    "route": "petugas.booking-cuci.show",
+    "uri": "petugas/booking-cuci/1",
+    "status": 200,
+    "file": "service_advisor--petugas-booking-cuci-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "staff.dashboard",
+    "uri": "staff/dashboard",
+    "status": 200,
+    "file": "mechanic--staff-dashboard.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "account.password",
+    "uri": "akun/password",
+    "status": 200,
+    "file": "mechanic--account-password.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "notifications.index",
+    "uri": "notifikasi",
+    "status": 200,
+    "file": "mechanic--notifications-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.katalog-showroom.index",
+    "uri": "admin/katalog-showroom",
+    "status": 200,
+    "file": "mechanic--admin-katalog-showroom-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.jenis-servis.index",
+    "uri": "admin/jenis-servis",
+    "status": 200,
+    "file": "mechanic--admin-jenis-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.jenis-servis.create",
+    "uri": "admin/jenis-servis/create",
+    "status": 200,
+    "file": "mechanic--admin-jenis-servis-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.paket-cuci.index",
+    "uri": "admin/paket-cuci",
+    "status": 200,
+    "file": "mechanic--admin-paket-cuci-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.paket-cuci.create",
+    "uri": "admin/paket-cuci/create",
+    "status": 200,
+    "file": "mechanic--admin-paket-cuci-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.kategori-sparepart.index",
+    "uri": "admin/kategori-sparepart",
+    "status": 200,
+    "file": "mechanic--admin-kategori-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.kategori-sparepart.create",
+    "uri": "admin/kategori-sparepart/create",
+    "status": 200,
+    "file": "mechanic--admin-kategori-sparepart-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.kategori-sparepart.edit",
+    "uri": "admin/kategori-sparepart/1/edit",
+    "status": 200,
+    "file": "mechanic--admin-kategori-sparepart-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.supplier.index",
+    "uri": "admin/supplier",
+    "status": 200,
+    "file": "mechanic--admin-supplier-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.supplier.create",
+    "uri": "admin/supplier/create",
+    "status": 200,
+    "file": "mechanic--admin-supplier-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.supplier.show",
+    "uri": "admin/supplier/1",
+    "status": 200,
+    "file": "mechanic--admin-supplier-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.supplier.edit",
+    "uri": "admin/supplier/1/edit",
+    "status": 200,
+    "file": "mechanic--admin-supplier-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.sparepart.index",
+    "uri": "admin/sparepart",
+    "status": 200,
+    "file": "mechanic--admin-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.sparepart.create",
+    "uri": "admin/sparepart/create",
+    "status": 200,
+    "file": "mechanic--admin-sparepart-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.sparepart.show",
+    "uri": "admin/sparepart/1",
+    "status": 200,
+    "file": "mechanic--admin-sparepart-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.sparepart.edit",
+    "uri": "admin/sparepart/1/edit",
+    "status": 200,
+    "file": "mechanic--admin-sparepart-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.inventory.stock",
+    "uri": "admin/inventory/stok",
+    "status": 200,
+    "file": "mechanic--admin-inventory-stock.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.inventory.history",
+    "uri": "admin/inventory/riwayat",
+    "status": 200,
+    "file": "mechanic--admin-inventory-history.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.inventory.adjustment",
+    "uri": "admin/inventory/penyesuaian/1",
+    "status": 200,
+    "file": "mechanic--admin-inventory-adjustment.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.stok-masuk.index",
+    "uri": "admin/stok-masuk",
+    "status": 200,
+    "file": "mechanic--admin-stok-masuk-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.stok-masuk.create",
+    "uri": "admin/stok-masuk/create",
+    "status": 200,
+    "file": "mechanic--admin-stok-masuk-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.notifikasi.index",
+    "uri": "admin/notifikasi",
+    "status": 200,
+    "file": "mechanic--admin-notifikasi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.mobil.index",
+    "uri": "admin/mobil",
+    "status": 200,
+    "file": "mechanic--admin-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.mobil.create",
+    "uri": "admin/mobil/create",
+    "status": 200,
+    "file": "mechanic--admin-mobil-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.mobil.show",
+    "uri": "admin/mobil/1",
+    "status": 200,
+    "file": "mechanic--admin-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.mobil.edit",
+    "uri": "admin/mobil/1/edit",
+    "status": 200,
+    "file": "mechanic--admin-mobil-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.mobil.stock",
+    "uri": "admin/mobil/1/stok",
+    "status": 200,
+    "file": "mechanic--admin-mobil-stock.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.booking-servis.index",
+    "uri": "admin/booking-servis",
+    "status": 200,
+    "file": "mechanic--admin-booking-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.booking-servis.show",
+    "uri": "admin/booking-servis/1",
+    "status": 200,
+    "file": "mechanic--admin-booking-servis-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.servis.index",
+    "uri": "admin/servis",
+    "status": 200,
+    "file": "mechanic--admin-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.servis.schedule",
+    "uri": "admin/servis/jadwal",
+    "status": 200,
+    "file": "mechanic--admin-servis-schedule.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.servis.personnel",
+    "uri": "admin/servis/personel",
+    "status": 200,
+    "file": "mechanic--admin-servis-personnel.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.servis.pemeriksaan",
+    "uri": "admin/servis/1/pemeriksaan",
+    "status": 200,
+    "file": "mechanic--admin-servis-pemeriksaan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.servis.persetujuan",
+    "uri": "admin/servis/1/persetujuan",
+    "status": 200,
+    "file": "mechanic--admin-servis-persetujuan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.servis.pengerjaan",
+    "uri": "admin/servis/1/pengerjaan",
+    "status": 200,
+    "file": "mechanic--admin-servis-pengerjaan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.servis.quality-control",
+    "uri": "admin/servis/1/quality-control",
+    "status": 200,
+    "file": "mechanic--admin-servis-quality-control.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.servis.finalisasi",
+    "uri": "admin/servis/1/finalisasi",
+    "status": 200,
+    "file": "mechanic--admin-servis-finalisasi.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.booking-cuci.index",
+    "uri": "admin/booking-cuci",
+    "status": 200,
+    "file": "mechanic--admin-booking-cuci-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.booking-cuci.show",
+    "uri": "admin/booking-cuci/1",
+    "status": 200,
+    "file": "mechanic--admin-booking-cuci-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "staff.dashboard",
+    "uri": "staff/dashboard",
+    "status": 200,
+    "file": "warehouse_staff--staff-dashboard.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "account.password",
+    "uri": "akun/password",
+    "status": 200,
+    "file": "warehouse_staff--account-password.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "notifications.index",
+    "uri": "notifikasi",
+    "status": 200,
+    "file": "warehouse_staff--notifications-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.katalog-showroom.index",
+    "uri": "admin/katalog-showroom",
+    "status": 200,
+    "file": "warehouse_staff--admin-katalog-showroom-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.kategori-sparepart.index",
+    "uri": "admin/kategori-sparepart",
+    "status": 200,
+    "file": "warehouse_staff--admin-kategori-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.kategori-sparepart.create",
+    "uri": "admin/kategori-sparepart/create",
+    "status": 200,
+    "file": "warehouse_staff--admin-kategori-sparepart-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.kategori-sparepart.edit",
+    "uri": "admin/kategori-sparepart/1/edit",
+    "status": 200,
+    "file": "warehouse_staff--admin-kategori-sparepart-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.supplier.index",
+    "uri": "admin/supplier",
+    "status": 200,
+    "file": "warehouse_staff--admin-supplier-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.supplier.create",
+    "uri": "admin/supplier/create",
+    "status": 200,
+    "file": "warehouse_staff--admin-supplier-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.supplier.show",
+    "uri": "admin/supplier/1",
+    "status": 200,
+    "file": "warehouse_staff--admin-supplier-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.supplier.edit",
+    "uri": "admin/supplier/1/edit",
+    "status": 200,
+    "file": "warehouse_staff--admin-supplier-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.sparepart.index",
+    "uri": "admin/sparepart",
+    "status": 200,
+    "file": "warehouse_staff--admin-sparepart-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.sparepart.create",
+    "uri": "admin/sparepart/create",
+    "status": 200,
+    "file": "warehouse_staff--admin-sparepart-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.sparepart.show",
+    "uri": "admin/sparepart/1",
+    "status": 200,
+    "file": "warehouse_staff--admin-sparepart-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.sparepart.edit",
+    "uri": "admin/sparepart/1/edit",
+    "status": 200,
+    "file": "warehouse_staff--admin-sparepart-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.inventory.stock",
+    "uri": "admin/inventory/stok",
+    "status": 200,
+    "file": "warehouse_staff--admin-inventory-stock.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.inventory.history",
+    "uri": "admin/inventory/riwayat",
+    "status": 200,
+    "file": "warehouse_staff--admin-inventory-history.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.inventory.adjustment",
+    "uri": "admin/inventory/penyesuaian/1",
+    "status": 200,
+    "file": "warehouse_staff--admin-inventory-adjustment.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.stok-masuk.index",
+    "uri": "admin/stok-masuk",
+    "status": 200,
+    "file": "warehouse_staff--admin-stok-masuk-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.stok-masuk.create",
+    "uri": "admin/stok-masuk/create",
+    "status": 200,
+    "file": "warehouse_staff--admin-stok-masuk-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.notifikasi.index",
+    "uri": "admin/notifikasi",
+    "status": 200,
+    "file": "warehouse_staff--admin-notifikasi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.mobil.index",
+    "uri": "admin/mobil",
+    "status": 200,
+    "file": "warehouse_staff--admin-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.mobil.create",
+    "uri": "admin/mobil/create",
+    "status": 200,
+    "file": "warehouse_staff--admin-mobil-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.mobil.show",
+    "uri": "admin/mobil/1",
+    "status": 200,
+    "file": "warehouse_staff--admin-mobil-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.mobil.edit",
+    "uri": "admin/mobil/1/edit",
+    "status": 200,
+    "file": "warehouse_staff--admin-mobil-edit.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.mobil.stock",
+    "uri": "admin/mobil/1/stok",
+    "status": 200,
+    "file": "warehouse_staff--admin-mobil-stock.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "staff.dashboard",
+    "uri": "staff/dashboard",
+    "status": 200,
+    "file": "finance--staff-dashboard.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "account.password",
+    "uri": "akun/password",
+    "status": 200,
+    "file": "finance--account-password.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "notifications.index",
+    "uri": "notifikasi",
+    "status": 200,
+    "file": "finance--notifications-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.aktivitas.index",
+    "uri": "admin/aktivitas",
+    "status": 200,
+    "file": "finance--admin-aktivitas-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.transaksi.index",
+    "uri": "admin/transaksi",
+    "status": 200,
+    "file": "finance--admin-transaksi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.invoices.index",
+    "uri": "admin/invoice",
+    "status": 200,
+    "file": "finance--admin-invoices-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.finance-dashboard.index",
+    "uri": "admin/keuangan",
+    "status": 200,
+    "file": "finance--admin-finance-dashboard-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.payments.index",
+    "uri": "admin/pembayaran",
+    "status": 200,
+    "file": "finance--admin-payments-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.financial-adjustments.index",
+    "uri": "admin/financial-adjustments",
+    "status": 200,
+    "file": "finance--admin-financial-adjustments-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.payments.show",
+    "uri": "admin/pembayaran/1",
+    "status": 200,
+    "file": "finance--admin-payments-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.promo-member.index",
+    "uri": "admin/promo-member",
+    "status": 200,
+    "file": "finance--admin-promo-member-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.promo-member.create",
+    "uri": "admin/promo-member/create",
+    "status": 200,
+    "file": "finance--admin-promo-member-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.promo-simulations.index",
+    "uri": "admin/promo-simulations",
+    "status": 200,
+    "file": "finance--admin-promo-simulations-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.promo-simulations.create",
+    "uri": "admin/promo-simulations/create",
+    "status": 200,
+    "file": "finance--admin-promo-simulations-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.promo-analytics.index",
+    "uri": "admin/promo-analytics",
+    "status": 200,
+    "file": "finance--admin-promo-analytics-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.laporan-servis.index",
+    "uri": "admin/laporan-servis",
+    "status": 200,
+    "file": "finance--admin-laporan-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.notifikasi.index",
+    "uri": "admin/notifikasi",
+    "status": 200,
+    "file": "finance--admin-notifikasi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.invoice.trade-in",
+    "uri": "admin/invoice/trade-in/1",
+    "status": 200,
+    "file": "finance--admin-invoice-trade-in.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.trade-in.payment.create",
+    "uri": "admin/transaksi-trade-in/4/pembayaran/create",
+    "status": 200,
+    "file": "finance--admin-trade-in-payment-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.payment.create",
+    "uri": "admin/transaksi-servis/4/pembayaran/create",
+    "status": 200,
+    "file": "finance--admin-payment-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.invoice.servis",
+    "uri": "admin/invoice/servis/4",
+    "status": 200,
+    "file": "finance--admin-invoice-servis.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.invoice.carwash",
+    "uri": "admin/invoice/car-wash/4",
+    "status": 200,
+    "file": "finance--admin-invoice-carwash.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "finance",
+    "route": "admin.invoice.sparepart",
+    "uri": "admin/invoice/sparepart/4",
+    "status": 200,
+    "file": "finance--admin-invoice-sparepart.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "staff.dashboard",
+    "uri": "staff/dashboard",
+    "status": 200,
+    "file": "operational_staff--staff-dashboard.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "account.password",
+    "uri": "akun/password",
+    "status": 200,
+    "file": "operational_staff--account-password.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "notifications.index",
+    "uri": "notifikasi",
+    "status": 200,
+    "file": "operational_staff--notifications-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.jenis-servis.index",
+    "uri": "admin/jenis-servis",
+    "status": 200,
+    "file": "operational_staff--admin-jenis-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.jenis-servis.create",
+    "uri": "admin/jenis-servis/create",
+    "status": 200,
+    "file": "operational_staff--admin-jenis-servis-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.paket-cuci.index",
+    "uri": "admin/paket-cuci",
+    "status": 200,
+    "file": "operational_staff--admin-paket-cuci-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.paket-cuci.create",
+    "uri": "admin/paket-cuci/create",
+    "status": 200,
+    "file": "operational_staff--admin-paket-cuci-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.notifikasi.index",
+    "uri": "admin/notifikasi",
+    "status": 200,
+    "file": "operational_staff--admin-notifikasi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.booking-servis.index",
+    "uri": "admin/booking-servis",
+    "status": 200,
+    "file": "operational_staff--admin-booking-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.booking-servis.show",
+    "uri": "admin/booking-servis/1",
+    "status": 200,
+    "file": "operational_staff--admin-booking-servis-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.servis.index",
+    "uri": "admin/servis",
+    "status": 200,
+    "file": "operational_staff--admin-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.servis.schedule",
+    "uri": "admin/servis/jadwal",
+    "status": 200,
+    "file": "operational_staff--admin-servis-schedule.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.servis.personnel",
+    "uri": "admin/servis/personel",
+    "status": 200,
+    "file": "operational_staff--admin-servis-personnel.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.servis.pemeriksaan",
+    "uri": "admin/servis/1/pemeriksaan",
+    "status": 200,
+    "file": "operational_staff--admin-servis-pemeriksaan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.servis.persetujuan",
+    "uri": "admin/servis/1/persetujuan",
+    "status": 200,
+    "file": "operational_staff--admin-servis-persetujuan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.servis.pengerjaan",
+    "uri": "admin/servis/1/pengerjaan",
+    "status": 200,
+    "file": "operational_staff--admin-servis-pengerjaan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.servis.quality-control",
+    "uri": "admin/servis/1/quality-control",
+    "status": 200,
+    "file": "operational_staff--admin-servis-quality-control.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.servis.finalisasi",
+    "uri": "admin/servis/1/finalisasi",
+    "status": 200,
+    "file": "operational_staff--admin-servis-finalisasi.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.booking-cuci.index",
+    "uri": "admin/booking-cuci",
+    "status": 200,
+    "file": "operational_staff--admin-booking-cuci-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.booking-cuci.show",
+    "uri": "admin/booking-cuci/1",
+    "status": 200,
+    "file": "operational_staff--admin-booking-cuci-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "staff.dashboard",
+    "uri": "staff/dashboard",
+    "status": 200,
+    "file": "quality_control--staff-dashboard.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "account.password",
+    "uri": "akun/password",
+    "status": 200,
+    "file": "quality_control--account-password.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "notifications.index",
+    "uri": "notifikasi",
+    "status": 200,
+    "file": "quality_control--notifications-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.pdi.index",
+    "uri": "admin/pdi",
+    "status": 200,
+    "file": "quality_control--admin-pdi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.jenis-servis.index",
+    "uri": "admin/jenis-servis",
+    "status": 200,
+    "file": "quality_control--admin-jenis-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.jenis-servis.create",
+    "uri": "admin/jenis-servis/create",
+    "status": 200,
+    "file": "quality_control--admin-jenis-servis-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.paket-cuci.index",
+    "uri": "admin/paket-cuci",
+    "status": 200,
+    "file": "quality_control--admin-paket-cuci-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.paket-cuci.create",
+    "uri": "admin/paket-cuci/create",
+    "status": 200,
+    "file": "quality_control--admin-paket-cuci-create.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.notifikasi.index",
+    "uri": "admin/notifikasi",
+    "status": 200,
+    "file": "quality_control--admin-notifikasi-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.pesanan-mobil.index",
+    "uri": "admin/pesanan-mobil",
+    "status": 200,
+    "file": "quality_control--admin-pesanan-mobil-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.booking-servis.index",
+    "uri": "admin/booking-servis",
+    "status": 200,
+    "file": "quality_control--admin-booking-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.booking-servis.show",
+    "uri": "admin/booking-servis/1",
+    "status": 200,
+    "file": "quality_control--admin-booking-servis-show.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.servis.index",
+    "uri": "admin/servis",
+    "status": 200,
+    "file": "quality_control--admin-servis-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.servis.schedule",
+    "uri": "admin/servis/jadwal",
+    "status": 200,
+    "file": "quality_control--admin-servis-schedule.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.servis.personnel",
+    "uri": "admin/servis/personel",
+    "status": 200,
+    "file": "quality_control--admin-servis-personnel.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.servis.pemeriksaan",
+    "uri": "admin/servis/1/pemeriksaan",
+    "status": 200,
+    "file": "quality_control--admin-servis-pemeriksaan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.servis.persetujuan",
+    "uri": "admin/servis/1/persetujuan",
+    "status": 200,
+    "file": "quality_control--admin-servis-persetujuan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.servis.pengerjaan",
+    "uri": "admin/servis/1/pengerjaan",
+    "status": 200,
+    "file": "quality_control--admin-servis-pengerjaan.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.servis.quality-control",
+    "uri": "admin/servis/1/quality-control",
+    "status": 200,
+    "file": "quality_control--admin-servis-quality-control.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.servis.finalisasi",
+    "uri": "admin/servis/1/finalisasi",
+    "status": 200,
+    "file": "quality_control--admin-servis-finalisasi.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.booking-cuci.index",
+    "uri": "admin/booking-cuci",
+    "status": 200,
+    "file": "quality_control--admin-booking-cuci-index.html",
+    "scroll": 1366,
+    "width": 1366
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.booking-cuci.show",
+    "uri": "admin/booking-cuci/1",
+    "status": 200,
+    "file": "quality_control--admin-booking-cuci-show.html",
+    "scroll": 1366,
+    "width": 1366
+  }
+]

@@ -43,6 +43,24 @@ class VehicleGalleryService
         return $resolved;
     }
 
+    /**
+     * Resolve the gallery for an already selected/purchased color.
+     * An empty result is intentional: callers must not silently present another color.
+     */
+    public function forColor(Mobil $mobil, ?string $colorLabel): array
+    {
+        $needle = strtolower(trim((string) $colorLabel));
+        if ($needle === '') return [];
+
+        foreach ($this->for($mobil) as $variant) {
+            if (strtolower(trim((string) ($variant['label'] ?? ''))) === $needle) {
+                return $variant;
+            }
+        }
+
+        return [];
+    }
+
     public function defaultColor(Mobil $mobil): string
     {
         $colors = $mobil->warnaPilihan()->with('galeri')->get();
@@ -50,6 +68,41 @@ class VehicleGalleryService
         if ($default) return (string) $default->slug;
         $config = $this->configs()[$this->vehicleKey($mobil)] ?? null;
         return $config['defaultColor'] ?? 'default';
+    }
+
+    /** Exact-color front image only. Never substitute another color or a showroom hero. */
+    public function verifiedColorImage(Mobil $mobil, string $color): ?string
+    {
+        $needle = mb_strtolower(trim($color));
+        if ($needle === '') return null;
+        $mobil->loadMissing('warnaPilihan.galeri', 'foto');
+        if ($needle === mb_strtolower(trim((string) $mobil->warna))) {
+            $unitPhoto = $mobil->foto->first(fn ($item) => $item->existsOnDisk() && !str_contains(strtolower($item->nama_file),'hero'));
+            if ($unitPhoto) return $unitPhoto->url();
+        }
+        $variant = $mobil->warnaPilihan->first(fn ($item) => mb_strtolower(trim((string) $item->nama)) === $needle);
+        if ($variant) {
+            $front = $variant->galeri->firstWhere('sudut','front');
+            return $front ? $this->verifiedAsset($front->path) : null;
+        }
+        $config = $this->configs()[$this->vehicleKey($mobil)] ?? null;
+        foreach ($config['colors'] ?? [] as $entry) {
+            if (mb_strtolower(trim($entry['label'])) !== $needle) continue;
+            foreach ($entry['images'] as $image) if ($image['type'] === 'front') return $this->verifiedAsset($image['path']);
+            return null;
+        }
+        // Uploaded unit photos have no independent color field: only valid for the unit's own physical color.
+        if ($needle !== mb_strtolower(trim((string) $mobil->warna))) return null;
+        $photo = $mobil->foto->first(fn ($item) => $item->existsOnDisk() && !str_contains(strtolower($item->nama_file),'hero'));
+        return $photo?->url();
+    }
+
+    private function verifiedAsset(string $path): ?string
+    {
+        $normalized = str_replace('\\','/',$path);
+        if (str_contains($normalized,'/hero/') || str_contains($normalized,'..')) return null;
+        $real = realpath(public_path($normalized)); $root = realpath(public_path());
+        return $real && $root && str_starts_with(strtolower($real),strtolower($root.DIRECTORY_SEPARATOR)) && is_file($real) && filesize($real)>0 ? asset($normalized) : null;
     }
 
     public function isReady(Mobil $mobil): bool

@@ -7,4 +7,5 @@ class TestDrive extends Model {
  public function pelanggan(){return $this->belongsTo(Pelanggan::class,'id_pelanggan','id_pelanggan');}
  public function mobil(){return $this->belongsTo(Mobil::class,'id_mobil','id_mobil');}
  public function petugas(){return $this->belongsTo(Petugas::class,'id_petugas','id_petugas');}
+ public function sales(){return $this->belongsTo(Petugas::class,'id_sales','id_petugas');}
 }

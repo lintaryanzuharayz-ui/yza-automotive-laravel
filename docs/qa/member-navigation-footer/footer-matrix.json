@@ -1,0 +1,44 @@
+[
+  {
+    "centerOffset": 0,
+    "navWithinFooter": true,
+    "overflow": 0,
+    "width": 320
+  },
+  {
+    "centerOffset": 0,
+    "navWithinFooter": true,
+    "overflow": 0,
+    "width": 390
+  },
+  {
+    "centerOffset": -0.01,
+    "navWithinFooter": true,
+    "overflow": 0,
+    "width": 768
+  },
+  {
+    "centerOffset": -0.01,
+    "navWithinFooter": true,
+    "overflow": 0,
+    "width": 1024
+  },
+  {
+    "centerOffset": -0.01,
+    "navWithinFooter": true,
+    "overflow": 0,
+    "width": 1280
+  },
+  {
+    "centerOffset": -0.01,
+    "navWithinFooter": true,
+    "overflow": 0,
+    "width": 1440
+  },
+  {
+    "centerOffset": -0.01,
+    "navWithinFooter": true,
+    "overflow": 0,
+    "width": 1920
+  }
+]

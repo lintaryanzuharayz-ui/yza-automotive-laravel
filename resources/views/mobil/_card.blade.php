@@ -45,15 +45,19 @@
     $variantLabel = trim((string) ($mobil->tipe ?: ($isPerformance ? 'Performance' : 'Collection')));
     $badgeParts = \App\Support\VehicleBadge::parts($mobil);
     $title = trim($brand.' '.$mobil->model);
-    $displayTitle = $title.($variantLabel !== '' ? ' · '.$variantLabel : '');
+    $displayTitle = (strlen($title) < 22 && $variantLabel !== '' && !str_contains(strtolower($title), strtolower($variantLabel)) && !str_contains(strtolower($variantLabel), 'performance') && !str_contains(strtolower($variantLabel), 'collection'))
+        ? $title.' · '.$variantLabel
+        : $title;
     $brandLogo = \App\Support\BrandLogo::path($brand, $mobil->model);
+    $availability = $mobil->getAttribute('availability') ?? app(\App\Services\VehicleAvailabilityService::class)->for($mobil);
 @endphp
 <article class="catalog-card {{ $isPerformance ? 'catalog-card-performance' : '' }}">
-    <a class="catalog-card-image" href="{{ $detailUrl }}">
+    <a class="catalog-card-image" href="{{ $detailUrl }}" tabindex="-1" aria-hidden="true">
         <img src="{{ $photo }}" alt="{{ $title }}" loading="lazy">
         <span class="catalog-card-badges">
             @if($mobil->kondisi === 'baru')<span class="catalog-condition">BARU</span>@endif
             @if($isPerformance)<span class="catalog-sport-badge">SPORT HIGHLIGHT</span>@endif
+            <span class="sr-only">{{ $availability['label'] ?? 'TERSEDIA' }}</span>
         </span>
     </a>
     <button class="catalog-heart" type="button" data-favorite-id="{{ $mobil->id_mobil }}" data-favorite-name="{{ $title }}" aria-label="Tambahkan {{ $title }} ke favorit" aria-pressed="false">♡</button>
@@ -62,13 +66,13 @@
             <span class="catalog-brand-logo" title="{{ $brand }}">
                 <img src="{{ $brandLogo }}" alt="Logo {{ $brand }}" loading="lazy">
             </span>
-            <span class="vehicle-tech-badge {{ strlen($badgeParts['value']) > 7 ? 'vehicle-tech-badge--long' : '' }}" aria-label="{{ $badgeParts['label'].' '.$badgeParts['value'] }}"><span class="vehicle-tech-badge__label">{{ strtoupper($badgeParts['label']) }}</span><span class="vehicle-tech-badge__value">{{ strtoupper($badgeParts['value']) }}</span></span>
+            <span class="vehicle-tech-badge" aria-label="{{ $badgeParts['label'].' '.$badgeParts['value'] }}"><span class="vehicle-tech-badge__label">{{ strtoupper($badgeParts['label']) }}</span><span class="vehicle-tech-badge__value">{{ strtoupper($badgeParts['value']) }}</span></span>
         </div>
-        <a href="{{ $detailUrl }}"><h3>{{ $displayTitle }}</h3></a>
+        <a href="{{ $detailUrl }}" class="catalog-card-title-link"><h3>{{ $displayTitle }}</h3></a>
         <p class="catalog-meta">{{ $mobil->tahun ?: '-' }} <i>•</i> {{ $variantLabel ?: 'Collection' }} <i>•</i> {{ ucfirst($mobil->transmisi ?: 'automatic') }}</p>
         <div class="catalog-card-footer">
             <strong class="catalog-price">{{ $price > 0 ? 'Rp '.number_format($price, 0, ',', '.') : 'Hubungi Kami' }}</strong>
-            <a class="catalog-detail-button" href="{{ $detailUrl }}" aria-label="Lihat detail {{ $title }}"><span>Lihat Detail</span><b aria-hidden="true">→</b></a>
+            <a class="catalog-detail-button" href="{{ $detailUrl }}" aria-label="Lihat detail {{ $title }}"><b aria-hidden="true">→</b></a>
         </div>
     </div>
 </article>

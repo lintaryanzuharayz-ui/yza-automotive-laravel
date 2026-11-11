@@ -1,0 +1,148 @@
+/* Landing composition. Replaces the former restore-only page layer. */
+html:has(body.landing) { scroll-behavior:auto; }
+.landing { --landing-title: clamp(1.875rem,2.65vw,2.375rem); --landing-space: clamp(40px,4.3vw,64px); }
+.landing .show-container { width:min(calc(100% - 2 * var(--ui-gutter)),1440px); max-width:1440px; }
+.landing :is(section[id],[id="janji-temu"],[id="tentang"]) { scroll-margin-top:0; }
+.landing .landing-anchor { position:absolute;top:0; }
+.landing .landing-icon { display:block;width:24px;height:24px;flex:none; }
+.landing .section-kicker { font-size:11px;letter-spacing:.16em;line-height:1.5; }
+.landing .show-section { padding:var(--landing-space) 0; }
+.landing :is(.show-section-heading h2,.services-heading h2,.trade-copy h2,.experience-copy h2,.yza-member-copy h2) { font-size:var(--landing-title)!important;line-height:1.15!important;letter-spacing:-.035em;text-transform:none; }
+.landing :is(.show-cta,.show-ghost,.show-link) { min-height:44px;padding:10px 18px;font-size:14px;line-height:1.4;border-radius:9px;box-shadow:none; }
+.landing .show-cta:hover { box-shadow:0 6px 16px #ed172b24; }
+.landing .show-nav.public-navbar { gap:20px!important; }
+.landing .show-nav.public-navbar .show-nav-links { gap:18px!important; }
+.landing .show-nav.public-navbar .show-member-primary { background:transparent;border:1px solid #51545c;color:#fff; }
+.landing .show-nav.public-navbar .show-login { border-color:transparent;background:transparent; }
+.landing .show-hero .show-hero-inner { max-width:1440px;min-height:480px!important;padding:36px var(--ui-gutter)!important;grid-template-columns:minmax(0,1fr) 236px!important;gap:36px; }
+.landing .show-hero .hero-copy-premium { max-width:490px; }
+.landing .show-hero .hero-copy-premium h1 { margin:18px 0 20px;font-size:clamp(2.125rem,3.8vw,3.25rem)!important;line-height:1.06!important;text-transform:none;letter-spacing:-.04em; }
+.landing .hero-copy-premium p { margin:0;max-width:43ch;font-size:15px;line-height:1.65; }
+.landing .hero-buttons { margin-top:24px;gap:12px!important; }
+.landing .hero-proof-line { margin-top:24px;font-size:12px;gap:18px; }
+.landing .show-hero .hero-car-stage { height:100%;min-height:0!important;align-items:flex-end; }
+.landing .show-hero .hero-vehicle-info { max-width:236px;min-height:0;width:100%!important;padding:18px!important;border-radius:16px; }
+.landing .hero-vehicle-info h2 { font-size:24px;margin:10px 0; }
+.landing .hero-vehicle-info p { font-size:13px; }
+.landing .hero-vehicle-info strong { font-size:20px;margin:18px 0; }
+.landing .hero-vehicle-info a { min-height:44px;padding:10px 12px;font-size:14px; }
+.landing .hero-vehicle-info .hero-favorite { width:44px;height:44px; }
+.landing .hero-360-car { display:none!important; }
+.landing .featured-catalog { background:#f5f6f8; }
+.landing .featured-catalog .show-section-heading { margin-bottom:24px;gap:20px;align-items:center; }
+.landing .featured-catalog .featured-carousel-actions { display:flex;gap:18px;align-items:center; }
+.landing .featured-catalog .featured-carousel-controls { position:static;display:flex!important;gap:8px;transform:none; }
+.landing .featured-catalog .featured-carousel-button { position:static;width:44px;height:44px;min-width:44px;border:1px solid #dce0e6 !important;border-radius:50%;background:#fff !important;color:#19212c !important;font-size:21px;box-shadow:none !important; }
+.landing .featured-carousel-button:disabled { opacity:.35;cursor:default; }
+.landing .featured-catalog .featured-media { height:180px; }
+.landing .featured-catalog .featured-body { min-height:122px;padding:16px; }
+.landing .featured-catalog .featured-body h3 { min-height:42px;font-size:17px;line-height:1.3; }
+.landing .featured-catalog .featured-body small { font-size:13px;line-height:1.4; }
+.landing .featured-catalog .featured-bottom { padding-top:14px;gap:10px; }
+.landing .featured-catalog .featured-bottom strong { font-size:17px;white-space:normal; }
+.landing .featured-catalog .featured-carousel-footer { display:flex!important;justify-content:space-between;align-items:center;margin-top:14px;padding:0 8px;font-size:12px;color:#657083; }
+.landing .featured-catalog .featured-carousel-progress { display:none; }
+.landing .featured-catalog .round-arrow { min-width:44px;min-height:44px; }
+.landing .services-section { position:relative;background:#fff;color:#172130; }
+.landing .services-heading { text-align:left;margin:0 0 24px;max-width:none; }
+.landing .services-heading h2 { color:#172130!important;text-shadow:none; }
+.landing .services-heading p { font-size:15px;color:#637083; }
+.landing .services-grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px; }
+.landing .service-card-premium { display:grid;grid-template-columns:40px minmax(0,1fr);grid-template-rows:auto 1fr;gap:6px 16px;min-height:132px;height:auto;padding:20px;border:1px solid #e2e6eb;border-radius:12px;background:#fafbfc;box-shadow:none; }
+.landing .service-card-premium i { grid-row:1/3;display:grid;place-items:center;width:40px;height:40px;margin:0;color:#ed172b;background:#fff0f2;border-radius:10px; }
+.landing .service-card-premium h3 { margin:0;font-size:17px;color:#172130;line-height:1.4; }
+.landing .service-card-premium p { margin:0;font-size:14px;line-height:1.6;color:#637083; }
+.landing .services-action { display:flex;align-items:center;gap:24px;margin-top:24px; }
+.landing .services-member-link { font-size:14px;color:#5b6473; }
+.landing .trade-banner { min-height:0;height:auto;padding:56px 0; }
+.landing .trade-layout { display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);align-items:center;gap:64px;min-height:0;height:auto; }
+.landing .trade-copy { max-width:650px; }
+.landing .trade-copy p { max-width:48ch;font-size:15px;line-height:1.65; }
+.landing .trade-copy .show-cta { margin-top:20px; }
+.landing .benefit-list { padding:20px;max-width:none;border:1px solid #ffffff24;border-radius:14px;background:#0b0d12e8; }
+.landing .benefit-list>div { display:flex;gap:14px;padding:12px 0; }
+.landing .benefit-list i { display:grid;place-items:center;width:36px;height:36px;flex:none;border:0;background:none;color:#ff4a5d; }
+.landing .benefit-list span { color:#bbc3ce;font-size:13px;line-height:1.6; }
+.landing .benefit-list b { color:#fff;font-size:15px; }
+.landing .experience { min-height:0;height:auto;padding:var(--landing-space) 0;background-image:linear-gradient(90deg,#090c12f2,#090c12cc),url('../../images/middle/experience-red-motion.png'); }
+.landing .experience-layout { display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:center;gap:48px;min-height:0; }
+.landing .experience-copy p { font-size:15px;line-height:1.65;max-width:48ch; }
+.landing .experience-copy .show-cta { margin-top:20px; }
+.landing .video-tile { position:relative;width:100%;min-height:0;height:auto;aspect-ratio:16/9;border:1px solid #ffffff2b;border-radius:14px;overflow:hidden; }
+.landing .video-tile video { display:block;width:100%;height:100%;object-fit:contain;background:#080b10; }
+.landing .video-play { width:56px;height:56px;font-size:24px;background:#ed172b;border:1px solid #ff6574;color:white;opacity:1; }
+.landing .video-tile-label { bottom:20px;left:20px; }
+.landing .video-tile-label b { font-size:15px; }
+.landing .yza-member-section { padding:var(--landing-space) 0;min-height:0; }
+.landing .yza-member-layout { gap:48px;min-height:0; }
+.landing .yza-member-copy h2 { margin:12px 0 18px; }
+.landing .yza-member-description { max-width:47ch;font-size:15px;line-height:1.7; }
+.landing .yza-member-price { margin:22px 0; }
+.landing .yza-member-price strong { font-size:28px; }
+.landing .yza-member-visual { gap:16px; }
+.landing .yza-member-card { width:min(100%,360px);padding:18px; }
+.landing .yza-member-card strong { font-size:26px; }
+.landing .yza-member-benefits { gap:12px 18px;padding:16px; }
+.landing .yza-member-benefit { grid-template-columns:32px minmax(0,1fr);gap:10px;padding:4px 0;min-height:0; }
+.landing .yza-member-benefit i { width:32px;height:32px;font-size:18px; }
+.landing .yza-member-benefit .landing-icon { width:20px;height:20px; }
+.landing .yza-member-benefit b { font-size:12px;text-transform:none; }
+.landing .yza-member-benefit small { font-size:13px;line-height:1.5; }
+.landing .testimonials { background:#f5f6f8; }
+.landing .testimonials .show-section-heading { margin-bottom:24px; }
+.landing .testimonial-grid { gap:20px; }
+.landing .testimonial-card { padding:22px;height:auto!important;min-height:0!important;border-radius:14px; }
+.landing .testimonial-person { gap:12px; }
+.landing .testimonial-photo { width:52px !important;height:52px;border-radius:12px;min-width: 52px !important;flex-basis: 52px !important; }
+.landing .testimonial-person b { font-size:16px; }
+.landing .testimonial-person small { font-size:13px; }
+.landing .stars { margin:16px 0 10px;font-size:17px; }
+.landing .testimonial-quote { padding-left:0; display: block !important; }
+.landing .testimonial-quote p { font-size:15px;line-height:1.65; }
+.landing :is(.quote-open,.quote-close) { display:none; }
+.landing .visit-section { padding:var(--landing-space) 0;background:#fff; }
+.landing .visit-layout { display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:stretch;gap:24px; }
+.landing .visit-copy { padding:32px;border-radius:16px;background:linear-gradient(180deg,#080c12d9,#080c12ee),url('../../images/lower-landing/showroom-premium.png') center/cover;color:#fff; }
+.landing .visit-copy h2 { font-size:var(--landing-title);line-height:1.15;letter-spacing:-.03em;margin:14px 0 18px; }
+.landing .visit-copy h2 em { color:#ff3048;font-style:normal; }
+.landing .visit-copy>p { max-width:44ch;color:#c5ccd6;font-size:15px;line-height:1.65; }
+.landing .visit-details { display:grid;gap:22px;margin:28px 0; }
+.landing .visit-details dt { display:flex;align-items:center;gap:10px;color:#fff;font-size:14px;font-weight:700; }
+.landing .visit-details dt svg { width:20px;height:20px;color:#ff4c60; }
+.landing .visit-details dd { margin:6px 0 0 30px;font-size:15px;line-height:1.6;color:#c5ccd6; }
+.landing .visit-details a { color:#fff; }
+.landing .visit-actions { display:flex;flex-wrap:wrap;align-items:center;gap:16px; }
+.landing .visit-map-link { color:#d6dce5;font-size:14px; }
+.landing .visit-section .appointment-wrap { position:relative;inset:auto;transform:none;width:100%;max-width:none;padding:0;margin:0;min-height: 0 !important;height: auto !important; }
+.landing .visit-section .appointment-form { width:100%;max-width:none;min-height:0!important;height:auto;padding:24px !important;border:1px solid #e0e5ec !important;border-radius:16px;background:#fff !important;box-shadow:0 8px 28px #17213008 !important; }
+.landing .appointment-form-heading { margin-bottom:22px; }
+.landing .appointment-form-heading h3 { margin:8px 0;font-size:24px;line-height:1.25;color:#172130; }
+.landing .appointment-form-heading p { margin:0;color:#687486;font-size:14px;line-height:1.6; }
+.landing .visit-section .appointment-fields { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px; }
+.landing .appointment-fields .form-group { margin:0;min-width:0; }
+.landing .appointment-fields .full { grid-column:1/-1; }
+.landing .appointment-fields label { display:block;margin-bottom:7px;font-size:13px;font-weight:700;color:#384454; }
+.landing .appointment-fields label span { color:#7b8593;font-weight:400; }
+.landing .visit-section .form-control { width:100%;height:44px;padding:10px 12px;border:1px solid #d9dfe7;border-radius:8px;background:#fafbfc;color:#172130;font-size:15px; }
+.landing .visit-section textarea.form-control { height:76px;min-height:76px;resize:vertical; }
+.landing .visit-section .appointment-submit { margin-top:20px;width:100%;justify-content:center;min-height:46px; }
+.landing .visit-section .appointment-microcopy { margin:12px 0 0;color:#667385 !important;font-size:12px;line-height:1.6; }
+.landing .show-footer { padding:40px 0 20px;min-height:0;background:#090d13; }
+.landing .show-footer .footer-grid { display:grid;grid-template-columns:1.35fr 1fr 1.2fr 1.2fr;gap:36px;padding:0;align-items:start; }
+.landing .footer-brand-link { display:flex;align-items:center;gap:10px; }
+.landing .show-footer .footer-logo { width:44px;height:44px;margin:0; }
+.landing .show-footer .footer-brand strong { font-size:18px;margin:0;text-transform:none; }
+.landing .show-footer :is(p,a) { font-size:14px;line-height:1.65; }
+.landing .show-footer p { color:#9ba7b9; }
+.landing .show-footer h3 { font-size:15px;margin:0 0 16px;color:#eef2f8; }
+.landing .show-footer nav>a { display:block;margin:9px 0;color:#b4bdcc; }
+.landing .show-footer .footer-contact>a { display:block;margin:8px 0; }
+.landing .show-footer .footer-contact p { margin-top:12px; }
+.landing .landing-intro-open { display:inline-flex;gap:10px;align-items:center;min-height:44px;padding:0;border:0;background:none;color:#c2cbd9;font-size:13px;cursor:pointer; }
+.landing .show-footer .footer-bottom { display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:28px;padding:20px 0 0;border-top:1px solid #ffffff18;font-size:12px; }
+.landing #yza-intro[hidden] { display:none!important; }
+@media(max-width:1100px){.landing .services-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.landing .trade-layout{gap:24px}.landing .show-footer .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:900px){.landing .visit-layout{grid-template-columns:minmax(0,1fr)}.landing .experience-layout{grid-template-columns:minmax(0,1fr);gap:24px}.landing .yza-member-layout{grid-template-columns:minmax(0,1fr);gap:28px}.landing .yza-member-card{margin-inline:auto}.landing .trade-layout{grid-template-columns:minmax(0,1fr)}.landing .benefit-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.landing .benefit-list>div{display:block}.landing .benefit-list i{margin-bottom:8px}}
+@media(max-width:640px){.landing .featured-catalog .featured-carousel-actions .show-link{width:auto!important;min-width:0!important;flex:1;justify-content:center;padding-inline:12px;}.landing .show-hero .show-hero-inner{grid-template-columns:minmax(0,1fr)!important;min-height:0!important;gap:28px;padding-block:32px!important}.landing .show-hero .hero-copy-premium h1{font-size:clamp(2rem,8.3vw,2.75rem)!important}.landing .show-hero .hero-car-stage{height:auto}.landing .show-hero .hero-vehicle-info{max-width:none}.landing .hero-proof-line{flex-wrap:wrap;gap:10px!important}.landing .services-grid{grid-template-columns:minmax(0,1fr)}.landing .services-action{align-items:stretch;flex-direction:column;gap:16px}.landing .service-card-premium{min-height:112px;padding:18px}.landing .benefit-list{grid-template-columns:minmax(0,1fr);gap:4px}.landing .benefit-list>div{display:flex}.landing .featured-catalog .show-section-heading{align-items:stretch;flex-direction:column;gap:18px}.landing .featured-catalog .featured-carousel-actions{justify-content:space-between;gap:10px}.landing .featured-carousel-hint{display:none}.landing .visit-copy{padding:24px}.landing .visit-section .appointment-form{padding:24px !important;background:#fff !important;border:1px solid #e0e5ec !important;box-shadow:0 8px 28px #17213008 !important}.landing .visit-section .appointment-fields{grid-template-columns:minmax(0,1fr)}.landing .visit-section .form-control{font-size:16px}.landing .show-footer .footer-grid{grid-template-columns:minmax(0,1fr);gap:28px}.landing .testimonial-grid{grid-template-columns:minmax(0,1fr)}.landing .yza-member-benefits{grid-template-columns:minmax(0,1fr)}}
+.landing .featured-catalog .featured-carousel { display:block; min-height:0; }
+.landing .featured-catalog .featured-carousel-viewport { width:100%; padding:10px 0 12px; }

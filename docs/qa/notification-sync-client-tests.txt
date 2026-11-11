@@ -1,0 +1,15 @@
+✔ unread, category dots and pending tasks use separate authoritative values (2.9586ms)
+✔ reading one of several messages retains the dot, and stale snapshots cannot restore old counts (1.1401ms)
+✔ polling has one timer, drains the server cursor and never repeats a toast (2.5117ms)
+✔ visibility pauses polling and authentication loss stops further requests (1.3818ms)
+✔ account switch clears old account presentation and does not display the other account payload (1.5042ms)
+✔ mark-as-read applies server response without a page reload and broadcasts only invalidation (2.2676ms)
+✔ logout stops polling, clears notification presentation and rejects late state updates (0.8903ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 110.6275

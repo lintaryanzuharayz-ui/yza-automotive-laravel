@@ -1,0 +1,69 @@
+/* The navbar and hero share the first viewport without stretching the artwork. */
+.showroom.landing { --landing-nav-height: 4.25rem; --landing-hero-height: calc(100svh - var(--landing-nav-height)); }
+.showroom.landing .show-hero { min-height: var(--landing-hero-height) !important; background-size: cover; background-position: center; }
+.showroom.landing .show-hero-inner {
+    min-height: var(--landing-hero-height) !important;
+    max-width: 112rem;
+    padding: clamp(1.5rem, 4svh, 3rem) clamp(1.5rem, 3vw, 4rem) !important;
+    grid-template-columns: minmax(0, 1fr) minmax(14rem, 17rem) !important;
+    gap: clamp(1.5rem, 3vw, 4rem);
+    align-items: center;
+}
+.showroom.landing .hero-copy-premium { max-width: min(39vw, 32rem); align-self: center; }
+.showroom.landing .hero-copy-premium h1 { margin: 1rem 0 1.5rem; font-size: clamp(2.6rem, min(4vw, 7.5svh), 4.5rem) !important; line-height: 1.04 !important; letter-spacing: -.035em; }
+.showroom.landing .hero-copy-premium p { max-width: 39ch; margin: 0; font-size: clamp(.9375rem, 1vw, 1.0625rem); line-height: 1.65; }
+.showroom.landing .hero-buttons { margin-top: clamp(1.25rem, 4svh, 2.5rem); gap: .75rem; }
+.showroom.landing .hero-buttons :is(.show-cta, .show-ghost) { min-height: 2.75rem; padding: .75rem 1rem; font-size: .8125rem; line-height: 1.3; }
+.showroom.landing .hero-proof-line { margin-top: clamp(1.25rem, 4svh, 2.5rem); gap: 1rem; font-size: .6875rem; }
+.showroom.landing .hero-car-stage { min-height: 0 !important; align-self: center; transform: none; }
+.showroom.landing .hero-vehicle-info { max-width: 17rem; min-height: 0; padding: 1.125rem !important; border-radius: 1rem; }
+.showroom.landing .hero-vehicle-info small { display: block; padding-right: 3rem; font-size: .75rem; }
+.showroom.landing .hero-vehicle-info h2 { margin: .75rem 0 .5rem; padding-right: 2.5rem; font-size: 1.625rem; line-height: 1.15; }
+.showroom.landing .hero-vehicle-info p { margin-bottom: 1.25rem; font-size: .8125rem; }
+.showroom.landing .hero-vehicle-info strong { margin-bottom: 1.25rem; padding-top: 1.125rem; font-size: 1.375rem; line-height: 1.2; }
+.showroom.landing .hero-vehicle-info a { min-height: 2.75rem; font-size: .8125rem; }
+.showroom.landing .hero-vehicle-info .hero-favorite { top: 1rem; right: 1rem; width: 2.5rem; height: 2.5rem; min-height: 2.5rem; aspect-ratio: 1; padding: 0; font-size: 1.5rem; line-height: 1; }
+.showroom.landing .hero-showroom-mark { width: 8rem; height: auto; object-fit: contain; right: 25%; top: 8%; }
+@media (min-width: 801px) {
+    .showroom.landing .hero-car-stage::before, .showroom.landing .hero-car-stage::after { display: none; }
+}
+@media (max-width: 1100px) and (min-width: 801px) {
+    .showroom.landing .hero-copy-premium { max-width: 30rem; }
+    .showroom.landing .hero-buttons { flex-direction: column; align-items: flex-start; }
+}
+@media (max-height: 650px) and (min-width: 801px) {
+    .showroom.landing .show-hero-inner { padding-block: 1rem !important; }
+    .showroom.landing .hero-copy-premium h1 { margin: .75rem 0 1rem; font-size: clamp(2rem, 6.5svh, 3rem) !important; }
+    .showroom.landing .hero-buttons, .showroom.landing .hero-proof-line { margin-top: 1rem; }
+}
+@media (max-width: 800px) {
+    .showroom.landing .show-hero-inner { grid-template-columns: minmax(0, 1fr) !important; align-content: space-between; padding: 1.5rem !important; gap: 1.5rem; }
+    .showroom.landing .hero-copy-premium { max-width: 32rem; }
+    .showroom.landing .hero-copy-premium h1 { font-size: clamp(2rem, 7vw, 3rem) !important; }
+    .showroom.landing .hero-copy-premium p { font-size: .9375rem; }
+    .showroom.landing .hero-car-stage { position: relative; justify-content: flex-end; overflow: visible; }
+    .showroom.landing .hero-car-stage .hero-360-car { display: block !important; position: absolute; left: 0; top: 50%; width: 55%; height: auto; max-height: 15rem; object-fit: contain; transform: translateY(-50%); }
+    .showroom.landing .hero-vehicle-info { max-width: 15rem; }
+    .showroom.landing .hero-showroom-mark { display: none; }
+}
+@media (max-width: 480px) {
+    .showroom.landing .show-hero-inner { padding: 1.25rem !important; }
+    .showroom.landing .hero-car-stage .hero-360-car { display: none !important; }
+    .showroom.landing .hero-vehicle-info { max-width: none; }
+    .showroom.landing .hero-vehicle-info h2 { margin-top: .5rem; }
+    .showroom.landing .hero-vehicle-info strong { margin-bottom: .75rem; padding-top: .75rem; }
+    .showroom.landing .hero-vehicle-info p { margin-bottom: .75rem; }
+    .showroom.landing .hero-proof-line { margin-top: 1rem; }
+}
+/* Keep the narrow layout compact without a second, boxed car image. */
+@media (max-width: 800px) {
+    .showroom.landing .hero-copy-premium { max-width: none; }
+    .showroom.landing .hero-copy-premium h1 { margin: .625rem 0 1rem; font-size: clamp(1.8rem, 5.4vw, 2.5rem) !important; }
+    .showroom.landing .hero-copy-premium p { max-width: 46ch; font-size: .875rem; line-height: 1.5; }
+    .showroom.landing .hero-buttons { margin-top: 1rem; flex-direction: row; }
+    .showroom.landing .hero-proof-line { margin-top: .75rem; }
+    .showroom.landing .hero-car-stage .hero-360-car { display: none !important; }
+    .showroom.landing .hero-vehicle-info { max-width: none; }
+    .showroom.landing .hero-vehicle-info p { margin-bottom: .75rem; }
+    .showroom.landing .hero-vehicle-info strong { padding-top: .75rem; margin-bottom: .75rem; }
+}

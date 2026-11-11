@@ -2,28 +2,70 @@
 
 @section('title', 'Kendaraan Saya')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/pages/member-garage.css') }}?v={{ filemtime(public_path('assets/css/pages/member-garage.css')) }}">
+<style>
+    .garage-add-button .garage-button-label,
+    .garage-action-primary .garage-button-label {
+        display: inline !important;
+        color: #fff !important;
+        font-size: inherit !important;
+        line-height: 1.2 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        text-indent: 0 !important;
+    }
+    .garage-stat-icon.garage-stat-color {
+        display: inline-grid !important;
+        place-items: center;
+        width: 25px;
+        height: 25px;
+        margin: 3px 0;
+        border: 3px solid #fff;
+        border-radius: 50%;
+        background: var(--vehicle-color, #64748b);
+        box-shadow: 0 0 0 1px rgba(25, 32, 40, .28), inset 0 0 0 1px rgba(255,255,255,.28), 0 4px 10px rgba(25, 32, 40, .12);
+        font-size: 0 !important;
+    }
+</style>
+@endpush
+
 @section('content')
-<div class="page-header">
-    <div><span class="eyebrow">MY GARAGE</span><h1>Kendaraan Saya</h1><p>Kelola kendaraan yang terhubung dengan akun YZA Member Anda.</p></div>
-    <a class="yza-button" href="{{ route('pelanggan.katalog-mobil.index') }}">+ &nbsp;Lihat Koleksi Mobil</a>
+<div class="garage-page garage-page--compact">
+    <h1 id="garage-title" class="sr-only">Kendaraan Saya</h1>
+    <section class="garage-summary" aria-label="Ringkasan kendaraan">
+        <div class="garage-summary-item"><span class="garage-summary-icon" aria-hidden="true"><x-garage-icon name="car" /></span><div><strong>{{ $items->total() }} Kendaraan</strong><span>Dalam Koleksi Anda</span></div></div>
+        <div class="garage-summary-divider" aria-hidden="true"></div>
+        <div class="garage-summary-item"><span class="garage-summary-icon is-shield" aria-hidden="true"><x-garage-icon name="shield" /></span><div><strong>Member Terverifikasi</strong><span>{{ $hasVerifiedPurchase ? 'Kendaraan terhubung dengan akun YZA' : 'Belum ada kendaraan terverifikasi' }}</span></div></div>
+        <a class="garage-add-button" href="{{ route('pelanggan.katalog-mobil.index') }}"><span aria-hidden="true"><x-garage-icon name="plus" /></span><span class="garage-button-label">Tambah Kendaraan</span></a>
+    </section>
+    <div class="garage-list">
+        @forelse($items as $item)
+            @php
+                $vehicleColorText = strtolower((string) ($item->warna ?? ''));
+                $vehicleColorSwatch = '#64748b';
+                if (str_contains($vehicleColorText, 'merah') || str_contains($vehicleColorText, 'red')) $vehicleColorSwatch = '#e31e34';
+                elseif (str_contains($vehicleColorText, 'biru') || str_contains($vehicleColorText, 'blue')) $vehicleColorSwatch = '#2563eb';
+                elseif (str_contains($vehicleColorText, 'hijau') || str_contains($vehicleColorText, 'green')) $vehicleColorSwatch = '#16845a';
+                elseif (str_contains($vehicleColorText, 'kuning') || str_contains($vehicleColorText, 'yellow')) $vehicleColorSwatch = '#eab308';
+                elseif (str_contains($vehicleColorText, 'putih') || str_contains($vehicleColorText, 'white')) $vehicleColorSwatch = '#f8fafc';
+                elseif (str_contains($vehicleColorText, 'silver') || str_contains($vehicleColorText, 'abu') || str_contains($vehicleColorText, 'grey') || str_contains($vehicleColorText, 'gray')) $vehicleColorSwatch = '#94a3b8';
+                elseif (str_contains($vehicleColorText, 'hitam') || str_contains($vehicleColorText, 'black')) $vehicleColorSwatch = '#17191d';
+            @endphp
+            <article class="garage-vehicle-card">
+                <div class="garage-vehicle-media"><img src="{{ $item->presentation_image }}" alt="{{ $item->merk }} {{ $item->model }}" loading="lazy"></div>
+                <div class="garage-vehicle-content">
+                    <div class="garage-vehicle-badges"><span class="garage-status-badge"><i></i>{{ strtoupper($item->status) }}</span>@if($item->is_verified_ownership)<span class="garage-ownership-badge"><b aria-hidden="true">✓</b> Verified Ownership</span>@endif</div>
+                    <h2>{{ $item->merk }} {{ $item->model }}</h2>
+                    <p class="garage-vehicle-subline">{{ $item->nomor_polisi ?: 'Nomor polisi belum diisi' }} <span aria-hidden="true">•</span> {{ $item->tahun ?: 'Tahun belum diisi' }}</p>
+                    <div class="garage-stats" aria-label="Spesifikasi kendaraan"><div><span class="garage-stat-icon" aria-hidden="true"><x-garage-icon name="distance" /></span><strong>{{ number_format((int)$item->kilometer, 0, ',', '.') }} km</strong><small>Total Jarak</small></div><div><span class="garage-stat-icon garage-stat-color" style="--vehicle-color: {{ $vehicleColorSwatch }}" aria-hidden="true"></span><strong>{{ $item->warna ?: 'Belum diisi' }}</strong><small>Warna</small></div><div><span class="garage-stat-icon" aria-hidden="true"><x-garage-icon name="calendar" /></span><strong>{{ $item->tahun ?: '—' }}</strong><small>Tahun</small></div></div>
+                    <div class="garage-actions"><a class="garage-action garage-action-primary" href="{{ route('pelanggan.kendaraan.show', $item) }}"><span aria-hidden="true"><x-garage-icon name="info" /></span><span class="garage-button-label">Detail</span></a><a class="garage-action" href="{{ route('pelanggan.booking-servis.create', ['kendaraan' => $item->getKey(), 'from' => 'garage']) }}"><span aria-hidden="true"><x-garage-icon name="calendar" /></span> Jadwalkan Servis</a><a class="garage-action" href="{{ route('pelanggan.servis.index', ['kendaraan' => $item->getKey(), 'from' => 'garage']) }}"><span aria-hidden="true"><x-garage-icon name="history" /></span> Riwayat</a><a class="garage-action" href="{{ route('pelanggan.kendaraan.edit', ['kendaraan' => $item, 'from' => 'garage']) }}"><span aria-hidden="true"><x-garage-icon name="edit" /></span> Edit</a>@if($item->status === 'aktif')<a class="garage-action garage-action-trade" href="{{ route('pelanggan.pengajuan-mobil.create', ['kendaraan' => $item->getKey(), 'from' => 'garage']) }}"><span aria-hidden="true"><x-garage-icon name="trade" /></span> Ajukan Trade-In</a>@endif</div>
+                </div>
+            </article>
+        @empty
+            <section class="garage-empty" aria-labelledby="garage-empty-title"><div class="garage-empty-icon" aria-hidden="true">⌁</div><span class="garage-eyebrow">MY GARAGE</span><h2 id="garage-empty-title">Belum Ada Kendaraan</h2><p>Belum ada kendaraan yang terhubung dengan akun Anda.</p><a class="garage-add-button" href="{{ route('pelanggan.katalog-mobil.index') }}"><span aria-hidden="true"><x-garage-icon name="plus" /></span><span class="garage-button-label">Lihat Koleksi Mobil</span></a></section>
+        @endforelse
+    </div>
+    @if($items->hasPages())<div class="garage-pagination">{{ $items->links() }}</div>@endif
 </div>
-
-<div class="yza-card-grid">
-    @forelse($items as $item)
-        <article class="yza-card"><span class="badge {{ $item->status === 'aktif' ? 'badge-success' : 'badge-warning' }}">{{ $item->status }}</span><h2>{{ $item->merk }} {{ $item->model }}</h2><p>{{ $item->nomor_polisi ?: 'Nomor polisi belum diisi' }} · {{ $item->tahun ?: 'Tahun belum diisi' }}</p><p>{{ number_format((int) $item->kilometer, 0, ',', '.') }} km · {{ $item->warna ?: 'Warna belum diisi' }}</p><div class="member-card-actions"><a class="action-link" href="{{ route('pelanggan.kendaraan.show', $item) }}">Detail</a><a class="action-link" href="{{ route('pelanggan.kendaraan.edit', $item) }}">Edit</a></div></article>
-    @empty
-        <section class="vehicle-empty-experience">
-            <div class="vehicle-empty-hero"><div class="vehicle-empty-hero-image" role="img" aria-label="Toyota GR Supra putih di showroom YZA"></div></div>
-            <div class="vehicle-empty-copy"><h2>Belum Ada Kendaraan YZA Terverifikasi</h2><p>Miliki mobil melalui YZA Automotive untuk membuka berbagai kemudahan layanan seperti<br class="vehicle-empty-desktop-break"> Booking Servis, Car Wash, Service Reminder, Data Kendaraan, dan Trade-In.</p><div class="vehicle-empty-actions"><a class="yza-button" href="{{ route('pelanggan.katalog-mobil.index') }}"><span aria-hidden="true">🚘</span> Lihat Koleksi Mobil <span aria-hidden="true">→</span></a><a class="vehicle-empty-secondary" href="{{ route('pelanggan.test-drive.create') }}"><span aria-hidden="true">▣</span> Booking Test Drive</a></div></div>
-            <div class="vehicle-empty-features" aria-label="Keunggulan layanan YZA"><div><span>🛠</span><strong>Booking Servis</strong><small>Mudah dan cepat</small></div><i></i><div><span>▤</span><strong>Riwayat Servis</strong><small>Riwayat lengkap</small></div><i></i><div><span>♧</span><strong>Service Reminder</strong><small>Tidak lewat jadwal</small></div><i></i><div><span>🚘</span><strong>Data Kendaraan</strong><small>Selalu ter-update</small></div><i></i><div><span>↔</span><strong>Trade-In</strong><small>Proses mudah</small></div></div>
-        </section>
-        <section class="vehicle-empty-links" aria-label="Informasi layanan YZA">
-            <a href="{{ route('pelanggan.promo.index') }}" style="--vehicle-link-image:url('{{ asset('assets/images/member/service-bengkel.png') }}')"><span>◇</span><div><strong>Keuntungan Member</strong><small>Akses layanan eksklusif, promo spesial,<br>dan berbagai privilese menarik lainnya.</small></div><b>→</b></a>
-            <a href="{{ route('pelanggan.katalog-mobil.index') }}" style="--vehicle-link-image:url('{{ asset('assets/images/member/service-test-drive.png') }}')"><span>▣</span><div><strong>Langkah Selanjutnya</strong><small>Lihat koleksi mobil, ajukan test drive,<br>atau konsultasi dengan tim kami.</small></div><b>→</b></a>
-            <a href="{{ route('pelanggan.servis.index') }}" style="--vehicle-link-image:url('{{ asset('assets/images/member/service-car-wash.png') }}')"><span>⚙</span><div><strong>Layanan Siap Digunakan</strong><small>Setelah kendaraan terverifikasi,<br>semua layanan langsung bisa Anda akses.</small></div><b>→</b></a>
-        </section>
-    @endforelse
-</div>
-
-{{ $items->links() }}
 @endsection

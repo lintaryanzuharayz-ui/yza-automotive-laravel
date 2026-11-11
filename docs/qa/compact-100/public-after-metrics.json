@@ -1,0 +1,90 @@
+[
+  {
+    "font": "15px",
+    "gap": "20px",
+    "height": 68,
+    "padding": "10px 21.8624px",
+    "selector": ".show-nav",
+    "width": 1351.2000732421875
+  },
+  {
+    "font": "15px",
+    "gap": "24px",
+    "height": 516.1375122070312,
+    "padding": "32px 21.8624px",
+    "selector": ".show-hero-inner",
+    "width": 1351.2000732421875
+  },
+  {
+    "font": "56px",
+    "gap": "normal",
+    "height": 171.33750915527344,
+    "padding": "0px",
+    "selector": ".hero-copy-premium h1",
+    "width": 704
+  },
+  {
+    "font": "14px",
+    "gap": "8px",
+    "height": 44,
+    "padding": "10px 20px",
+    "selector": ".hero-buttons .show-cta",
+    "width": 192.1750030517578
+  },
+  {
+    "font": "15px",
+    "gap": "normal",
+    "height": 274.89996337890625,
+    "padding": "18px",
+    "selector": ".hero-vehicle-info",
+    "width": 256
+  },
+  {
+    "font": "15px",
+    "gap": "normal",
+    "height": 190,
+    "padding": "0px",
+    "selector": ".featured-media",
+    "width": 303.76251220703125
+  },
+  {
+    "font": "15px",
+    "gap": "normal",
+    "height": 136.10000610351562,
+    "padding": "16px",
+    "selector": ".featured-body",
+    "width": 303.76251220703125
+  },
+  {
+    "font": "15px",
+    "gap": "normal",
+    "height": 348.8500061035156,
+    "padding": "0px",
+    "selector": ".featured-card",
+    "width": 305.3625183105469
+  },
+  {
+    "font": "15px",
+    "gap": "normal",
+    "height": 641.625,
+    "padding": "40px 0px",
+    "selector": ".yza-member-section",
+    "width": 1351.2000732421875
+  },
+  {
+    "font": "45.0912px",
+    "gap": "normal",
+    "height": 146.0625,
+    "padding": "0px",
+    "selector": ".yza-member-copy h2",
+    "width": 619.375
+  },
+  {
+    "font": "15px",
+    "gap": "normal",
+    "height": 261.52764892578125,
+    "padding": "22px",
+    "selector": ".yza-member-card",
+    "width": 435.83935546875
+  }
+]

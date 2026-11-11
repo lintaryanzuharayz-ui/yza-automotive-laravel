@@ -1,0 +1,128 @@
+[
+  {
+    "vehicle": "Bugatti",
+    "brandFits": true,
+    "overflow": 0,
+    "statusSeparated": true,
+    "width": 320
+  },
+  {
+    "vehicle": "Bugatti",
+    "brandFits": true,
+    "overflow": 0,
+    "statusSeparated": true,
+    "width": 375
+  },
+  {
+    "vehicle": "Bugatti",
+    "brandFits": true,
+    "overflow": 0,
+    "statusSeparated": true,
+    "width": 390
+  },
+  {
+    "vehicle": "Bugatti",
+    "brandFits": true,
+    "overflow": 0,
+    "statusSeparated": true,
+    "width": 430
+  },
+  {
+    "vehicle": "Bugatti",
+    "brandFits": true,
+    "overflow": 0,
+    "statusSeparated": true,
+    "width": 768
+  },
+  {
+    "vehicle": "Bugatti",
+    "brandFits": true,
+    "overflow": 0,
+    "statusSeparated": true,
+    "width": 1024
+  },
+  {
+    "vehicle": "Bugatti",
+    "brandFits": true,
+    "overflow": 0,
+    "statusSeparated": true,
+    "width": 1280
+  },
+  {
+    "vehicle": "Bugatti",
+    "brandFits": true,
+    "overflow": 0,
+    "statusSeparated": true,
+    "width": 1440
+  },
+  {
+    "vehicle": "Bugatti",
+    "brandFits": true,
+    "overflow": 0,
+    "statusSeparated": true,
+    "width": 1920
+  },
+  {
+    "vehicle": "Mercedes AMG",
+    "brandFits": true,
+    "overflow": 0,
+    "statusSeparated": true,
+    "width": 320
+  },
+  {
+    "vehicle": "Mercedes AMG",
+    "brandFits": true,
+    "overflow": 0,
+    "statusSeparated": true,
+    "width": 375
+  },
+  {
+    "vehicle": "Mercedes AMG",
+    "brandFits": true,
+    "overflow": 0,
+    "statusSeparated": true,
+    "width": 390
+  },
+  {
+    "vehicle": "Mercedes AMG",
+    "brandFits": true,
+    "overflow": 0,
+    "statusSeparated": true,
+    "width": 430
+  },
+  {
+    "vehicle": "Mercedes AMG",
+    "brandFits": true,
+    "overflow": 0,
+    "statusSeparated": true,
+    "width": 768
+  },
+  {
+    "vehicle": "Mercedes AMG",
+    "brandFits": true,
+    "overflow": 0,
+    "statusSeparated": true,
+    "width": 1024
+  },
+  {
+    "vehicle": "Mercedes AMG",
+    "brandFits": true,
+    "overflow": 0,
+    "statusSeparated": true,
+    "width": 1280
+  },
+  {
+    "vehicle": "Mercedes AMG",
+    "brandFits": true,
+    "overflow": 0,
+    "statusSeparated": true,
+    "width": 1440
+  },
+  {
+    "vehicle": "Mercedes AMG",
+    "brandFits": true,
+    "overflow": 0,
+    "statusSeparated": true,
+    "width": 1920
+  }
+]

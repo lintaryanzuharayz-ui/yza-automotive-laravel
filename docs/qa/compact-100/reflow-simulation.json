@@ -1,0 +1,83 @@
+[
+  {
+    "page": "landing",
+    "scaleEquivalent": 1.25,
+    "testKind": "effective viewport simulation; NOT native browser zoom",
+    "client": 1078,
+    "height": 614,
+    "scroll": 1078,
+    "width": 1094
+  },
+  {
+    "page": "landing",
+    "scaleEquivalent": 1.5,
+    "testKind": "effective viewport simulation; NOT native browser zoom",
+    "client": 896,
+    "height": 512,
+    "scroll": 896,
+    "width": 911
+  },
+  {
+    "page": "landing",
+    "scaleEquivalent": 2,
+    "testKind": "effective viewport simulation; NOT native browser zoom",
+    "client": 668,
+    "height": 384,
+    "scroll": 668,
+    "width": 683
+  },
+  {
+    "page": "detail",
+    "scaleEquivalent": 1.25,
+    "testKind": "effective viewport simulation; NOT native browser zoom",
+    "client": 1078,
+    "height": 614,
+    "scroll": 1078,
+    "width": 1094
+  },
+  {
+    "page": "detail",
+    "scaleEquivalent": 1.5,
+    "testKind": "effective viewport simulation; NOT native browser zoom",
+    "client": 896,
+    "height": 512,
+    "scroll": 896,
+    "width": 911
+  },
+  {
+    "page": "detail",
+    "scaleEquivalent": 2,
+    "testKind": "effective viewport simulation; NOT native browser zoom",
+    "client": 668,
+    "height": 384,
+    "scroll": 668,
+    "width": 683
+  },
+  {
+    "page": "login",
+    "scaleEquivalent": 1.25,
+    "testKind": "effective viewport simulation; NOT native browser zoom",
+    "client": 1094,
+    "height": 614,
+    "scroll": 1094,
+    "width": 1094
+  },
+  {
+    "page": "login",
+    "scaleEquivalent": 1.5,
+    "testKind": "effective viewport simulation; NOT native browser zoom",
+    "client": 911,
+    "height": 512,
+    "scroll": 911,
+    "width": 911
+  },
+  {
+    "page": "login",
+    "scaleEquivalent": 2,
+    "testKind": "effective viewport simulation; NOT native browser zoom",
+    "client": 668,
+    "height": 384,
+    "scroll": 668,
+    "width": 683
+  }
+]

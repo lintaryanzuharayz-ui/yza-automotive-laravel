@@ -65,4 +65,15 @@ class User extends Authenticatable
     {
         return strtolower((string) ($this->role?->nama_role ?? ''));
     }
+
+    public function roleKey(): string
+    {
+        return $this->role?->key() ?? '';
+    }
+
+    public function hasPermission(string $permission): bool
+    {
+        if ($this->roleKey() === 'super_admin') return true;
+        return $this->role?->permissions()->where('kode', $permission)->exists() ?? false;
+    }
 }

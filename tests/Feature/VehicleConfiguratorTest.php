@@ -17,7 +17,7 @@ class VehicleConfiguratorTest extends TestCase
                 ->assertSee('detail-main-image')
                 ->assertSee('detail-gallery-counter')
                 ->assertSee('detail-swatch')
-                ->assertSee('01 / 04');
+                ->assertSee('data-public-color-stock', false)->assertSee('Stok Habis');
         }
     }
 

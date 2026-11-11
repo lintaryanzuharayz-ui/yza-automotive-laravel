@@ -42,7 +42,7 @@ class ServiceOperationsDashboardService
         $pendingBookings = BookingServis::with(['pelanggan', 'kendaraan'])
             ->where('status', 'menunggu')->orderBy('tanggal')->orderBy('jam')->limit(5)->get();
         foreach ($pendingBookings as $booking) {
-            $attention->push(['label' => 'Booking belum diproses', 'detail' => $booking->kode_booking.' · '.$booking->pelanggan?->nama_lengkap, 'tone' => 'warning']);
+            $attention->push(['label' => 'Booking belum diproses', 'detail' => $booking->kode_booking.' · '.$booking->pelanggan?->nama_lengkap, 'tone' => 'warning', 'booking_id' => $booking->id_booking_servis]);
         }
         $pendingPayments = (clone $serviceTransactions)->whereIn('status', ['belum_bayar', 'dp'])->with('servis')->latest('tanggal')->limit(5)->get();
         foreach ($pendingPayments as $transaction) {

@@ -1,0 +1,6 @@
+@extends('layouts.app')
+@section('title','Sales Excellence Awards · YZA Automotive')
+@section('admin-page-title','Sales Excellence Awards')
+@section('content')
+<section class="admin-panel"><form class="admin-toolbar" method="get"><select class="admin-filter-input" name="year">@for($y=now('Asia/Jakarta')->year;$y>=2020;$y--)<option value="{{ $y }}" @selected($year===$y)>{{ $y }}</option>@endfor</select><button class="admin-button admin-button-secondary">Lihat tahun</button></form><p class="admin-muted">Peringkat ini bersifat informasional. Sales tidak dapat mengubah transaksi, target, assignment, atau hasil evaluasi.</p></section><section class="admin-panel"><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Ranking</th><th>Sales</th><th>Unit final</th><th>Target</th><th>Pencapaian</th><th>Nilai final</th></tr></thead><tbody>@foreach($rows as $row)<tr class="{{ $me && $me['id']===$row['id'] ? 'is-active' : '' }}"><td>{{ $row['rank'] }}</td><td>{{ $row['name'] }}</td><td>{{ $row['units'] }}</td><td>{{ $row['target_units'] ?? 'Belum tersedia' }}</td><td>{{ $row['achievement'] === null ? 'Belum tersedia' : $row['achievement'].'%' }}</td><td>Rp {{ number_format($row['amount'],0,',','.') }}</td></tr>@endforeach</tbody></table></div></section>
+@endsection

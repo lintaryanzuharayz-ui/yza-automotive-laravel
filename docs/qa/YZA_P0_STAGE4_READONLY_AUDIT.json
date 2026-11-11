@@ -1,0 +1,10 @@
+{
+    "environment": "local",
+    "database": "yza_automotive_laravel",
+    "read_only": true,
+    "invoice_arithmetic_mismatch": 0,
+    "servis_promo_payable_mismatch": 0,
+    "penjualan_mobil_promo_payable_mismatch": 0,
+    "penjualan_sparepart_promo_payable_mismatch": 0,
+    "trade_in_promo_payable_mismatch": 0
+}

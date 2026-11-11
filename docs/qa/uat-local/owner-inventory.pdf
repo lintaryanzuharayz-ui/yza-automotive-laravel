@@ -1,0 +1,93 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 3032 >>
+stream
+BT
+/F1 8 Tf
+30 760 Td
+(PT YZA Automotive - Inventori Kendaraan) Tj
+0 -15 Td
+(Periode: 01 Jan 2026 - 15 Oct 2026) Tj
+0 -15 Td
+(Kode | Merek | Model | Tahun | Status | Harga jual | Tanggal masuk) Tj
+0 -15 Td
+(PREM-05 | Aston Martin | DBS 770 Ultimate | Rp 2.024 | tersedia | Rp 12.000.000.000 | 15 Oct 2026) Tj
+0 -15 Td
+(PREM-06 | Chevrolet | Corvette Z06 | Rp 2.024 | tersedia | Rp 3.500.000.000 | 15 Oct 2026) Tj
+0 -15 Td
+(PREM-08 | Dodge | Challenger SRT Hellcat Redeye | Rp 2.023 | tersedia | Rp 2.500.000.000 | 15 Oct 2026) Tj
+0 -15 Td
+(PREM-02 | Ferrari | SF90 Stradale | Rp 2.024 | tersedia | Rp 14.500.000.000 | 15 Oct 2026) Tj
+0 -15 Td
+(PREM-07 | Ford | Mustang Shelby GT500 | Rp 2.024 | tersedia | Rp 240.000.000 | 15 Oct 2026) Tj
+0 -15 Td
+(PREM-01 | Lamborghini | Revuelto | Rp 2.025 | tersedia | Rp 12.500.000.000 | 15 Oct 2026) Tj
+0 -15 Td
+(TEST-STOCK-LREV-02 | Lamborghini | Revuelto | Rp 2.025 | tersedia | Rp 12.500.000.000 | 15 Oct 2026) Tj
+0 -15 Td
+(TEST-STOCK-LREV-03 | Lamborghini | Revuelto | Rp 2.025 | tersedia | Rp 12.500.000.000 | 15 Oct 2026) Tj
+0 -15 Td
+(TEST-STOCK-LREV-04 | Lamborghini | Revuelto | Rp 2.025 | tersedia | Rp 12.500.000.000 | 15 Oct 2026) Tj
+0 -15 Td
+(TEST-STOCK-LREV-05 | Lamborghini | Revuelto | Rp 2.025 | tersedia | Rp 12.500.000.000 | 15 Oct 2026) Tj
+0 -15 Td
+(TEST-STOCK-LREV-06 | Lamborghini | Revuelto | Rp 2.025 | tersedia | Rp 12.500.000.000 | 15 Oct 2026) Tj
+0 -15 Td
+(TEST-STOCK-LREV-07 | Lamborghini | Revuelto | Rp 2.025 | tersedia | Rp 12.500.000.000 | 15 Oct 2026) Tj
+0 -15 Td
+(TEST-STOCK-LREV-08 | Lamborghini | Revuelto | Rp 2.025 | tersedia | Rp 12.500.000.000 | 15 Oct 2026) Tj
+0 -15 Td
+(PREM-10 | Lexus | LFA | Rp 2.012 | tersedia | Rp 9.000.000.000 | 15 Oct 2026) Tj
+0 -15 Td
+(PREM-04 | Mercedes Amg | GT Black Series | Rp 2.024 | tersedia | Rp 8.500.000.000 | 15 Oct 2026) Tj
+0 -15 Td
+(PREM-09 | Nissan | GT-R Nismo | Rp 2.024 | tersedia | Rp 6.500.000.000 | 15 Oct 2026) Tj
+0 -15 Td
+(PREM-03 | Porsche | 911 GT3 RS | Rp 2.024 | tersedia | Rp 8.500.000.000 | 15 Oct 2026) Tj
+0 -15 Td
+(YZA-TOYOTA-GR-SUPRA-2024 | Toyota | GR Supra | Rp 2.024 | tersedia | Rp 2.350.000.000 | 03 Oct 2026) Tj
+0 -15 Td
+(TEST-STOCK-TGR-02 | Toyota | GR Supra | Rp 2.024 | tersedia | Rp 2.350.000.000 | 03 Oct 2026) Tj
+0 -15 Td
+(TEST-STOCK-TGR-03 | Toyota | GR Supra | Rp 2.024 | tersedia | Rp 2.350.000.000 | 03 Oct 2026) Tj
+0 -15 Td
+(TEST-STOCK-TGR-04 | Toyota | GR Supra | Rp 2.024 | tersedia | Rp 2.350.000.000 | 03 Oct 2026) Tj
+0 -15 Td
+(TEST-STOCK-TGR-05 | Toyota | GR Supra | Rp 2.024 | tersedia | Rp 2.350.000.000 | 03 Oct 2026) Tj
+0 -15 Td
+(YZA-TOYOTA-SUPRA-MK4-2025 | Toyota | Supra MK4 | Rp 1.998 | tersedia | Rp 2.268.600.000 | 03 Oct 2026) Tj
+0 -15 Td
+(TEST-STOCK-TSMK4-02 | Toyota | Supra MK4 | Rp 1.998 | tersedia | Rp 2.268.600.000 | 03 Oct 2026) Tj
+0 -15 Td
+(TEST-STOCK-TSMK4-03 | Toyota | Supra MK4 | Rp 1.998 | tersedia | Rp 2.268.600.000 | 03 Oct 2026) Tj
+0 -15 Td
+(STAGE2-CAR-013 | YZA | Synthetic GT | Rp 2.026 | tersedia | Rp 150.000.000 | 15 Oct 2026) Tj
+0 -15 Td
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+3395
+%%EOF

@@ -1,0 +1,66 @@
+{
+    "eligible_members": [
+        {
+            "customer_id": 750,
+            "user_id": 990,
+            "name": "Lintar Yan Zuhara",
+            "member_id": "YZA-MBR-000750"
+        },
+        {
+            "customer_id": 752,
+            "user_id": 1001,
+            "name": "Lucky Yan Zuhara",
+            "member_id": "YZA-MBR-000752"
+        }
+    ],
+    "same_name_comparison": [
+        {
+            "customers": [
+                528,
+                529
+            ],
+            "same_nonempty_phone": true,
+            "same_nonempty_address": true
+        },
+        {
+            "customers": [
+                528,
+                530
+            ],
+            "same_nonempty_phone": true,
+            "same_nonempty_address": true
+        },
+        {
+            "customers": [
+                528,
+                750
+            ],
+            "same_nonempty_phone": false,
+            "same_nonempty_address": true
+        },
+        {
+            "customers": [
+                529,
+                530
+            ],
+            "same_nonempty_phone": true,
+            "same_nonempty_address": true
+        },
+        {
+            "customers": [
+                529,
+                750
+            ],
+            "same_nonempty_phone": false,
+            "same_nonempty_address": true
+        },
+        {
+            "customers": [
+                530,
+                750
+            ],
+            "same_nonempty_phone": false,
+            "same_nonempty_address": true
+        }
+    ]
+}

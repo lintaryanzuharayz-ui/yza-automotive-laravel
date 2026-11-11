@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RoleDashboardController;
 use App\Http\Controllers\Admin\FotoMobilController as AdminFotoMobilController;
 use App\Http\Controllers\Admin\KategoriSparepartController;
 use App\Http\Controllers\Admin\JenisServisController;
@@ -18,9 +19,14 @@ use App\Http\Controllers\Public\MobilController as PublicMobilController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Pelanggan\KendaraanController;
+use App\Http\Controllers\Pelanggan\MemberVehiclePurchaseController as MemberVehiclePurchaseController;
+use App\Http\Controllers\Admin\MemberVehiclePurchaseController as AdminMemberVehiclePurchaseController;
 use App\Services\PengaturanService;
 use App\Http\Controllers\Admin\{StokMasukController,InventoryController,NotifikasiController as AdminNotifikasiController};
+use App\Http\Controllers\Admin\PaymentManagementController;
+use App\Http\Controllers\Admin\MemberVehiclePreorderController as AdminMemberVehiclePreorderController;
 use App\Http\Controllers\Pelanggan\{BookingMobilController,TestDriveController};
+use App\Http\Controllers\Pelanggan\MemberVehiclePreorderController;
 use App\Http\Controllers\Pelanggan\PengajuanMobilController;
 use App\Http\Controllers\{OperationsBookingController,OperationsTestDriveController};
 use App\Http\Controllers\OperationsPengajuanMobilController;
@@ -30,6 +36,10 @@ use App\Http\Controllers\Pelanggan\BookingCuciController;
 use App\Http\Controllers\Pelanggan\ServisController as PelangganServisController;
 use App\Http\Controllers\OperationsBookingCuciController;
 use App\Http\Controllers\OperationsServisController;
+use App\Http\Controllers\ServiceExecutionController;
+use App\Http\Controllers\ServiceAssignmentController;
+use App\Http\Controllers\Admin\ServiceScheduleController;
+use App\Http\Controllers\Admin\ServicePersonnelController;
 use App\Http\Controllers\{PaymentController,InvoiceController};
 use App\Http\Controllers\{OutgoingPaymentController,UsedCarSettlementController,UsedCarReceiptController,TradeInInvoiceController};
 use App\Http\Controllers\Pelanggan\TradeInController;
@@ -46,9 +56,13 @@ use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\Admin\MembershipController as AdminMembershipController;
 use App\Http\Controllers\Admin\PromoAnalyticsController;
 use App\Http\Controllers\Admin\LaporanServisController;
+use App\Http\Controllers\Admin\AdminWorkspaceController;
+use App\Http\Controllers\Admin\AdminAuxiliaryController;
 use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\OperationsPenjualanSparepartController;
 use App\Http\Controllers\OperationsPenjualanMobilController;
+use App\Http\Controllers\SalesManagementController;
+use App\Http\Controllers\OwnerDashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Mobil;
 
@@ -86,8 +100,11 @@ Route::get('/mobil/{mobil}', [PublicMobilController::class, 'show'])->whereNumbe
 Route::get('/trade-in/start', [PublicMobilController::class, 'tradeInEntry'])->name('trade-in.entry');
 Route::get('/trade-in/membership-entry', [PublicMobilController::class, 'membershipEntry'])->name('trade-in.membership-entry');
 
+// Keep the login page reachable for authenticated users so AuthController can
+// send each role to its own dashboard instead of the guest middleware's `/`.
+Route::get('/login', [AuthController::class, 'create'])->name('login');
+
 Route::middleware('guest')->group(function (): void {
-    Route::get('/login', [AuthController::class, 'create'])->name('login');
     Route::post('/login', [AuthController::class, 'store'])->name('login.store');
     Route::get('/register', [RegistrationController::class, 'create'])->name('register');
     Route::get('/register/regions/{level}/{parent?}', [RegistrationController::class, 'regions'])->name('register.regions');
@@ -100,10 +117,48 @@ Route::post('/logout', [AuthController::class, 'destroy'])
 Route::post('/payment/midtrans/notification', [MidtransController::class, 'notification'])->name('midtrans.notification');
 
 Route::middleware('auth')->group(function (): void {
+    Route::get('/staff/dashboard', RoleDashboardController::class)
+        ->middleware(['role:owner,sales,service_advisor,mechanic,warehouse_staff,finance,operational_staff,quality_control'])
+        ->name('staff.dashboard');
+    Route::middleware(['role:owner,super_admin', 'permission:reports.view'])->prefix('owner')->name('owner.')->group(function (): void {
+        Route::get('dashboard', [OwnerDashboardController::class, 'dashboard'])->name('dashboard');
+        Route::get('penjualan', [OwnerDashboardController::class, 'salesReport'])->name('sales-report');
+        Route::get('penjualan/export', [OwnerDashboardController::class, 'exportSales'])->name('sales-export');
+        Route::get('servis', [OwnerDashboardController::class, 'serviceReport'])->name('service-report');
+        Route::get('servis/export', [OwnerDashboardController::class, 'exportService'])->name('service-export');
+        Route::get('performa-sales', [OwnerDashboardController::class, 'salesPerformanceReport'])->name('performance-report');
+        Route::get('performa-sales/export', [OwnerDashboardController::class, 'exportSalesPerformance'])->name('performance-export');
+        Route::get('pendapatan-pembayaran', [OwnerDashboardController::class, 'paymentReport'])->name('payment-report');
+        Route::get('pendapatan-pembayaran/export', [OwnerDashboardController::class, 'exportPayment'])->name('payment-export');
+        Route::get('inventori-kendaraan', [OwnerDashboardController::class, 'inventoryReport'])->name('inventory-report');
+        Route::get('inventori-kendaraan/export', [OwnerDashboardController::class, 'exportInventory'])->name('inventory-export');
+        Route::get('sales-awards', [OwnerDashboardController::class, 'salesAwards'])->name('sales-awards');
+        Route::get('sales-awards/export', [OwnerDashboardController::class, 'exportSalesAwards'])->name('sales-awards-export');
+        Route::post('sales-awards/finalize', [OwnerDashboardController::class, 'finalizeSalesAwards'])->middleware('role:super_admin')->name('sales-awards-finalize');
+    });
+    Route::middleware(['role:sales,super_admin', 'permission:sales.view'])->prefix('sales')->name('sales.')->group(function (): void {
+        Route::get('dashboard', [SalesManagementController::class, 'dashboard'])->name('dashboard');
+        Route::get('awards', [SalesManagementController::class, 'awards'])->name('awards');
+        Route::get('prospek', [SalesManagementController::class, 'leads'])->name('leads.index');
+        Route::get('prospek/create', [SalesManagementController::class, 'createLead'])->middleware('permission:sales.manage')->name('leads.create');
+        Route::post('prospek', [SalesManagementController::class, 'storeLead'])->middleware('permission:sales.manage')->name('leads.store');
+        Route::get('prospek/{lead}', [SalesManagementController::class, 'showLead'])->name('leads.show');
+        Route::post('prospek/{lead}/activity', [SalesManagementController::class, 'activity'])->middleware('permission:sales.manage')->name('leads.activity');
+        Route::put('prospek/{lead}/assignment', [SalesManagementController::class, 'assignLead'])->middleware('role:super_admin')->name('leads.assignment');
+        Route::get('test-drive', [SalesManagementController::class, 'testDrives'])->name('test-drives.index');
+        Route::put('test-drive/{testDrive}', [SalesManagementController::class, 'updateTestDrive'])->middleware('permission:sales.manage')->name('test-drives.update');
+        Route::put('test-drive/{testDrive}/assignment', [SalesManagementController::class, 'assignTestDrive'])->middleware('role:super_admin')->name('test-drives.assignment');
+        Route::get('pesanan', [SalesManagementController::class, 'orders'])->name('orders.index');
+        Route::put('pesanan/{order}/assignment', [SalesManagementController::class, 'assignOrder'])->middleware('role:super_admin')->name('orders.assignment');
+        Route::get('penjualan', [SalesManagementController::class, 'sales'])->name('sales.index');
+        Route::put('penjualan/{sale}/assignment', [SalesManagementController::class, 'assignSale'])->middleware('role:super_admin')->name('sales.assignment');
+        Route::get('target', [SalesManagementController::class, 'targets'])->name('targets.index');
+        Route::post('target', [SalesManagementController::class, 'storeTarget'])->middleware('role:super_admin')->name('targets.store');
+    });
     Route::get('/promo-preview', [PromoPreviewController::class, 'index'])->name('pelanggan.promo.preview.list');
     Route::get('/promo-preview/calculate', [PromoPreviewController::class, 'preview'])->name('pelanggan.promo.preview');
     Route::get('/admin/dashboard', [DashboardController::class, 'admin'])
-        ->middleware('role:admin')->name('admin.dashboard');
+        ->middleware('role:admin,super_admin')->name('admin.dashboard');
     Route::get('/petugas/dashboard', [DashboardController::class, 'petugas'])
         ->middleware('role:petugas')->name('petugas.dashboard');
     Route::get('/pelanggan/dashboard', [DashboardController::class, 'pelanggan'])
@@ -119,6 +174,9 @@ Route::middleware('auth')->group(function (): void {
     Route::get('/akun/password', [ProfileController::class, 'password'])->name('account.password');
     Route::put('/akun/password', [ProfileController::class, 'updatePassword'])->name('account.password.update');
     Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('notifications.index');
+    Route::get('/notifikasi/sync', [NotifikasiController::class, 'sync'])->name('notifications.sync');
+    Route::patch('/notifikasi/read-all', [NotifikasiController::class, 'readAll'])->name('notifications.read-all');
+    Route::get('/notifikasi/{notifikasi}/open', [NotifikasiController::class, 'open'])->name('notifications.open');
     Route::patch('/notifikasi/{notifikasi}/read', [NotifikasiController::class, 'read'])->name('notifications.read');
     Route::middleware(['role:pelanggan', 'member'])->prefix('pelanggan')->name('pelanggan.')->group(function (): void {
         Route::post('membership/pay', [MembershipController::class, 'pay'])->name('membership.pay');
@@ -126,6 +184,16 @@ Route::middleware('auth')->group(function (): void {
         Route::get('katalog-mobil', [PublicMobilController::class, 'index'])->name('katalog-mobil.index');
         Route::get('katalog-mobil/koleksi/{slug}', [PublicMobilController::class, 'memberShowcase'])->name('katalog-mobil.showcase');
         Route::get('katalog-mobil/{mobil}', [PublicMobilController::class, 'memberShow'])->whereNumber('mobil')->name('katalog-mobil.show');
+        Route::get('pesanan-mobil', [MemberVehiclePurchaseController::class, 'index'])->name('pesanan-mobil.index');
+        Route::get('pesanan-mobil/create/{mobil}', [MemberVehiclePurchaseController::class, 'create'])->whereNumber('mobil')->name('pesanan-mobil.create');
+        Route::post('pesanan-mobil/{mobil}', [MemberVehiclePurchaseController::class, 'store'])->whereNumber('mobil')->name('pesanan-mobil.store');
+        Route::get('pesanan-mobil/{pesanan_mobil}', [MemberVehiclePurchaseController::class, 'show'])->name('pesanan-mobil.show');
+        Route::post('pesanan-mobil/{pesanan_mobil}/pembayaran/buka-kembali', [MemberVehiclePurchaseController::class, 'reopenPayment'])->name('pesanan-mobil.payment.reopen');
+        Route::post('pesanan-mobil/{pesanan_mobil}/pembayaran-offline', [MemberVehiclePurchaseController::class, 'offlinePayment'])->name('pesanan-mobil.payment.offline');
+        Route::get('pre-order', [MemberVehiclePreorderController::class, 'index'])->name('preorder.index');
+        Route::get('pre-order/create', [MemberVehiclePreorderController::class, 'create'])->name('preorder.create');
+        Route::post('pre-order', [MemberVehiclePreorderController::class, 'store'])->name('preorder.store');
+        Route::patch('pre-order/{preorder}/cancel', [MemberVehiclePreorderController::class, 'cancel'])->name('preorder.cancel');
         Route::resource('kendaraan', KendaraanController::class)->only(['index','create','store','show','edit','update']);
         Route::patch('kendaraan/{kendaraan}/nonaktifkan', [KendaraanController::class, 'deactivate'])->name('kendaraan.deactivate');
         Route::get('booking-mobil', [BookingMobilController::class, 'index'])->name('booking.index');
@@ -148,6 +216,8 @@ Route::middleware('auth')->group(function (): void {
         Route::post('test-drive', [TestDriveController::class, 'store'])->name('test-drive.store');
         Route::get('test-drive/{test_drive}', [TestDriveController::class, 'show'])->name('test-drive.show');
         Route::patch('test-drive/{test_drive}/cancel', [TestDriveController::class, 'cancel'])->name('test-drive.cancel');
+        Route::get('booking-servis/availability', [BookingServisController::class, 'availability'])->name('booking-servis.availability');
+        Route::get('booking-servis/technicians', [BookingServisController::class, 'technicians'])->name('booking-servis.technicians');
         Route::get('booking-servis', [BookingServisController::class, 'index'])->name('booking-servis.index');
         Route::get('booking-servis/create', [BookingServisController::class, 'create'])->middleware('verified.owner')->name('booking-servis.create');
         Route::post('booking-servis', [BookingServisController::class, 'store'])->middleware('verified.owner')->name('booking-servis.store');
@@ -160,6 +230,10 @@ Route::middleware('auth')->group(function (): void {
         Route::patch('booking-cuci/{booking_cuci}/cancel', [BookingCuciController::class, 'cancel'])->name('booking-cuci.cancel');
         Route::get('servis', [PelangganServisController::class, 'index'])->name('servis.index');
     Route::get('servis/{servis}', [PelangganServisController::class, 'show'])->name('servis.show');
+        Route::get('servis/{servis}/approval', [PelangganServisController::class, 'approval'])->name('servis.approval');
+        Route::get('servis/{servis}/tracking', [ServiceExecutionController::class, 'tracking'])->name('servis.tracking');
+        Route::get('servis/{servis}/approvals', [ServiceExecutionController::class, 'approvals'])->name('servis.approvals');
+        Route::post('servis/{servis}/approvals/{approval}/decision', [ServiceExecutionController::class, 'decide'])->name('servis.approvals.decision');
         Route::get('invoice/servis/{transaksi}', [InvoiceController::class, 'show'])->name('invoice.servis');
         Route::get('invoice/car-wash/{transaksi}', [InvoiceController::class, 'show'])->name('invoice.carwash');
         Route::get('invoice/sparepart/{transaksi}', [InvoiceController::class, 'show'])->name('invoice.sparepart');
@@ -175,7 +249,27 @@ Route::middleware('auth')->group(function (): void {
     });
 });
 
-Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function (): void {
+Route::middleware(['auth', 'role:admin,super_admin,owner,sales,service_advisor,mechanic,warehouse_staff,finance,operational_staff,quality_control', 'module.access'])->prefix('admin')->name('admin.')->group(function (): void {
+    Route::get('aktivitas', [AdminWorkspaceController::class, 'activity'])->name('aktivitas.index');
+    Route::get('katalog-showroom', [AdminWorkspaceController::class, 'catalog'])->name('katalog-showroom.index');
+    Route::get('pdi', [AdminAuxiliaryController::class, 'ordersWorkflow'])->defaults('workflow', 'pdi')->name('pdi.index');
+    Route::get('jadwal-pengambilan', [AdminAuxiliaryController::class, 'ordersWorkflow'])->defaults('workflow', 'pengambilan')->name('pengambilan.index');
+    Route::get('serah-terima', [AdminAuxiliaryController::class, 'ordersWorkflow'])->defaults('workflow', 'serah-terima')->name('serah-terima.index');
+    Route::get('transaksi', [AdminAuxiliaryController::class, 'transactions'])->name('transaksi.index');
+    Route::get('invoice', [AdminAuxiliaryController::class, 'transactions'])->defaults('invoice_mode', true)->name('invoices.index');
+    Route::get('garage', [AdminAuxiliaryController::class, 'garage'])->name('garage.index');
+    Route::get('roles-permissions', [AdminAuxiliaryController::class, 'roles'])->name('roles.index');
+    Route::get('audit-log', [AdminAuxiliaryController::class, 'auditLog'])->name('audit-log.index');
+    Route::get('audit-log/export', [AdminAuxiliaryController::class, 'auditLogExport'])->name('audit-log.export');
+    Route::get('keuangan', [PaymentManagementController::class, 'index'])->name('finance-dashboard.index');
+    Route::get('pembayaran', [PaymentManagementController::class, 'index'])->name('payments.index');
+    Route::get('financial-adjustments', [\App\Http\Controllers\FinancialAdjustmentController::class, 'index'])->middleware('permission:finance.view')->name('financial-adjustments.index');
+    Route::post('financial-adjustments', [\App\Http\Controllers\FinancialAdjustmentController::class, 'store'])->middleware('permission:finance.verify')->name('financial-adjustments.store');
+    Route::patch('financial-adjustments/{adjustment}/transition', [\App\Http\Controllers\FinancialAdjustmentController::class, 'transition'])->middleware('permission:finance.verify')->name('financial-adjustments.transition');
+    Route::get('pembayaran/{pembayaran}', [PaymentManagementController::class, 'show'])->name('payments.show');
+    Route::post('pembayaran/{pembayaran}/confirm', [PaymentManagementController::class, 'verify'])->name('payments.confirm');
+    Route::post('pembayaran/{pembayaran}/reject', [PaymentManagementController::class, 'reject'])->name('payments.reject');
+    Route::post('pembayaran-online/{gateway}/sync', [PaymentManagementController::class, 'sync'])->name('payments.online.sync');
     Route::get('membership', [AdminMembershipController::class, 'index'])->name('membership.index');
     Route::resource('jenis-servis', JenisServisController::class)->only(['index','create','store','show','edit','update'])->parameters(['jenis-servis'=>'jenis_servis']);
     Route::patch('jenis-servis/{jenis_servis}/toggle', [JenisServisController::class, 'toggle'])->name('jenis-servis.toggle');
@@ -192,6 +286,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('promo-analytics/{promo_member}', [PromoAnalyticsController::class, 'show'])->name('promo-analytics.show');
     Route::get('laporan-servis', [LaporanServisController::class, 'index'])->name('laporan-servis.index');
     Route::get('pengaturan', [PengaturanController::class, 'index'])->name('pengaturan.index');
+    Route::put('pengaturan', [PengaturanController::class, 'updateMany'])->name('pengaturan.update-many');
     Route::put('pengaturan/{pengaturan}', [PengaturanController::class, 'update'])->whereIn('pengaturan', PengaturanService::KEYS)->name('pengaturan.update');
     Route::resource('pelanggan', AdminPelangganController::class)->only(['index','create','store','show','edit','update']);
     Route::patch('pelanggan/{pelanggan}/toggle', [AdminPelangganController::class, 'toggle'])->name('pelanggan.toggle');
@@ -203,6 +298,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::patch('supplier/{supplier}/toggle', [SupplierController::class, 'toggle'])->name('supplier.toggle');
     Route::resource('sparepart', AdminSparepartController::class)->only(['index', 'create', 'store', 'show', 'edit', 'update']);
     Route::patch('sparepart/{sparepart}/toggle', [AdminSparepartController::class, 'toggle'])->name('sparepart.toggle');
+    Route::post('sparepart/{sparepart}/fitment', [AdminSparepartController::class, 'storeFitment'])->name('sparepart.fitment.store');
+    Route::delete('sparepart/{sparepart}/fitment/{fitment}', [AdminSparepartController::class, 'destroyFitment'])->name('sparepart.fitment.destroy');
     Route::get('inventory/stok', [InventoryController::class, 'stock'])->name('inventory.stock');
     Route::get('inventory/riwayat', [InventoryController::class, 'history'])->name('inventory.history');
     Route::get('inventory/penyesuaian/{sparepart?}', [InventoryController::class, 'adjustment'])->name('inventory.adjustment');
@@ -213,20 +310,28 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::post('stok-masuk/{stok_masuk}/detail', [StokMasukController::class, 'addDetail'])->name('stok-masuk.detail.store');
     Route::delete('stok-masuk/detail/{detail_stok_masuk}', [StokMasukController::class, 'removeDetail'])->name('stok-masuk.detail.destroy');
     Route::get('notifikasi', [AdminNotifikasiController::class, 'index'])->name('notifikasi.index');
+    Route::get('notifikasi/sync', [AdminNotifikasiController::class, 'sync'])->name('notifikasi.sync');
+    Route::get('notifikasi/{notifikasi}/open', [AdminNotifikasiController::class, 'open'])->name('notifikasi.open');
     Route::patch('notifikasi/{notifikasi}/read', [AdminNotifikasiController::class, 'read'])->name('notifikasi.read');
-    Route::get('inventory/stok', [InventoryController::class, 'stock'])->name('inventory.stock');
-    Route::get('inventory/riwayat', [InventoryController::class, 'history'])->name('inventory.history');
-    Route::get('inventory/penyesuaian/{sparepart?}', [InventoryController::class, 'adjustment'])->name('inventory.adjustment');
-    Route::post('inventory/penyesuaian', [InventoryController::class, 'adjust'])->name('inventory.adjust');
-    Route::resource('stok-masuk', StokMasukController::class)->only(['index','create','store','show'])->parameters(['stok-masuk'=>'stok_masuk']);
-    Route::post('stok-masuk/{stok_masuk}/terima', [StokMasukController::class, 'finalize'])->name('stok-masuk.finalize');
-    Route::post('stok-masuk/{stok_masuk}/batal', [StokMasukController::class, 'cancel'])->name('stok-masuk.cancel');
-    Route::post('stok-masuk/{stok_masuk}/detail', [StokMasukController::class, 'addDetail'])->name('stok-masuk.detail.store');
-    Route::put('stok-masuk/detail/{detail_stok_masuk}', [StokMasukController::class, 'updateDetail'])->name('stok-masuk.detail.update');
-    Route::delete('stok-masuk/detail/{detail_stok_masuk}', [StokMasukController::class, 'removeDetail'])->name('stok-masuk.detail.destroy');
-    Route::get('notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi.index');
-    Route::patch('notifikasi/{notifikasi}/read', [NotifikasiController::class, 'read'])->name('notifikasi.read');
     Route::resource('mobil', AdminMobilController::class)->only(['index', 'create', 'store', 'show', 'edit', 'update']);
+    Route::get('mobil/{mobil}/stok', [AdminMobilController::class, 'stock'])->name('mobil.stock');
+    Route::post('mobil/{mobil}/stok', [AdminMobilController::class, 'adjustStock'])->name('mobil.stock.adjust');
+    Route::get('pre-order-mobil', [AdminMemberVehiclePreorderController::class, 'index'])->name('preorder-mobil.index');
+    Route::get('pre-order-mobil/{preorder}/detail', [AdminMemberVehiclePreorderController::class, 'detail'])->name('preorder-mobil.detail');
+    Route::get('pre-order-mobil/{preorder}/stock', [AdminMemberVehiclePreorderController::class, 'stock'])->name('preorder-mobil.stock');
+    Route::post('pre-order-mobil/{preorder}/stock', [AdminMemberVehiclePreorderController::class, 'stock'])->name('preorder-mobil.stock.check');
+    Route::post('pre-order-mobil/{preorder}/action', [AdminMemberVehiclePreorderController::class, 'action'])->name('preorder-mobil.action');
+    Route::get('pesanan-mobil', [AdminMemberVehiclePurchaseController::class, 'index'])->name('pesanan-mobil.index');
+    Route::post('pesanan-mobil', [AdminMemberVehiclePurchaseController::class, 'store'])->name('pesanan-mobil.store');
+    Route::get('pesanan-mobil/quote', [AdminMemberVehiclePurchaseController::class, 'quote'])->name('pesanan-mobil.quote');
+    Route::post('pesanan-mobil/{pesanan_mobil}/discount', [AdminMemberVehiclePurchaseController::class, 'discount'])->name('pesanan-mobil.discount');
+    Route::get('pesanan-mobil/{pesanan_mobil}', [AdminMemberVehiclePurchaseController::class, 'show'])->name('pesanan-mobil.show');
+    Route::post('pesanan-mobil/{pesanan_mobil}/approve', [AdminMemberVehiclePurchaseController::class, 'approve'])->name('pesanan-mobil.approve');
+    Route::post('pesanan-mobil/{pesanan_mobil}/reject', [AdminMemberVehiclePurchaseController::class, 'reject'])->name('pesanan-mobil.reject');
+    Route::post('pesanan-mobil/{pesanan_mobil}/schedule', [AdminMemberVehiclePurchaseController::class, 'schedule'])->name('pesanan-mobil.schedule');
+    Route::post('pesanan-mobil/{pesanan_mobil}/pdi/start', [AdminMemberVehiclePurchaseController::class, 'startPdi'])->name('pesanan-mobil.pdi.start');
+    Route::post('pesanan-mobil/{pesanan_mobil}/pdi', [AdminMemberVehiclePurchaseController::class, 'pdi'])->name('pesanan-mobil.pdi');
+    Route::post('pesanan-mobil/{pesanan_mobil}/handover', [AdminMemberVehiclePurchaseController::class, 'handover'])->name('pesanan-mobil.handover');
     Route::patch('mobil/{mobil}/nonaktifkan', [AdminMobilController::class, 'deactivate'])->name('mobil.deactivate');
     Route::post('mobil/{mobil}/foto', [AdminFotoMobilController::class, 'store'])->name('mobil.foto.store');
     Route::patch('mobil/{mobil}/foto/{foto}/primary', [AdminFotoMobilController::class, 'primary'])->name('mobil.foto.primary');
@@ -261,20 +366,41 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('booking-servis/{booking_servis}', [OperationsBookingServisController::class, 'show'])->name('booking-servis.show');
     Route::post('booking-servis/{booking_servis}/{action}', [OperationsBookingServisController::class, 'action'])->whereIn('action', ['confirm','reject'])->name('booking-servis.action');
     Route::get('servis', [OperationsServisController::class, 'index'])->name('servis.index');
-    Route::get('servis/{servis}', [OperationsServisController::class, 'show'])->name('servis.show');
+    Route::get('servis/jadwal', [ServiceScheduleController::class, 'index'])->name('servis.schedule');
+    Route::get('servis/personel', [ServicePersonnelController::class, 'index'])->name('servis.personnel');
+    Route::put('servis/personel/{profile}/profile', [ServicePersonnelController::class, 'updateProfile'])->name('servis.personnel.profile.update');
+    Route::put('servis/personel/{profile}/jam-kerja', [ServicePersonnelController::class, 'updateHours'])->name('servis.personnel.hours.update');
+    Route::post('servis/personel/time-off', [ServicePersonnelController::class, 'storeTimeOff'])->name('servis.personnel.timeoff.store');
+    Route::delete('servis/personel/time-off/{timeOff}', [ServicePersonnelController::class, 'destroyTimeOff'])->name('servis.personnel.timeoff.destroy');
+    Route::put('servis/jadwal/jam-operasional', [ServiceScheduleController::class, 'updateHours'])->name('servis.schedule.hours');
+    Route::post('servis/jadwal/blackout', [ServiceScheduleController::class, 'storeBlackout'])->name('servis.schedule.blackouts.store');
+    Route::delete('servis/jadwal/blackout/{blackout}', [ServiceScheduleController::class, 'destroyBlackout'])->name('servis.schedule.blackouts.destroy');
+    Route::get('servis/{servis}', [OperationsServisController::class, 'show'])->middleware('assigned.wo')->name('servis.show');
+    Route::get('servis/{servis}/pemeriksaan', [OperationsServisController::class, 'pemeriksaan'])->middleware('assigned.wo')->name('servis.pemeriksaan');
+    Route::get('servis/{servis}/persetujuan', [OperationsServisController::class, 'persetujuan'])->middleware('assigned.wo')->name('servis.persetujuan');
+    Route::get('servis/{servis}/pengerjaan', [OperationsServisController::class, 'pengerjaan'])->middleware('assigned.wo')->name('servis.pengerjaan');
+    Route::get('servis/{servis}/quality-control', [OperationsServisController::class, 'qualityControl'])->middleware('assigned.wo')->name('servis.quality-control');
+    Route::get('servis/{servis}/finalisasi', [OperationsServisController::class, 'finalisasi'])->middleware('assigned.wo')->name('servis.finalisasi');
+    Route::get('servis/{servis}/spareparts/search', [AdminSparepartController::class, 'search'])->middleware('assigned.wo')->name('servis.sparepart-search');
     Route::post('servis/from-booking/{booking_servis}', [OperationsServisController::class, 'fromBooking'])->name('servis.from-booking');
-    Route::post('servis/{servis}/inspection', [OperationsServisController::class, 'inspection'])->name('servis.inspection');
-    Route::post('servis/{servis}/detail', [OperationsServisController::class, 'detail'])->name('servis.detail.store');
-    Route::delete('servis/{servis}/detail/{detail_servis}', [OperationsServisController::class, 'removeDetail'])->name('servis.detail.destroy');
-    Route::post('servis/{servis}/sparepart', [OperationsServisController::class, 'sparepart'])->name('servis.sparepart.store');
-    Route::delete('servis/{servis}/sparepart/{servis_sparepart}', [OperationsServisController::class, 'removeSparepart'])->name('servis.sparepart.destroy');
-    Route::post('servis/{servis}/finalize', [OperationsServisController::class, 'finalize'])->name('servis.finalize');
+    Route::post('servis/{servis}/inspection', [OperationsServisController::class, 'inspection'])->middleware('assigned.wo')->name('servis.inspection');
+    Route::post('servis/{servis}/detail', [OperationsServisController::class, 'detail'])->middleware('assigned.wo')->name('servis.detail.store');
+    Route::delete('servis/{servis}/detail/{detail_servis}', [OperationsServisController::class, 'removeDetail'])->middleware('assigned.wo')->name('servis.detail.destroy');
+    Route::post('servis/{servis}/sparepart', [OperationsServisController::class, 'sparepart'])->middleware('assigned.wo')->name('servis.sparepart.store');
+    Route::delete('servis/{servis}/sparepart/{servis_sparepart}', [OperationsServisController::class, 'removeSparepart'])->middleware('assigned.wo')->name('servis.sparepart.destroy');
+    Route::post('servis/{servis}/finalize', [OperationsServisController::class, 'finalize'])->middleware('assigned.wo')->name('servis.finalize');
+    Route::post('servis/{servis}/findings', [ServiceExecutionController::class, 'storeFinding'])->middleware('assigned.wo')->name('servis.findings.store');
+    Route::post('servis/{servis}/approvals', [ServiceExecutionController::class, 'storeApproval'])->middleware('assigned.wo')->name('servis.approvals.store');
+    Route::post('servis/{servis}/approvals/{approval}/clarification', [ServiceExecutionController::class, 'requestApprovalClarification'])->middleware('assigned.wo')->name('servis.approvals.clarification');
+    Route::post('servis/{servis}/qc/start', [ServiceExecutionController::class, 'startQc'])->middleware('assigned.wo')->name('servis.qc.start');
+    Route::put('servis/{servis}/qc', [ServiceExecutionController::class, 'updateQc'])->middleware('assigned.wo')->name('servis.qc.update');
+    Route::put('servis/{servis}/assignment', [ServiceAssignmentController::class, 'update'])->middleware('assigned.wo')->name('servis.assignment.update');
     Route::get('transaksi-servis/{transaksi}/pembayaran/create', [PaymentController::class, 'create'])->name('payment.create');
     Route::post('transaksi-servis/{transaksi}/pembayaran', [PaymentController::class, 'store'])->name('payment.store');
     Route::get('transaksi-mobil/{transaksi}/pembayaran/create', [CarSalePaymentController::class, 'create'])->name('car-sale.payment.create');
     Route::post('transaksi-mobil/{transaksi}/pembayaran', [CarSalePaymentController::class, 'store'])->name('car-sale.payment.store');
     Route::post('pembayaran/{pembayaran}/verify', [PaymentController::class, 'verify'])->name('payment.verify');
-    Route::post('pembayaran/{pembayaran}/reject', [PaymentController::class, 'reject'])->name('payment.reject');
+    Route::post('pembayaran/{pembayaran}/reject', [PaymentManagementController::class, 'reject'])->name('payment.reject');
     Route::get('invoice/servis/{transaksi}', [InvoiceController::class, 'show'])->name('invoice.servis');
     Route::get('invoice/car-wash/{transaksi}', [InvoiceController::class, 'show'])->name('invoice.carwash');
     Route::get('invoice/sparepart/{transaksi}', [InvoiceController::class, 'show'])->name('invoice.sparepart');
@@ -293,11 +419,15 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::post('penjualan-sparepart/{penjualan_sparepart}/cancel', [OperationsPenjualanSparepartController::class, 'cancel'])->name('penjualan-sparepart.cancel');
     Route::get('penjualan-mobil', [OperationsPenjualanMobilController::class, 'index'])->name('penjualan-mobil.index');
     Route::get('penjualan-mobil/create', [OperationsPenjualanMobilController::class, 'create'])->name('penjualan-mobil.create');
-    Route::post('penjualan-mobil', [OperationsPenjualanMobilController::class, 'store'])->name('penjualan-mobil.store');
+    Route::get('penjualan-mobil/promo-preview', [OperationsPenjualanMobilController::class, 'promoPreview'])->name('penjualan-mobil.promo-preview');
+    Route::post('penjualan-mobil', [OperationsPenjualanMobilController::class, 'store'])->name('penjualan-mobil.store')->block(15, 15);
     Route::get('penjualan-mobil/{penjualan_mobil}', [OperationsPenjualanMobilController::class, 'show'])->name('penjualan-mobil.show');
 });
 
-Route::middleware(['auth', 'role:petugas'])->prefix('petugas')->name('petugas.')->group(function (): void {
+// Service Advisor uses the same operational booking/work-order surfaces as
+// legacy petugas accounts, while mechanic access remains constrained by the
+// assigned-work-order middleware on work-order routes.
+Route::middleware(['auth', 'role:admin,super_admin,petugas,service_advisor', 'module.access'])->prefix('petugas')->name('petugas.')->group(function (): void {
     Route::get('sparepart', [PetugasSparepartController::class, 'index'])->name('sparepart.index');
     Route::get('sparepart/{sparepart}', [PetugasSparepartController::class, 'show'])->whereNumber('sparepart')->name('sparepart.show');
     Route::get('mobil', [PetugasMobilController::class, 'index'])->name('mobil.index');
@@ -332,14 +462,25 @@ Route::middleware(['auth', 'role:petugas'])->prefix('petugas')->name('petugas.')
     Route::get('booking-servis/{booking_servis}', [OperationsBookingServisController::class, 'show'])->name('booking-servis.show');
     Route::post('booking-servis/{booking_servis}/{action}', [OperationsBookingServisController::class, 'action'])->whereIn('action', ['confirm','reject'])->name('booking-servis.action');
     Route::get('servis', [OperationsServisController::class, 'index'])->name('servis.index');
-    Route::get('servis/{servis}', [OperationsServisController::class, 'show'])->name('servis.show');
+    Route::get('servis/{servis}', [OperationsServisController::class, 'show'])->middleware('assigned.wo')->name('servis.show');
+     Route::get('servis/{servis}/pemeriksaan', [OperationsServisController::class, 'pemeriksaan'])->middleware('assigned.wo')->name('servis.pemeriksaan');
+     Route::get('servis/{servis}/persetujuan', [OperationsServisController::class, 'persetujuan'])->middleware('assigned.wo')->name('servis.persetujuan');
+     Route::get('servis/{servis}/pengerjaan', [OperationsServisController::class, 'pengerjaan'])->middleware('assigned.wo')->name('servis.pengerjaan');
+     Route::get('servis/{servis}/quality-control', [OperationsServisController::class, 'qualityControl'])->middleware('assigned.wo')->name('servis.quality-control');
+     Route::get('servis/{servis}/finalisasi', [OperationsServisController::class, 'finalisasi'])->middleware('assigned.wo')->name('servis.finalisasi');
+    Route::get('servis/{servis}/spareparts/search', [AdminSparepartController::class, 'search'])->middleware('assigned.wo')->name('servis.sparepart-search');
     Route::post('servis/from-booking/{booking_servis}', [OperationsServisController::class, 'fromBooking'])->name('servis.from-booking');
-    Route::post('servis/{servis}/inspection', [OperationsServisController::class, 'inspection'])->name('servis.inspection');
-    Route::post('servis/{servis}/detail', [OperationsServisController::class, 'detail'])->name('servis.detail.store');
-    Route::delete('servis/{servis}/detail/{detail_servis}', [OperationsServisController::class, 'removeDetail'])->name('servis.detail.destroy');
-    Route::post('servis/{servis}/sparepart', [OperationsServisController::class, 'sparepart'])->name('servis.sparepart.store');
-    Route::delete('servis/{servis}/sparepart/{servis_sparepart}', [OperationsServisController::class, 'removeSparepart'])->name('servis.sparepart.destroy');
-    Route::post('servis/{servis}/finalize', [OperationsServisController::class, 'finalize'])->name('servis.finalize');
+    Route::post('servis/{servis}/inspection', [OperationsServisController::class, 'inspection'])->middleware('assigned.wo')->name('servis.inspection');
+    Route::post('servis/{servis}/detail', [OperationsServisController::class, 'detail'])->middleware('assigned.wo')->name('servis.detail.store');
+    Route::delete('servis/{servis}/detail/{detail_servis}', [OperationsServisController::class, 'removeDetail'])->middleware('assigned.wo')->name('servis.detail.destroy');
+    Route::post('servis/{servis}/sparepart', [OperationsServisController::class, 'sparepart'])->middleware('assigned.wo')->name('servis.sparepart.store');
+    Route::delete('servis/{servis}/sparepart/{servis_sparepart}', [OperationsServisController::class, 'removeSparepart'])->middleware('assigned.wo')->name('servis.sparepart.destroy');
+    Route::post('servis/{servis}/finalize', [OperationsServisController::class, 'finalize'])->middleware('assigned.wo')->name('servis.finalize');
+    Route::post('servis/{servis}/findings', [ServiceExecutionController::class, 'storeFinding'])->middleware('assigned.wo')->name('servis.findings.store');
+    Route::post('servis/{servis}/approvals', [ServiceExecutionController::class, 'storeApproval'])->middleware('assigned.wo')->name('servis.approvals.store');
+    Route::post('servis/{servis}/approvals/{approval}/clarification', [ServiceExecutionController::class, 'requestApprovalClarification'])->middleware('assigned.wo')->name('servis.approvals.clarification');
+    Route::post('servis/{servis}/qc/start', [ServiceExecutionController::class, 'startQc'])->middleware('assigned.wo')->name('servis.qc.start');
+    Route::put('servis/{servis}/qc', [ServiceExecutionController::class, 'updateQc'])->middleware('assigned.wo')->name('servis.qc.update');
     Route::get('transaksi-servis/{transaksi}/pembayaran/create', [PaymentController::class, 'create'])->name('payment.create');
     Route::post('transaksi-servis/{transaksi}/pembayaran', [PaymentController::class, 'store'])->name('payment.store');
     Route::get('transaksi-mobil/{transaksi}/pembayaran/create', [CarSalePaymentController::class, 'create'])->name('car-sale.payment.create');
@@ -363,6 +504,7 @@ Route::middleware(['auth', 'role:petugas'])->prefix('petugas')->name('petugas.')
     Route::post('penjualan-sparepart/{penjualan_sparepart}/finalize', [OperationsPenjualanSparepartController::class, 'finalize'])->name('penjualan-sparepart.finalize');
     Route::get('penjualan-mobil', [OperationsPenjualanMobilController::class, 'index'])->name('penjualan-mobil.index');
     Route::get('penjualan-mobil/create', [OperationsPenjualanMobilController::class, 'create'])->name('penjualan-mobil.create');
-    Route::post('penjualan-mobil', [OperationsPenjualanMobilController::class, 'store'])->name('penjualan-mobil.store');
+    Route::get('penjualan-mobil/promo-preview', [OperationsPenjualanMobilController::class, 'promoPreview'])->name('penjualan-mobil.promo-preview');
+    Route::post('penjualan-mobil', [OperationsPenjualanMobilController::class, 'store'])->name('penjualan-mobil.store')->block(15, 15);
     Route::get('penjualan-mobil/{penjualan_mobil}', [OperationsPenjualanMobilController::class, 'show'])->name('penjualan-mobil.show');
 });

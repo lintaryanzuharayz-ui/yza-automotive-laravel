@@ -1,0 +1,23 @@
+
+  .......⨯.............................
+  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\AdminRealtimeNotificationsTest > admin sync returns booking deep link and member page is de…   
+  Failed asserting that null is not null.
+
+  at tests\Feature\AdminRealtimeNotificationsTest.php:77
+     73▕         $response->assertOk();
+     74▕         $notification = collect($response->json('notifications'))
+     75▕             ->first(fn (array $item) => $item['id'] === Notifikasi::where('referensi_id', $booking->id_booking_servis)->latest('id_notifikasi')->value('id_notifikasi'));
+     76▕ 
+  ➜  77▕         $this->assertNotNull($notification);
+     78▕         $this->assertSame(route('admin.booking-servis.show', $booking->id_booking_servis), $notification['url']);
+     79▕ 
+     80▕         $this->actingAs($this->user('pelanggan'))
+     81▕             ->getJson(route('admin.notifikasi.sync'))
+
+  1   tests\Feature\AdminRealtimeNotificationsTest.php:77
+
+
+  Tests:    1 failed, 36 passed (535 assertions)
+  Duration: 11.94s
+

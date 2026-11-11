@@ -1,0 +1,474 @@
+[
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-actions-reference .detail-action-row .detail-button",
+    "media": null,
+    "prop": "min-height",
+    "before": "84px",
+    "after": "48px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-actions-reference .detail-action-row .detail-button",
+    "media": null,
+    "prop": "padding",
+    "before": "13px 14px",
+    "after": "8px 12px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .show-section-heading h2",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(2.05rem,3.2vw,3.45rem)",
+    "after": "clamp(1.75rem,2.6vw,2.25rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .services-heading h2",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(2rem,3.2vw,3.3rem)",
+    "after": "clamp(1.75rem,2.6vw,2.25rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-section",
+    "media": null,
+    "prop": "padding",
+    "before": "48px 0",
+    "after": "40px 0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-visual",
+    "media": null,
+    "prop": "gap",
+    "before": "24px",
+    "after": "16px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefits",
+    "media": null,
+    "prop": "gap",
+    "before": "13px 18px",
+    "after": "12px 20px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit",
+    "media": null,
+    "prop": "grid-template-columns",
+    "before": "24px 1fr",
+    "after": "44px minmax(0,1fr)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit",
+    "media": null,
+    "prop": "gap",
+    "before": "9px",
+    "after": "10px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit i",
+    "media": null,
+    "prop": "width",
+    "before": "23px",
+    "after": "40px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit i",
+    "media": null,
+    "prop": "height",
+    "before": "23px",
+    "after": "40px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit i",
+    "media": null,
+    "prop": "font-size",
+    "before": "16px",
+    "after": "21px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit b",
+    "media": null,
+    "prop": "font-size",
+    "before": "10px",
+    "after": "13px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit small",
+    "media": null,
+    "prop": "font-size",
+    "before": "10px",
+    "after": "13px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-section",
+    "media": "(max-width:800px)",
+    "prop": "padding",
+    "before": "48px 0",
+    "after": "40px 0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card",
+    "media": "(max-width:800px)",
+    "prop": "width",
+    "before": "min(100%,480px)",
+    "after": "min(100%,430px)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-section",
+    "media": "(max-width:560px)",
+    "prop": "padding",
+    "before": "48px 0",
+    "after": "40px 0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefits",
+    "media": "(max-width:560px)",
+    "prop": "gap",
+    "before": "15px",
+    "after": "12px 20px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-section",
+    "media": null,
+    "prop": "padding",
+    "before": "48px 0",
+    "after": "40px 0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-actions .show-cta,.showroom .yza-member-actions .show-ghost",
+    "media": null,
+    "prop": "min-height",
+    "before": "62px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-actions .show-cta,.showroom .yza-member-actions .show-ghost",
+    "media": null,
+    "prop": "padding",
+    "before": "16px 30px",
+    "after": "10px 20px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-actions .show-cta,.showroom .yza-member-actions .show-ghost",
+    "media": null,
+    "prop": "font-size",
+    "before": "15px",
+    "after": "14px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-visual",
+    "media": null,
+    "prop": "gap",
+    "before": "20px",
+    "after": "16px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card",
+    "media": null,
+    "prop": "width",
+    "before": "min(100%,480px)",
+    "after": "min(100%,430px)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefits",
+    "media": null,
+    "prop": "min-height",
+    "before": "310px",
+    "after": "0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefits",
+    "media": null,
+    "prop": "padding",
+    "before": "29px 32px",
+    "after": "16px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefits",
+    "media": null,
+    "prop": "gap",
+    "before": "0 34px",
+    "after": "12px 20px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit",
+    "media": null,
+    "prop": "grid-template-columns",
+    "before": "66px 1fr",
+    "after": "44px minmax(0,1fr)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit",
+    "media": null,
+    "prop": "gap",
+    "before": "16px",
+    "after": "10px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit",
+    "media": null,
+    "prop": "padding",
+    "before": "10px 0",
+    "after": "6px 0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit i",
+    "media": null,
+    "prop": "width",
+    "before": "62px",
+    "after": "40px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit i",
+    "media": null,
+    "prop": "height",
+    "before": "62px",
+    "after": "40px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit i",
+    "media": null,
+    "prop": "font-size",
+    "before": "27px",
+    "after": "21px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit b",
+    "media": null,
+    "prop": "font-size",
+    "before": "14px",
+    "after": "13px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefits",
+    "media": "(max-width:1200px) and (min-width:801px)",
+    "prop": "gap",
+    "before": "0 20px",
+    "after": "12px 20px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit i",
+    "media": "(max-width:1200px) and (min-width:801px)",
+    "prop": "width",
+    "before": "46px",
+    "after": "40px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit i",
+    "media": "(max-width:1200px) and (min-width:801px)",
+    "prop": "height",
+    "before": "46px",
+    "after": "40px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit b",
+    "media": "(max-width:1200px) and (min-width:801px)",
+    "prop": "font-size",
+    "before": "11px",
+    "after": "13px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit small",
+    "media": "(max-width:1200px) and (min-width:801px)",
+    "prop": "font-size",
+    "before": "10px",
+    "after": "13px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-section",
+    "media": "(max-width:800px)",
+    "prop": "padding",
+    "before": "48px 0",
+    "after": "40px 0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card",
+    "media": "(max-width:800px)",
+    "prop": "width",
+    "before": "min(100%,480px)",
+    "after": "min(100%,430px)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefits",
+    "media": "(max-width:800px)",
+    "prop": "padding",
+    "before": "20px",
+    "after": "16px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefits",
+    "media": "(max-width:800px)",
+    "prop": "gap",
+    "before": "8px",
+    "after": "12px 20px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-actions .show-cta,.showroom .yza-member-actions .show-ghost",
+    "media": "(max-width:800px)",
+    "prop": "min-height",
+    "before": "56px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit",
+    "media": "(max-width:560px)",
+    "prop": "gap",
+    "before": "12px",
+    "after": "10px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit i",
+    "media": "(max-width:560px)",
+    "prop": "width",
+    "before": "50px",
+    "after": "40px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit i",
+    "media": "(max-width:560px)",
+    "prop": "height",
+    "before": "50px",
+    "after": "40px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit i",
+    "media": "(max-width:560px)",
+    "prop": "font-size",
+    "before": "22px",
+    "after": "21px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit b",
+    "media": "(max-width:560px)",
+    "prop": "font-size",
+    "before": "11px",
+    "after": "13px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-benefit small",
+    "media": "(max-width:560px)",
+    "prop": "font-size",
+    "before": "11px",
+    "after": "13px"
+  },
+  {
+    "file": "public/assets/css/member-checkout.css",
+    "selector": ".checkout-heading h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(38px,4.2vw,62px)",
+    "after": "clamp(1.875rem,2.8vw,2.5rem)"
+  },
+  {
+    "file": "public/assets/css/member-checkout.css",
+    "selector": ".checkout-heading h1",
+    "media": null,
+    "prop": "line-height",
+    "before": ".98",
+    "after": "1.1"
+  },
+  {
+    "file": "public/assets/css/member-checkout.css",
+    "selector": ".checkout-heading p",
+    "media": null,
+    "prop": "font-size",
+    "before": "17px",
+    "after": "15px"
+  },
+  {
+    "file": "public/assets/css/member-checkout.css",
+    "selector": ".checkout-form-card",
+    "media": null,
+    "prop": "padding",
+    "before": "24px",
+    "after": "18px"
+  },
+  {
+    "file": "public/assets/css/member-checkout.css",
+    "selector": ".checkout-summary-box",
+    "media": null,
+    "prop": "padding",
+    "before": "17px 18px",
+    "after": "16px"
+  },
+  {
+    "file": "public/assets/css/member-checkout.css",
+    "selector": ".checkout-summary-list",
+    "media": null,
+    "prop": "gap",
+    "before": "13px",
+    "after": "10px"
+  },
+  {
+    "file": "public/assets/css/member-checkout.css",
+    "selector": ".checkout-heading h1",
+    "media": "(max-width:700px)",
+    "prop": "font-size",
+    "before": "42px",
+    "after": "clamp(1.875rem,2.8vw,2.5rem)"
+  },
+  {
+    "file": "public/assets/css/member-checkout.css",
+    "selector": ".checkout-heading p",
+    "media": "(max-width:700px)",
+    "prop": "font-size",
+    "before": "14px",
+    "after": "15px"
+  },
+  {
+    "file": "public/assets/css/member-checkout.css",
+    "selector": ".checkout-form-card",
+    "media": "(max-width:700px)",
+    "prop": "padding",
+    "before": "20px 16px",
+    "after": "18px"
+  }
+]

@@ -1,0 +1,402 @@
+[
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form-side",
+    "media": null,
+    "prop": "padding",
+    "before": "clamp(48px,7vw,110px) clamp(48px,7vw,118px)",
+    "after": "32px clamp(20px,3vw,48px)"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form h2",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(46px,4vw,62px)",
+    "after": "clamp(1.75rem,2.5vw,2.25rem)"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form .intro",
+    "media": null,
+    "prop": "font-size",
+    "before": "20px",
+    "after": "15px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form .form-label",
+    "media": null,
+    "prop": "font-size",
+    "before": "17px",
+    "after": "14px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form .form-control",
+    "media": null,
+    "prop": "height",
+    "before": "70px",
+    "after": "46px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form .form-control",
+    "media": null,
+    "prop": "font-size",
+    "before": "18px",
+    "after": "16px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form-actions .login-submit",
+    "media": null,
+    "prop": "min-height",
+    "before": "70px",
+    "after": "46px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form-actions .login-submit",
+    "media": null,
+    "prop": "font-size",
+    "before": "19px",
+    "after": "15px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form h2",
+    "media": "(max-width:1200px)",
+    "prop": "font-size",
+    "before": "clamp(42px,4.5vw,54px)",
+    "after": "clamp(1.75rem,2.5vw,2.25rem)"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form .intro",
+    "media": "(max-width:1200px)",
+    "prop": "font-size",
+    "before": "18px",
+    "after": "15px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-brand",
+    "media": "(max-width:768px)",
+    "prop": "min-height",
+    "before": "460px",
+    "after": "200px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form-side",
+    "media": "(max-width:768px)",
+    "prop": "padding",
+    "before": "42px 24px 58px",
+    "after": "32px clamp(20px,3vw,48px)"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form h2",
+    "media": "(max-width:768px)",
+    "prop": "font-size",
+    "before": "clamp(36px,10vw,50px)",
+    "after": "clamp(1.75rem,2.5vw,2.25rem)"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form .intro",
+    "media": "(max-width:768px)",
+    "prop": "font-size",
+    "before": "16px",
+    "after": "15px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form .form-label",
+    "media": "(max-width:768px)",
+    "prop": "font-size",
+    "before": "15px",
+    "after": "14px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form .form-control",
+    "media": "(max-width:768px)",
+    "prop": "height",
+    "before": "58px",
+    "after": "46px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form-actions .login-submit",
+    "media": "(max-width:768px)",
+    "prop": "min-height",
+    "before": "58px",
+    "after": "46px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form-actions .login-submit",
+    "media": "(max-width:768px)",
+    "prop": "font-size",
+    "before": "16px",
+    "after": "15px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-brand",
+    "media": "(max-width:390px)",
+    "prop": "min-height",
+    "before": "410px",
+    "after": "200px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form-side",
+    "media": null,
+    "prop": "padding",
+    "before": "clamp(72px,12vh,132px) clamp(48px,7vw,118px)",
+    "after": "32px clamp(20px,3vw,48px)"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-brand",
+    "media": "(max-width:768px)",
+    "prop": "min-height",
+    "before": "460px",
+    "after": "200px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form-side",
+    "media": "(max-width:768px)",
+    "prop": "padding",
+    "before": "42px 24px 58px",
+    "after": "32px clamp(20px,3vw,48px)"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form-side",
+    "media": "(min-width:769px)",
+    "prop": "padding",
+    "before": "48px clamp(42px,6vw,108px)",
+    "after": "32px clamp(20px,3vw,48px)"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form h2",
+    "media": "(min-width:769px)",
+    "prop": "font-size",
+    "before": "clamp(40px,3.6vw,56px)",
+    "after": "clamp(1.75rem,2.5vw,2.25rem)"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form .intro",
+    "media": "(min-width:769px)",
+    "prop": "font-size",
+    "before": "17px",
+    "after": "15px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form .form-control",
+    "media": "(min-width:769px)",
+    "prop": "height",
+    "before": "58px",
+    "after": "46px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form .form-control",
+    "media": "(min-width:769px)",
+    "prop": "font-size",
+    "before": "15px",
+    "after": "16px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form-actions .login-submit",
+    "media": "(min-width:769px)",
+    "prop": "min-height",
+    "before": "58px",
+    "after": "46px"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "selector": ".login-form-actions .login-submit",
+    "media": "(min-width:769px)",
+    "prop": "font-size",
+    "before": "16px",
+    "after": "15px"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-showcase",
+    "media": null,
+    "prop": "padding",
+    "before": "clamp(30px,4vw,64px) clamp(42px,7vw,124px)",
+    "after": "24px"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-card",
+    "media": null,
+    "prop": "width",
+    "before": "min(94%,820px)",
+    "after": "min(100%,680px)"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-card",
+    "media": null,
+    "prop": "padding",
+    "before": "22px clamp(24px,2.4vw,34px)",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-card h2",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(30px,2.5vw,40px)",
+    "after": "clamp(1.625rem,2.1vw,2rem)"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-card .form-actions .button",
+    "media": null,
+    "prop": "min-height",
+    "before": "42px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-card .intro",
+    "media": null,
+    "prop": "font-size",
+    "before": "14px",
+    "after": "15px"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-card",
+    "media": null,
+    "prop": "width",
+    "before": "min(94%,860px)",
+    "after": "min(100%,680px)"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-card",
+    "media": null,
+    "prop": "padding",
+    "before": "30px clamp(30px,3vw,44px)",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-card h2",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(36px,3vw,48px)",
+    "after": "clamp(1.625rem,2.1vw,2rem)"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-card .intro",
+    "media": null,
+    "prop": "font-size",
+    "before": "16px",
+    "after": "15px"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-card .form-actions .button",
+    "media": null,
+    "prop": "min-height",
+    "before": "50px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-card",
+    "media": "(max-width:768px)",
+    "prop": "width",
+    "before": "calc(100% - 28px)",
+    "after": "min(100%,680px)"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-card",
+    "media": "(max-width:768px)",
+    "prop": "padding",
+    "before": "24px 20px",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-card h2",
+    "media": "(max-width:768px)",
+    "prop": "font-size",
+    "before": "36px",
+    "after": "clamp(1.625rem,2.1vw,2rem)"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-card",
+    "media": "(max-width:1200px)",
+    "prop": "width",
+    "before": "min(94%,680px)",
+    "after": "min(100%,680px)"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-showcase",
+    "media": "(max-width:768px)",
+    "prop": "min-height",
+    "before": "620px",
+    "after": "180px"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-showcase",
+    "media": "(max-width:768px)",
+    "prop": "padding",
+    "before": "150px 24px 44px",
+    "after": "24px"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-card",
+    "media": "(max-width:768px)",
+    "prop": "width",
+    "before": "calc(100% - 28px)",
+    "after": "min(100%,680px)"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-card",
+    "media": "(max-width:768px)",
+    "prop": "padding",
+    "before": "28px 20px",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-card h2",
+    "media": "(max-width:768px)",
+    "prop": "font-size",
+    "before": "38px",
+    "after": "clamp(1.625rem,2.1vw,2rem)"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "selector": ".register-card .intro",
+    "media": "(max-width:768px)",
+    "prop": "font-size",
+    "before": "16px",
+    "after": "15px"
+  }
+]

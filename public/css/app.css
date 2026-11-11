@@ -17,6 +17,10 @@ a { color: inherit; text-decoration: none; }
 .yza-header { min-height: 72px; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; background: var(--yza-black); color: var(--yza-white); }
 .yza-brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .yza-brand img { width: 38px; height: 38px; object-fit: contain; }
+.yza-header-actions { display: inline-flex; align-items: center; gap: 14px; }
+.yza-logout-form { margin: 0; }
+.yza-logout-button { padding: 8px 13px; border: 1px solid rgba(255,255,255,.35); border-radius: 7px; background: transparent; color: var(--yza-white); cursor: pointer; font: inherit; font-size: .78rem; font-weight: 700; }
+.yza-logout-button:hover, .yza-logout-button:focus-visible { border-color: var(--yza-white); background: rgba(255,255,255,.1); }
 .yza-menu-toggle { display: none; border: 0; background: transparent; color: var(--yza-white); font-size: 1.35rem; }
 .yza-body { display: flex; min-height: calc(100vh - 72px); }
 .yza-sidebar { width: 248px; padding: 28px 20px; background: var(--yza-black-soft); color: #d7d7d7; }

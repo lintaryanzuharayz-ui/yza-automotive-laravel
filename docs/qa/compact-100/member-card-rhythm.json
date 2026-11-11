@@ -1,0 +1,134 @@
+[
+  {
+    "selector": ".yza-home .yza-member-card-rule",
+    "prop": "height",
+    "before": "4px",
+    "after": "3px"
+  },
+  {
+    "selector": ".yza-home .yza-member-card-rule",
+    "prop": "margin",
+    "before": "16px 0 14px",
+    "after": "10px 0"
+  },
+  {
+    "selector": ".yza-home .yza-member-card-name",
+    "prop": "margin-top",
+    "before": "6px",
+    "after": "4px"
+  },
+  {
+    "selector": ".yza-home .yza-member-card-meta",
+    "prop": "padding-top",
+    "before": "22px",
+    "after": "10px"
+  },
+  {
+    "selector": ".yza-home .yza-member-card-meta",
+    "prop": "gap",
+    "before": "44px",
+    "after": "24px"
+  },
+  {
+    "selector": ".yza-home .yza-member-card-meta strong",
+    "prop": "margin-top",
+    "before": "6px",
+    "after": "4px"
+  },
+  {
+    "selector": ".yza-home .yza-home-member-card",
+    "prop": "padding",
+    "before": "20px",
+    "after": "18px"
+  },
+  {
+    "selector": ".yza-home .yza-home-member-card .yza-member-card-top img",
+    "prop": "width",
+    "before": "92px",
+    "after": "72px"
+  },
+  {
+    "selector": ".yza-home .yza-home-member-card .yza-member-card-top img",
+    "prop": "height",
+    "before": "52px",
+    "after": "40px"
+  },
+  {
+    "selector": ".yza-home .yza-member-card-label",
+    "prop": "font-size",
+    "before": "10px",
+    "after": "12px"
+  },
+  {
+    "selector": ".yza-home .yza-member-card-label",
+    "prop": "letter-spacing",
+    "before": ".2em",
+    "after": ".12em"
+  },
+  {
+    "selector": ".yza-home .yza-member-card-code",
+    "prop": "margin-top",
+    "before": "6px",
+    "after": "4px"
+  },
+  {
+    "selector": ".yza-home .yza-member-card-label:first-of-type",
+    "prop": "margin-top",
+    "before": "22px",
+    "after": "10px"
+  },
+  {
+    "selector": ".yza-home .yza-member-card-rule",
+    "prop": "height",
+    "before": "4px",
+    "after": "3px"
+  },
+  {
+    "selector": ".yza-home .yza-member-card-rule",
+    "prop": "margin",
+    "before": "16px 0 14px",
+    "after": "10px 0"
+  },
+  {
+    "selector": ".yza-home .yza-member-card-name",
+    "prop": "margin-top",
+    "before": "6px",
+    "after": "4px"
+  },
+  {
+    "selector": ".yza-home .yza-member-card-meta",
+    "prop": "padding-top",
+    "before": "22px",
+    "after": "10px"
+  },
+  {
+    "selector": ".yza-home .yza-member-card-meta",
+    "prop": "gap",
+    "before": "44px",
+    "after": "24px"
+  },
+  {
+    "selector": ".yza-home .yza-member-card-meta small",
+    "prop": "font-size",
+    "before": "10px",
+    "after": "12px"
+  },
+  {
+    "selector": ".yza-home .yza-member-card-meta small",
+    "prop": "letter-spacing",
+    "before": ".2em",
+    "after": ".12em"
+  },
+  {
+    "selector": ".yza-home .yza-member-card-meta strong",
+    "prop": "margin-top",
+    "before": "6px",
+    "after": "4px"
+  },
+  {
+    "selector": ".yza-home .yza-home-member-card",
+    "prop": "padding",
+    "before": "20px",
+    "after": "18px"
+  }
+]

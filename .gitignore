@@ -1,8 +1,8 @@
 *.log
 .DS_Store
 .env
-.env.backup
-.env.production
+.env.*
+!.env.example
 .phpactor.json
 .phpunit.result.cache
 /.fleet
@@ -19,6 +19,41 @@
 /storage/*.key
 /storage/pail
 /vendor
+/.remediation/
+
+# Runtime state must never be published (keep directory placeholders).
+/storage/framework/sessions*/**
+!/storage/framework/sessions*/.gitignore
+/storage/framework/cache/**
+!/storage/framework/cache/.gitignore
+!/storage/framework/cache/data/
+!/storage/framework/cache/data/.gitignore
+/storage/framework/views/**
+!/storage/framework/views/.gitignore
+/storage/framework/testing/**
+!/storage/framework/testing/.gitignore
+/storage/logs/**
+!/storage/logs/.gitignore
+/bootstrap/cache/*.php
+!/bootstrap/cache/.gitignore
+
+# Local databases, dumps, backups, and private credentials.
+*.sql
+*.sql.gz
+*.sql.zip
+*.dump
+*.sqlite*
+*.bak
+*.backup
+/backups/
+/storage/backups/
+*.pem
+*.p12
+*.pfx
+
+# Rendered QA pages contain CSRF tokens and account-specific runtime data.
+# Keep the source views, tests, screenshots, and written QA reports.
+/docs/qa/**/*.html
 Homestead.json
 Homestead.yaml
 Thumbs.db

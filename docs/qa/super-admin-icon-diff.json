@@ -1,0 +1,290 @@
+[
+  {
+    "route": "admin.notifikasi.index",
+    "before_label": "Pusat Notifikasi",
+    "after_label": "Pusat Notifikasi",
+    "before_icon": "bell",
+    "after_icon": "bell",
+    "changed": false
+  },
+  {
+    "route": "admin.aktivitas.index",
+    "before_label": "Aktivitas & Tugas Admin",
+    "after_label": "Aktivitas & Tugas Admin",
+    "before_icon": "calendar",
+    "after_icon": "list-todo",
+    "changed": true
+  },
+  {
+    "route": "admin.pesanan-mobil.index",
+    "before_label": "Pesanan Mobil",
+    "after_label": "Pesanan Mobil",
+    "before_icon": "car",
+    "after_icon": "clipboard-list",
+    "changed": true
+  },
+  {
+    "route": "admin.penjualan-mobil.index",
+    "before_label": "Penjualan Mobil",
+    "after_label": "Penjualan Mobil",
+    "before_icon": "cart",
+    "after_icon": "cart",
+    "changed": false
+  },
+  {
+    "route": "admin.preorder-mobil.index",
+    "before_label": "Pre-Order",
+    "after_label": "Pre-Order",
+    "before_icon": "calendar",
+    "after_icon": "calendar-clock",
+    "changed": true
+  },
+  {
+    "route": "admin.mobil.index",
+    "before_label": "Inventori & Stok Mobil",
+    "after_label": "Inventori & Stok Mobil",
+    "before_icon": "box",
+    "after_icon": "warehouse",
+    "changed": true
+  },
+  {
+    "route": "admin.katalog-showroom.index",
+    "before_label": "Katalog & Showroom",
+    "after_label": "Katalog & Showroom",
+    "before_icon": "layers",
+    "after_icon": "grid",
+    "changed": true
+  },
+  {
+    "route": "admin.pdi.index",
+    "before_label": "PDI",
+    "after_label": "PDI",
+    "before_icon": "document",
+    "after_icon": "clipboard-check",
+    "changed": true
+  },
+  {
+    "route": "admin.pengambilan.index",
+    "before_label": "Jadwal Pengambilan",
+    "after_label": "Jadwal Pengambilan",
+    "before_icon": "calendar",
+    "after_icon": "calendar",
+    "changed": false
+  },
+  {
+    "route": "admin.serah-terima.index",
+    "before_label": "Serah Terima",
+    "after_label": "Serah Terima",
+    "before_icon": "trade",
+    "after_icon": "key",
+    "changed": true
+  },
+  {
+    "route": "admin.finance-dashboard.index",
+    "before_label": "Dashboard Keuangan",
+    "after_label": "Dashboard Keuangan",
+    "before_icon": "document",
+    "after_icon": "chart",
+    "changed": true
+  },
+  {
+    "route": "admin.payments.index",
+    "before_label": "Pembayaran Online / Offline",
+    "after_label": "Pembayaran Online / Offline",
+    "before_icon": "document",
+    "after_icon": "card",
+    "changed": true
+  },
+  {
+    "route": "admin.transaksi.index",
+    "before_label": "Semua Transaksi",
+    "after_label": "Semua Transaksi",
+    "before_icon": "document",
+    "after_icon": "trade",
+    "changed": true
+  },
+  {
+    "route": "admin.invoices.index",
+    "before_label": "Invoice & Kwitansi",
+    "after_label": "Invoice & Kwitansi",
+    "before_icon": "document",
+    "after_icon": "receipt",
+    "changed": true
+  },
+  {
+    "route": "admin.financial-adjustments.index",
+    "before_label": "Rekonsiliasi / Pencairan",
+    "after_label": "Refund & Reversal",
+    "before_icon": "document",
+    "after_icon": "scale",
+    "changed": true
+  },
+  {
+    "route": "admin.booking.index",
+    "before_label": "Booking Mobil",
+    "after_label": "Booking Mobil",
+    "before_icon": "document",
+    "after_icon": "calendar-clock",
+    "changed": true
+  },
+  {
+    "route": "admin.test-drive.index",
+    "before_label": "Test Drive",
+    "after_label": "Test Drive",
+    "before_icon": "document",
+    "after_icon": "steering",
+    "changed": true
+  },
+  {
+    "route": "admin.servis.index",
+    "before_label": "Servis / Work Order",
+    "after_label": "Servis / Work Order",
+    "before_icon": "document",
+    "after_icon": "wrench",
+    "changed": true
+  },
+  {
+    "route": "admin.servis.schedule",
+    "before_label": "Jadwal Bengkel",
+    "after_label": "Jadwal Bengkel",
+    "before_icon": "document",
+    "after_icon": "calendar",
+    "changed": true
+  },
+  {
+    "route": "admin.servis.personnel",
+    "before_label": "Personel Servis",
+    "after_label": "Personel Servis",
+    "before_icon": "document",
+    "after_icon": "users",
+    "changed": true
+  },
+  {
+    "route": "admin.booking-cuci.index",
+    "before_label": "Car Wash",
+    "after_label": "Car Wash",
+    "before_icon": "document",
+    "after_icon": "droplets",
+    "changed": true
+  },
+  {
+    "route": "admin.sparepart.index",
+    "before_label": "Sparepart & Inventori",
+    "after_label": "Sparepart & Inventori",
+    "before_icon": "document",
+    "after_icon": "box",
+    "changed": true
+  },
+  {
+    "route": "admin.trade-in.index",
+    "before_label": "Trade-In",
+    "after_label": "Trade-In",
+    "before_icon": "document",
+    "after_icon": "repeat",
+    "changed": true
+  },
+  {
+    "route": "admin.pengajuan-mobil.index",
+    "before_label": "Pembelian Mobil Bekas",
+    "after_label": "Pembelian Mobil Bekas",
+    "before_icon": "document",
+    "after_icon": "car",
+    "changed": true
+  },
+  {
+    "route": "admin.pelanggan.index",
+    "before_label": "Data Pelanggan",
+    "after_label": "Data Pelanggan",
+    "before_icon": "document",
+    "after_icon": "users",
+    "changed": true
+  },
+  {
+    "route": "admin.membership.index",
+    "before_label": "Data Member",
+    "after_label": "Data Member",
+    "before_icon": "document",
+    "after_icon": "id-card",
+    "changed": true
+  },
+  {
+    "route": "admin.garage.index",
+    "before_label": "My Garage",
+    "after_label": "My Garage",
+    "before_icon": "document",
+    "after_icon": "car",
+    "changed": true
+  },
+  {
+    "route": "admin.promo-member.index",
+    "before_label": "Promo & YZA Points",
+    "after_label": "Promo Member",
+    "before_icon": "document",
+    "after_icon": "ticket-percent",
+    "changed": true
+  },
+  {
+    "route": "admin.petugas.index",
+    "before_label": "Manajemen Karyawan",
+    "after_label": "Manajemen Karyawan",
+    "before_icon": "document",
+    "after_icon": "users",
+    "changed": true
+  },
+  {
+    "route": "admin.roles.index",
+    "before_label": "Role & Permission",
+    "after_label": "Role & Permission",
+    "before_icon": "document",
+    "after_icon": "shield",
+    "changed": true
+  },
+  {
+    "route": "owner.sales-report",
+    "before_label": "Laporan Penjualan",
+    "after_label": "Laporan Penjualan",
+    "before_icon": "document",
+    "after_icon": "chart",
+    "changed": true
+  },
+  {
+    "route": "owner.payment-report",
+    "before_label": "Laporan Keuangan",
+    "after_label": "Laporan Keuangan",
+    "before_icon": "document",
+    "after_icon": "chart",
+    "changed": true
+  },
+  {
+    "route": "admin.laporan-servis.index",
+    "before_label": "Laporan Operasional",
+    "after_label": "Laporan Operasional",
+    "before_icon": "document",
+    "after_icon": "chart",
+    "changed": true
+  },
+  {
+    "route": "admin.audit-log.index",
+    "before_label": "Audit Log",
+    "after_label": "Audit Log",
+    "before_icon": "document",
+    "after_icon": "scroll",
+    "changed": true
+  },
+  {
+    "route": "admin.pengaturan.index",
+    "before_label": "Pengaturan Website",
+    "after_label": "Pengaturan Website",
+    "before_icon": "document",
+    "after_icon": "gear",
+    "changed": true
+  },
+  {
+    "route": "account.password",
+    "before_label": "Profil Admin",
+    "after_label": "Profil Admin",
+    "before_icon": "document",
+    "after_icon": "user",
+    "changed": true
+  }
+]

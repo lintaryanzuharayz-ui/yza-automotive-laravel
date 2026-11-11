@@ -1,0 +1,189 @@
+{
+  "reportDate": "2026-11-06 Asia/Jakarta",
+  "getRoutes": 246,
+  "bladeViews": 201,
+  "attempts": 2636,
+  "statuses": {
+    "200": 660,
+    "302": 18,
+    "403": 1689,
+    "404": 25,
+    "fixture-unavailable": 244
+  },
+  "htmlCombinations": 657,
+  "uniqueRenderedRoutes": 175,
+  "roles": [
+    {
+      "role": "public",
+      "htmlCombinations": 5,
+      "mobileMeasurements": 5,
+      "desktopMeasurements": 5
+    },
+    {
+      "role": "admin",
+      "htmlCombinations": 141,
+      "mobileMeasurements": 141,
+      "desktopMeasurements": 141
+    },
+    {
+      "role": "petugas",
+      "htmlCombinations": 44,
+      "mobileMeasurements": 44,
+      "desktopMeasurements": 44
+    },
+    {
+      "role": "pelanggan",
+      "htmlCombinations": 28,
+      "mobileMeasurements": 28,
+      "desktopMeasurements": 28
+    },
+    {
+      "role": "super_admin",
+      "htmlCombinations": 141,
+      "mobileMeasurements": 141,
+      "desktopMeasurements": 141
+    },
+    {
+      "role": "owner",
+      "htmlCombinations": 92,
+      "mobileMeasurements": 92,
+      "desktopMeasurements": 92
+    },
+    {
+      "role": "sales",
+      "htmlCombinations": 37,
+      "mobileMeasurements": 37,
+      "desktopMeasurements": 37
+    },
+    {
+      "role": "service_advisor",
+      "htmlCombinations": 36,
+      "mobileMeasurements": 36,
+      "desktopMeasurements": 36
+    },
+    {
+      "role": "mechanic",
+      "htmlCombinations": 42,
+      "mobileMeasurements": 42,
+      "desktopMeasurements": 42
+    },
+    {
+      "role": "warehouse_staff",
+      "htmlCombinations": 26,
+      "mobileMeasurements": 26,
+      "desktopMeasurements": 26
+    },
+    {
+      "role": "finance",
+      "htmlCombinations": 23,
+      "mobileMeasurements": 23,
+      "desktopMeasurements": 23
+    },
+    {
+      "role": "operational_staff",
+      "htmlCombinations": 20,
+      "mobileMeasurements": 20,
+      "desktopMeasurements": 20
+    },
+    {
+      "role": "quality_control",
+      "htmlCombinations": 22,
+      "mobileMeasurements": 22,
+      "desktopMeasurements": 22
+    }
+  ],
+  "mobile": {
+    "measurements": 657,
+    "initialOverflow": 45,
+    "rechecks": 45,
+    "recheckOverflow": 4
+  },
+  "desktop": {
+    "measurements": 657,
+    "initialOverflow": 1
+  },
+  "lastFourMobileFixStoredRecheck": false,
+  "catalogFixStoredRecheck": false,
+  "fullViewportMatrixCompleted": false,
+  "trueBrowserZoomCompleted": false,
+  "sourceHashes": [
+    {
+      "path": "public/assets/css/responsive-foundation.css",
+      "sha256": "21336f9e110e27af55c6617c0820fbd481cdade223b3c2de6d42ec22ae6d3a4f"
+    },
+    {
+      "path": "public/assets/js/responsive-foundation.js",
+      "sha256": "67ed8f0ee3992cd70e2cf6d6674a3418c54bfb1e8b013ff9b3408b3c36dc7b94"
+    },
+    {
+      "path": "public/assets/js/owner-executive.js",
+      "sha256": "c4f98f3528630d08d3bc5be7da9be4876f39cbe0933bfffb57c432bf5f2266a1"
+    },
+    {
+      "path": "resources/views/components/responsive-foundation.blade.php",
+      "sha256": "656c080ebc88df655b737971f1126de05c6d45cc349fb6ef50c129381c6b0257"
+    },
+    {
+      "path": "resources/views/layouts/app.blade.php",
+      "sha256": "54d336ac39e5784be5c09227198965d0781a58b322b1d913762894a26169de12"
+    },
+    {
+      "path": "resources/views/public/home.blade.php",
+      "sha256": "381556fa9513660fe7ecc3f93871d8ce9a983976b02be0c8869b05c6de0ec69e"
+    },
+    {
+      "path": "resources/views/mobil/show.blade.php",
+      "sha256": "ea149ff902ed2fafadc50fe9b4e7b0ef6e274c1231698ab836f4ec3d6df61d93"
+    },
+    {
+      "path": "resources/views/auth/login.blade.php",
+      "sha256": "aa55f5a6764e9d6c3d40cb57a3368dae03e40e6f13fa6951fc64d3305080d7fc"
+    },
+    {
+      "path": "resources/views/auth/register.blade.php",
+      "sha256": "a3a338e14f9a5b6484f923f4e5b028307e57f6806544cd17c17d7198dc98fae8"
+    },
+    {
+      "path": "resources/views/pelanggan/membership/activation.blade.php",
+      "sha256": "993619882e7a64b383af9f1d93b7e4032401b18cedcc17501faf92039dd1ff11"
+    },
+    {
+      "path": "resources/views/admin/mobil/index.blade.php",
+      "sha256": "ab2bc54c29e86d6f37794c5cd769eac88f4d86f2e6c115dae3351d3a3e5a4840"
+    },
+    {
+      "path": "resources/views/pelanggan/kendaraan/_form.blade.php",
+      "sha256": "61a198665f57fab34d541fa29a2af54b364aba7d61cdc1243c0dde2cdc33d801"
+    },
+    {
+      "path": "tests/Ui/ResponsiveRenderCoverageTest.php",
+      "sha256": "ee555c7bd90f7407d405782bf36cd3c1a646b3efefc7e5eec6e22c9d8a4d3dc6"
+    },
+    {
+      "path": "tests/Support/responsive_preview_router.php",
+      "sha256": "55b85f5da66cf6fafc08ec5dcf498814780dcb31a58292a86b6fb6b39f206c29"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "after-member-1366.png",
+      "sha256": "6c30bdc14962d32b78241f209e0cc90e6dcb985ec412b93838784604e14ed7e6"
+    },
+    {
+      "file": "after-public-1366.png",
+      "sha256": "9ed1f82d529c003734ea936b314d32832365e32c9ee55acd5fc7b1c2794642ae"
+    },
+    {
+      "file": "before-admin-1366.png",
+      "sha256": "af25b4e5668c19c74abdbc982f287ee87747d9d8824453610351dbb0ee1a163d"
+    },
+    {
+      "file": "before-member-1366.png",
+      "sha256": "40c768deddc41b5ba42950563c49b8719618a4b59c24876494509284631af5cc"
+    },
+    {
+      "file": "before-public-1366.png",
+      "sha256": "b5157a96f43d05092c6d3a5161987c0f1faf0ad4421ff571f3243f11c675e9bb"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+/* Canonical admin navigation: shared by dashboard and every non-owner admin page. */
+.color-stock-summary { margin-bottom:18px; color:#142038; }
+.color-stock-summary h4 { margin:0 0 10px; font-size:14px; }
+.color-stock-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr)); gap:10px; }
+.color-stock-card { min-width:0; padding:14px; border:1px solid #e2e8f0; border-radius:12px; background:#fff; }
+.color-stock-card strong { display:flex; align-items:center; gap:8px; overflow-wrap:anywhere; font-size:13px; }
+.color-stock-card i { width:20px; height:20px; flex:none; border:1px solid #cbd5e1; border-radius:50%; }
+.color-stock-status { display:inline-block; margin:8px 0; padding:4px 8px; border-radius:99px; background:#f1f5f9; font-size:11px; }
+.color-stock-card dl { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); margin:5px 0; gap:8px; }
+.color-stock-card dt,.color-stock-card small { color:#64748b; font-size:10px; overflow-wrap:anywhere; }
+.color-stock-card dd { margin:4px 0 0; color:#142038; font-size:18px; font-weight:800; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-sidebar-nav-scroll { overflow-x: hidden; }
+.admin-navigation-unified .admin-nav-item { transition: background-color .16s, border-color .16s; }
+.admin-navigation-unified .admin-nav-item:focus-visible { outline: 2px solid #ef233c; outline-offset: 2px; }
+.admin-activity-page :is(.task-marker,.workspace-stat-icon,.history-icon) svg { width: 20px; height: 20px; display: block; }
+.admin-activity-page :is(.task-marker,.task-status).is-menunggu { background: #fff4da; color: #925d00; }
+.admin-activity-page :is(.task-marker,.task-status).is-diproses { background: #eaf2ff; color: #2458ad; }
+.admin-activity-page :is(.task-marker,.task-status).is-tindakan { background: #fff0f2; color: #c61e37; }
+.admin-activity-page :is(.task-marker,.task-status).is-selesai { background: #eafaf3; color: #137d50; }
+.admin-activity-page .history-icon.is-read { background: #f0f3f7; color: #64748b; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) :is(.admin-sidebar,.admin-topbar) { font-family: Arial, Helvetica, sans-serif; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) :is(.admin-sidebar,.admin-topbar) :is(strong,b) { font-family: inherit; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-topbar { background: #ffffffed; border-bottom: 1px solid #ebedf3; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-topbar-search { border-radius: 999px; background: #f0f2f6; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-sidebar { background: linear-gradient(140deg,#080f18,#0a1420); }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-nav-item { grid-template-columns: 20px minmax(0,1fr) 24px 10px; gap: 7px; min-height: 43px; padding: 8px 5px; font-size: 11px; border-radius: 8px; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-nav-label-text { white-space: normal; overflow: visible; overflow-wrap: anywhere; text-overflow: clip; line-height: 1.35; }
+/* Empty badge slots must not take space away from the menu label. */
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-nav-item:not(:has(.admin-nav-badge:not([hidden]))) { grid-template-columns: 20px minmax(0,1fr) 10px; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-nav-item:not(:has(.admin-nav-badge:not([hidden]))) .admin-nav-badge-slot { display: none; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-nav-label { font-size: 10px; letter-spacing: .12em; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-nav-badge { font-size: 10px; min-width: 21px; height: 21px; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-nav-item.is-active {
+    background: #131e2e !important; border-color: #243247 !important;
+    color: #f3f6fb; box-shadow: none;
+}
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-nav-item.is-active .admin-nav-badge {
+    background: #ef233c; color: #fff; border-color: rgba(255,255,255,.18);
+    box-shadow: 0 3px 10px rgba(239,35,60,.22);
+}
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-nav-item > i svg { display: block; width: 19px; height: 20px; color: #e7edf5; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-nav-item { font-size: 12.5px; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-nav-item > i { font-size: 0 !important; background: none !important; -webkit-mask: none !important; mask: none !important; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-nav-item > i::before,
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-nav-item > i::after { display: none !important; content: none !important; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-nav-item > i svg { display: block !important; stroke: #e7edf5 !important; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-topbar-search { width: min(100%,48rem) !important; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-topbar-search { max-width: 48rem; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-topbar-left { max-width: 48rem; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-topbar-search input { font-size: 12px; border-radius: 999px; }
+
+/* Keep branding and the collapse control in separate, non-overlapping columns. */
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-sidebar-brand { margin-inline: 0; padding: 4px 0 16px; gap: 8px; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-sidebar-brand-link { flex: 1 1 0; padding-right: 0 !important; gap: 6px; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-sidebar-brand-link img { flex: 0 0 32px; width: 32px; height: 32px; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-sidebar-brand-link > span { flex: 1; min-width: 0; max-width: none; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-sidebar-brand-link strong { font-size: 10.5px !important; letter-spacing: .02em; overflow-wrap: normal; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-sidebar-brand-link strong > span,
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-sidebar-brand-link strong > em { display: block; white-space: nowrap; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-sidebar-brand-link small { font-size: 10px; white-space: normal; }
+.admin-navigation-unified .admin-shell:not(.owner-shell) .admin-sidebar-collapse { position: static; flex: 0 0 2.75rem; width: 2.75rem; margin: 0; }
+
+@media (min-width:1025px) {
+.admin-navigation-unified .admin-shell:not(.owner-shell).is-sidebar-collapsed .admin-nav-item { grid-template-columns: 1fr; justify-items: center; padding: 10px 8px; }
+.admin-navigation-unified .admin-shell:not(.owner-shell).is-sidebar-collapsed .admin-nav-item:not(:has(.admin-nav-badge:not([hidden]))) { grid-template-columns: 1fr; }
+.admin-navigation-unified .admin-shell:not(.owner-shell).is-sidebar-collapsed .admin-nav-label { font-size: 0; letter-spacing: 0; padding-inline: 0; }
+.admin-navigation-unified .admin-shell:not(.owner-shell).is-sidebar-collapsed .admin-sidebar-brand-link { padding-right: 0 !important; }
+.admin-navigation-unified .admin-shell:not(.owner-shell).is-sidebar-collapsed .admin-sidebar-brand { flex-direction: column; align-items: center; gap: 8px; }
+.admin-navigation-unified .admin-shell:not(.owner-shell).is-sidebar-collapsed .admin-sidebar-brand-link { flex: 0 0 auto; }
+.admin-navigation-unified .admin-shell:not(.owner-shell).is-sidebar-collapsed .admin-sidebar-collapse { position: static !important; margin: 0; }
+}

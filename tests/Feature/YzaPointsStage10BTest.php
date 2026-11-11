@@ -66,7 +66,18 @@ class YzaPointsStage10BTest extends TestCase
     public function test_legacy_customer_without_user_is_not_a_member(): void
     {
         $customer = Pelanggan::whereNull('id_user')->first();
-        if (!$customer) $this->markTestSkipped('Tidak ada pelanggan legacy tanpa user pada baseline.');
+        if (!$customer) {
+            $customer = Pelanggan::create([
+                'id_user' => null,
+                'kode_pelanggan' => 'TEST-LEGACY-NO-USER',
+                'nama_lengkap' => 'Synthetic Legacy Customer',
+                'jenis_kelamin' => 'L',
+                'no_hp' => '080000000008',
+                'alamat' => 'Testing fixture only',
+                'tanggal_lahir' => '1990-08-08',
+                'status' => 'aktif',
+            ]);
+        }
         $this->assertNull(app(YzaPointService::class)->ensureAccount($customer));
         $this->assertDatabaseMissing('poin_member', ['id_pelanggan' => $customer->id_pelanggan]);
     }
