@@ -1,7 +1,7 @@
 <?php
 if (PHP_SAPI !== 'cli') exit(2);
 $root = dirname(__DIR__,2);
-foreach(simplexml_load_file($root.'/phpunit.xml')->php->env as $e){$n=(string)$e['name'];$v=(string)$e['value'];putenv($n.'='.$v);$_ENV[$n]=$_SERVER[$n]=$v;}
+foreach(simplexml_load_file($root.'/phpunit.xml')->php->env as $e){$n=(string)$e['name'];$v=getenv($n);if($v===false||(string)$e['force']==='true')$v=(string)$e['value'];putenv($n.'='.$v);$_ENV[$n]=$_SERVER[$n]=$v;}
 require $root.'/vendor/autoload.php';$app=require $root.'/bootstrap/app.php';$app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 if (!app()->environment('testing') || config('database.connections.mysql.database') !== 'yza_automotive_laravel_test') exit(3);
 $input=json_decode($argv[1] ?? '',true,512,JSON_THROW_ON_ERROR);

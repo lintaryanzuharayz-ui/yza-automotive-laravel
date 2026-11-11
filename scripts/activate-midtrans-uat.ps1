@@ -20,7 +20,7 @@ function Read-SecretValue([string]$Prompt) {
 function Assert-Key([string]$Name, [string]$Value) {
     if ([string]::IsNullOrWhiteSpace($Value)) { throw "$Name tidak boleh kosong." }
     if ($Value -match '(?i)(placeholder|changeme|not-production|uat-sandbox|demo|dummy|example)') {
-        throw "$Name masih terlihat seperti placeholder." 
+        throw "$Name masih terlihat seperti placeholder."
     }
 }
 

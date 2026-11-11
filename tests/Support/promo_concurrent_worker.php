@@ -2,7 +2,7 @@
 
 if (PHP_SAPI !== 'cli' || getenv('APP_ENV') !== 'testing') exit(2);
 foreach (['DB_CONNECTION' => 'mysql', 'DB_DATABASE' => 'yza_automotive_laravel_test', 'DB_HOST' => '127.0.0.1',
-    'DB_PORT' => '3306', 'DB_USERNAME' => 'root', 'DB_PASSWORD' => '', 'DB_URL' => '', 'LOG_CHANNEL' => 'null',
+    'DB_PORT' => getenv('DB_PORT') ?: '3306', 'DB_USERNAME' => 'root', 'DB_PASSWORD' => '', 'DB_URL' => '', 'LOG_CHANNEL' => 'null',
     'CACHE_STORE' => 'array', 'SESSION_DRIVER' => 'array', 'QUEUE_CONNECTION' => 'sync'] as $key => $value) putenv($key.'='.$value);
 require __DIR__.'/../../vendor/autoload.php';
 $app = require __DIR__.'/../../bootstrap/app.php';
