@@ -1,0 +1,142 @@
+[
+  {
+    "Name": "target_nominal",
+    "Type": "number",
+    "File": "resources/views\\sales\\targets.blade.php"
+  },
+  {
+    "Name": "jumlah",
+    "Type": "number",
+    "File": "resources/views\\payments\\outgoing-create.blade.php"
+  },
+  {
+    "Name": "jumlah",
+    "Type": "number",
+    "File": "resources/views\\payments\\create.blade.php"
+  },
+  {
+    "Name": "harga_penawaran",
+    "Type": "number",
+    "File": "resources/views\\operations\\pengajuan-mobil\\show.blade.php"
+  },
+  {
+    "Name": "jumlah",
+    "Type": "number",
+    "File": "resources/views\\operations\\penjualan-sparepart\\show.blade.php"
+  },
+  {
+    "Name": "jumlah",
+    "Type": "number",
+    "File": "resources/views\\operations\\penjualan-sparepart\\show.blade.php"
+  },
+  {
+    "Name": "jumlah",
+    "Type": "number",
+    "File": "resources/views\\operations\\servis\\wizard.blade.php"
+  },
+  {
+    "Name": "biaya",
+    "Type": "number",
+    "File": "resources/views\\operations\\servis\\wizard.blade.php"
+  },
+  {
+    "Name": "biaya",
+    "Type": "number",
+    "File": "resources/views\\operations\\servis\\wizard.blade.php"
+  },
+  {
+    "Name": "jumlah",
+    "Type": "number",
+    "File": "resources/views\\operations\\servis\\wizard.blade.php"
+  },
+  {
+    "Name": "biaya",
+    "Type": "number",
+    "File": "resources/views\\operations\\servis\\show.blade.php"
+  },
+  {
+    "Name": "jumlah",
+    "Type": "number",
+    "File": "resources/views\\operations\\servis\\show.blade.php"
+  },
+  {
+    "Name": "biaya",
+    "Type": "number",
+    "File": "resources/views\\operations\\servis\\show-premium.blade.php"
+  },
+  {
+    "Name": "jumlah",
+    "Type": "number",
+    "File": "resources/views\\operations\\servis\\show-premium.blade.php"
+  },
+  {
+    "Name": "harga_beli",
+    "Type": "number",
+    "File": "resources/views\\admin\\sparepart\\_form.blade.php"
+  },
+  {
+    "Name": "harga_jual",
+    "Type": "number",
+    "File": "resources/views\\admin\\sparepart\\_form.blade.php"
+  },
+  {
+    "Name": "harga_harapan",
+    "Type": "number",
+    "File": "resources/views\\pelanggan\\pengajuan-mobil\\create.blade.php"
+  },
+  {
+    "Name": "amount",
+    "Type": "number",
+    "File": "resources/views\\admin\\financial-adjustments\\index.blade.php"
+  },
+  {
+    "Name": "harga",
+    "Type": "number",
+    "File": "resources/views\\admin\\paket-cuci\\_form.blade.php"
+  },
+  {
+    "Name": "estimasi_harga",
+    "Type": "number",
+    "File": "resources/views\\admin\\jenis-servis\\_form.blade.php"
+  },
+  {
+    "Name": "harga_beli",
+    "Type": "number",
+    "File": "resources/views\\admin\\mobil\\_form.blade.php"
+  },
+  {
+    "Name": "harga_jual",
+    "Type": "number",
+    "File": "resources/views\\admin\\mobil\\_form.blade.php"
+  },
+  {
+    "Name": "harga_min",
+    "Type": "hidden",
+    "File": "resources/views\\admin\\mobil\\index.blade.php"
+  },
+  {
+    "Name": "harga_maks",
+    "Type": "hidden",
+    "File": "resources/views\\admin\\mobil\\index.blade.php"
+  },
+  {
+    "Name": "harga_jual",
+    "Type": "number",
+    "File": "resources/views\\admin\\mobil\\index.blade.php"
+  },
+  {
+    "Name": "nilai_benefit",
+    "Type": "number",
+    "File": "resources/views\\admin\\promo-member\\form.blade.php"
+  },
+  {
+    "Name": "jumlah",
+    "Type": "number",
+    "File": "resources/views\\admin\\inventory\\stok-masuk\\show.blade.php"
+  },
+  {
+    "Name": "harga_beli",
+    "Type": "number",
+    "File": "resources/views\\admin\\inventory\\stok-masuk\\show.blade.php"
+  }
+]

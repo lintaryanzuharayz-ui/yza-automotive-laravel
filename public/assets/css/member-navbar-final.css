@@ -14,8 +14,8 @@
     overflow: visible !important;
     isolation: isolate !important;
     background: linear-gradient(100deg, #08090b 0%, #0b0d10 63%, #16070b 100%) !important;
-    border-bottom: 1px solid rgba(242, 28, 47, .34) !important;
-    box-shadow: 0 8px 26px rgba(0, 0, 0, .26) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .07) !important;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, .32) !important;
 }
 
 /* Shared member footer: used by every pelanggan page through layouts.app. */
@@ -32,17 +32,12 @@
 .member-shared-footer .yza-home-socials a{color:#d9dce2;font-size:17px;line-height:1;text-decoration:none}
 .member-shared-footer .yza-home-footer-meta>span{color:#9297a4;font-size:11px;white-space:nowrap}
 .member-shared-footer{border-top:2px solid #ed1c2e;border-bottom:1px solid rgba(237,28,46,.42);box-shadow:0 -5px 18px rgba(237,28,46,.08)}
-.member-horizontal-shell .member-topbar{border-top:1px solid rgba(237,28,46,.46)!important;border-bottom:2px solid #ed1c2e!important;box-shadow:0 7px 22px rgba(237,28,46,.12)!important}
+.member-horizontal-shell .member-topbar{border-top:none!important;border-bottom:1px solid rgba(255,255,255,.07)!important;box-shadow:0 8px 24px rgba(0,0,0,.32)!important}
 @media(max-width:850px){.member-shared-footer{height:auto;min-height:74px;display:grid;grid-template-columns:1fr;gap:10px;padding:16px 20px;text-align:center}.member-shared-footer .yza-home-footer-brand,.member-shared-footer nav,.member-shared-footer .yza-home-footer-meta{position:static;justify-content:center;transform:none;margin-left:0}.member-shared-footer nav{flex-wrap:wrap;white-space:normal}}
 
 .member-horizontal-shell .member-topbar::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background: linear-gradient(127deg, transparent 0 4%, rgba(238, 29, 47, .28) 4.2%, transparent 4.5% 100%), linear-gradient(112deg, transparent 0 83%, rgba(238, 29, 47, .18) 83.2%, transparent 86%);
-    opacity: .72;
+    content: none !important;
+    display: none !important;
 }
 
 .member-horizontal-shell .member-workspace { padding-top: 86px !important; }
@@ -93,7 +88,7 @@
     grid-column: 2;
     justify-self: center !important;
     position: relative;
-    left: -70px;
+    left: 0;
     display: flex !important;
     align-items: stretch !important;
     justify-content: center !important;
@@ -507,4 +502,40 @@
 @keyframes member-nav-dropdown-in {
     from { opacity: 0; transform: translateX(-50%) translateY(-8px) scale(.97); }
     to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+/* Use the same centered vector chevron for menu and profile triggers. */
+.member-horizontal-shell .member-menu-chevron,
+.member-horizontal-shell .member-profile-trigger > b {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    flex: 0 0 14px;
+    width: 14px;
+    height: 14px;
+    margin-left: 2px;
+    font-size: 0 !important;
+    line-height: 1;
+    transform-origin: center;
+}
+.member-horizontal-shell .member-menu-chevron svg,
+.member-horizontal-shell .member-profile-trigger > b svg {
+    display: block;
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.member-horizontal-shell .member-profile-trigger > b::before {
+    content: "";
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
 }

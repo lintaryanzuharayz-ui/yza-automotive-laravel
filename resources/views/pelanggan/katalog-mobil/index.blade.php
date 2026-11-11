@@ -21,83 +21,542 @@
 @endsection
 @push('styles')
 <style>
-.member-catalog-page{max-width:1740px;margin:0 auto}.member-catalog-hero{padding:42px 48px;border-radius:20px;background:linear-gradient(110deg,#121419e8,#12141955),url('{{ asset('assets/images/lower-landing/showroom-premium.png') }}') center/cover;color:#fff}.member-catalog-hero h1{margin:12px 0;font-size:clamp(42px,5vw,74px);letter-spacing:-.06em}.member-catalog-hero p{max-width:720px;color:#e4e7eb;font-size:20px;line-height:1.55}.member-catalog-status{display:inline-flex;gap:12px;margin-top:18px;padding:10px 16px;border-radius:999px;background:#ffffff20;font-size:13px}.member-catalog-controls{margin:22px 0}.member-catalog-filter{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr auto;gap:12px;padding:14px;background:#fff;border:1px solid var(--member-line);border-radius:16px}.member-catalog-filter input,.member-catalog-filter select{min-height:54px;padding:0 15px;border:1px solid var(--member-line);border-radius:9px;background:#fff;color:var(--member-ink);font:inherit}.member-catalog-filter .yza-button{min-height:54px;padding-inline:22px}.member-catalog-chips{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px}.member-catalog-chips a{padding:9px 15px;border:1px solid var(--member-line);border-radius:999px;color:var(--member-ink);font-weight:700}.member-catalog-chips span{margin-left:auto;color:var(--member-muted)}.member-catalog-results{padding:28px;border:1px solid var(--member-line);border-radius:20px;background:#fff}.member-catalog-heading{display:flex;align-items:end;justify-content:space-between;margin-bottom:24px}.member-catalog-heading h2{margin:8px 0 0;font-size:34px}.member-catalog-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;align-items:stretch}.member-catalog-page .catalog-card{display:flex;min-width:0;min-height:100%;flex-direction:column;overflow:hidden;border:1px solid #e3e7eb;border-radius:14px;background:#fff;box-shadow:0 7px 20px rgba(33,47,60,.09)}.member-catalog-page .catalog-card-image{position:relative;display:block;flex:none;width:100%;height:auto;aspect-ratio:16/10;overflow:hidden;background:#e9edf0}.member-catalog-page .catalog-card-image img{display:block;width:100%;height:100%;object-fit:cover}.member-catalog-page .catalog-card-badges{position:absolute;top:10px;left:10px;right:48px;display:flex;gap:5px;flex-wrap:wrap}.member-catalog-page .catalog-condition,.member-catalog-page .catalog-sport-badge{display:inline-flex;padding:5px 8px;border-radius:5px;background:#ef2630;color:#fff;font-size:10px;font-weight:800;line-height:1.1}.member-catalog-page .catalog-sport-badge{background:#171b1f}.member-catalog-page .catalog-heart{position:absolute;top:9px;right:9px;z-index:2;width:34px;height:34px;border:2px solid #fff;border-radius:50%;background:#111a;color:#fff;font-size:22px;line-height:1;cursor:pointer}.member-catalog-page .catalog-card-body{display:flex;min-width:0;flex:1;flex-direction:column;padding:14px 16px 16px}.member-catalog-page .catalog-brand-row{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:38px;margin-bottom:10px}.member-catalog-page .catalog-brand-logo{display:flex;align-items:center;justify-content:flex-start;width:72px;height:32px;overflow:hidden}.member-catalog-page .catalog-brand-logo img{display:block;width:auto!important;height:auto!important;max-width:68px!important;max-height:27px!important;object-fit:contain}.member-catalog-page .vehicle-tech-badge{display:flex;min-width:0;max-width:145px;align-items:center;overflow:hidden;border-radius:5px;background:#171b1f;color:#fff;font-size:9px;font-weight:800;line-height:1.1}.member-catalog-page .vehicle-tech-badge__label{padding:7px 8px;background:#ef2630;white-space:nowrap}.member-catalog-page .vehicle-tech-badge__value{overflow:hidden;padding:7px 8px;text-overflow:ellipsis;white-space:nowrap}.member-catalog-page .catalog-card-body h3{display:-webkit-box;min-height:43px;margin:0 0 8px;overflow:hidden;color:#101113;font-size:17px;line-height:1.25;font-weight:850;-webkit-box-orient:vertical;-webkit-line-clamp:2}.member-catalog-page .catalog-card-body>a{text-decoration:none}.member-catalog-page .catalog-meta{display:block;min-height:18px;margin:0;overflow:hidden;color:#66727c;font-size:12px;line-height:1.4;text-overflow:ellipsis;white-space:nowrap}.member-catalog-page .catalog-card-footer{display:flex;min-width:0;align-items:end;justify-content:space-between;gap:10px;margin-top:auto;padding-top:13px;border-top:1px solid #edf0f2}.member-catalog-page .catalog-price{display:block;min-width:0;margin:0;color:var(--member-red);font-size:16px;line-height:1.2;white-space:nowrap}.member-catalog-page .catalog-detail-button{display:flex;flex:none;align-items:center;justify-content:center;width:40px;height:40px;overflow:hidden;border-radius:50%;background:#171b1f;color:#fff;text-decoration:none}.member-catalog-page .catalog-detail-button span{display:none}.member-catalog-page .catalog-detail-button b{font-size:20px}.member-catalog-pagination{display:flex;justify-content:center;gap:8px;margin-top:28px}.member-catalog-pagination a{display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--member-line);border-radius:8px;color:var(--member-ink);font-weight:700}.member-catalog-pagination a.is-active{background:var(--member-red);border-color:var(--member-red);color:#fff}@media(max-width:1100px){.member-catalog-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:900px){.member-catalog-filter{grid-template-columns:1fr 1fr}.member-catalog-filter input,.member-catalog-filter .yza-button{grid-column:1/-1}.member-catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.member-catalog-hero{padding:28px 22px}.member-catalog-hero h1{font-size:42px}.member-catalog-hero p{font-size:17px}.member-catalog-controls,.member-catalog-results{padding:0;border:0;background:transparent}.member-catalog-filter{grid-template-columns:1fr}.member-catalog-filter input,.member-catalog-filter .yza-button{grid-column:auto}.member-catalog-grid{grid-template-columns:1fr}.member-catalog-heading{display:block}.member-catalog-chips span{width:100%;margin:0}.member-catalog-page .catalog-card-image{aspect-ratio:16/10}}
-.member-catalog-page-shell .member-main-content{padding-bottom:0!important;background:#090a0c!important}
-.member-catalog-page-shell .member-catalog-page{max-width:none!important;margin:0!important;padding:0 28px!important;background:#090a0c!important}
-.member-catalog-page-shell .member-catalog-top{margin:0 -28px;padding:16px 28px 38px;background:#f5f6f7}
-.member-catalog-page-shell .member-catalog-results{margin:0 -28px;padding:76px clamp(28px,5vw,86px) 0;border:0;border-radius:0;background:radial-gradient(circle at 82% 0%,rgba(229,29,42,.14),transparent 34%),#090a0c}
-.member-catalog-page-shell .member-catalog-results + *{margin-top:0}
-</style>
-<style>
-/* Match the public showroom catalog: dark inventory section, compact cards, and shared scale. */
-.member-main-content:has(.member-catalog-page){padding:0!important;background:#f5f6f7}
-.member-catalog-page{max-width:none!important;margin:0!important;padding:18px 28px 80px;background:#f5f6f7;color:#101113}
-.member-catalog-hero{min-height:250px;margin:0 0 18px;padding:38px 42px;border-radius:16px;background:linear-gradient(90deg,rgba(5,8,11,.92) 0%,rgba(5,8,11,.82) 28%,rgba(5,8,11,.12) 73%),url('{{ asset('assets/images/lower-landing/showroom-premium.png') }}') center/cover}
-.member-catalog-hero h1{max-width:720px;margin:10px 0 8px;color:#fff;font-size:54px;line-height:1.03}.member-catalog-hero p{max-width:590px;color:#f4f4f4;font-size:18px;line-height:1.5}.member-catalog-status{margin-top:18px;background:#ffffff20;color:#fff}
-.member-catalog-controls{margin:0 0 28px}.member-catalog-filter{position:sticky;top:80px;z-index:20;grid-template-columns:minmax(230px,1.5fr) minmax(140px,.8fr) minmax(140px,.9fr) minmax(180px,1fr) 125px;max-width:none;margin:0 -2px 16px;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.96);box-shadow:0 8px 24px rgba(30,38,46,.1);backdrop-filter:blur(10px)}
-.member-catalog-filter input,.member-catalog-filter select,.member-catalog-filter .yza-button{height:44px;min-height:44px}.member-catalog-filter .yza-button{background:linear-gradient(110deg,#b81925,#ee1e2c);border-radius:8px}.member-catalog-chips{max-width:none;margin:0 0 0}.member-catalog-chips a{padding:10px 20px;background:#fff;color:#59636e;font-size:14px}.member-catalog-chips a:first-child{background:linear-gradient(110deg,#c91826,#f02431);border-color:transparent;color:#fff}.member-catalog-chips span{font-size:13px}
-.member-catalog-results{position:relative;margin:0 -28px;padding:76px clamp(28px,5vw,86px) 88px;border:0;border-radius:0;background:radial-gradient(circle at 82% 0%,rgba(229,29,42,.14),transparent 34%),#090a0c;color:#fff}.member-catalog-heading{width:min(95vw,1680px);margin:0 auto 34px}.member-catalog-heading h2{margin:8px 0 7px;color:#fff;font-size:clamp(32px,3vw,48px);font-weight:850;letter-spacing:-.03em}.member-catalog-heading a{color:#f0212e}.member-catalog-grid{width:min(95vw,1680px);max-width:none;margin:0 auto;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}.member-catalog-page .catalog-card{border:1px solid rgba(255,255,255,.06);border-radius:14px;box-shadow:0 18px 45px rgba(0,0,0,.3)}.member-catalog-page .catalog-card-image{height:auto;aspect-ratio:16/10;background:#e9edf0}.member-catalog-page .catalog-card-body{padding:14px 16px 15px}.member-catalog-page .catalog-card-body h3{min-height:43px;margin:0 0 7px;color:#101113;font-size:17px;line-height:1.24}.member-catalog-page .catalog-meta{min-height:16px;font-size:11.5px}.member-catalog-page .catalog-card-footer{margin-top:auto;padding-top:13px}.member-catalog-page .catalog-price{margin:0;color:#e51d2a;font-size:20px;font-weight:850}.member-catalog-page .catalog-detail-button{width:48px;height:48px;border-radius:50%;background:#111315}.member-catalog-page .catalog-detail-button span{display:none}.member-catalog-page .catalog-detail-button b{width:auto;background:transparent;font-size:22px}.member-catalog-page .catalog-card-performance{background:#15171a;border-color:rgba(255,44,55,.24)}.member-catalog-page .catalog-card-performance .catalog-card-body h3{color:#fff}.member-catalog-page .catalog-card-performance .catalog-meta{color:#c4c8ce}
-@media(max-width:1199px) and (min-width:801px){.member-catalog-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:800px){.member-catalog-page{padding:13px 13px 48px}.member-catalog-hero{min-height:220px;padding:28px 22px}.member-catalog-hero h1{font-size:38px}.member-catalog-filter{position:static;margin:0 0 14px;grid-template-columns:1fr 1fr}.member-catalog-results{margin:0 -13px;padding:56px 13px 64px}.member-catalog-heading,.member-catalog-grid{width:100%}.member-catalog-heading{display:block;margin-bottom:26px}.member-catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.member-catalog-page .catalog-card-body{padding:12px 13px 14px}.member-catalog-page .catalog-price{font-size:18px}.member-catalog-page .catalog-detail-button{width:44px;height:44px}}
-@media(max-width:520px){.member-catalog-grid{grid-template-columns:1fr}}
+/* 1. MEMBER CATALOG HERO & FILTERS */
+.member-catalog-page {
+    max-width: 1740px;
+    margin: 0 auto;
+}
+.member-catalog-hero {
+    padding: 24px;
+    border-radius: 20px;
+    background: linear-gradient(110deg, #121419e8, #12141955), url('{{ asset('assets/images/lower-landing/showroom-premium.png') }}') center/cover;
+    color: #fff;
+}
+.member-catalog-hero h1 {
+    margin: 12px 0;
+    font-size: clamp(1.875rem, 3.2vw, 2.75rem);
+    letter-spacing: -0.06em;
+}
+.member-catalog-hero p {
+    max-width: 720px;
+    color: #e4e7eb;
+    font-size: 15px;
+    line-height: 1.55;
+}
+.member-catalog-status {
+    display: inline-flex;
+    gap: 12px;
+    margin-top: 18px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: #ffffff20;
+    font-size: 13px;
+}
+.member-catalog-controls {
+    margin: 22px 0;
+}
+.member-catalog-filter {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.2fr auto;
+    gap: 12px;
+    padding: 14px;
+    background: #fff;
+    border: 1px solid var(--member-line);
+    border-radius: 16px;
+}
+.member-catalog-filter input,
+.member-catalog-filter select {
+    min-height: 54px;
+    padding: 0 15px;
+    border: 1px solid var(--member-line);
+    border-radius: 9px;
+    background: #fff;
+    color: var(--member-ink);
+    font: inherit;
+}
+.member-catalog-filter .yza-button {
+    min-height: 54px;
+    padding-inline: 22px;
+}
+.member-catalog-chips {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+}
+.member-catalog-chips a {
+    padding: 9px 15px;
+    border: 1px solid var(--member-line);
+    border-radius: 999px;
+    color: var(--member-ink);
+    font-weight: 700;
+}
+.member-catalog-chips span {
+    margin-left: auto;
+    color: var(--member-muted);
+}
+
+/* 2. MEMBER PAGE SHELL & CANVAS */
+body.member-catalog-page-shell .member-main-content {
+    padding-bottom: 0 !important;
+    background: #090a0c !important;
+}
+body.member-catalog-page-shell .member-catalog-page {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 28px !important;
+    background: #090a0c !important;
+}
+body.member-catalog-page-shell .member-catalog-top {
+    margin: 0 -28px !important;
+    padding: 16px 28px 38px !important;
+    background: #f5f6f7 !important;
+}
+body.member-catalog-page-shell .member-catalog-results {
+    margin: 0 -28px !important;
+    padding: 28px clamp(28px, 5vw, 86px) 84px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: radial-gradient(circle at 82% 0%, rgba(229, 29, 42, 0.14), transparent 34%), #090a0c !important;
+    color: #ffffff !important;
+}
+
+/* 3. SECTION HEADING (MATCH GAMBAR 1 & 2) */
+.member-catalog-heading {
+    width: min(1640px, calc(100% - 64px)) !important;
+    max-width: 1640px !important;
+    margin: 0 auto 20px !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: space-between !important;
+    gap: 20px !important;
+}
+.member-catalog-heading .eyebrow {
+    display: block !important;
+    color: #ef233c !important;
+    font-size: 12px !important;
+    font-weight: 850 !important;
+    letter-spacing: 0.22em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 5px !important;
+}
+.member-catalog-heading h2 {
+    margin: 0 0 6px !important;
+    color: #ffffff !important;
+    font-size: clamp(30px, 2.3vw, 42px) !important;
+    font-weight: 850 !important;
+    letter-spacing: -0.03em !important;
+    line-height: 1.1 !important;
+}
+.member-catalog-heading p {
+    margin: 0 !important;
+    color: rgba(255, 255, 255, 0.68) !important;
+    font-size: 15px !important;
+    line-height: 1.4 !important;
+}
+.member-catalog-heading a {
+    color: #ef233c !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    padding: 8px 16px !important;
+    border: 1px solid rgba(239, 35, 60, 0.4) !important;
+    border-radius: 999px !important;
+    transition: all 0.2s ease !important;
+}
+.member-catalog-heading a:hover {
+    background: #ef233c !important;
+    color: #ffffff !important;
+}
+
+/* 4. FOUR-COLUMN GRID (MATCH GAMBAR 1 & 2) */
+.member-catalog-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 26px !important;
+    width: min(1640px, calc(100% - 64px)) !important;
+    max-width: 1640px !important;
+    margin: 0 auto !important;
+    align-items: stretch !important;
+}
+
+/* 5. CARD GEOMETRY & ELEVATION */
+.member-catalog-page .catalog-card {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    min-height: 495px !important;
+    background: #ffffff !important;
+    border-radius: 18px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.32) !important;
+    overflow: hidden !important;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease !important;
+}
+.member-catalog-page .catalog-card:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 24px 54px rgba(0, 0, 0, 0.45) !important;
+    border-color: rgba(239, 35, 60, 0.3) !important;
+}
+
+/* 6. CARD IMAGE AREA */
+.member-catalog-page .catalog-card-image {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: 242px !important;
+    min-height: 242px !important;
+    max-height: 242px !important;
+    background: #e9edf0 !important;
+    overflow: hidden !important;
+    flex: 0 0 242px !important;
+}
+.member-catalog-page .catalog-card-image img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    transition: transform 0.35s ease !important;
+}
+.member-catalog-page .catalog-card:hover .catalog-card-image img {
+    transform: scale(1.035) !important;
+}
+
+/* 7. BADGES ON PHOTO */
+.member-catalog-page .catalog-card-badges {
+    position: absolute !important;
+    top: 14px !important;
+    left: 14px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    z-index: 2 !important;
+    max-width: calc(100% - 64px) !important;
+    pointer-events: none !important;
+}
+.member-catalog-page .catalog-condition {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 5px 11px !important;
+    border-radius: 5px !important;
+    background: #ef233c !important;
+    color: #ffffff !important;
+    font-size: 11px !important;
+    font-weight: 850 !important;
+    letter-spacing: 0.04em !important;
+    line-height: 1.1 !important;
+    box-shadow: 0 4px 10px rgba(239, 35, 60, 0.3) !important;
+    width: fit-content !important;
+}
+.member-catalog-page .catalog-sport-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 5px 11px !important;
+    border-radius: 5px !important;
+    background: #111315 !important;
+    color: #ffffff !important;
+    font-size: 11px !important;
+    font-weight: 850 !important;
+    letter-spacing: 0.04em !important;
+    line-height: 1.1 !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28) !important;
+    width: fit-content !important;
+}
+
+/* 8. FAVORITE BUTTON (TOP RIGHT) */
+.member-catalog-page .catalog-heart {
+    position: absolute !important;
+    top: 14px !important;
+    right: 14px !important;
+    z-index: 3 !important;
+    width: 44px !important;
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1px solid rgba(255, 255, 255, 0.85) !important;
+    border-radius: 50% !important;
+    background: rgba(10, 12, 15, 0.72) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    color: #ffffff !important;
+    font-size: 26px !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+    transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease !important;
+    padding: 0 !important;
+}
+.member-catalog-page .catalog-heart:hover,
+.member-catalog-page .catalog-heart.is-favorited {
+    background: #ef233c !important;
+    border-color: #ef233c !important;
+    color: #ffffff !important;
+    transform: scale(1.08) !important;
+}
+
+/* 9. CARD BODY */
+.member-catalog-page .catalog-card-body {
+    padding: 20px 22px 22px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    background: #ffffff !important;
+}
+
+/* 10. BRAND ROW & SPLIT TECH BADGE */
+.member-catalog-page .catalog-brand-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    min-height: 38px !important;
+    margin-bottom: 12px !important;
+    flex-wrap: nowrap !important;
+}
+.member-catalog-page .catalog-brand-logo {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    height: 36px !important;
+    max-width: 80px !important;
+    flex: 0 0 auto !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+.member-catalog-page .catalog-brand-logo img {
+    display: block !important;
+    height: 100% !important;
+    max-height: 36px !important;
+    width: auto !important;
+    max-width: 80px !important;
+    object-fit: contain !important;
+    object-position: left center !important;
+}
+.member-catalog-page .vehicle-tech-badge {
+    display: inline-flex !important;
+    align-items: stretch !important;
+    height: 32px !important;
+    border-radius: 7px !important;
+    overflow: hidden !important;
+    background: #17191d !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12) !important;
+    flex: 0 0 auto !important;
+}
+.member-catalog-page .vehicle-tech-badge__label {
+    background: #e51d2a !important;
+    color: #ffffff !important;
+    padding: 0 11px !important;
+    font-size: 11px !important;
+    font-weight: 850 !important;
+    letter-spacing: 0.06em !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+    line-height: 1 !important;
+}
+.member-catalog-page .vehicle-tech-badge__value {
+    background: #17191d !important;
+    color: #ffffff !important;
+    padding: 0 12px !important;
+    font-size: 10.5px !important;
+    font-weight: 850 !important;
+    letter-spacing: 0.06em !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-transform: uppercase !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    line-height: 1 !important;
+}
+
+/* 11. VEHICLE NAME (H3) */
+.member-catalog-page .catalog-card-body h3 {
+    font-size: 23px !important;
+    font-weight: 850 !important;
+    color: #101113 !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.015em !important;
+    margin: 0 0 8px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    min-height: 56px !important;
+    height: auto !important;
+}
+.member-catalog-page .catalog-card-body > a {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+/* 12. METADATA */
+.member-catalog-page .catalog-meta {
+    font-size: 14.5px !important;
+    color: #8c949e !important;
+    margin: 0 0 16px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    min-height: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+}
+.member-catalog-page .catalog-meta i {
+    font-style: normal !important;
+    color: #c4c8ce !important;
+    margin: 0 4px !important;
+}
+
+/* 13. CARD FOOTER: PRICE & BIG CIRCULAR DETAIL BUTTON */
+.member-catalog-page .catalog-card-footer {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    margin-top: auto !important;
+    padding-top: 12px !important;
+    border-top: none !important;
+}
+.member-catalog-page .catalog-price {
+    color: #e51d2a !important;
+    font-size: 26px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+    letter-spacing: -0.02em !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    flex: 1 1 auto !important;
+}
+.member-catalog-page .catalog-detail-button {
+    width: 66px !important;
+    height: 66px !important;
+    min-width: 66px !important;
+    min-height: 66px !important;
+    flex: 0 0 66px !important;
+    border-radius: 50% !important;
+    background: #111315 !important;
+    color: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    transition: background 0.2s ease, transform 0.2s ease !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22) !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+.member-catalog-page .catalog-detail-button:hover {
+    background: #ef233c !important;
+    transform: scale(1.05) translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(239, 35, 60, 0.35) !important;
+}
+.member-catalog-page .catalog-detail-button span {
+    display: none !important;
+}
+.member-catalog-page .catalog-detail-button b {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #ffffff !important;
+    font-size: 26px !important;
+    font-weight: 400 !important;
+    background: transparent !important;
+    width: 100% !important;
+    height: 100% !important;
+    line-height: 1 !important;
+}
+
+/* 14. PAGINATION IN SHOWROOM VIEW */
+.member-catalog-pagination {
+    width: min(1640px, calc(100% - 64px)) !important;
+    max-width: 1640px !important;
+    margin: 48px auto 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 8px !important;
+}
+.member-catalog-pagination a {
+    display: grid !important;
+    place-items: center !important;
+    min-width: 44px !important;
+    height: 44px !important;
+    padding: 0 14px !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    border-radius: 999px !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+}
+.member-catalog-pagination a:hover,
+.member-catalog-pagination a.is-active {
+    border-color: #ef233c !important;
+    background: #ef233c !important;
+    color: #ffffff !important;
+}
+
+/* 15. RESPONSIVE BREAKPOINTS */
+@media (max-width: 1280px) and (min-width: 901px) {
+    .member-catalog-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 20px !important;
+    }
+    .member-catalog-page .catalog-card { min-height: 480px !important; }
+    .member-catalog-page .catalog-price { font-size: 23px !important; }
+    .member-catalog-page .catalog-detail-button { width: 58px !important; height: 58px !important; flex-basis: 58px !important; }
+    .member-catalog-page .catalog-detail-button b { font-size: 22px !important; }
+}
+@media (max-width: 900px) and (min-width: 561px) {
+    .member-catalog-filter { grid-template-columns: 1fr 1fr; }
+    .member-catalog-filter input, .member-catalog-filter .yza-button { grid-column: 1/-1; }
+    .member-catalog-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 16px !important;
+    }
+    .member-catalog-page .catalog-card-image { height: 210px !important; min-height: 210px !important; max-height: 210px !important; flex-basis: 210px !important; }
+    .member-catalog-page .catalog-card { min-height: 460px !important; }
+    .member-catalog-page .catalog-card-body { padding: 18px 20px 20px !important; }
+    .member-catalog-page .catalog-card-body h3 { font-size: 19px !important; min-height: 48px !important; }
+    .member-catalog-page .catalog-price { font-size: 21px !important; }
+    .member-catalog-page .catalog-detail-button { width: 52px !important; height: 52px !important; flex-basis: 52px !important; }
+    .member-catalog-page .catalog-detail-button b { font-size: 20px !important; }
+}
+@media (max-width: 560px) {
+    body.member-catalog-page-shell .member-catalog-results { padding: 28px 0 64px !important; margin: 0 -13px !important; }
+    .member-catalog-heading { width: calc(100% - 24px) !important; margin-bottom: 24px !important; display: block !important; }
+    .member-catalog-heading h2 { font-size: 28px !important; }
+    .member-catalog-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        width: calc(100% - 24px) !important;
+    }
+    .member-catalog-page .catalog-card-image { height: 220px !important; min-height: 220px !important; max-height: 220px !important; flex-basis: 220px !important; }
+    .member-catalog-page .catalog-card { min-height: 440px !important; }
+    .member-catalog-page .catalog-card-body { padding: 18px !important; }
+    .member-catalog-page .catalog-card-body h3 { font-size: 18px !important; min-height: auto !important; }
+    .member-catalog-page .catalog-price { font-size: 20px !important; }
+    .member-catalog-page .catalog-detail-button { width: 48px !important; height: 48px !important; flex-basis: 48px !important; }
+    .member-catalog-page .catalog-detail-button b { font-size: 18px !important; }
+}
 </style>
 @endpush
-<style>
-.member-catalog-page .catalog-card,.member-catalog-page .catalog-card-performance{background:#fff!important;border:1px solid #e3e7eb!important;box-shadow:0 7px 20px rgba(33,47,60,.09)!important}.member-catalog-page .catalog-card-performance .catalog-card-body h3{color:#101113!important}.member-catalog-page .catalog-card-performance .catalog-meta{color:#66727c!important}.member-catalog-page .catalog-brand-logo{background:#fff!important}.member-catalog-page .vehicle-tech-badge{background:#171b1f;color:#fff}.member-catalog-page .catalog-card-footer{border-top-color:#edf0f2}
-</style>
-<style>
-/* Member catalog cards follow the larger showroom reference scale. */
-.member-catalog-page .catalog-card{border-radius:16px!important}.member-catalog-page .catalog-card-image{aspect-ratio:16/10}.member-catalog-page .catalog-card-body{padding:17px 16px 17px!important}.member-catalog-page .catalog-brand-row{min-height:48px;margin-bottom:11px}.member-catalog-page .catalog-brand-logo{width:94px!important;height:44px!important}.member-catalog-page .catalog-brand-logo img{max-width:90px!important;max-height:40px!important}.member-catalog-page .vehicle-tech-badge{max-width:156px;font-size:10px}.member-catalog-page .vehicle-tech-badge__label,.member-catalog-page .vehicle-tech-badge__value{padding:8px 9px}.member-catalog-page .catalog-card-body h3{min-height:46px;font-size:18px;line-height:1.28}.member-catalog-page .catalog-meta{min-height:20px;font-size:12px}.member-catalog-page .catalog-card-footer{padding-top:15px}.member-catalog-page .catalog-price{font-size:20px!important}.member-catalog-page .catalog-detail-button{width:48px!important;height:48px!important}.member-catalog-page .catalog-heart{width:36px;height:36px}
-@media(max-width:800px){.member-catalog-page .catalog-brand-logo{width:78px!important;height:40px!important}.member-catalog-page .catalog-brand-logo img{max-width:76px!important;max-height:36px!important}.member-catalog-page .catalog-card-body{padding:14px 13px 15px!important}.member-catalog-page .catalog-card-body h3{font-size:16px}.member-catalog-page .catalog-price{font-size:18px!important}}
-</style>
-<style>
-/* Final readability pass: larger logo, badges, and typography across every member card. */
-.member-catalog-page .catalog-card-body{padding:19px 16px 19px!important}.member-catalog-page .catalog-brand-row{min-height:58px;margin-bottom:13px}.member-catalog-page .catalog-brand-logo{width:116px!important;height:54px!important}.member-catalog-page .catalog-brand-logo img{max-width:112px!important;max-height:50px!important}.member-catalog-page .vehicle-tech-badge{max-width:174px;font-size:12px;line-height:1.15}.member-catalog-page .vehicle-tech-badge__label,.member-catalog-page .vehicle-tech-badge__value{padding:10px 11px}.member-catalog-page .catalog-card-body h3{min-height:52px;margin-bottom:10px;font-size:20px;line-height:1.3}.member-catalog-page .catalog-meta{min-height:22px;font-size:13px}.member-catalog-page .catalog-card-footer{padding-top:17px}.member-catalog-page .catalog-price{font-size:22px!important}.member-catalog-page .catalog-detail-button{width:52px!important;height:52px!important}.member-catalog-page .catalog-detail-button b{font-size:24px}.member-catalog-page .catalog-condition,.member-catalog-page .catalog-sport-badge{padding:7px 10px;font-size:12px}.member-catalog-page .catalog-heart{width:40px;height:40px;font-size:25px}
-@media(max-width:800px){.member-catalog-page .catalog-brand-row{min-height:48px}.member-catalog-page .catalog-brand-logo{width:92px!important;height:44px!important}.member-catalog-page .catalog-brand-logo img{max-width:88px!important;max-height:40px!important}.member-catalog-page .vehicle-tech-badge{font-size:10px}.member-catalog-page .vehicle-tech-badge__label,.member-catalog-page .vehicle-tech-badge__value{padding:8px 9px}.member-catalog-page .catalog-card-body h3{font-size:17px}.member-catalog-page .catalog-meta{font-size:12px}.member-catalog-page .catalog-price{font-size:19px!important}.member-catalog-page .catalog-detail-button{width:46px!important;height:46px!important}}
-</style>
-<style>
-/* Explicit reference-scale treatment: these elements must read as primary card content. */
-.member-catalog-page .catalog-card-body{padding:22px 18px 21px!important}.member-catalog-page .catalog-brand-row{min-height:72px;margin-bottom:16px;overflow:visible}.member-catalog-page .catalog-brand-logo{width:136px!important;height:66px!important;overflow:visible!important}.member-catalog-page .catalog-brand-logo img{width:auto!important;height:auto!important;max-width:132px!important;max-height:62px!important;transform:scale(1.28);transform-origin:left center}.member-catalog-page .vehicle-tech-badge{max-width:190px;font-size:14px;line-height:1.15;transform:scale(1.08);transform-origin:right center}.member-catalog-page .vehicle-tech-badge__label,.member-catalog-page .vehicle-tech-badge__value{padding:11px 13px}.member-catalog-page .catalog-card-body h3{min-height:58px;margin-bottom:12px;font-size:22px!important;line-height:1.28}.member-catalog-page .catalog-meta{min-height:24px;font-size:14px}.member-catalog-page .catalog-card-footer{padding-top:19px}.member-catalog-page .catalog-price{font-size:24px!important}.member-catalog-page .catalog-detail-button{width:56px!important;height:56px!important}.member-catalog-page .catalog-detail-button b{font-size:26px}.member-catalog-page .catalog-condition,.member-catalog-page .catalog-sport-badge{padding:8px 12px;font-size:13px}
-@media(max-width:800px){.member-catalog-page .catalog-brand-row{min-height:58px}.member-catalog-page .catalog-brand-logo{width:108px!important;height:52px!important}.member-catalog-page .catalog-brand-logo img{max-width:104px!important;max-height:48px!important;transform:scale(1.12)}.member-catalog-page .vehicle-tech-badge{font-size:11px;transform:none}.member-catalog-page .vehicle-tech-badge__label,.member-catalog-page .vehicle-tech-badge__value{padding:9px 10px}.member-catalog-page .catalog-card-body h3{font-size:18px!important}.member-catalog-page .catalog-meta{font-size:12px}.member-catalog-page .catalog-price{font-size:20px!important}.member-catalog-page .catalog-detail-button{width:48px!important;height:48px!important}}
-</style>
-<style>
-/* Hard visual size rules for the requested showroom scale. */
-.member-catalog-page .catalog-brand-row{min-height:86px!important;align-items:center!important}.member-catalog-page .catalog-brand-logo{width:150px!important;height:78px!important;display:flex!important;align-items:center!important;justify-content:flex-start!important}.member-catalog-page .catalog-brand-logo img{display:block!important;width:132px!important;height:70px!important;max-width:none!important;max-height:none!important;object-fit:contain!important;transform:none!important}.member-catalog-page .vehicle-tech-badge{max-width:210px!important;font-size:15px!important;line-height:1.15!important}.member-catalog-page .vehicle-tech-badge__label,.member-catalog-page .vehicle-tech-badge__value{padding:12px 14px!important}.member-catalog-page .catalog-card-body h3{font-size:24px!important;line-height:1.25!important;min-height:60px!important}.member-catalog-page .catalog-meta{font-size:15px!important;min-height:26px!important}.member-catalog-page .catalog-price{font-size:26px!important}.member-catalog-page .catalog-detail-button{width:60px!important;height:60px!important}.member-catalog-page .catalog-pagination a,.member-catalog-page .member-catalog-pagination a{color:#fff!important;background:#15171b!important;border-color:#8e969f!important;font-size:16px!important;font-weight:900!important}.member-catalog-page .catalog-pagination a.is-active,.member-catalog-page .member-catalog-pagination a.is-active{background:#ef233c!important;border-color:#ef233c!important;color:#fff!important}
-@media(max-width:800px){.member-catalog-page .catalog-brand-row{min-height:62px!important}.member-catalog-page .catalog-brand-logo{width:110px!important;height:56px!important}.member-catalog-page .catalog-brand-logo img{width:98px!important;height:52px!important}.member-catalog-page .vehicle-tech-badge{font-size:11px!important}.member-catalog-page .vehicle-tech-badge__label,.member-catalog-page .vehicle-tech-badge__value{padding:9px 10px!important}.member-catalog-page .catalog-card-body h3{font-size:19px!important}.member-catalog-page .catalog-meta{font-size:12px!important}.member-catalog-page .catalog-price{font-size:20px!important}.member-catalog-page .catalog-detail-button{width:48px!important;height:48px!important}}
-</style>
-<style>
-/* Balance the identity row: brand logo is the visual anchor, tags stay secondary. */
-.member-catalog-page .catalog-brand-row{min-height:76px!important}.member-catalog-page .catalog-brand-logo{width:132px!important;height:68px!important}.member-catalog-page .catalog-brand-logo img{width:116px!important;height:62px!important;object-fit:contain!important;transform:scale(1.9)!important;transform-origin:left center!important}.member-catalog-page .vehicle-tech-badge{max-width:180px!important;font-size:11px!important;transform:none!important}.member-catalog-page .vehicle-tech-badge__label,.member-catalog-page .vehicle-tech-badge__value{padding:9px 10px!important}.member-catalog-page .catalog-card-body h3{font-size:23px!important;min-height:58px!important}.member-catalog-page .catalog-meta{font-size:14px!important}.member-catalog-page .catalog-price{font-size:24px!important}
-@media(max-width:800px){.member-catalog-page .catalog-brand-row{min-height:58px!important}.member-catalog-page .catalog-brand-logo{width:105px!important;height:54px!important}.member-catalog-page .catalog-brand-logo img{width:94px!important;height:50px!important;transform:scale(1.45)!important}.member-catalog-page .vehicle-tech-badge{font-size:10px!important}.member-catalog-page .vehicle-tech-badge__label,.member-catalog-page .vehicle-tech-badge__value{padding:8px 9px!important}.member-catalog-page .catalog-card-body h3{font-size:18px!important}.member-catalog-page .catalog-meta{font-size:12px!important}.member-catalog-page .catalog-price{font-size:20px!important}}
-</style>
-<style>
-/* Image overlay badges: BARU and SPORT HIGHLIGHT use the reference size. */
-.member-catalog-page .catalog-card-badges{top:14px!important;left:14px!important;right:54px!important;gap:8px!important}.member-catalog-page .catalog-card-badges .catalog-condition,.member-catalog-page .catalog-card-badges .catalog-sport-badge{padding:9px 13px!important;border-radius:6px!important;font-size:14px!important;line-height:1.1!important;letter-spacing:.01em}.member-catalog-page .catalog-card-badges .catalog-sport-badge{background:#171b1f!important}
-@media(max-width:800px){.member-catalog-page .catalog-card-badges{top:10px!important;left:10px!important;gap:5px!important}.member-catalog-page .catalog-card-badges .catalog-condition,.member-catalog-page .catalog-card-badges .catalog-sport-badge{padding:7px 9px!important;font-size:11px!important}}
-</style>
-<style>
-/* Favorite control belongs to the card overlay, not the document viewport. */
-.member-catalog-page .catalog-card{position:relative}
-.member-catalog-page .catalog-heart{display:grid!important;place-items:center;top:12px!important;right:12px!important;width:44px!important;height:44px!important;padding:0!important;border:1px solid rgba(255,255,255,.82)!important;border-radius:50%!important;background:rgba(10,12,15,.72)!important;color:#fff!important;font-size:27px!important;line-height:1!important;z-index:4!important;transition:transform .18s ease,background .18s ease,border-color .18s ease,color .18s ease}
-.member-catalog-page .catalog-heart:hover,.member-catalog-page .catalog-heart.is-favorited{border-color:#ff2632!important;background:#ed1c2a!important;color:#fff!important;transform:scale(1.08)}
-@media(max-width:800px){.member-catalog-page .catalog-heart{top:9px!important;right:9px!important;width:38px!important;height:38px!important;font-size:24px!important}}
-</style>
-<style>
-/* Premium hover motion: the complete vehicle card gently lifts and enlarges. */
-.member-catalog-page .catalog-card{transform:translateY(0) scale(1);transform-origin:center center;transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease;will-change:transform}
-.member-catalog-page .catalog-card:hover{position:relative;z-index:5;transform:translateY(-8px) scale(1.035);border-color:rgba(239,31,47,.55)!important;box-shadow:0 24px 48px rgba(0,0,0,.28),0 0 0 1px rgba(239,31,47,.14)!important}
-.member-catalog-page .catalog-card:hover .catalog-card-image img{transform:scale(1.045);transition:transform .35s ease}
-.member-catalog-page .catalog-card-image img{transition:transform .35s ease}
-@media(max-width:800px){.member-catalog-page .catalog-card:hover{transform:translateY(-5px) scale(1.018)}}
-@media(prefers-reduced-motion:reduce){.member-catalog-page .catalog-card,.member-catalog-page .catalog-card-image img{transition:none}.member-catalog-page .catalog-card:hover{transform:none}}
-</style>
-<style>
-/* Final member catalog surface: the white background ends after the controls. */
-body.member-catalog-page-shell .member-main-content{padding-bottom:0!important;background:#090a0c!important}
-body.member-catalog-page-shell .member-catalog-page{max-width:none!important;margin:0!important;padding:0 28px!important;background:#090a0c!important}
-body.member-catalog-page-shell .member-catalog-top{margin:0 -28px!important;padding:16px 28px 38px!important;background:#f5f6f7!important}
-body.member-catalog-page-shell .member-catalog-results{margin:0 -28px!important;padding:76px clamp(28px,5vw,86px) 36px!important;border:0!important;border-radius:0!important;background:radial-gradient(circle at 82% 0%,rgba(229,29,42,.14),transparent 34%),#090a0c!important}
-</style>
+
 @push('scripts')
 <script>
 (() => {

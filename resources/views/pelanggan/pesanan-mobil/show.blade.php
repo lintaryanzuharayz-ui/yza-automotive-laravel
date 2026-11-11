@@ -3,6 +3,7 @@
 @section('body-class', 'member-order-detail-page')
 @push('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/member-order-detail.css') }}?v={{ filemtime(public_path('assets/css/member-order-detail.css')) }}">
+<link rel="stylesheet" href="{{ asset('assets/css/member-order-reference.css') }}?v={{ filemtime(public_path('assets/css/member-order-reference.css')) }}">
 @endpush
 @php
     $statusLabel = ucwords(str_replace('_', ' ', $order->status));
@@ -28,7 +29,14 @@
     $paymentIsSettled = $order->transaksi?->status === 'lunas';
     $paymentMethodLabel = $settledGateway ? 'Midtrans' : ($verifiedPayment?->metode === 'tunai' ? 'Tunai di Dealer' : ($verifiedPayment ? 'Transfer Langsung' : null));
     $paymentTimestamp = $verifiedPayment?->verified_at ?: $verifiedPayment?->tanggal;
-    $paymentStatusLabel = $paymentIsSettled ? 'LUNAS' : ($pendingOfflinePayment ? 'MENUNGGU VERIFIKASI ADMIN' : ($paymentRejected ? 'PEMBAYARAN DITOLAK' : ($activeGateway ? 'MENUNGGU PEMBAYARAN ONLINE' : 'MENUNGGU PEMBAYARAN')));
+    $paymentStatusLabel = match (true) {
+        $paymentIsSettled => 'LUNAS',
+        (bool) $pendingOfflinePayment => 'MENUNGGU VERIFIKASI ADMIN',
+        $paymentRejected => 'PEMBAYARAN DITOLAK',
+        $order->status === 'menunggu_verifikasi' => 'MENUNGGU KEPUTUSAN ADMIN',
+        (bool) $activeGateway => 'MENUNGGU PEMBAYARAN ONLINE',
+        default => 'MENUNGGU PEMBAYARAN',
+    };
     $timeline = [
         ['label' => 'Checkout', 'value' => 'Selesai', 'done' => true],
         ['label' => 'Verifikasi Admin', 'value' => $order->diputuskan_at?->format('d M Y') ?: 'Menunggu', 'done' => (bool) $order->diputuskan_at],
@@ -40,7 +48,7 @@
     $activeTimelineIndex = $order->diserahkan_at ? 5 : ($pdiCode === 'lulus' ? 4 : ($paymentIsSettled ? 3 : ($order->diputuskan_at ? 2 : 1)));
 @endphp
 @section('content')
-<div class="order-detail-wrap" data-order-live-state="{{ sha1(implode('|', [
+<div class="order-detail-wrap order-detail-reference" data-order-live-state="{{ sha1(implode('|', [
     $order->status,
     $order->catatan_admin,
     optional($order->updated_at)->toISOString(),
@@ -53,27 +61,31 @@
     optional($order->diputuskan_at)->toISOString(),
 ])) }}">
     <header class="order-detail-heading">
-        <a class="order-back-link" href="{{ route('pelanggan.pesanan-mobil.index') }}">&larr; Kembali ke Daftar Pesanan</a>
+        <a class="order-back-link" href="{{ route('pelanggan.pesanan-mobil.index') }}">&larr; Kembali ke Daftar Pesanan</a><span class="order-detail-caption">Detail Pesanan</span>
         <div class="order-heading-row"><div><div class="order-number-row"><h1>{{ $order->nomor_pesanan }}</h1><span class="order-status-badge">{{ $statusLabel }}</span></div><p>Dibuat pada {{ $order->created_at?->format('d F Y') ?: '-' }} &middot; {{ $order->created_at?->format('H:i') ?: '--:--' }} WIB</p></div><section class="order-next-card order-next-card-top"><div class="order-next-icon">!</div><div><h2>Langkah Selanjutnya</h2><p>@if($hasPendingOfflinePayment)Pengajuan pembayaran sudah diterima. Menunggu verifikasi admin.@elseif($paymentRejected)Pembayaran ditolak. Pilih metode pembayaran lagi untuk melanjutkan pesanan.@elseif($order->status === 'menunggu_verifikasi')Pesanan menunggu verifikasi admin.@elseif($order->status === 'menunggu_pembayaran')Silakan lanjutkan pembayaran.@elseif($order->status === 'lunas')Tim kami melanjutkan proses PDI.@else>Status akan diperbarui oleh tim YZA Automotive.@endif</p></div></section></div>
     </header>
     <section class="order-timeline" aria-label="Tahapan pesanan">
-        @foreach($timeline as $index => $step)<div class="order-timeline-step {{ $step['done'] ? 'is-done' : ($index === $activeTimelineIndex ? 'is-current' : '') }}"><span class="order-timeline-dot">{{ $index + 1 }}</span><strong>{{ $step['label'] }}</strong><small>{{ $step['value'] }}</small></div>@endforeach
+        @foreach($timeline as $index => $step)<div class="order-timeline-step {{ $step['done'] ? 'is-done' : ($index === $activeTimelineIndex ? 'is-current' : '') }}"><span class="order-timeline-dot">{{ $step['done'] ? '✓' : $index + 1 }}</span><strong>{{ $step['label'] }}</strong><small>{{ $step['value'] }}</small></div>@endforeach
     </section>
     <main class="order-detail-grid">
         <section class="order-vehicle-card order-vehicle-panel">
         <section class="order-vehicle-media order-gallery-card">
+            <span class="order-photo-badge">Kendaraan Pesanan</span>
             <button class="order-gallery-arrow order-gallery-arrow-prev" type="button" aria-label="Foto sebelumnya">&#8249;</button>
             <img id="order-main-vehicle-image" src="{{ $vehicleImage }}" alt="{{ $vehicleName }}">
             <button class="order-gallery-arrow order-gallery-arrow-next" type="button" aria-label="Foto berikutnya">&#8250;</button>
+            <span class="order-gallery-count" data-order-gallery-count>01 / {{ str_pad((string) count($selectedGallery['images'] ?? []), 2, '0', STR_PAD_LEFT) }}</span>
             <div class="order-vehicle-thumbs" role="list" aria-label="Galeri {{ $order->snapshot_warna }}">@foreach($selectedGallery['images'] ?? [] as $index => $image)<button class="order-vehicle-thumb {{ $index === 0 ? 'is-active' : '' }}" type="button" data-order-image="{{ $image['src'] }}" data-order-label="{{ $image['label'] }}" aria-label="Lihat {{ $image['label'] }}"><img src="{{ $image['src'] }}" alt="{{ $image['label'] }} {{ $vehicleName }}"></button>@endforeach</div>
         </section>
         <section class="order-vehicle-copy">
-            <div class="order-brand-row"><span class="order-eyebrow">KENDARAAN PESANAN</span><span class="order-condition">UNIT BARU</span></div><h2>{{ $vehicleName }}</h2><p>{{ $vehicleMeta }}</p><strong class="order-vehicle-price">{{ $price }}</strong><div class="order-spec-grid"><div><span>Mesin</span><strong>{{ $order->mobil?->kapasitas_mesin ?: '3.0L Turbo 6-Cylinder' }}</strong></div><div><span>Transmisi</span><strong>{{ strtoupper($order->mobil?->transmisi ?: 'Automatic') }}</strong></div><div><span>Tipe &amp; Warna</span><strong>{{ $order->snapshot_tipe ?: '-' }} · {{ $order->snapshot_warna ?: '-' }}</strong></div></div>
+            @php($orderBrandAsset = 'assets/images/brands/'.\Illuminate\Support\Str::slug($order->snapshot_merk).'.svg')
+            @if(is_file(public_path($orderBrandAsset)))<img class="order-brand-mark" src="{{ asset($orderBrandAsset) }}" alt="{{ $order->snapshot_merk }}">@endif
+            <div class="order-brand-row"><span class="order-eyebrow">KENDARAAN PESANAN</span><span class="order-condition">UNIT BARU</span></div><h2>{{ $vehicleName }}</h2><p>{{ $vehicleMeta }}</p><strong class="order-vehicle-price">{{ $price }}</strong><div class="order-spec-grid"><div><x-order-icon name="gear" /><span>Tipe</span><strong>{{ $order->snapshot_tipe ?: '—' }}</strong></div><div><x-order-icon name="calendar" /><span>Tahun</span><strong>{{ $order->snapshot_tahun ?: '—' }}</strong></div><div><x-order-icon name="gear" /><span>Transmisi</span><strong>{{ ucfirst(strtolower(($order->matchesCatalogVehicle() ? $order->mobil?->transmisi : null) ?: 'Belum tercatat')) }}</strong></div><div><x-order-icon name="palette" /><span>Warna</span><strong>{{ $order->snapshot_warna ?: '—' }}</strong></div></div>
         </section>
         </section>
         <div class="order-right-column">
-        <section class="order-info-card order-buyer-card"><div class="order-card-title"><span class="order-card-icon">USER</span><div><h2>Informasi Pembeli</h2><p>Data yang digunakan untuk proses pesanan.</p></div></div><dl class="order-info-list"><div><dt>Nama Lengkap</dt><dd>{{ $order->nama_pembeli }}</dd></div><div><dt>Email</dt><dd>{{ $order->email_pembeli ?: '-' }}</dd></div><div><dt>Nomor HP</dt><dd>{{ $order->telepon_pembeli ?: '-' }}</dd></div><div><dt>Alamat</dt><dd>{{ $order->alamat_pembeli ?: '-' }}</dd></div></dl></section>
-        <section class="order-payment-card order-payment-summary"><div class="order-card-title"><span class="order-card-icon">PAY</span><div><h2>Ringkasan Pembayaran</h2><p>Detail tagihan dan metode pembayaran pesanan Anda.</p></div></div>
+        <section class="order-info-card order-buyer-card"><div class="order-card-title"><span class="order-card-icon"><x-order-icon name="user" /></span><div><h2>Informasi Pembeli</h2><p>Informasi pembeli untuk kebutuhan verifikasi.</p></div></div><dl class="order-info-list"><div><dt>Nama Lengkap</dt><dd>{{ $order->nama_pembeli }}</dd></div><div><dt>Email</dt><dd>{{ $order->email_pembeli ?: '-' }}</dd></div><div><dt>Nomor HP</dt><dd>{{ $order->telepon_pembeli ?: '-' }}</dd></div><div><dt>Alamat</dt><dd>{{ $order->alamat_pembeli ?: '-' }}</dd></div></dl></section>
+        <section class="order-payment-card order-payment-summary"><div class="order-card-title"><span class="order-card-icon"><x-order-icon name="document" /></span><div><h2>Ringkasan Pembayaran</h2><p>Detail pesanan kendaraan Anda.</p></div></div>
                 <div class="order-payment-row"><span>Harga Kendaraan</span><strong>{{ $price }}</strong></div><div class="order-payment-total"><span>Total Pembayaran</span><strong>{{ $price }}</strong></div>
                 <div class="order-payment-row order-payment-status-row"><span>Status Pembayaran</span><strong class="order-payment-status {{ $paymentIsSettled ? 'is-paid' : '' }}">{{ $paymentStatusLabel }}</strong></div>
                 @if($paymentIsSettled)
@@ -148,8 +160,8 @@
         </section>
         </div>
         <section class="order-info-card order-order-info"><div class="order-card-title"><span class="order-card-icon">DOC</span><div><h2>Informasi Pesanan</h2><p>Detail snapshot pesanan yang tersimpan saat checkout.</p></div></div><dl class="order-info-list"><div><dt>Nomor Pesanan</dt><dd>{{ $order->nomor_pesanan }}</dd></div><div><dt>Tanggal Pesanan</dt><dd>{{ $order->created_at?->format('d F Y, H:i') ?: '-' }} WIB</dd></div><div><dt>Status</dt><dd><span class="order-inline-status">{{ $statusLabel }}</span></dd></div><div><dt>Metode Pembayaran</dt><dd>{{ $order->transaksi?->metode_pembayaran ?: 'Menunggu verifikasi admin' }}</dd></div></dl></section>
-        <section class="order-info-card order-vehicle-summary-card"><div class="order-card-title"><span class="order-card-icon">CAR</span><div><h2>Kendaraan Pesanan</h2><p>Detail spesifikasi kendaraan yang dipesan.</p></div></div><dl class="order-info-list"><div><dt>Nama Kendaraan</dt><dd>{{ $vehicleName }}</dd></div><div><dt>Mesin</dt><dd>{{ $order->mobil?->kapasitas_mesin ?: '3.0L Turbo 6-Cylinder' }}</dd></div><div><dt>Transmisi</dt><dd>{{ strtoupper($order->mobil?->transmisi ?: 'Automatic') }}</dd></div><div><dt>Tipe</dt><dd>{{ $order->snapshot_tipe ?: '-' }}</dd></div><div><dt>Warna</dt><dd>{{ $order->snapshot_warna ?: '-' }}</dd></div></dl></section>
-        <section class="order-info-card order-post-payment-card"><div class="order-card-title"><span class="order-card-icon">PDI</span><div><h2>Status Pasca Pembayaran</h2><p>Informasi pemeriksaan dan pengambilan kendaraan Anda.</p></div></div>
+        <section class="order-info-card order-vehicle-summary-card"><div class="order-card-title"><span class="order-card-icon"><x-order-icon name="car" /></span><div><h2>Kendaraan Pesanan</h2><p>Detail spesifikasi kendaraan yang dipesan.</p></div></div><dl class="order-info-list"><div><dt>Nama Kendaraan</dt><dd>{{ $vehicleName }}</dd></div><div><dt>Mesin</dt><dd>{{ ($order->matchesCatalogVehicle() ? $order->mobil?->kapasitas_mesin : null) ?: 'Belum tercatat' }}</dd></div><div><dt>Transmisi</dt><dd>{{ strtoupper(($order->matchesCatalogVehicle() ? $order->mobil?->transmisi : null) ?: 'Belum tercatat') }}</dd></div><div><dt>Tipe</dt><dd>{{ $order->snapshot_tipe ?: '-' }}</dd></div><div><dt>Warna</dt><dd>{{ $order->snapshot_warna ?: '-' }}</dd></div></dl></section>
+        <section class="order-info-card order-post-payment-card"><div class="order-card-title"><span class="order-card-icon"><x-order-icon name="shield" /></span><div><h2>Status Pasca Pembayaran</h2><p>Informasi pemeriksaan dan pengambilan kendaraan Anda.</p></div></div>
             <div class="order-post-payment-status"><div><span>Pemeriksaan PDI</span><strong class="{{ $pdiCode === 'lulus' ? 'is-success' : ($pdiCode === 'perlu_perbaikan' || $pdiCode === 'gagal' ? 'is-warning' : '') }}">{{ $pdiStatus }}</strong></div><div><span>Pengambilan</span><strong>{{ $order->diserahkan_at ? 'Selesai' : ($order->jadwal_pengambilan ? 'Terjadwal' : 'Menunggu jadwal') }}</strong></div></div>
             @if($pdiCode === 'lulus' && $order->jadwal_pengambilan)
                 <div class="order-pickup-callout"><strong>{{ $order->diserahkan_at ? 'Kendaraan telah diserahterimakan.' : 'Jadwal pengambilan Anda' }}</strong><span>{{ $order->jadwal_pengambilan->format('d F Y, H:i') }} WIB · {{ $order->lokasi_pengambilan ?: 'YZA Automotive' }}</span>@if($order->catatan_pengambilan)<small>{{ $order->catatan_pengambilan }}</small>@endif</div>
@@ -163,6 +175,7 @@
             @endif
         </section>
     </main>
+    <p class="order-privacy-note"><x-order-icon name="lock" />Data Anda aman dan hanya digunakan untuk proses pemesanan oleh tim YZA Automotive.</p>
 </div>
 <div class="order-invoice-modal" data-invoice-modal hidden aria-hidden="true">
     <div class="order-invoice-backdrop" data-invoice-close></div>
@@ -214,6 +227,8 @@
         main.src = thumb.dataset.orderImage;
         main.alt = thumb.dataset.orderLabel + ' {{ $vehicleName }}';
         thumbs.forEach(item => item.classList.toggle('is-active', item === thumb));
+        const counter = document.querySelector('[data-order-gallery-count]');
+        if (counter) counter.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${String(thumbs.length).padStart(2, '0')}`;
     };
     thumbs.forEach((thumb, index) => thumb.addEventListener('click', () => showImage(index)));
     document.querySelector('.order-gallery-arrow-prev')?.addEventListener('click', () => showImage(activeIndex - 1));

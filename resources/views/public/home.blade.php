@@ -5,8 +5,11 @@
     <title>YZA Automotive · Showroom Premium</title>
     <link rel="icon" href="{{ asset('assets/images/branding/logo-yza.png') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/variables.css') }}"><link rel="stylesheet" href="{{ asset('assets/css/base.css') }}"><link rel="stylesheet" href="{{ asset('assets/css/components.css') }}"><link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}"><link rel="stylesheet" href="{{ asset('assets/css/pages/appointment-final.css') }}"><link rel="stylesheet" href="{{ asset('assets/css/showroom.css?v=services-membership-promo-20261004') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/showroom.css?v=carousel-scroll-detail-link-20261007') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/pages/landing-original-restore.css?v=20261015-1') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/showroom.css?v=favorite-circle-20261106') }}">
+    @include('components.responsive-foundation')
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/landing-original-restore.css?v=full-screen-20261106') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/landing-intro-compact.css') }}?v={{ filemtime(public_path('assets/css/pages/landing-intro-compact.css')) }}">
+    <script src="{{ asset('assets/js/landing-viewport.js?v=20261106') }}" defer></script>
 </head>
 <body class="showroom landing opening-active">
 @if(true)
@@ -36,7 +39,7 @@
 @php($memberPrimaryHref = match ($landingMemberState) { 'active' => route('pelanggan.member'), 'pending_payment' => route('pelanggan.membership.activation'), 'cancelled' => route('pelanggan.membership.activation'), default => route('register', ['from' => 'membership']) })
 @php($memberPrimaryLabel = match ($landingMemberState) { 'active' => 'BUKA MEMBER CENTER', 'pending_payment' => 'AKTIFKAN YZA MEMBER', 'cancelled' => 'LIHAT STATUS MEMBERSHIP', default => 'BERGABUNG JADI MEMBER' })
 <div class="yza-member-transition" aria-hidden="true"></div>
-<section class="yza-member-section" id="yza-member" data-member-section><div class="show-container yza-member-layout"><div class="yza-member-copy"><span class="section-kicker">YZA EXCLUSIVE MEMBERSHIP</span><h2>LEBIH DARI<br>SEKADAR<br>PELANGGAN,<br><em>JADILAH<br>YZA MEMBER.</em></h2><p class="yza-member-description">Bergabung dengan YZA Member dan nikmati pengalaman otomotif yang lebih lengkap melalui akses layanan eksklusif, promo spesial, YZA Points, service reminder, serta berbagai keuntungan lainnya.</p>@if($landingMemberState === 'pending_payment')<p class="yza-member-state">Membership Anda belum aktif. Selesaikan pembayaran aktivasi untuk menikmati benefit YZA Member.</p>@elseif($landingMemberState === 'active')<p class="yza-member-state is-active">✓ YZA Member Active</p>@endif<div class="yza-member-price"><span>AKTIVASI MEMBER</span><strong>Rp {{ number_format((float) ($membershipFee ?? 249000), 0, ',', '.') }}</strong><small>Sekali aktivasi • Tidak ada biaya bulanan.</small></div><div class="yza-member-actions"><a class="show-cta" href="{{ $memberPrimaryHref }}">♙&nbsp; {{ $memberPrimaryLabel }}&nbsp; →</a></div></div><div class="yza-member-visual"><div class="yza-member-card"><img src="{{ asset('assets/images/branding/logo-yza.png') }}" alt="YZA Automotive"><span class="yza-member-card-line"></span><small>YZA AUTOMOTIVE</small><strong>YZA <em>MEMBER</em></strong><b>YZA-MBR-000001</b><em>PREMIUM AUTOMOTIVE EXPERIENCE</em><span class="yza-member-chip" aria-hidden="true"></span><span class="yza-member-card-status">MEMBER EXCLUSIVE</span></div><div class="yza-member-benefits" id="yza-member-benefits">@foreach ([['⌑','PROMO EKSKLUSIF','Nikmati promo khusus member pada layanan dan transaksi pilihan.'],['⚙','LAYANAN LEBIH LENGKAP','Gunakan berbagai fasilitas YZA Automotive dalam satu akun.'],['↔','TRADE-IN','Dapatkan akses proses trade-in melalui sistem YZA.'],['✦','YZA POINTS','Kumpulkan Points dari setiap transaksi eligible yang berhasil.'],['▣','TEST DRIVE & MOBIL','Kelola kebutuhan kendaraan dan test drive dengan lebih mudah.'],['⌁','SERVICE REMINDER','Pantau riwayat kendaraan dan pengingat servis Anda.']] as $benefit)<div class="yza-member-benefit"><i aria-hidden="true">{{ $benefit[0] }}</i><span><b>{{ $benefit[1] }}</b><small>{{ $benefit[2] }}</small></span></div>@endforeach</div></div></div></section>
+<section class="yza-member-section" id="yza-member" data-member-section><div class="show-container yza-member-layout"><div class="yza-member-copy"><span class="section-kicker">YZA EXCLUSIVE MEMBERSHIP</span><h2>LEBIH DARI SEKADAR<br>PELANGGAN,<br><em>JADILAH YZA MEMBER.</em></h2><p class="yza-member-description">Bergabung dengan YZA Member dan nikmati pengalaman otomotif yang lebih lengkap melalui akses layanan eksklusif, promo spesial, YZA Points, service reminder, serta berbagai keuntungan lainnya.</p>@if($landingMemberState === 'pending_payment')<p class="yza-member-state">Membership Anda belum aktif. Selesaikan pembayaran aktivasi untuk menikmati benefit YZA Member.</p>@elseif($landingMemberState === 'active')<p class="yza-member-state is-active">✓ YZA Member Active</p>@endif<div class="yza-member-price"><span>AKTIVASI MEMBER</span><strong>Rp {{ number_format((float) ($membershipFee ?? 249000), 0, ',', '.') }}</strong><small>Sekali aktivasi • Tidak ada biaya bulanan.</small></div><div class="yza-member-actions"><a class="show-cta" href="{{ $memberPrimaryHref }}">♙&nbsp; {{ $memberPrimaryLabel }}&nbsp; →</a></div></div><div class="yza-member-visual"><div class="yza-member-card"><img src="{{ asset('assets/images/branding/logo-yza.png') }}" alt="YZA Automotive"><span class="yza-member-card-line"></span><small>YZA AUTOMOTIVE</small><strong>YZA <em>MEMBER</em></strong><b>YZA-MBR-000001</b><em>PREMIUM AUTOMOTIVE EXPERIENCE</em><span class="yza-member-chip" aria-hidden="true"></span><span class="yza-member-card-status">MEMBER EXCLUSIVE</span></div><div class="yza-member-benefits" id="yza-member-benefits">@foreach ([['⌑','PROMO EKSKLUSIF','Nikmati promo khusus member pada layanan dan transaksi pilihan.'],['⚙','LAYANAN LEBIH LENGKAP','Gunakan berbagai fasilitas YZA Automotive dalam satu akun.'],['↔','TRADE-IN','Dapatkan akses proses trade-in melalui sistem YZA.'],['✦','YZA POINTS','Kumpulkan Points dari setiap transaksi eligible yang berhasil.'],['▣','TEST DRIVE & MOBIL','Kelola kebutuhan kendaraan dan test drive dengan lebih mudah.'],['⌁','SERVICE REMINDER','Pantau riwayat kendaraan dan pengingat servis Anda.']] as $benefit)<div class="yza-member-benefit"><i aria-hidden="true">{{ $benefit[0] }}</i><span><b>{{ $benefit[1] }}</b><small>{{ $benefit[2] }}</small></span></div>@endforeach</div></div></div></section>
 <section class="trade-banner" id="jual-mobil"><div class="show-container trade-layout"><div class="trade-copy"><span class="section-kicker">Jual mobil Anda</span><h2>Jual Mobil Anda<br><em>atau Trade-In</em></h2><p>Dapatkan estimasi harga terbaik dengan proses cepat, aman, dan transparan.</p><a class="show-cta" href="{{ route('login') }}">Nilai Mobil Sekarang&nbsp; →</a></div><div class="benefit-list"><div><i aria-hidden="true">ϟ</i><span><b>Proses Cepat</b>Tanpa ribet dan banyak dokumen.</span></div><div><i aria-hidden="true">♙</i><span><b>Harga Kompetitif</b>Sesuai kondisi pasar terkini.</span></div><div><i aria-hidden="true">♢</i><span><b>Aman &amp; Terpercaya</b>Transaksi profesional dan transparan.</span></div></div></div></section>
 <div class="yza-section-transition" aria-hidden="true"><svg viewBox="0 0 1600 90" preserveAspectRatio="none" focusable="false"><defs><linearGradient id="yza-neon-gradient" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a70f18"/><stop offset=".42" stop-color="#ff1625"/><stop offset=".78" stop-color="#ff2634"/><stop offset="1" stop-color="#ff6670"/></linearGradient><filter id="yza-neon-glow" x="-10%" y="-50%" width="120%" height="200%"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><path class="yza-neon-outer" d="M -40 82 L 1110 40 L 1435 28 L 1490 15 L 1640 8"/><path class="yza-neon-main" d="M -40 82 L 1110 40 L 1435 28 L 1490 15 L 1640 8"/><path class="yza-neon-core" d="M -40 82 L 1110 40 L 1435 28 L 1490 15 L 1640 8"/></svg></div>
 <section class="service-appointment" id="servis"><div class="service-layout"><div class="service-visual"><div class="service-visual-copy"><span class="section-kicker">Janji temu</span><h2>Janjikan Servis<br><em>dengan mudah</em></h2><p>Pilih tanggal dan waktu yang sesuai, dan tim kami akan siap melayani Anda.</p><div class="steps"><span><b>1</b>Pilih Layanan</span><span><b>2</b>Isi Data</span><span><b>3</b>Konfirmasi</span></div></div></div><div class="appointment-wrap" id="janji-temu"><form class="appointment-form" id="appointment-form"><div class="appointment-form-heading"><div><strong>Buat Janji Temu</strong><span>Isi detail kunjungan Anda. Pesan akan diarahkan ke WhatsApp YZA.</span></div><small><b>WhatsApp YZA</b><br>0877 8430 4417</small></div><div class="appointment-fields"><div class="form-group"><label class="form-label" for="appointment-nama">Nama Lengkap</label><input class="form-control" id="appointment-nama" name="nama" required placeholder="Nama lengkap Anda"></div><div class="form-group"><label class="form-label" for="appointment-hp">Nomor WhatsApp</label><input class="form-control" id="appointment-hp" name="no_hp" type="tel" required placeholder="08xxxxxxxxxx"></div><div class="form-group"><label class="form-label" for="appointment-layanan">Jenis Kebutuhan</label><select class="form-control" id="appointment-layanan" name="layanan" required><option value="">Pilih layanan</option>@foreach (['Konsultasi Mobil','Test Drive','Service','Spare Part','Car Wash','Used Car','Trade-In','Lainnya'] as $service)<option value="{{ $service }}">{{ $service }}</option>@endforeach</select></div><div class="form-group"><label class="form-label" for="appointment-tanggal">Tanggal Janji</label><input class="form-control" id="appointment-tanggal" name="tanggal" type="date" min="{{ now()->format('Y-m-d') }}" required></div><div class="form-group"><label class="form-label" for="appointment-jam">Jam Janji</label><input class="form-control" id="appointment-jam" name="jam" type="time" required></div><div class="form-group full"><label class="form-label" for="appointment-catatan">Catatan Tambahan <span>(opsional)</span></label><textarea class="form-control" id="appointment-catatan" name="catatan" rows="3" placeholder="Contoh: ingin konsultasi trade-in dan cek kondisi kendaraan."></textarea></div></div><button class="show-cta appointment-submit" type="submit">Lanjut ke WhatsApp&nbsp; ↗</button><p class="appointment-microcopy">Pesan tidak dikirim otomatis. Anda tetap menekan Kirim di WhatsApp.</p></form></div></div></section>
@@ -51,14 +54,20 @@
 <script>document.querySelector('.hero-3d-canvas')?.remove();document.querySelector('.hero-car-stage')?.setAttribute('data-viewer','static-featured-vehicle');</script>
 <script>
 (() => {
-    const navLinks = [...document.querySelectorAll('.show-nav-links a[href^="#"]')];
-    const sections = navLinks
-        .map((link) => document.getElementById(link.getAttribute('href').slice(1)))
-        .filter(Boolean);
-    if (!navLinks.length || !sections.length) return;
+    const nav = document.querySelector('[data-public-navbar]');
+    const navLinks = [...nav.querySelectorAll('.show-nav-links > a[href^="#"]')];
+    const sections = navLinks.map((link) => ({
+        link,
+        section: document.getElementById(link.getAttribute('href').slice(1)),
+    })).filter(({ section }) => section);
+    if (!sections.length) return;
 
     const setActive = (activeLink) => {
-        navLinks.forEach((link) => link.classList.toggle('active', link === activeLink));
+        navLinks.forEach((link) => {
+            link.classList.toggle('active', link === activeLink);
+            if (link === activeLink) link.setAttribute('aria-current', 'location');
+            else link.removeAttribute('aria-current');
+        });
     };
 
     navLinks.forEach((link) => link.addEventListener('click', () => {
@@ -66,19 +75,29 @@
         document.getElementById('show-nav-links')?.classList.remove('open');
     }));
 
-    const initialLink = navLinks.find((link) => link.getAttribute('href') === window.location.hash);
-    if (initialLink) setActive(initialLink);
-
-    const observer = new IntersectionObserver((entries) => {
-        const visible = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (!visible) return;
-        const activeLink = navLinks.find((link) => link.getAttribute('href') === `#${visible.target.id}`);
-        if (activeLink) setActive(activeLink);
-    }, { rootMargin: '-18% 0px -62% 0px', threshold: [0.15, 0.35, 0.6] });
-
-    sections.forEach((section) => observer.observe(section));
+    // Track section starts rather than intersection ratios: tall sections may
+    // never reach an observer's ratio threshold, especially on a phone.
+    let scheduled = false;
+    const updateActive = () => {
+        scheduled = false;
+        const headerBottom = nav.getBoundingClientRect().bottom;
+        const marker = headerBottom + Math.max(1, (window.innerHeight - headerBottom) * 0.25);
+        const ordered = sections.map((entry) => ({ ...entry, top: entry.section.getBoundingClientRect().top }))
+            .sort((a, b) => a.top - b.top);
+        const current = ordered.filter(({ top }) => top <= marker).at(-1);
+        const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+        setActive(atBottom ? ordered.at(-1).link : current?.link);
+    };
+    const scheduleUpdate = () => {
+        if (scheduled) return;
+        scheduled = true;
+        requestAnimationFrame(updateActive);
+    };
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
+    window.addEventListener('pageshow', scheduleUpdate);
+    window.addEventListener('load', scheduleUpdate);
+    updateActive();
 })();
 
 document.getElementById('appointment-form')?.addEventListener('submit',function(e){e.preventDefault();if(!this.reportValidity())return;const d=new FormData(this);const message=['Halo YZA Automotive,','','Saya ingin membuat janji temu.','',`Nama: ${d.get('nama')}`,`No. WhatsApp: ${d.get('no_hp')}`,`Kebutuhan: ${d.get('layanan')}`,`Tanggal Janji: ${d.get('tanggal')}`,`Jam: ${d.get('jam')}`,'','Catatan:',d.get('catatan')||'-','','Mohon konfirmasi jadwal saya.','','Terima kasih.'].join('\n');window.location.href=@json(yza_whatsapp_url()).replace(/\/$/,'')+'?text='+encodeURIComponent(message)});

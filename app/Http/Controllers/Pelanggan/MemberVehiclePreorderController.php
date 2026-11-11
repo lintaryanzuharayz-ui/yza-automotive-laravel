@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\{MemberVehiclePreorder, Mobil};
 use App\Services\{MemberVehiclePreorderService, MemberVehiclePurchaseService, VehicleAvailabilityService};
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
@@ -23,9 +24,9 @@ class MemberVehiclePreorderController extends Controller
     {
         $customer = $purchase->customerFor($request->user());
         $car = $request->filled('slug') ? app(\App\Http\Controllers\Public\MobilController::class)->catalogPreorder((string) $request->string('slug')) : Mobil::findOrFail($request->integer('mobil'));
-        $state = $availability->for($car);
-        abort_if(($state['can_purchase'] ?? false) || (($state['stock'] ?? 0) > 0), 409, 'Stok tersedia. Silakan lanjutkan ke Beli Sekarang.');
-        return view('pelanggan.preorder.create', ['car' => $car, 'customer' => $customer, 'availability' => $state]);
+        $color = app(\App\Services\VehicleColorStockService::class)->selected($car, $request->query('warna'));
+        abort_if($color['stock'] > 0, 409, 'Warna tersedia. Silakan lanjutkan pembelian.');
+        return view('pelanggan.preorder.create', ['car' => $car, 'customer' => $customer, 'availability' => $color, 'selectedColor' => $color['label']]);
     }
 
     public function store(Request $request, MemberVehiclePreorderService $service, MemberVehiclePurchaseService $purchase): Response
@@ -33,7 +34,8 @@ class MemberVehiclePreorderController extends Controller
         try {
             $customer = $purchase->customerFor($request->user());
             $car = $request->filled('slug') ? app(\App\Http\Controllers\Public\MobilController::class)->catalogPreorder((string) $request->string('slug')) : Mobil::findOrFail($request->integer('mobil'));
-            $service->create($customer, $car);
+            $request->validate(['warna' => ['nullable', 'string', 'max:100']]);
+            $service->create($customer, $car, $request->input('warna'));
             if ($request->expectsJson()) {
                 return response()->json(['ok' => true, 'message' => 'Pre-order berhasil dicatat. Tidak ada pembayaran sampai stok benar-benar tersedia.', 'redirect' => route('pelanggan.preorder.index')]);
             }

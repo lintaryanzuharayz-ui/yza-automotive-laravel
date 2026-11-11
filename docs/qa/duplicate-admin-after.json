@@ -1,0 +1,1988 @@
+{
+    "database": "yza_automotive_laravel",
+    "read_only": true,
+    "users": [
+        {
+            "username": "admin506",
+            "id_user": 1,
+            "stored_role": "admin",
+            "effective_role": "super_admin",
+            "status": "aktif",
+            "last_login": "2026-11-08T06:51:43.000000Z",
+            "all_permissions": true,
+            "explicit_permissions": [],
+            "staff": {
+                "id_petugas": 1,
+                "kode_petugas": "ADM-DEV-001",
+                "nama_lengkap": "Administrator YZA",
+                "status": "aktif"
+            },
+            "references": [
+                {
+                    "child_table": "booking_cuci",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "booking_mobil",
+                    "child_column": "id_petugas_konfirmasi",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "booking_servis",
+                    "child_column": "id_preferred_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "financial_adjustments",
+                    "child_column": "approved_by",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "financial_adjustments",
+                    "child_column": "confirmed_by",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "financial_adjustments",
+                    "child_column": "requested_by",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "RESTRICT",
+                    "rows": 0
+                },
+                {
+                    "child_table": "financial_adjustment_events",
+                    "child_column": "actor_petugas_id",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "inspeksi_mobil",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "RESTRICT",
+                    "rows": 0
+                },
+                {
+                    "child_table": "notifikasi",
+                    "child_column": "id_user",
+                    "parent_table": "users",
+                    "parent_column": "id_user",
+                    "delete_rule": "CASCADE",
+                    "rows": 7
+                },
+                {
+                    "child_table": "pdi_pesanan_mobil",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 1
+                },
+                {
+                    "child_table": "pelanggan",
+                    "child_column": "id_user",
+                    "parent_table": "users",
+                    "parent_column": "id_user",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "pembayaran",
+                    "child_column": "verified_by",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 7
+                },
+                {
+                    "child_table": "pembayaran_gateway",
+                    "child_column": "initiated_by",
+                    "parent_table": "users",
+                    "parent_column": "id_user",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "pembelian_mobil_bekas",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "RESTRICT",
+                    "rows": 0
+                },
+                {
+                    "child_table": "penjualan_mobil",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "RESTRICT",
+                    "rows": 3
+                },
+                {
+                    "child_table": "penjualan_mobil",
+                    "child_column": "id_sales",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "penjualan_sparepart",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "RESTRICT",
+                    "rows": 1
+                },
+                {
+                    "child_table": "pesanan_mobil_member",
+                    "child_column": "id_petugas_keputusan",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 2
+                },
+                {
+                    "child_table": "pesanan_mobil_member",
+                    "child_column": "id_sales",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "petugas",
+                    "child_column": "id_user",
+                    "parent_table": "users",
+                    "parent_column": "id_user",
+                    "delete_rule": "RESTRICT",
+                    "rows": 1
+                },
+                {
+                    "child_table": "promo_member",
+                    "child_column": "created_by",
+                    "parent_table": "users",
+                    "parent_column": "id_user",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "riwayat_stok",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 14
+                },
+                {
+                    "child_table": "sales_assignment_audits",
+                    "child_column": "actor_petugas_id",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "sales_assignment_audits",
+                    "child_column": "new_sales_id",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "sales_assignment_audits",
+                    "child_column": "previous_sales_id",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "sales_awards",
+                    "child_column": "finalized_by",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "sales_award_audits",
+                    "child_column": "actor_petugas_id",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "sales_award_results",
+                    "child_column": "id_sales",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "sales_leads",
+                    "child_column": "id_sales",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "sales_lead_activities",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "sales_targets",
+                    "child_column": "id_sales",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "CASCADE",
+                    "rows": 0
+                },
+                {
+                    "child_table": "serah_terima_pesanan_mobil",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 1
+                },
+                {
+                    "child_table": "service_staff_profiles",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "CASCADE",
+                    "rows": 1
+                },
+                {
+                    "child_table": "service_work_order_assignments",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "RESTRICT",
+                    "rows": 4
+                },
+                {
+                    "child_table": "servis",
+                    "child_column": "id_service_advisor",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "servis",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "RESTRICT",
+                    "rows": 4
+                },
+                {
+                    "child_table": "sparepart_fitments",
+                    "child_column": "verified_by",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "stok_masuk",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "RESTRICT",
+                    "rows": 9
+                },
+                {
+                    "child_table": "technician_time_off",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "CASCADE",
+                    "rows": 0
+                },
+                {
+                    "child_table": "technician_working_hours",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "CASCADE",
+                    "rows": 7
+                },
+                {
+                    "child_table": "test_drive",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "test_drive",
+                    "child_column": "id_sales",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "trade_in",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "RESTRICT",
+                    "rows": 0
+                },
+                {
+                    "child_table": "transaksi",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 7
+                }
+            ]
+        },
+        {
+            "username": "superadmin506",
+            "id_user": 992,
+            "stored_role": "super_admin",
+            "effective_role": "super_admin",
+            "status": "nonaktif",
+            "last_login": "2026-11-08T06:16:48.000000Z",
+            "all_permissions": true,
+            "explicit_permissions": [],
+            "staff": {
+                "id_petugas": 242,
+                "kode_petugas": "PTG-SUPER_ADMIN-930A1F29",
+                "nama_lengkap": "Super Admin YZA",
+                "status": "nonaktif"
+            },
+            "references": [
+                {
+                    "child_table": "booking_cuci",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "booking_mobil",
+                    "child_column": "id_petugas_konfirmasi",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "booking_servis",
+                    "child_column": "id_preferred_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "financial_adjustments",
+                    "child_column": "approved_by",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "financial_adjustments",
+                    "child_column": "confirmed_by",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "financial_adjustments",
+                    "child_column": "requested_by",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "RESTRICT",
+                    "rows": 0
+                },
+                {
+                    "child_table": "financial_adjustment_events",
+                    "child_column": "actor_petugas_id",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "inspeksi_mobil",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "RESTRICT",
+                    "rows": 0
+                },
+                {
+                    "child_table": "notifikasi",
+                    "child_column": "id_user",
+                    "parent_table": "users",
+                    "parent_column": "id_user",
+                    "delete_rule": "CASCADE",
+                    "rows": 3
+                },
+                {
+                    "child_table": "pdi_pesanan_mobil",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "pelanggan",
+                    "child_column": "id_user",
+                    "parent_table": "users",
+                    "parent_column": "id_user",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "pembayaran",
+                    "child_column": "verified_by",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "pembayaran_gateway",
+                    "child_column": "initiated_by",
+                    "parent_table": "users",
+                    "parent_column": "id_user",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "pembelian_mobil_bekas",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "RESTRICT",
+                    "rows": 0
+                },
+                {
+                    "child_table": "penjualan_mobil",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "RESTRICT",
+                    "rows": 0
+                },
+                {
+                    "child_table": "penjualan_mobil",
+                    "child_column": "id_sales",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "penjualan_sparepart",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "RESTRICT",
+                    "rows": 0
+                },
+                {
+                    "child_table": "pesanan_mobil_member",
+                    "child_column": "id_petugas_keputusan",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "pesanan_mobil_member",
+                    "child_column": "id_sales",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "petugas",
+                    "child_column": "id_user",
+                    "parent_table": "users",
+                    "parent_column": "id_user",
+                    "delete_rule": "RESTRICT",
+                    "rows": 1
+                },
+                {
+                    "child_table": "promo_member",
+                    "child_column": "created_by",
+                    "parent_table": "users",
+                    "parent_column": "id_user",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "riwayat_stok",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "sales_assignment_audits",
+                    "child_column": "actor_petugas_id",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "sales_assignment_audits",
+                    "child_column": "new_sales_id",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "sales_assignment_audits",
+                    "child_column": "previous_sales_id",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "sales_awards",
+                    "child_column": "finalized_by",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "sales_award_audits",
+                    "child_column": "actor_petugas_id",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "sales_award_results",
+                    "child_column": "id_sales",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "sales_leads",
+                    "child_column": "id_sales",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "sales_lead_activities",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "sales_targets",
+                    "child_column": "id_sales",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "CASCADE",
+                    "rows": 0
+                },
+                {
+                    "child_table": "serah_terima_pesanan_mobil",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "service_staff_profiles",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "CASCADE",
+                    "rows": 0
+                },
+                {
+                    "child_table": "service_work_order_assignments",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "RESTRICT",
+                    "rows": 0
+                },
+                {
+                    "child_table": "servis",
+                    "child_column": "id_service_advisor",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "servis",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "RESTRICT",
+                    "rows": 0
+                },
+                {
+                    "child_table": "sparepart_fitments",
+                    "child_column": "verified_by",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "stok_masuk",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "RESTRICT",
+                    "rows": 0
+                },
+                {
+                    "child_table": "technician_time_off",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "CASCADE",
+                    "rows": 0
+                },
+                {
+                    "child_table": "technician_working_hours",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "CASCADE",
+                    "rows": 0
+                },
+                {
+                    "child_table": "test_drive",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "test_drive",
+                    "child_column": "id_sales",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                },
+                {
+                    "child_table": "trade_in",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "RESTRICT",
+                    "rows": 0
+                },
+                {
+                    "child_table": "transaksi",
+                    "child_column": "id_petugas",
+                    "parent_table": "petugas",
+                    "parent_column": "id_petugas",
+                    "delete_rule": "SET NULL",
+                    "rows": 0
+                }
+            ]
+        }
+    ],
+    "session_driver": "file",
+    "session_encrypted": true,
+    "session_lifetime_minutes": 120,
+    "session_matches": {
+        "1": 1,
+        "992": 0
+    },
+    "unreadable_session_files": 0,
+    "auth_columns": [
+        {
+            "table_name": "booking_cuci",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "financial_adjustments",
+            "column_name": "requested_by"
+        },
+        {
+            "table_name": "financial_adjustments",
+            "column_name": "approved_by"
+        },
+        {
+            "table_name": "financial_adjustments",
+            "column_name": "confirmed_by"
+        },
+        {
+            "table_name": "inspeksi_mobil",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "notifikasi",
+            "column_name": "id_user"
+        },
+        {
+            "table_name": "pdi_pesanan_mobil",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "pelanggan",
+            "column_name": "id_user"
+        },
+        {
+            "table_name": "pembayaran",
+            "column_name": "verified_by"
+        },
+        {
+            "table_name": "pembayaran_gateway",
+            "column_name": "initiated_by"
+        },
+        {
+            "table_name": "pembelian_mobil_bekas",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "penjualan_mobil",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "penjualan_mobil",
+            "column_name": "id_sales"
+        },
+        {
+            "table_name": "penjualan_sparepart",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "pesanan_mobil_member",
+            "column_name": "id_sales"
+        },
+        {
+            "table_name": "petugas",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "petugas",
+            "column_name": "id_user"
+        },
+        {
+            "table_name": "promo_member",
+            "column_name": "created_by"
+        },
+        {
+            "table_name": "promo_simulations",
+            "column_name": "created_by"
+        },
+        {
+            "table_name": "riwayat_stok",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "sales_awards",
+            "column_name": "finalized_by"
+        },
+        {
+            "table_name": "sales_award_results",
+            "column_name": "id_sales"
+        },
+        {
+            "table_name": "sales_leads",
+            "column_name": "id_sales"
+        },
+        {
+            "table_name": "sales_lead_activities",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "sales_targets",
+            "column_name": "id_sales"
+        },
+        {
+            "table_name": "serah_terima_pesanan_mobil",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "service_approval_requests",
+            "column_name": "requested_by"
+        },
+        {
+            "table_name": "service_findings",
+            "column_name": "created_by"
+        },
+        {
+            "table_name": "service_quality_controls",
+            "column_name": "checked_by"
+        },
+        {
+            "table_name": "service_staff_profiles",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "service_work_order_assignments",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "service_work_order_assignments",
+            "column_name": "assigned_by"
+        },
+        {
+            "table_name": "servis",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "sparepart_fitments",
+            "column_name": "verified_by"
+        },
+        {
+            "table_name": "stok_masuk",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "technician_time_off",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "technician_working_hours",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "test_drive",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "test_drive",
+            "column_name": "id_sales"
+        },
+        {
+            "table_name": "trade_in",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "transaksi",
+            "column_name": "id_petugas"
+        },
+        {
+            "table_name": "users",
+            "column_name": "id_user"
+        },
+        {
+            "table_name": "vehicle_inventory_histories",
+            "column_name": "id_user"
+        }
+    ],
+    "foreign_keys": [
+        {
+            "child_table": "booking_cuci",
+            "child_column": "id_kendaraan_pelanggan",
+            "parent_table": "kendaraan_pelanggan",
+            "parent_column": "id_kendaraan_pelanggan",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "booking_cuci",
+            "child_column": "id_paket",
+            "parent_table": "paket_cuci",
+            "parent_column": "id_paket",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "booking_cuci",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "booking_cuci",
+            "child_column": "id_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "booking_mobil",
+            "child_column": "id_mobil",
+            "parent_table": "mobil",
+            "parent_column": "id_mobil",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "booking_mobil",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "booking_mobil",
+            "child_column": "id_petugas_konfirmasi",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "booking_servis",
+            "child_column": "id_jenis_servis",
+            "parent_table": "jenis_servis",
+            "parent_column": "id_jenis_servis",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "booking_servis",
+            "child_column": "id_kendaraan_pelanggan",
+            "parent_table": "kendaraan_pelanggan",
+            "parent_column": "id_kendaraan_pelanggan",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "booking_servis",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "booking_servis",
+            "child_column": "id_preferred_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "detail_penjualan_sparepart",
+            "child_column": "id_penjualan_sparepart",
+            "parent_table": "penjualan_sparepart",
+            "parent_column": "id_penjualan_sparepart",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "detail_penjualan_sparepart",
+            "child_column": "id_sparepart",
+            "parent_table": "sparepart",
+            "parent_column": "id_sparepart",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "detail_servis",
+            "child_column": "id_jenis_servis",
+            "parent_table": "jenis_servis",
+            "parent_column": "id_jenis_servis",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "detail_servis",
+            "child_column": "id_servis",
+            "parent_table": "servis",
+            "parent_column": "id_servis",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "detail_stok_masuk",
+            "child_column": "id_sparepart",
+            "parent_table": "sparepart",
+            "parent_column": "id_sparepart",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "detail_stok_masuk",
+            "child_column": "id_stok_masuk",
+            "parent_table": "stok_masuk",
+            "parent_column": "id_stok_masuk",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "event_pembayaran_gateway",
+            "child_column": "id_pembayaran_gateway",
+            "parent_table": "pembayaran_gateway",
+            "parent_column": "id_pembayaran_gateway",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "financial_adjustments",
+            "child_column": "approved_by",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "financial_adjustments",
+            "child_column": "confirmed_by",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "financial_adjustments",
+            "child_column": "id_pembayaran",
+            "parent_table": "pembayaran",
+            "parent_column": "id_pembayaran",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "financial_adjustments",
+            "child_column": "id_transaksi",
+            "parent_table": "transaksi",
+            "parent_column": "id_transaksi",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "financial_adjustments",
+            "child_column": "requested_by",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "financial_adjustment_events",
+            "child_column": "actor_petugas_id",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "financial_adjustment_events",
+            "child_column": "id_financial_adjustment",
+            "parent_table": "financial_adjustments",
+            "parent_column": "id_financial_adjustment",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "foto_mobil",
+            "child_column": "id_mobil",
+            "parent_table": "mobil",
+            "parent_column": "id_mobil",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "inspeksi_mobil",
+            "child_column": "id_pengajuan",
+            "parent_table": "pengajuan_mobil",
+            "parent_column": "id_pengajuan",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "inspeksi_mobil",
+            "child_column": "id_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "kendaraan_pelanggan",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "kendaraan_pelanggan",
+            "child_column": "id_penjualan",
+            "parent_table": "penjualan_mobil",
+            "parent_column": "id_penjualan",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "kendaraan_pelanggan",
+            "child_column": "id_pesanan",
+            "parent_table": "pesanan_mobil_member",
+            "parent_column": "id_pesanan",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "kendaraan_pelanggan",
+            "child_column": "id_serah_terima",
+            "parent_table": "serah_terima_pesanan_mobil",
+            "parent_column": "id_serah_terima",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "memberships",
+            "child_column": "gateway_payment_id",
+            "parent_table": "pembayaran_gateway",
+            "parent_column": "id_pembayaran_gateway",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "memberships",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "mobil_galeri",
+            "child_column": "id_warna",
+            "parent_table": "mobil_warna",
+            "parent_column": "id_warna",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "mobil_warna",
+            "child_column": "id_mobil",
+            "parent_table": "mobil",
+            "parent_column": "id_mobil",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "notifikasi",
+            "child_column": "id_user",
+            "parent_table": "users",
+            "parent_column": "id_user",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "pdi_pesanan_mobil",
+            "child_column": "id_pesanan",
+            "parent_table": "pesanan_mobil_member",
+            "parent_column": "id_pesanan",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "pdi_pesanan_mobil",
+            "child_column": "id_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "pelanggan",
+            "child_column": "id_user",
+            "parent_table": "users",
+            "parent_column": "id_user",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "pembayaran",
+            "child_column": "id_transaksi",
+            "parent_table": "transaksi",
+            "parent_column": "id_transaksi",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "pembayaran",
+            "child_column": "verified_by",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "pembayaran_gateway",
+            "child_column": "id_membership",
+            "parent_table": "memberships",
+            "parent_column": "id_membership",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "pembayaran_gateway",
+            "child_column": "id_pembayaran",
+            "parent_table": "pembayaran",
+            "parent_column": "id_pembayaran",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "pembayaran_gateway",
+            "child_column": "id_transaksi",
+            "parent_table": "transaksi",
+            "parent_column": "id_transaksi",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "pembayaran_gateway",
+            "child_column": "initiated_by",
+            "parent_table": "users",
+            "parent_column": "id_user",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "pembelian_mobil_bekas",
+            "child_column": "id_inspeksi",
+            "parent_table": "inspeksi_mobil",
+            "parent_column": "id_inspeksi",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "pembelian_mobil_bekas",
+            "child_column": "id_mobil",
+            "parent_table": "mobil",
+            "parent_column": "id_mobil",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "pembelian_mobil_bekas",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "pembelian_mobil_bekas",
+            "child_column": "id_pengajuan",
+            "parent_table": "pengajuan_mobil",
+            "parent_column": "id_pengajuan",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "pembelian_mobil_bekas",
+            "child_column": "id_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "pembelian_mobil_bekas",
+            "child_column": "id_transaksi",
+            "parent_table": "transaksi",
+            "parent_column": "id_transaksi",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "pengajuan_mobil",
+            "child_column": "id_kendaraan_pelanggan",
+            "parent_table": "kendaraan_pelanggan",
+            "parent_column": "id_kendaraan_pelanggan",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "pengajuan_mobil",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "penjualan_mobil",
+            "child_column": "id_booking",
+            "parent_table": "booking_mobil",
+            "parent_column": "id_booking",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "penjualan_mobil",
+            "child_column": "id_mobil",
+            "parent_table": "mobil",
+            "parent_column": "id_mobil",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "penjualan_mobil",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "penjualan_mobil",
+            "child_column": "id_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "penjualan_mobil",
+            "child_column": "id_sales",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "penjualan_mobil",
+            "child_column": "id_transaksi",
+            "parent_table": "transaksi",
+            "parent_column": "id_transaksi",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "penjualan_sparepart",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "penjualan_sparepart",
+            "child_column": "id_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "penjualan_sparepart",
+            "child_column": "id_transaksi",
+            "parent_table": "transaksi",
+            "parent_column": "id_transaksi",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "pesanan_mobil_member",
+            "child_column": "id_mobil",
+            "parent_table": "mobil",
+            "parent_column": "id_mobil",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "pesanan_mobil_member",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "pesanan_mobil_member",
+            "child_column": "id_penjualan",
+            "parent_table": "penjualan_mobil",
+            "parent_column": "id_penjualan",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "pesanan_mobil_member",
+            "child_column": "id_petugas_keputusan",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "pesanan_mobil_member",
+            "child_column": "id_sales",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "pesanan_mobil_member",
+            "child_column": "id_transaksi",
+            "parent_table": "transaksi",
+            "parent_column": "id_transaksi",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "petugas",
+            "child_column": "id_user",
+            "parent_table": "users",
+            "parent_column": "id_user",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "poin_member",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "pre_order_mobil_member",
+            "child_column": "id_mobil",
+            "parent_table": "mobil",
+            "parent_column": "id_mobil",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "pre_order_mobil_member",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "promo_member",
+            "child_column": "created_by",
+            "parent_table": "users",
+            "parent_column": "id_user",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "promo_redemptions",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "promo_redemptions",
+            "child_column": "id_promo",
+            "parent_table": "promo_member",
+            "parent_column": "id_promo",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "promo_redemptions",
+            "child_column": "id_transaksi",
+            "parent_table": "transaksi",
+            "parent_column": "id_transaksi",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "riwayat_poin",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "riwayat_poin",
+            "child_column": "id_transaksi",
+            "parent_table": "transaksi",
+            "parent_column": "id_transaksi",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "riwayat_stok",
+            "child_column": "id_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "riwayat_stok",
+            "child_column": "id_sparepart",
+            "parent_table": "sparepart",
+            "parent_column": "id_sparepart",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "role_permissions",
+            "child_column": "id_permission",
+            "parent_table": "permissions",
+            "parent_column": "id_permission",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "role_permissions",
+            "child_column": "id_role",
+            "parent_table": "roles",
+            "parent_column": "id_role",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "sales_assignment_audits",
+            "child_column": "actor_petugas_id",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "sales_assignment_audits",
+            "child_column": "new_sales_id",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "sales_assignment_audits",
+            "child_column": "previous_sales_id",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "sales_awards",
+            "child_column": "finalized_by",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "sales_award_audits",
+            "child_column": "actor_petugas_id",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "sales_award_audits",
+            "child_column": "id_sales_award",
+            "parent_table": "sales_awards",
+            "parent_column": "id_sales_award",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "sales_award_results",
+            "child_column": "id_sales_award",
+            "parent_table": "sales_awards",
+            "parent_column": "id_sales_award",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "sales_award_results",
+            "child_column": "id_sales",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "sales_leads",
+            "child_column": "id_mobil",
+            "parent_table": "mobil",
+            "parent_column": "id_mobil",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "sales_leads",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "sales_leads",
+            "child_column": "id_sales",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "sales_lead_activities",
+            "child_column": "id_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "sales_lead_activities",
+            "child_column": "id_sales_lead",
+            "parent_table": "sales_leads",
+            "parent_column": "id_sales_lead",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "sales_targets",
+            "child_column": "id_sales",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "serah_terima_pesanan_mobil",
+            "child_column": "id_pesanan",
+            "parent_table": "pesanan_mobil_member",
+            "parent_column": "id_pesanan",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "serah_terima_pesanan_mobil",
+            "child_column": "id_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "service_approval_requests",
+            "child_column": "id_servis",
+            "parent_table": "servis",
+            "parent_column": "id_servis",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "service_approval_request_items",
+            "child_column": "approval_request_id",
+            "parent_table": "service_approval_requests",
+            "parent_column": "id_service_approval_request",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "service_execution_events",
+            "child_column": "id_servis",
+            "parent_table": "servis",
+            "parent_column": "id_servis",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "service_findings",
+            "child_column": "id_servis",
+            "parent_table": "servis",
+            "parent_column": "id_servis",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "service_quality_controls",
+            "child_column": "id_servis",
+            "parent_table": "servis",
+            "parent_column": "id_servis",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "service_quality_control_items",
+            "child_column": "quality_control_id",
+            "parent_table": "service_quality_controls",
+            "parent_column": "id_service_quality_control",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "service_staff_profiles",
+            "child_column": "id_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "service_staff_specializations",
+            "child_column": "id_service_specialization",
+            "parent_table": "service_specializations",
+            "parent_column": "id_service_specialization",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "service_staff_specializations",
+            "child_column": "id_service_staff_profile",
+            "parent_table": "service_staff_profiles",
+            "parent_column": "id_service_staff_profile",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "service_work_order_assignments",
+            "child_column": "id_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "service_work_order_assignments",
+            "child_column": "id_servis",
+            "parent_table": "servis",
+            "parent_column": "id_servis",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "servis",
+            "child_column": "id_service_advisor",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "servis",
+            "child_column": "id_booking_servis",
+            "parent_table": "booking_servis",
+            "parent_column": "id_booking_servis",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "servis",
+            "child_column": "id_kendaraan_pelanggan",
+            "parent_table": "kendaraan_pelanggan",
+            "parent_column": "id_kendaraan_pelanggan",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "servis",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "servis",
+            "child_column": "id_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "servis_sparepart",
+            "child_column": "id_servis",
+            "parent_table": "servis",
+            "parent_column": "id_servis",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "servis_sparepart",
+            "child_column": "id_sparepart",
+            "parent_table": "sparepart",
+            "parent_column": "id_sparepart",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "sparepart",
+            "child_column": "id_kategori",
+            "parent_table": "kategori_sparepart",
+            "parent_column": "id_kategori",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "sparepart",
+            "child_column": "id_supplier",
+            "parent_table": "supplier",
+            "parent_column": "id_supplier",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "sparepart_fitments",
+            "child_column": "id_sparepart",
+            "parent_table": "sparepart",
+            "parent_column": "id_sparepart",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "sparepart_fitments",
+            "child_column": "verified_by",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "stok_masuk",
+            "child_column": "id_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "stok_masuk",
+            "child_column": "id_supplier",
+            "parent_table": "supplier",
+            "parent_column": "id_supplier",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "technician_time_off",
+            "child_column": "id_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "technician_working_hours",
+            "child_column": "id_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "CASCADE"
+        },
+        {
+            "child_table": "test_drive",
+            "child_column": "id_mobil",
+            "parent_table": "mobil",
+            "parent_column": "id_mobil",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "test_drive",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "test_drive",
+            "child_column": "id_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "test_drive",
+            "child_column": "id_sales",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "trade_in",
+            "child_column": "id_inspeksi",
+            "parent_table": "inspeksi_mobil",
+            "parent_column": "id_inspeksi",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "trade_in",
+            "child_column": "id_mobil_dibeli",
+            "parent_table": "mobil",
+            "parent_column": "id_mobil",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "trade_in",
+            "child_column": "id_mobil_lama_masuk",
+            "parent_table": "mobil",
+            "parent_column": "id_mobil",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "trade_in",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "trade_in",
+            "child_column": "id_pengajuan",
+            "parent_table": "pengajuan_mobil",
+            "parent_column": "id_pengajuan",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "trade_in",
+            "child_column": "id_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "trade_in",
+            "child_column": "id_transaksi",
+            "parent_table": "transaksi",
+            "parent_column": "id_transaksi",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "transaksi",
+            "child_column": "id_promo",
+            "parent_table": "promo_member",
+            "parent_column": "id_promo",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "transaksi",
+            "child_column": "id_pelanggan",
+            "parent_table": "pelanggan",
+            "parent_column": "id_pelanggan",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "transaksi",
+            "child_column": "id_petugas",
+            "parent_table": "petugas",
+            "parent_column": "id_petugas",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "users",
+            "child_column": "id_role",
+            "parent_table": "roles",
+            "parent_column": "id_role",
+            "delete_rule": "RESTRICT"
+        },
+        {
+            "child_table": "vehicle_inventories",
+            "child_column": "id_mobil",
+            "parent_table": "mobil",
+            "parent_column": "id_mobil",
+            "delete_rule": "SET NULL"
+        },
+        {
+            "child_table": "vehicle_inventory_histories",
+            "child_column": "id_vehicle_inventory",
+            "parent_table": "vehicle_inventories",
+            "parent_column": "id_vehicle_inventory",
+            "delete_rule": "CASCADE"
+        }
+    ],
+    "non_fk_actor_columns": [
+        {
+            "table": "promo_simulations",
+            "column": "created_by",
+            "by_account_candidates": {
+                "admin506": 0,
+                "superadmin506": 0
+            },
+            "candidate_rows": 0,
+            "note": "No FK: a numeric match alone does not prove actor identity"
+        },
+        {
+            "table": "service_approval_requests",
+            "column": "requested_by",
+            "by_account_candidates": {
+                "admin506": 1,
+                "superadmin506": 0
+            },
+            "candidate_rows": 1,
+            "note": "No FK: a numeric match alone does not prove actor identity"
+        },
+        {
+            "table": "service_findings",
+            "column": "created_by",
+            "by_account_candidates": {
+                "admin506": 1,
+                "superadmin506": 0
+            },
+            "candidate_rows": 1,
+            "note": "No FK: a numeric match alone does not prove actor identity"
+        },
+        {
+            "table": "service_quality_controls",
+            "column": "checked_by",
+            "by_account_candidates": {
+                "admin506": 0,
+                "superadmin506": 0
+            },
+            "candidate_rows": 0,
+            "note": "No FK: a numeric match alone does not prove actor identity"
+        },
+        {
+            "table": "service_work_order_assignments",
+            "column": "assigned_by",
+            "by_account_candidates": {
+                "admin506": 4,
+                "superadmin506": 0
+            },
+            "candidate_rows": 4,
+            "note": "No FK: a numeric match alone does not prove actor identity"
+        }
+    ],
+    "audit_logs": [
+        {
+            "file": "laravel.log",
+            "bytes": 10217273,
+            "sha256": "875e6b0dab4cddc1d5da1c8ebc37e6aeb2ff8d7eb554588b02b0b1d729abb610",
+            "actor_occurrences": {
+                "1": 5573,
+                "992": 0
+            }
+        }
+    ],
+    "token_tables": []
+}

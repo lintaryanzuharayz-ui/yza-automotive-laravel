@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Tests\Ui\ResponsiveRenderCoverageTest" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Ui\ResponsiveRenderCoverageTest.php" tests="1" assertions="4" errors="0" failures="0" skipped="0" time="32.533458">
+    <testcase name="test_export_authorized_get_views_for_isolated_visual_review" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Ui\ResponsiveRenderCoverageTest.php" line="14" class="Tests\Ui\ResponsiveRenderCoverageTest" classname="Tests.Ui.ResponsiveRenderCoverageTest" assertions="4" time="32.533458"/>
+  </testsuite>
+</testsuites>

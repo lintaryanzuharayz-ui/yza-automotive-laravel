@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-06 Asia/Jakarta",
+  "renderedHtmlCombinations": 657,
+  "uniqueHtmlRoutes": 175,
+  "roles": {
+    "public": 5,
+    "admin": 141,
+    "petugas": 44,
+    "pelanggan": 28,
+    "super_admin": 141,
+    "owner": 92,
+    "sales": 37,
+    "service_advisor": 36,
+    "mechanic": 42,
+    "warehouse_staff": 26,
+    "finance": 23,
+    "operational_staff": 20,
+    "quality_control": 22
+  },
+  "httpAndFixtureStatuses": {
+    "200": 660,
+    "302": 18,
+    "403": 1689,
+    "404": 25,
+    "fixture-unavailable": 244
+  },
+  "sourceFilesChanged": 19,
+  "cssParsingPassed": true,
+  "bladeOutsideStylesPreserved": true,
+  "nativeBrowserZoomTested": false,
+  "protectedLiveVisualTested": false
+}

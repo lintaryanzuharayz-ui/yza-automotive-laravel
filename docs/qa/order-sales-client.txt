@@ -1,0 +1,26 @@
+✔ panel shows four latest messages, keeps unread 3 separate from total 6, and ignores operational summaries (30.5267ms)
+✔ bell opens without an auto-close timer and can close again (3.498ms)
+✔ unread filter changes items without changing global total (4.2973ms)
+✔ Escape and outside click close, and ArrowDown enters keyboard controls (4.5525ms)
+✔ message links retain server open URLs and payloads are rendered as text (4.1217ms)
+✔ unread, category dots and pending tasks use separate authoritative values (3.5455ms)
+✔ reading one of several messages retains the dot, and stale snapshots cannot restore old counts (1.3966ms)
+✔ polling has one timer, drains the server cursor and never repeats a toast (3.5512ms)
+✔ visibility pauses polling and authentication loss stops further requests (1.348ms)
+✔ account switch clears old account presentation and does not display the other account payload (1.4932ms)
+✔ mark-as-read applies server response without a page reload and broadcasts only invalidation (2.2813ms)
+✔ logout stops polling, clears notification presentation and rejects late state updates (1.0319ms)
+✔ sale starts with informative placeholders and hidden promo summary (3.0042ms)
+✔ promo requires customer and vehicle and rejects stacking manual discount (24.146ms)
+✔ server preview follows selected customer and updates both summaries without claiming applied (4.0889ms)
+✔ stale promo response cannot overwrite changed selection (3.5995ms)
+✔ DP and booking relationship are validated against selected unit (2.5919ms)
+✔ modal opens in place, closes, restores focus, and fills buyer data (2.0849ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 216.4804

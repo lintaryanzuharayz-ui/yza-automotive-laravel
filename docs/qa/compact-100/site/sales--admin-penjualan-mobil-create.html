@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="vMDflIQbcOIwL837y9hRSQWi6lzy2KmD6GzkwEZE">
+    <title>Buat Penjualan Mobil · YZA Automotive</title>
+    <link rel="stylesheet" href="http://127.0.0.1:8011/css/app.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8011/assets/css/vehicle-badges.css?v=stock-badges-20261010">
+                    <link rel="stylesheet" href="http://127.0.0.1:8011/assets/css/admin-portal.css?v=1793927111">
+        <style>
+.admin-content:has(> .admin-sale-create-page)> .admin-page-heading{display:none!important}
+.admin-sale-create-page{width:100%;max-width:1680px;margin:0 auto;padding:8px 0 30px;color:#142038;box-sizing:border-box}
+.sale-create-breadcrumb{display:flex;align-items:center;gap:9px;margin:0 0 10px;color:#7b8ba2;font-size:11px}.sale-create-breadcrumb b{color:#b2bdca}.sale-create-breadcrumb strong{color:#263650}.sale-create-page-header{display:flex;align-items:center;gap:14px;margin-bottom:14px}.sale-create-title-icon{display:grid;width:46px;height:46px;place-items:center;border-radius:13px;color:#fff;background:#ed172b;box-shadow:0 9px 20px rgba(237,23,43,.22);font-size:22px}.sale-create-eyebrow{display:block;margin-bottom:4px;color:#ed172b;font-size:10px;font-weight:900;letter-spacing:.18em}.sale-create-page-header h1{margin:0;color:#142038;font-size:31px;line-height:1.08;letter-spacing:-.04em}.sale-create-page-header p{margin:5px 0 0;color:#64748b;font-size:12px}
+.sale-create-hero{position:relative;isolation:isolate;display:flex;min-height:184px;align-items:center;justify-content:space-between;gap:28px;overflow:hidden;margin-bottom:12px;padding:25px 34px;border:1px solid rgba(255,255,255,.22);border-radius:17px;background-image:linear-gradient(90deg,rgba(5,10,18,.98) 0%,rgba(6,12,22,.93) 39%,rgba(28,8,16,.68) 70%,rgba(7,10,17,.78) 100%),url('/assets/images/hero/yza-admin-sales-banner.jpg');background-position:center right;background-size:cover;box-shadow:0 14px 30px rgba(15,23,42,.16)}.sale-create-hero:after{position:absolute;inset:0;z-index:-1;content:"";background:linear-gradient(110deg,transparent 43%,rgba(237,23,43,.18) 58%,transparent 70%)}.sale-create-hero-copy{max-width:570px;color:#fff}.sale-create-hero-copy>span{color:#ff2c4a;font-size:10px;font-weight:900;letter-spacing:.22em}.sale-create-hero-copy h2{margin:8px 0 8px;font-size:31px;line-height:1.06;letter-spacing:-.04em}.sale-create-hero-copy h2 em{color:#ff3049;font-style:normal}.sale-create-hero-copy p{max-width:520px;margin:0;color:#d9e2ec;font-size:12px;line-height:1.45}.sale-create-hero-points{display:grid;min-width:265px;gap:10px;padding-left:27px;border-left:1px solid rgba(255,255,255,.28);color:#fff}.sale-create-hero-points>div{display:flex;align-items:center;gap:10px}.sale-create-hero-points b{display:grid;width:30px;height:30px;flex:none;place-items:center;border-radius:10px;color:#fff;background:#ed172b;font-size:15px}.sale-create-hero-points strong,.sale-create-hero-points small{display:block}.sale-create-hero-points strong{font-size:11px}.sale-create-hero-points small{margin-top:2px;color:#bfcbd8;font-size:9px}
+.sale-create-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:12px}.sale-create-stat{position:relative;display:flex;min-width:0;min-height:78px;align-items:center;gap:12px;padding:14px 16px;border:1px solid #e1e8f0;border-radius:14px;background:#fff;box-shadow:0 7px 20px rgba(15,23,42,.055);overflow:hidden}.sale-create-stat>span{display:grid;width:43px;height:43px;flex:none;place-items:center;border-radius:12px;color:#fff;background:#ed172b;font-size:18px;font-weight:900}.sale-create-stat small,.sale-create-stat p{display:block;color:#61728b;font-size:10px}.sale-create-stat strong{display:block;margin:2px 0;color:#15233b;font-size:22px;line-height:1.05;white-space:nowrap}.sale-create-stat p{margin:0;color:#8a98aa}.sale-create-stat>i{position:absolute;right:14px;top:27px;color:#9aa8ba;font-size:18px;font-style:normal}.sale-create-stat.tone-purple>span{background:#7b45e6}.sale-create-stat.tone-blue>span{background:#2879e7}.sale-create-stat.tone-green>span{background:#12a969}.sale-create-stat.tone-green strong{font-size:19px}
+.sale-create-stepper{display:grid;grid-template-columns:minmax(0,1fr) 1fr minmax(0,1fr) 1fr minmax(0,1fr) 1fr minmax(0,1fr);align-items:center;gap:10px;margin:2px 12px 15px}.sale-create-stepper>div{display:flex;min-width:0;align-items:center;gap:10px}.sale-create-stepper>div>b{display:grid;width:28px;height:28px;flex:none;place-items:center;border-radius:50%;color:#fff;background:#a9b5c3;font-size:12px}.sale-create-stepper>div.is-active>b{background:#ed172b;box-shadow:0 5px 12px rgba(237,23,43,.23)}.sale-create-stepper>div>span{display:grid;min-width:0}.sale-create-stepper strong{color:#1d2b43;font-size:11px;white-space:nowrap}.sale-create-stepper small{margin-top:2px;color:#8090a6;font-size:9px;white-space:nowrap}.sale-create-stepper>i{height:2px;background:#dce3eb}.sale-create-stepper>div.is-active+ i{background:#ed172b}
+.sale-create-alert{display:flex;align-items:center;gap:9px;margin-bottom:12px;padding:11px 14px;border:1px solid #fecdd3;border-radius:10px;color:#b42338;background:#fff1f3;font-size:12px}.sale-create-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(300px,.82fr);gap:14px;align-items:start}.sale-create-main-stack,.sale-create-side-stack{display:grid;min-width:0;gap:12px}.sale-create-panel{min-width:0;border:1px solid #e0e7ef;border-radius:16px;background:#fff;box-shadow:0 9px 24px rgba(15,23,42,.055);overflow:hidden}.sale-create-panel-heading{display:flex;align-items:center;gap:11px;padding:15px 17px 12px;border-bottom:1px solid #edf1f5}.sale-create-panel-heading>span{display:grid;width:35px;height:35px;flex:none;place-items:center;border-radius:10px;color:#fff;background:#ed172b;box-shadow:0 6px 14px rgba(237,23,43,.18);font-size:17px}.sale-create-panel-heading h2{margin:0;color:#17253d;font-size:18px;letter-spacing:-.025em}.sale-create-panel-heading p{margin:3px 0 0;color:#8492a6;font-size:10px}.sale-create-form-body{padding:0 16px 16px}.sale-create-subsection{display:flex;align-items:center;gap:10px;margin-top:13px;padding:9px 11px;border:1px solid #ffe0e4;border-radius:10px;background:#fff4f5}.sale-create-subsection>span{display:grid;width:29px;height:29px;place-items:center;border-radius:9px;color:#ed172b;background:#ffe0e4;font-size:14px}.sale-create-subsection strong,.sale-create-subsection small{display:block}.sale-create-subsection strong{color:#263650;font-size:11px}.sale-create-subsection small{margin-top:2px;color:#78889e;font-size:9px}.sale-create-form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-top:11px}.sale-create-field{display:grid;min-width:0;gap:5px;color:#34445d;font-size:10px;font-weight:800}.sale-create-field>span{min-width:0}.sale-create-field em{color:#ed172b;font-style:normal}.sale-create-field small{color:#8492a6;font-size:9px;font-weight:600}.sale-create-field select,.sale-create-field input,.sale-create-field textarea{width:100%;min-width:0;box-sizing:border-box;border:1px solid #dbe4ee;border-radius:9px;outline:0;color:#273852;background:#fff;font:inherit;font-size:11px;transition:border-color .18s,box-shadow .18s}.sale-create-field select,.sale-create-field input{height:38px;padding:0 11px}.sale-create-field textarea{min-height:75px;padding:10px 11px;resize:vertical}.sale-create-field select:focus,.sale-create-field input:focus,.sale-create-field textarea:focus{border-color:#ed172b;box-shadow:0 0 0 3px rgba(237,23,43,.1)}.sale-create-field-wide{grid-column:1/-1}.field-hint{font-weight:600}.sale-create-input-prefix{display:flex;overflow:hidden;height:38px;border:1px solid #dbe4ee;border-radius:9px;background:#fff}.sale-create-input-prefix:focus-within{border-color:#ed172b;box-shadow:0 0 0 3px rgba(237,23,43,.1)}.sale-create-input-prefix b{display:grid;width:37px;flex:none;place-items:center;border-right:1px solid #e7edf3;color:#77879d;background:#f8fafc;font-size:10px}.sale-create-input-prefix input{height:36px;border:0!important;box-shadow:none!important}.sale-create-promo-wrap{margin-top:12px}.sale-create-promo-wrap .promo-selector{margin:0;padding:13px;border-radius:11px}.sale-create-promo-wrap .promo-selector-list{grid-template-columns:repeat(2,minmax(0,1fr))}.sale-create-promo-wrap .promo-option{min-width:0;padding:10px;border-radius:9px}.sale-create-promo-wrap .promo-option span{min-width:0}.sale-create-promo-wrap .promo-option strong,.sale-create-promo-wrap .promo-option small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sale-create-actions{display:flex;justify-content:flex-end;gap:9px;padding:14px 0 0}.sale-action-secondary,.sale-action-draft,.sale-action-primary{min-height:38px;padding:0 15px;border-radius:9px;font-size:11px;font-weight:800;cursor:pointer}.sale-action-secondary,.sale-action-draft{border:1px solid #dbe4ed;color:#51627b;background:#fff}.sale-action-draft{opacity:.5;cursor:not-allowed}.sale-action-primary{border:0;color:#fff;background:#ed172b;box-shadow:0 8px 17px rgba(237,23,43,.23)}.sale-action-primary:hover{background:#cb1125}.sale-create-summary .sale-create-panel-heading,.sale-validation .sale-create-panel-heading{padding-bottom:11px}.sale-summary-body{padding:12px}.sale-summary-empty{display:grid;min-height:105px;place-items:center;align-content:center;padding:10px;border:1px dashed #d7e1eb;border-radius:11px;color:#8290a4;text-align:center;background:#fafcfe}.sale-summary-empty span{font-size:25px}.sale-summary-empty strong{margin-top:4px;color:#465873;font-size:11px}.sale-summary-empty small{margin-top:3px;font-size:9px}.sale-summary-car{display:grid;grid-template-columns:105px minmax(0,1fr);gap:11px;align-items:center;padding:8px;border:1px solid #e4ebf2;border-radius:11px}.sale-car-image{height:70px;overflow:hidden;border-radius:8px;background:#f3f6f9}.sale-car-image img{width:100%;height:100%;object-fit:contain}.sale-summary-car strong,.sale-summary-car small,.sale-summary-car span{display:block}.sale-summary-car strong{color:#24344d;font-size:12px}.sale-summary-car small{margin-top:3px;color:#8390a2;font-size:9px}.sale-summary-car span{display:inline-block;margin-top:6px;padding:4px 7px;border-radius:999px;color:#087c50;background:#e2f8ed;font-size:9px;font-weight:800}.sale-summary-lines{display:grid;gap:8px;margin-top:13px}.sale-summary-lines div,.sale-summary-dp{display:flex;justify-content:space-between;gap:10px;color:#596a82;font-size:10px}.sale-summary-lines b{color:#253650}.sale-summary-total{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;padding:10px;border-radius:10px;color:#ed172b;background:#fff0f2}.sale-summary-total span{font-size:11px;font-weight:800}.sale-summary-total strong{font-size:18px}.sale-summary-dp{display:grid;gap:4px;margin-top:10px}.sale-summary-dp b{color:#263650}.sale-summary-dp small{color:#8a98aa}.sale-validation-list{display:grid;gap:8px;padding:12px}.sale-validation-list>div{display:grid;grid-template-columns:19px minmax(0,1fr) auto;gap:7px;align-items:center;padding:8px 9px;border:1px solid #e5ebf1;border-radius:9px;color:#61718a;background:#fbfcfd;font-size:10px}.sale-validation-list i{display:grid;width:16px;height:16px;place-items:center;border-radius:50%;color:#8c9aab;background:#e8edf2;font-style:normal}.sale-validation-list b{color:#8c9aab;font-size:9px}.sale-validation-list .is-valid{border-color:#c4eedb;color:#087e52;background:#effcf6}.sale-validation-list .is-valid i{color:#fff;background:#12a969}.sale-validation-list .is-valid b{color:#087e52}.sale-create-note{padding:14px;border:1px solid #f3dfa5;border-radius:14px;color:#765a18;background:#fff8df;box-shadow:0 7px 18px rgba(157,111,10,.05)}.sale-create-note strong{display:block;color:#956d0b;font-size:12px}.sale-create-note ul{margin:8px 0 0;padding-left:16px;color:#78652f;font-size:10px;line-height:1.6}
+@media(max-width:1180px){.sale-create-grid{grid-template-columns:minmax(0,1fr)}.sale-create-side-stack{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}.sale-create-summary{grid-column:1/-1}.sale-create-note{grid-column:1/-1}.sale-create-hero-points{min-width:230px}.sale-create-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.admin-sale-create-page{padding:4px 0 22px}.sale-create-page-header{align-items:flex-start}.sale-create-title-icon{width:40px;height:40px;font-size:18px}.sale-create-page-header h1{font-size:27px}.sale-create-page-header p{font-size:11px}.sale-create-hero{min-height:0;align-items:flex-start;flex-direction:column;gap:17px;padding:23px 20px}.sale-create-hero-copy h2{font-size:27px}.sale-create-hero-points{width:100%;min-width:0;padding:14px 0 0;border-top:1px solid rgba(255,255,255,.24);border-left:0;grid-template-columns:repeat(2,minmax(0,1fr))}.sale-create-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.sale-create-stat{min-height:70px;padding:11px}.sale-create-stat>span{width:36px;height:36px;border-radius:10px;font-size:15px}.sale-create-stat strong{font-size:19px}.sale-create-stepper{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-inline:0}.sale-create-stepper>i{display:none}.sale-create-stepper>div{display:grid;justify-items:center;gap:4px;text-align:center}.sale-create-stepper>div>span{justify-items:center}.sale-create-stepper small{display:none}.sale-create-stepper strong{font-size:9px;white-space:normal}.sale-create-form-grid{grid-template-columns:1fr}.sale-create-field-wide{grid-column:auto}.sale-create-side-stack{grid-template-columns:1fr}.sale-create-summary,.sale-create-note{grid-column:auto}.sale-create-promo-wrap .promo-selector-list{grid-template-columns:1fr}.sale-create-actions{justify-content:stretch;flex-wrap:wrap}.sale-action-secondary,.sale-action-draft,.sale-action-primary{flex:1;min-width:130px}}
+@media(max-width:430px){.sale-create-breadcrumb{font-size:9px;gap:5px}.sale-create-hero-points{grid-template-columns:1fr}.sale-create-stat>i{display:none}.sale-create-stat small,.sale-create-stat p{font-size:8px}.sale-create-stat strong{font-size:17px}.sale-create-actions>*{width:100%;flex-basis:100%}}
+</style>
+        <link rel="stylesheet" href="http://127.0.0.1:8011/assets/css/responsive-foundation.css?v=1793927409">
+<script src="http://127.0.0.1:8011/assets/js/responsive-foundation.js?v=1793681254" defer></script>
+</head>
+<body class="   admin-portal-page ">
+                            <div class="admin-shell" data-admin-shell>
+            <aside class="admin-sidebar" data-admin-sidebar aria-label="Navigasi admin">
+    <div class="admin-sidebar-brand">
+        <a class="admin-sidebar-brand-link" href="http://127.0.0.1:8011/sales/dashboard" aria-label="Ke Dashboard YZA">
+            <img src="http://127.0.0.1:8011/images/branding/logo-yza.png" alt="YZA Automotive">
+            <span><strong><span>YZA</span> <em>AUTOMOTIVE</em></strong><small>Admin Management</small></span>
+        </a>
+        <button class="admin-sidebar-collapse" type="button" data-admin-sidebar-collapse aria-expanded="true" aria-label="Ciutkan sidebar" title="Ciutkan sidebar"><span aria-hidden="true">‹</span></button>
+    </div>
+    <div class="admin-sidebar-nav-scroll">
+        <nav class="admin-nav" aria-label="Navigasi role">
+        <div class="admin-nav-section"><div class="admin-nav-label">Ruang Kerja</div><a class="admin-nav-item " title="Dashboard" href="http://127.0.0.1:8011/staff/dashboard"><i>⌂</i><span class="admin-nav-label-text">Dashboard</span><span class="admin-nav-badge-slot"></span><span class="admin-nav-chevron" aria-hidden="true">›</span></a>
+                                                    <a class="admin-nav-item " title="Dashboard Sales" href="http://127.0.0.1:8011/sales/dashboard"><i>•</i><span class="admin-nav-label-text">Dashboard Sales</span><span class="admin-nav-badge-slot"></span><span class="admin-nav-chevron" aria-hidden="true">›</span></a>                            <a class="admin-nav-item " title="Sales Excellence Awards" href="http://127.0.0.1:8011/sales/awards"><i>•</i><span class="admin-nav-label-text">Sales Excellence Awards</span><span class="admin-nav-badge-slot"></span><span class="admin-nav-chevron" aria-hidden="true">›</span></a>                            <a class="admin-nav-item " title="Prospek pelanggan" href="http://127.0.0.1:8011/sales/prospek"><i>•</i><span class="admin-nav-label-text">Prospek pelanggan</span><span class="admin-nav-badge-slot"></span><span class="admin-nav-chevron" aria-hidden="true">›</span></a>                            <a class="admin-nav-item " title="Jadwal test drive" href="http://127.0.0.1:8011/sales/test-drive"><i>•</i><span class="admin-nav-label-text">Jadwal test drive</span><span class="admin-nav-badge-slot"></span><span class="admin-nav-chevron" aria-hidden="true">›</span></a>                            <a class="admin-nav-item " title="Pesanan mobil" href="http://127.0.0.1:8011/sales/pesanan"><i>•</i><span class="admin-nav-label-text">Pesanan mobil</span><span class="admin-nav-badge-slot"></span><span class="admin-nav-chevron" aria-hidden="true">›</span></a>                            <a class="admin-nav-item " title="Penjualan saya" href="http://127.0.0.1:8011/sales/penjualan"><i>•</i><span class="admin-nav-label-text">Penjualan saya</span><span class="admin-nav-badge-slot"></span><span class="admin-nav-chevron" aria-hidden="true">›</span></a>                            <a class="admin-nav-item " title="Target penjualan" href="http://127.0.0.1:8011/sales/target"><i>•</i><span class="admin-nav-label-text">Target penjualan</span><span class="admin-nav-badge-slot"></span><span class="admin-nav-chevron" aria-hidden="true">›</span></a>                            <a class="admin-nav-item " title="Profil Admin" href="http://127.0.0.1:8011/akun/password"><i>•</i><span class="admin-nav-label-text">Profil Admin</span><span class="admin-nav-badge-slot"></span><span class="admin-nav-chevron" aria-hidden="true">›</span></a>                    </div>
+    </nav>
+        </div>
+</aside>
+            <header class="admin-topbar">
+                <div class="admin-topbar-left">
+                    <button class="admin-toggle" type="button" data-admin-toggle aria-label="Buka navigasi admin">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    </button>
+                    <div class="admin-topbar-search">
+                        <svg class="admin-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" placeholder="Cari menu, pelanggan, mobil, atau transaksi..." data-admin-quick-search aria-label="Cari menu admin">
+                        <kbd>Ctrl K</kbd>
+                    </div>
+                </div>
+                <div class="admin-topbar-right">
+                    <a class="admin-notification-button" href="http://127.0.0.1:8011/admin/notifikasi" aria-label="Notifikasi" data-admin-notification-link data-admin-notification-sync-url="http://127.0.0.1:8011/admin/notifikasi/sync">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                                                    <b data-admin-notification-count hidden>0</b>
+                                            </a>
+                    <div class="admin-user-menu" data-admin-user-menu>
+                        <button class="admin-user-trigger" type="button" data-admin-user-toggle aria-expanded="false" aria-label="Menu administrator">
+                            <span class="admin-avatar">S</span>
+                            <div class="admin-user-info">
+                                <strong>Sales YZA</strong>
+                                <small>Administrator</small>
+                            </div>
+                            <svg class="admin-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="admin-dropdown" data-admin-dropdown hidden>
+                            <div class="admin-dropdown-header">
+                                <strong>Sales YZA</strong>
+                                <span>sales506@yza.local</span>
+                            </div>
+                            <a class="admin-dropdown-item" href="http://127.0.0.1:8011/admin/pengaturan">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                                <span>Pengaturan Sistem</span>
+                            </a>
+                            <form method="post" action="http://127.0.0.1:8011/logout" class="admin-dropdown-logout-form">
+                                <input type="hidden" name="_token" value="vMDflIQbcOIwL837y9hRSQWi6lzy2KmD6GzkwEZE" autocomplete="off">                                <button type="submit" class="admin-dropdown-item is-logout">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                                    <span>Keluar</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="admin-live-toast-stack" data-admin-live-toast-stack aria-live="polite" aria-atomic="false"></div>
+            <main class="admin-main"><div class="admin-content"><div class="admin-page-heading"><h1>Buat Penjualan Mobil</h1></div>  <div class="admin-sale-create-page">
+    <div class="sale-create-breadcrumb"><span>⌂</span><b>›</b><span>Transaksi</span><b>›</b><span>Penjualan Mobil</span><b>›</b><strong>Buat Penjualan Mobil</strong></div>
+    <div class="sale-create-page-header"><div class="sale-create-title-icon">▣</div><div><span class="sale-create-eyebrow">TRANSAKSI PENJUALAN</span><h1>Buat Penjualan Mobil</h1><p>Lengkapi data pelanggan, unit kendaraan, promo, dan skema pembayaran secara profesional.</p></div></div>
+    <section class="sale-create-hero"><div class="sale-create-hero-copy"><span>YZA AUTOMOTIVE</span><h2>Kelola Penjualan Mobil<br>dengan <em>Lebih Profesional</em></h2><p>Proses penjualan mobil jadi lebih mudah, cepat, dan terstruktur. Mulai dari pemilihan pelanggan, unit kendaraan, promo member, hingga skema pembayaran dalam satu halaman.</p></div><div class="sale-create-hero-points"><div><b>▣</b><span><strong>Transaksi terstruktur</strong><small>Data rapi dan mudah dilacak</small></span></div><div><b>✦</b><span><strong>Promo member</strong><small>Otomatis hitung potongan harga</small></span></div><div><b>✓</b><span><strong>Validasi unit</strong><small>Pastikan unit tetap tersedia</small></span></div><div><b>▤</b><span><strong>Pembayaran fleksibel</strong><small>Atur DP dan metode pembelian</small></span></div></div></section>
+    <section class="sale-create-stats" aria-label="Ringkasan penjualan"><div class="sale-create-stat tone-red"><span>▣</span><div><small>Unit Tersedia</small><strong>26</strong><p>Unit siap dijual</p></div><i>↗</i></div><div class="sale-create-stat tone-purple"><span>◇</span><div><small>Promo Aktif</small><strong>0</strong><p>Promo YZA Member</p></div><i>↗</i></div><div class="sale-create-stat tone-blue"><span>▤</span><div><small>Booking Terkait</small><strong>0</strong><p>Menunggu konfirmasi</p></div><i>↗</i></div><div class="sale-create-stat tone-green"><span>Rp</span><div><small>Estimasi Total</small><strong id="sale-estimate-total">Rp 0</strong><p>Transaksi baru</p></div><i>↗</i></div></section>
+    <div class="sale-create-stepper" aria-label="Tahapan penjualan"><div class="is-active"><b>1</b><span><strong>Pelanggan</strong><small>Pilih pelanggan &amp; unit</small></span></div><i></i><div><b>2</b><span><strong>Unit</strong><small>Pilih mobil</small></span></div><i></i><div><b>3</b><span><strong>Promo &amp; Pembayaran</strong><small>Atur promo dan skema</small></span></div><i></i><div><b>4</b><span><strong>Konfirmasi</strong><small>Periksa dan simpan</small></span></div></div>
+        <form id="sale-create-form" class="sale-create-grid" method="post" action="http://127.0.0.1:8011/admin/penjualan-mobil"><input type="hidden" name="_token" value="vMDflIQbcOIwL837y9hRSQWi6lzy2KmD6GzkwEZE" autocomplete="off">        <div class="sale-create-main-stack"><section class="sale-create-panel"><div class="sale-create-panel-heading"><span>♙</span><div><h2>Form Penjualan Mobil</h2><p>Lengkapi informasi transaksi penjualan mobil dengan benar dan lengkap.</p></div></div><div class="sale-create-form-body">
+            <div class="sale-create-subsection"><span>▣</span><div><strong>Informasi Pelanggan &amp; Unit</strong><small>Pilih pelanggan, unit kendaraan, dan konfirmasi booking jika ada.</small></div></div>
+            <div class="sale-create-form-grid"><label class="sale-create-field"><span>Pelanggan <em>*</em></span><select name="id_pelanggan" id="sale-customer" required><option value="">Pilih pelanggan</option><option value="1" >STAGE2-MEMBER · Stage 2 Member</option><option value="2" >STAGE2-MEMBER-2 · Stage 2 Member Two</option></select><small class="field-hint">Data pelanggan aktif</small></label><label class="sale-create-field"><span>Mobil / Unit <em>*</em></span><select name="id_mobil" id="sale-car" data-promo-car-select required><option value="">Pilih unit mobil</option><option value="7" data-price="12000000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" data-code="PREM-05" data-brand="Aston Martin" data-model="DBS 770 Ultimate" data-year="2024" data-status="tersedia" >PREM-05 · Aston Martin DBS 770 Ultimate</option><option value="8" data-price="3500000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" data-code="PREM-06" data-brand="Chevrolet" data-model="Corvette Z06" data-year="2024" data-status="tersedia" >PREM-06 · Chevrolet Corvette Z06</option><option value="10" data-price="2500000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" data-code="PREM-08" data-brand="Dodge" data-model="Challenger SRT Hellcat Redeye" data-year="2023" data-status="tersedia" >PREM-08 · Dodge Challenger SRT Hellcat Redeye</option><option value="4" data-price="14500000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" data-code="PREM-02" data-brand="Ferrari" data-model="SF90 Stradale" data-year="2024" data-status="tersedia" >PREM-02 · Ferrari SF90 Stradale</option><option value="9" data-price="240000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" data-code="PREM-07" data-brand="Ford" data-model="Mustang Shelby GT500" data-year="2024" data-status="tersedia" >PREM-07 · Ford Mustang Shelby GT500</option><option value="3" data-price="12500000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" data-code="PREM-01" data-brand="Lamborghini" data-model="Revuelto" data-year="2025" data-status="tersedia" >PREM-01 · Lamborghini Revuelto</option><option value="30" data-price="12500000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" data-code="TEST-STOCK-LREV-02" data-brand="Lamborghini" data-model="Revuelto" data-year="2025" data-status="tersedia" >TEST-STOCK-LREV-02 · Lamborghini Revuelto</option><option value="31" data-price="12500000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" data-code="TEST-STOCK-LREV-03" data-brand="Lamborghini" data-model="Revuelto" data-year="2025" data-status="tersedia" >TEST-STOCK-LREV-03 · Lamborghini Revuelto</option><option value="32" data-price="12500000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" data-code="TEST-STOCK-LREV-04" data-brand="Lamborghini" data-model="Revuelto" data-year="2025" data-status="tersedia" >TEST-STOCK-LREV-04 · Lamborghini Revuelto</option><option value="33" data-price="12500000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" data-code="TEST-STOCK-LREV-05" data-brand="Lamborghini" data-model="Revuelto" data-year="2025" data-status="tersedia" >TEST-STOCK-LREV-05 · Lamborghini Revuelto</option><option value="34" data-price="12500000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" data-code="TEST-STOCK-LREV-06" data-brand="Lamborghini" data-model="Revuelto" data-year="2025" data-status="tersedia" >TEST-STOCK-LREV-06 · Lamborghini Revuelto</option><option value="35" data-price="12500000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" data-code="TEST-STOCK-LREV-07" data-brand="Lamborghini" data-model="Revuelto" data-year="2025" data-status="tersedia" >TEST-STOCK-LREV-07 · Lamborghini Revuelto</option><option value="36" data-price="12500000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" data-code="TEST-STOCK-LREV-08" data-brand="Lamborghini" data-model="Revuelto" data-year="2025" data-status="tersedia" >TEST-STOCK-LREV-08 · Lamborghini Revuelto</option><option value="12" data-price="9000000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" data-code="PREM-10" data-brand="Lexus" data-model="LFA" data-year="2012" data-status="tersedia" >PREM-10 · Lexus LFA</option><option value="6" data-price="8500000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" data-code="PREM-04" data-brand="Mercedes Amg" data-model="GT Black Series" data-year="2024" data-status="tersedia" >PREM-04 · Mercedes Amg GT Black Series</option><option value="11" data-price="6500000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" data-code="PREM-09" data-brand="Nissan" data-model="GT-R Nismo" data-year="2024" data-status="tersedia" >PREM-09 · Nissan GT-R Nismo</option><option value="5" data-price="8500000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" data-code="PREM-03" data-brand="Porsche" data-model="911 GT3 RS" data-year="2024" data-status="tersedia" >PREM-03 · Porsche 911 GT3 RS</option><option value="1" data-price="2350000000.00" data-image="http://127.0.0.1:8011/storage/uploads/mobil/toyota-gr-supra.png" data-code="YZA-TOYOTA-GR-SUPRA-2024" data-brand="Toyota" data-model="GR Supra" data-year="2024" data-status="tersedia" >YZA-TOYOTA-GR-SUPRA-2024 · Toyota GR Supra</option><option value="2" data-price="2268600000.00" data-image="http://127.0.0.1:8011/storage/uploads/mobil/toyota-supra-mk4.png" data-code="YZA-TOYOTA-SUPRA-MK4-2025" data-brand="Toyota" data-model="Supra MK4" data-year="1998" data-status="tersedia" >YZA-TOYOTA-SUPRA-MK4-2025 · Toyota Supra MK4</option><option value="26" data-price="2350000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/toyota-gr-supra/black/front.png" data-code="TEST-STOCK-TGR-02" data-brand="Toyota" data-model="GR Supra" data-year="2024" data-status="tersedia" >TEST-STOCK-TGR-02 · Toyota GR Supra</option><option value="27" data-price="2350000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/toyota-gr-supra/black/front.png" data-code="TEST-STOCK-TGR-03" data-brand="Toyota" data-model="GR Supra" data-year="2024" data-status="tersedia" >TEST-STOCK-TGR-03 · Toyota GR Supra</option><option value="28" data-price="2350000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/toyota-gr-supra/black/front.png" data-code="TEST-STOCK-TGR-04" data-brand="Toyota" data-model="GR Supra" data-year="2024" data-status="tersedia" >TEST-STOCK-TGR-04 · Toyota GR Supra</option><option value="29" data-price="2350000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/toyota-gr-supra/black/front.png" data-code="TEST-STOCK-TGR-05" data-brand="Toyota" data-model="GR Supra" data-year="2024" data-status="tersedia" >TEST-STOCK-TGR-05 · Toyota GR Supra</option><option value="37" data-price="2268600000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/toyota-supra-mk4/black/front.png" data-code="TEST-STOCK-TSMK4-02" data-brand="Toyota" data-model="Supra MK4" data-year="1998" data-status="tersedia" >TEST-STOCK-TSMK4-02 · Toyota Supra MK4</option><option value="38" data-price="2268600000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/toyota-supra-mk4/black/front.png" data-code="TEST-STOCK-TSMK4-03" data-brand="Toyota" data-model="Supra MK4" data-year="1998" data-status="tersedia" >TEST-STOCK-TSMK4-03 · Toyota Supra MK4</option><option value="80" data-price="150000000.00" data-image="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" data-code="STAGE2-CAR-013" data-brand="YZA" data-model="Synthetic GT" data-year="2026" data-status="tersedia" >STAGE2-CAR-013 · YZA Synthetic GT</option></select><small class="field-hint">Harga mengikuti master unit</small></label><label class="sale-create-field sale-create-field-wide"><span>Booking dikonfirmasi <small>(opsional)</small></span><select name="id_booking" id="sale-booking"><option value="">Tanpa booking</option></select><small class="field-hint">Hanya booking berstatus dikonfirmasi</small></label></div>
+            <div class="sale-create-subsection"><span>▤</span><div><strong>Skema Pembayaran</strong><small>Atur metode pembelian, diskon, dan uang muka sesuai kesepakatan.</small></div></div><div class="sale-create-form-grid"><label class="sale-create-field"><span>Metode pembelian <em>*</em></span><select name="metode_pembelian"><option value="tunai" selected>Tunai</option><option value="kredit" >Kredit</option></select></label><label class="sale-create-field"><span>Diskon <small>(Rp)</small></span><div class="sale-create-input-prefix"><b>Rp</b><input id="sale-discount" name="diskon" type="number" min="0" value="0" required></div></label><label class="sale-create-field"><span>DP rencana <small>(Rp)</small></span><div class="sale-create-input-prefix"><b>Rp</b><input id="sale-down-payment" name="dp" type="number" min="0" value="0" required></div></label></div>
+            <div class="sale-create-subsection"><span>▧</span><div><strong>Catatan Transaksi</strong><small>Tambahkan catatan atau informasi tambahan terkait transaksi ini.</small></div></div><label class="sale-create-field sale-create-field-wide"><textarea name="catatan" rows="3" placeholder="Tulis catatan transaksi di sini..."></textarea><small class="field-hint sale-note-count">0/2000</small></label><input type="hidden" id="promo-car-subtotal" value="0"><div class="sale-create-promo-wrap"><section class="promo-selector" data-promo-selector data-scope="penjualan_mobil" data-subtotal="0"  data-subtotal-source="#promo-car-subtotal" >
+ <div class="member-heading"><div><span class="yza-eyebrow">YZA MEMBER</span><h3>Pilih Promo YZA Member</h3></div><span class="promo-preview-status" aria-live="polite"></span></div>
+ <div class="promo-selector-list"><p>Belum ada promo yang tersedia untuk transaksi ini.</p></div>
+ <div class="promo-summary" hidden><span>Subtotal <b data-promo-subtotal></b></span><span>Diskon <b data-promo-discount></b></span><strong>Total <b data-promo-total></b></strong><button type="button" data-promo-remove>Hapus Promo</button></div>
+</section>
+<style>.promo-selector{margin:16px 0;padding:18px;border:1px solid rgba(229,29,42,.22);border-radius:14px;background:linear-gradient(135deg,rgba(229,29,42,.06),rgba(255,255,255,.9))}.promo-selector-list{display:grid;gap:10px}.promo-option{display:flex;gap:12px;padding:13px;border:1px solid #e1e4e8;border-radius:10px;background:#fff;cursor:pointer}.promo-option:has(input:checked){border-color:#e51d2a;box-shadow:0 0 0 2px rgba(229,29,42,.14)}.promo-option input{accent-color:#e51d2a}.promo-option span{display:grid;gap:4px}.promo-option small{color:#6c7480}.promo-summary{display:grid;gap:7px;margin-top:14px;padding-top:14px;border-top:1px dashed #ccd2d8}.promo-summary span,.promo-summary strong{display:flex;justify-content:space-between}.promo-summary strong{font-size:1.1rem;color:#e51d2a}</style>
+<script>document.querySelectorAll('[data-promo-selector]').forEach(function(box){const form=box.closest('form')||document.querySelector('form');const source=box.dataset.subtotalSource?document.querySelector(box.dataset.subtotalSource):null;function updateSubtotal(){if(source){box.dataset.subtotal=source.value||source.dataset.price||0;}}function sync(id){if(form){let h=form.querySelector('[data-promo-hidden]');if(!h){h=document.createElement('input');h.type='hidden';h.name='promo_id';h.dataset.promoHidden='1';form.appendChild(h)}h.value=id||'';}}updateSubtotal();if(source){source.addEventListener('change',updateSubtotal);source.addEventListener('input',updateSubtotal)}box.querySelectorAll('input[name="promo_id"]').forEach(function(input){input.addEventListener('change',async function(){updateSubtotal();sync(this.value);box.querySelector('.promo-preview-status').textContent='Menghitung promo...';const q=new URLSearchParams({promo_id:this.value,scope:box.dataset.scope,subtotal:box.dataset.subtotal});const res=await fetch('http://127.0.0.1:8011/promo-preview/calculate?'+q,{headers:{Accept:'application/json'}});const data=await res.json();if(!res.ok){box.querySelector('.promo-preview-status').textContent='Promo sudah tidak tersedia. Silakan pilih promo lain.';sync('');return}box.querySelector('[data-promo-subtotal]').textContent='Rp '+Number(data.subtotal).toLocaleString('id-ID');box.querySelector('[data-promo-discount]').textContent='-Rp '+Number(data.discount).toLocaleString('id-ID');box.querySelector('[data-promo-total]').textContent='Rp '+Number(data.total_final).toLocaleString('id-ID');box.querySelector('.promo-summary').hidden=false;box.querySelector('.promo-preview-status').textContent='✓ Promo berhasil diterapkan';});});const remove=box.querySelector('[data-promo-remove]');if(remove)remove.addEventListener('click',function(){box.querySelectorAll('input[name="promo_id"]').forEach(i=>i.checked=false);sync('');box.querySelector('.promo-summary').hidden=true;box.querySelector('.promo-preview-status').textContent='Promo dihapus';});});</script>
+</div>
+        </div></section></div>
+        <aside class="sale-create-side-stack"><section class="sale-create-summary sale-create-panel"><div class="sale-create-panel-heading"><span>▤</span><div><h2>Ringkasan Penjualan</h2><p>Detail unit dan estimasi transaksi.</p></div></div><div class="sale-summary-body"><div id="sale-summary-empty" class="sale-summary-empty"><span>🚘</span><strong>Belum ada kendaraan dipilih</strong><small>Pilih unit untuk melihat ringkasan harga.</small></div><div id="sale-summary-car" class="sale-summary-car" hidden><div class="sale-car-image"><img id="sale-car-image" alt="Pratinjau mobil"></div><div><strong id="sale-car-name">-</strong><small id="sale-car-meta">-</small><span id="sale-car-status">Tersedia</span></div></div><div class="sale-summary-lines"><div><span>Harga unit</span><b id="sale-price">Rp 0</b></div><div><span>Diskon manual</span><b id="sale-discount-total">- Rp 0</b></div><div><span>Promo member</span><b id="sale-promo-total">Akan dihitung</b></div></div><div class="sale-summary-total"><span>Total estimasi</span><strong id="sale-total">Rp 0</strong></div><div class="sale-summary-dp"><span>DP rencana <b id="sale-dp-total">Rp 0</b></span><small>Sisa estimasi <b id="sale-remaining-total">Rp 0</b></small></div></div></section><section class="sale-create-panel sale-validation"><div class="sale-create-panel-heading"><span>✓</span><div><h2>Validasi Transaksi</h2><p>Periksa kelengkapan sebelum menyimpan.</p></div></div><div class="sale-validation-list"><div data-validation="customer"><i>•</i><span>Data pelanggan</span><b>Belum dipilih</b></div><div data-validation="car"><i>•</i><span>Unit tersedia</span><b>Belum dipilih</b></div><div data-validation="booking"><i>•</i><span>Booking valid</span><b>Opsional</b></div><div data-validation="promo"><i>•</i><span>Promo member</span><b>Opsional</b></div></div></section><section class="sale-create-note"><strong>ⓘ &nbsp; Catatan Penting</strong><ul><li>Harga final dan ketersediaan unit diverifikasi ulang oleh server.</li><li>Promo hanya diterapkan jika memenuhi syarat program.</li><li>Setelah dibuat, unit akan dicadangkan untuk transaksi ini.</li></ul></section></aside>
+        <div class="sale-create-actions"><button type="reset" class="sale-action-secondary">↻ &nbsp; Reset</button><button type="button" class="sale-action-draft" disabled title="Workflow draft belum tersedia">▣ &nbsp; Simpan Draft</button><button type="submit" class="sale-action-primary" id="sale-submit">➤ &nbsp; Buat Penjualan</button></div>
+    </form>
+</div>
+</div></main>
+            <footer class="admin-footer"><span>© 2026 YZA Automotive</span><span>Admin Management System</span></footer>
+            <div class="admin-backdrop" data-admin-backdrop></div>
+        </div>
+        <script src="http://127.0.0.1:8011/js/app.js" defer></script>
+            <script>
+    (() => {
+        const shell = document.querySelector('[data-admin-shell]');
+        if (!shell) return;
+        const paymentLiveState = document.querySelector('[data-admin-payment-live-state]');
+        if (paymentLiveState) {
+            const syncPaymentPage = async () => {
+                if (document.hidden || document.activeElement?.matches('input, textarea, select, button')) return;
+                const modal = document.querySelector('.payment-modal:not([hidden]), [data-payment-modal]:not([hidden])');
+                if (modal) return;
+                try {
+                    const response = await fetch(window.location.href, { cache: 'no-store', headers: { Accept: 'text/html', 'X-Requested-With': 'XMLHttpRequest' }, credentials: 'same-origin' });
+                    if (!response.ok) return;
+                    const html = await response.text();
+                    const nextDocument = new DOMParser().parseFromString(html, 'text/html');
+                    const nextState = nextDocument.querySelector('[data-admin-payment-live-state]')?.dataset.adminPaymentLiveState;
+                    if (nextState && nextState !== paymentLiveState.dataset.adminPaymentLiveState) window['location']['reload']();
+                } catch (_) {}
+            };
+            const paymentSyncTimer = window.setInterval(syncPaymentPage, 5000);
+            document.addEventListener('visibilitychange', () => { if (!document.hidden) syncPaymentPage(); });
+            window.addEventListener('beforeunload', () => window.clearInterval(paymentSyncTimer), { once: true });
+        }
+        const sidebar = shell.querySelector('[data-admin-sidebar]');
+        const toggle = shell.querySelector('[data-admin-toggle]');
+        const backdrop = shell.querySelector('[data-admin-backdrop]');
+        const closeSidebar = () => {
+            sidebar?.classList.remove('is-open');
+            backdrop?.classList.remove('is-visible');
+        };
+        toggle?.addEventListener('click', () => {
+            sidebar?.classList.toggle('is-open');
+            backdrop?.classList.toggle('is-visible');
+        });
+        backdrop?.addEventListener('click', closeSidebar);
+        sidebar?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeSidebar));
+
+        // Preserve the independent sidebar position between admin page navigations.
+        // The active route is still rendered server-side; this only restores/reveals it
+        // inside the sidebar scroll container and never touches the main workspace.
+        const sidebarNav = shell.querySelector('.admin-sidebar-nav-scroll');
+        const sidebarScrollKey = 'yza_admin_sidebar_scroll_top';
+        if (sidebarNav && sidebarNav.dataset.smartScrollReady !== '1') {
+            sidebarNav.dataset.smartScrollReady = '1';
+            let saveTimer = null;
+            const writeSidebarPosition = () => {
+                try { window.sessionStorage.setItem(sidebarScrollKey, String(Math.max(0, sidebarNav.scrollTop))); } catch (_) {}
+            };
+            const saveSidebarPosition = () => {
+                window.clearTimeout(saveTimer);
+                saveTimer = window.setTimeout(writeSidebarPosition, 80);
+            };
+            const clamp = (value) => Math.max(0, Math.min(Number(value) || 0, sidebarNav.scrollHeight - sidebarNav.clientHeight));
+            const activeItem = sidebarNav.querySelector('.admin-nav-item.is-active');
+            const revealActiveItemIfNeeded = () => {
+                if (!activeItem || sidebarNav.clientHeight <= 0) return;
+                const navRect = sidebarNav.getBoundingClientRect();
+                const itemRect = activeItem.getBoundingClientRect();
+                const edgePadding = 12;
+                if (itemRect.top < navRect.top + edgePadding) {
+                    sidebarNav.scrollTop = clamp(sidebarNav.scrollTop + itemRect.top - navRect.top - edgePadding);
+                } else if (itemRect.bottom > navRect.bottom - edgePadding) {
+                    sidebarNav.scrollTop = clamp(sidebarNav.scrollTop + itemRect.bottom - navRect.bottom + edgePadding);
+                }
+            };
+            const restoreSidebarPosition = () => {
+                let storedPosition = null;
+                try { storedPosition = window.sessionStorage.getItem(sidebarScrollKey); } catch (_) {}
+                if (storedPosition !== null) sidebarNav.scrollTop = clamp(storedPosition);
+                revealActiveItemIfNeeded();
+            };
+            sidebarNav.addEventListener('scroll', saveSidebarPosition, { passive: true });
+            sidebar?.querySelectorAll('a').forEach(link => link.addEventListener('click', writeSidebarPosition));
+            window.addEventListener('pagehide', writeSidebarPosition, { once: true });
+            window.requestAnimationFrame(() => window.requestAnimationFrame(restoreSidebarPosition));
+        }
+
+        const sidebarCollapseToggle = shell.querySelector('[data-admin-sidebar-collapse]');
+        const sidebarCollapseKey = 'yza_admin_sidebar_collapsed';
+        const desktopSidebarQuery = window.matchMedia('(min-width: 1025px)');
+        const readCollapsedState = () => {
+            try { return window.localStorage.getItem(sidebarCollapseKey) === '1'; } catch (_) { return false; }
+        };
+        const writeCollapsedState = (collapsed) => {
+            try { window.localStorage.setItem(sidebarCollapseKey, collapsed ? '1' : '0'); } catch (_) {}
+        };
+        const setSidebarCollapsed = (collapsed, persist = false) => {
+            const effectiveCollapsed = desktopSidebarQuery.matches && collapsed;
+            shell.classList.toggle('is-sidebar-collapsed', effectiveCollapsed);
+            sidebarCollapseToggle?.setAttribute('aria-expanded', effectiveCollapsed ? 'false' : 'true');
+            sidebarCollapseToggle?.setAttribute('aria-label', effectiveCollapsed ? 'Perluas sidebar' : 'Ciutkan sidebar');
+            if (sidebarCollapseToggle) sidebarCollapseToggle.title = effectiveCollapsed ? 'Perluas sidebar' : 'Ciutkan sidebar';
+            if (persist && desktopSidebarQuery.matches) writeCollapsedState(effectiveCollapsed);
+            if (!effectiveCollapsed && sidebarNav) window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
+                const active = sidebarNav.querySelector('.admin-nav-item.is-active');
+                if (active) {
+                    const navRect = sidebarNav.getBoundingClientRect();
+                    const itemRect = active.getBoundingClientRect();
+                    const padding = 12;
+                    if (itemRect.top < navRect.top + padding) sidebarNav.scrollTop = Math.max(0, sidebarNav.scrollTop + itemRect.top - navRect.top - padding);
+                    else if (itemRect.bottom > navRect.bottom - padding) sidebarNav.scrollTop = Math.min(sidebarNav.scrollHeight - sidebarNav.clientHeight, sidebarNav.scrollTop + itemRect.bottom - navRect.bottom + padding);
+                }
+            }));
+        };
+        setSidebarCollapsed(readCollapsedState());
+        sidebarCollapseToggle?.addEventListener('click', () => setSidebarCollapsed(!shell.classList.contains('is-sidebar-collapsed'), true));
+        desktopSidebarQuery.addEventListener?.('change', () => setSidebarCollapsed(readCollapsedState()));
+
+        // User dropdown menu
+        const userMenu = shell.querySelector('[data-admin-user-menu]');
+        const userToggle = userMenu?.querySelector('[data-admin-user-toggle]');
+        const userDropdown = userMenu?.querySelector('[data-admin-dropdown]');
+        const closeUserMenu = () => {
+            if (userDropdown) userDropdown.hidden = true;
+            userToggle?.setAttribute('aria-expanded', 'false');
+        };
+        userToggle?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isHidden = userDropdown?.hidden ?? true;
+            if (userDropdown) userDropdown.hidden = !isHidden;
+            userToggle.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+        });
+        document.addEventListener('click', (e) => {
+            if (userMenu && !userMenu.contains(e.target)) closeUserMenu();
+        });
+
+        // Quick search focus (Ctrl+K or Cmd+K)
+        const searchInput = shell.querySelector('[data-admin-quick-search]');
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+                e.preventDefault();
+                searchInput?.focus();
+            }
+            if (e.key === 'Escape') {
+                closeUserMenu();
+                closeSidebar();
+            }
+        });
+
+        // Lightweight near-real-time admin notification sync.
+        const notificationLink = shell.querySelector('[data-admin-notification-link]');
+        const notificationCount = shell.querySelector('[data-admin-notification-count]');
+        const toastStack = shell.querySelector('[data-admin-live-toast-stack]');
+        const notificationList = document.querySelector('[data-admin-notification-list]');
+        const syncUrl = notificationLink?.dataset.adminNotificationSyncUrl;
+        let latestNotificationId = 0;
+        let pollTimer = null;
+        let pollInFlight = false;
+        let pollDelay = 5000;
+        let initialized = false;
+        const displayedToastIds = new Set();
+
+        const setNotificationCount = (count) => {
+            if (!notificationCount) return;
+            const value = Number(count) || 0;
+            notificationCount.textContent = value > 99 ? '99+' : String(value);
+            notificationCount.hidden = value < 1;
+        };
+
+        const readableDate = (value) => {
+            if (!value) return '';
+            const date = new Date(value);
+            return Number.isNaN(date.getTime()) ? '' : date.toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
+        };
+
+        const addNotificationCard = (notification) => {
+            if (!notificationList || notificationList.querySelector(`[data-notification-id="${notification.id}"]`)) return;
+            const card = document.createElement('article');
+            card.className = `admin-notification-card${notification.is_read ? '' : ' is-unread'}`;
+            card.dataset.notificationId = notification.id;
+
+            const icon = document.createElement('span');
+            icon.className = 'admin-notification-card-icon';
+            icon.textContent = notification.type === 'booking' ? '⚙' : '!';
+            const content = document.createElement('div');
+            content.className = 'admin-notification-card-content';
+            const category = document.createElement('small');
+            category.textContent = notification.type === 'booking' ? 'BOOKING SERVIS' : 'AKTIVITAS ADMIN';
+            const title = document.createElement('strong');
+            title.textContent = notification.title;
+            const message = document.createElement('p');
+            message.textContent = notification.message;
+            const meta = document.createElement('time');
+            meta.textContent = readableDate(notification.created_at);
+            const link = document.createElement('a');
+            link.className = 'admin-notification-card-link';
+            link.href = notification.open_url || notification.url || '#';
+            link.textContent = notification.type === 'booking' ? 'Lihat Booking →' : 'Buka Detail →';
+            content.append(category, title, message, meta, link);
+            card.append(icon, content);
+            notificationList.prepend(card);
+        };
+
+        const showNotificationToast = (notification) => {
+            if (!toastStack || displayedToastIds.has(notification.id)) return;
+            displayedToastIds.add(notification.id);
+            const toast = document.createElement('div');
+            toast.className = 'admin-live-toast';
+            const title = document.createElement('strong');
+            title.textContent = notification.title;
+            const message = document.createElement('p');
+            message.textContent = notification.message;
+            const link = document.createElement('a');
+            link.href = notification.open_url || notification.url || '#';
+            link.textContent = notification.type === 'booking' ? 'Lihat Booking →' : 'Buka Detail →';
+            toast.append(title, message, link);
+            toastStack.append(toast);
+            requestAnimationFrame(() => toast.classList.add('is-visible'));
+            window.setTimeout(() => { toast.classList.remove('is-visible'); window.setTimeout(() => toast.remove(), 250); }, 7500);
+        };
+
+        const schedulePoll = () => {
+            window.clearTimeout(pollTimer);
+            if (!document.hidden && syncUrl) pollTimer = window.setTimeout(syncNotifications, pollDelay);
+        };
+
+        const syncNotifications = async () => {
+            if (!syncUrl || pollInFlight || document.hidden) return;
+            pollInFlight = true;
+            try {
+                const url = new URL(syncUrl, window.location.origin);
+                url.searchParams.set('after_id', String(latestNotificationId));
+                const response = await fetch(url, { headers: { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest' }, credentials: 'same-origin' });
+                if (!response.ok) throw new Error(`Notification sync failed: ${response.status}`);
+                const data = await response.json();
+                setNotificationCount(data.unread_count);
+                const notifications = Array.isArray(data.notifications) ? data.notifications : [];
+                const incoming = notifications.filter(item => Number(item.id) > latestNotificationId).sort((a, b) => Number(a.id) - Number(b.id));
+                if (initialized) incoming.forEach(notification => { addNotificationCard(notification); showNotificationToast(notification); });
+                else notifications.forEach(addNotificationCard);
+                latestNotificationId = Math.max(latestNotificationId, Number(data.latest_id) || 0, ...notifications.map(item => Number(item.id) || 0));
+                initialized = true;
+                pollDelay = 5000;
+            } catch (error) {
+                pollDelay = Math.min(pollDelay + 5000, 15000);
+            } finally {
+                pollInFlight = false;
+                schedulePoll();
+            }
+        };
+
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) { pollDelay = 5000; syncNotifications(); }
+            else window.clearTimeout(pollTimer);
+        });
+        syncNotifications();
+    })();
+    </script>
+        <script>
+(() => { const form=document.querySelector('#sale-create-form'); if(!form)return; const car=document.querySelector('#sale-car'),customer=document.querySelector('#sale-customer'),booking=document.querySelector('#sale-booking'),discount=document.querySelector('#sale-discount'),dp=document.querySelector('#sale-down-payment'),subtotal=document.querySelector('#promo-car-subtotal'); const money=value=>'Rp '+new Intl.NumberFormat('id-ID').format(Math.max(0,Number(value)||0)); const setText=(id,value)=>{const el=document.querySelector(id);if(el)el.textContent=value}; const validation=(key,state,label)=>{const row=document.querySelector(`[data-validation="${key}"]`);if(!row)return;row.className=state?'is-valid':'';row.querySelector('i').textContent=state?'✓':'•';row.querySelector('b').textContent=label}; const refresh=()=>{const option=car?.selectedOptions[0],price=Number(option?.dataset.price||0),manualDiscount=Number(discount?.value||0),down=Number(dp?.value||0),total=Math.max(0,price-manualDiscount);subtotal.value=price;document.querySelector('[data-promo-selector]')?.setAttribute('data-subtotal',price);setText('#sale-estimate-total',money(total));setText('#sale-price',money(price));setText('#sale-discount-total','- '+money(manualDiscount));setText('#sale-total',money(total));setText('#sale-dp-total',money(down));setText('#sale-remaining-total',money(Math.max(0,total-down)));const selected=!!option?.value;document.querySelector('#sale-summary-empty').hidden=selected;document.querySelector('#sale-summary-car').hidden=!selected;if(selected){document.querySelector('#sale-car-image').src=option.dataset.image;setText('#sale-car-name',`${option.dataset.brand} ${option.dataset.model}`);setText('#sale-car-meta',`${option.dataset.code} · Tahun ${option.dataset.year}`);setText('#sale-car-status',option.dataset.status==='tersedia'?'Unit tersedia':'Perlu verifikasi status')}validation('customer',!!customer?.value,customer?.value?'Terpilih':'Belum dipilih');validation('car',selected&&option.dataset.status==='tersedia',selected?(option.dataset.status==='tersedia'?'Tersedia':'Perlu verifikasi'):'Belum dipilih');const bookingOption=booking?.selectedOptions[0],hasBooking=!!bookingOption?.value,matches=hasBooking&&bookingOption.dataset.customer===customer?.value&&bookingOption.dataset.car===car?.value;validation('booking',!hasBooking||matches,!hasBooking?'Opsional':(matches?'Cocok':'Perlu dicocokkan'));const promo=document.querySelector('input[name="promo_id"]:checked');validation('promo',!promo,promo?'Dicek server':'Opsional')}; [car,customer,booking,discount,dp].forEach(el=>el?.addEventListener('input',refresh));[car,customer,booking].forEach(el=>el?.addEventListener('change',refresh));document.querySelector('textarea[name="catatan"]')?.addEventListener('input',e=>{const n=document.querySelector('.sale-note-count');if(n)n.textContent=`${e.target.value.length}/2000`});form.addEventListener('reset',()=>window.setTimeout(refresh,0));form.addEventListener('submit',()=>{const button=document.querySelector('#sale-submit');if(button){button.disabled=true;button.textContent='Memproses…'}});refresh()})();
+</script></body>
+</html>

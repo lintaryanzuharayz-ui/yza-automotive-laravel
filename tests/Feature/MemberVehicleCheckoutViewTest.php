@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class MemberVehicleCheckoutViewTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseTransactions, \Tests\Support\CreatesColorStockUnit;
 
     public function test_member_checkout_renders_premium_vehicle_summary_and_form(): void
     {
@@ -39,12 +39,12 @@ class MemberVehicleCheckoutViewTest extends TestCase
     public function test_member_checkout_accepts_only_a_server_known_gallery_color(): void
     {
         $user = User::whereHas('role', fn ($query) => $query->where('nama_role', 'pelanggan'))->firstOrFail();
-        $car = Mobil::where('model', 'GR Supra')->where('status', 'tersedia')->firstOrFail();
+        $car = $this->colorStockUnit(Mobil::where('model', 'GR Supra')->where('status', 'tersedia')->firstOrFail(), 'white');
 
         $response = $this->actingAs($user)->get(route('pelanggan.pesanan-mobil.create', ['mobil' => $car, 'warna' => 'white']));
         $response->assertOk()->assertSee('value="white"', false)->assertSee('Pearl White');
 
         $invalid = $this->actingAs($user)->get(route('pelanggan.pesanan-mobil.create', ['mobil' => $car, 'warna' => 'not-a-real-color']));
-        $invalid->assertOk()->assertSee('value="red"', false);
+        $invalid->assertStatus(422); // Invalid color must never silently fall back to another unit.
     }
 }

@@ -1,8 +1,14 @@
 @extends('layouts.app')
+@push('styles')
+<style>
+.detail-actions [hidden], [data-preorder-submit][hidden] { display:none!important; }
+</style>
+@endpush
 
 @section('title', $mobil->merk.' '.$mobil->model.' · YZA Member')
 
 @php
+    $backLink = \App\Support\MemberVehicleBackLink::for(request());
     $identity = strtolower($mobil->merk.' '.$mobil->model);
     $catalogFallbacks = [
         'raize' => asset('assets/images/hero/yza-detail-red-bright-generated.png'),
@@ -18,9 +24,13 @@
         }
     }
     $galleryData = $galleryData ?? ['default' => ['label' => $mobil->warna ?: 'Pilihan warna tersedia', 'swatch' => '#20a9c7', 'images' => [['type' => 'front', 'label' => 'Front view', 'src' => $landingVehicleImage]]]];
-    $defaultColorKey = $defaultColorKey ?? array_key_first($galleryData);
+    $galleryData = app(\App\Services\VehicleColorStockService::class)->colors($mobil);
+    $defaultColorKey = array_key_exists($defaultColorKey ?? '', $galleryData) ? $defaultColorKey : array_key_first($galleryData);
+    foreach ($galleryData as $key => $option) {
+        if (mb_strtolower(trim((string) request('warna'))) === mb_strtolower($key) || mb_strtolower(trim((string) request('warna'))) === mb_strtolower($option['label'])) $defaultColorKey = $key;
+    }
     $defaultGallery = $galleryData[$defaultColorKey] ?? reset($galleryData);
-    $primaryImage = $defaultGallery['images'][0]['src'] ?? $landingVehicleImage;
+    $primaryImage = $defaultGallery['images'][0]['src'] ?? asset('assets/images/vehicle-photo-unavailable.svg');
     $brand = strtoupper((string) ($mobil->merk ?: 'YZA AUTOMOTIVE'));
     $brandLogo = \App\Support\BrandLogo::path($mobil->merk, $mobil->model);
     $modelName = (string) ($mobil->model ?: 'Premium Vehicle');
@@ -30,7 +40,7 @@
     $availability = $mobil->getAttribute('availability') ?? app(\App\Services\VehicleAvailabilityService::class)->for($mobil);
     $statusMeta = ['label' => $availability['label'] ?? 'TERSEDIA', 'class' => $availability['status_class'] ?? 'is-neutral'];
     $isAvailable = (bool) ($availability['can_purchase'] ?? false);
-    $canPreorder = (bool) ($availability['can_preorder'] ?? (($availability['stock'] ?? 0) === 0));
+    $canPreorder = collect($galleryData)->contains(fn ($color) => $color['stock'] === 0);
     $isLimitedEdition = (bool) ($availability['is_limited_edition'] ?? false);
     $whatsappText = 'Halo YZA Automotive, saya ingin konsultasi mengenai '.$mobil->merk.' '.$mobil->model.'.';
     $uiIcon = static function (string $name): string {
@@ -114,13 +124,39 @@
         @media (max-width: 1000px) { .member-detail-parity .detail-showcase { grid-template-columns: 1fr; } }
         @media (max-width: 700px) { .member-detail-parity .detail-page { padding: 24px 16px 52px; }.preorder-modal { padding: 12px; }.preorder-dialog { max-height: calc(100vh - 24px); padding: 22px 18px; border-radius: 18px; }.preorder-modal-content { grid-template-columns: 1fr; gap: 16px; }.preorder-modal-visual,.preorder-modal-visual img { min-height: 150px; max-height: 190px; }.preorder-modal-copy h2 { font-size: 29px; }.preorder-modal-meta strong { font-size: 15px; } }
     </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/member-vehicle-detail.css') }}?v={{ filemtime(public_path('assets/css/member-vehicle-detail.css')) }}">
 @endpush
 
+@push('styles')
+<style>
+.member-detail-parity .detail-gallery-color-picker { position:absolute!important;right:16px!important;bottom:14px!important;z-index:4!important;display:inline-flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;height:auto!important;min-height:0!important;max-height:38px!important;gap:8px!important;padding:6px 12px!important;background:rgba(7,9,12,.72)!important;backdrop-filter:blur(8px)!important;-webkit-backdrop-filter:blur(8px)!important;border:1px solid rgba(255,255,255,.16)!important;border-radius:999px!important;box-shadow:0 10px 24px rgba(0,0,0,.35)!important;box-sizing:border-box!important; }
+.member-detail-parity .detail-gallery-color-picker .detail-swatch { position:relative!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;width:22px!important;height:22px!important;min-width:22px!important;min-height:22px!important;max-width:22px!important;max-height:22px!important;flex:0 0 22px!important;aspect-ratio:1/1!important;border-radius:50%!important;padding:0!important;margin:0!important;box-sizing:border-box!important;line-height:1!important;background:var(--swatch,#ffffff)!important;border:1.5px solid rgba(255,255,255,.45)!important;cursor:pointer!important;transition:transform .18s ease,outline .18s ease,box-shadow .18s ease!important;outline:none!important;opacity:1!important; }
+.member-detail-parity .detail-gallery-color-picker .detail-swatch:hover { transform:scale(1.18)!important; }
+.member-detail-parity .detail-gallery-color-picker .detail-swatch.is-active { outline:2px solid #ef233c!important;outline-offset:2.5px!important;border-color:#fff!important;box-shadow:0 0 10px rgba(239,35,60,.55)!important; }
+.member-detail-parity .detail-gallery-color-picker .detail-swatch.is-out-of-stock { opacity:1!important; }
+.member-detail-parity .detail-gallery-color-picker .detail-swatch.is-out-of-stock::after { content:'×'!important;position:absolute!important;inset:0!important;display:flex!important;align-items:center!important;justify-content:center!important;color:#ffffff!important;font-size:13px!important;font-weight:900!important;line-height:1!important;text-shadow:0 0 3px rgba(0,0,0,.95),0 0 1px #000!important;pointer-events:none!important; }
+.member-detail-parity .detail-gallery-color-picker .detail-swatch[data-tooltip]::before { content:attr(data-tooltip)!important;position:absolute!important;bottom:calc(100% + 9px)!important;left:50%!important;transform:translateX(-50%) translateY(4px)!important;background:rgba(10,12,16,.94)!important;color:#ffffff!important;font-size:11px!important;font-weight:700!important;letter-spacing:.02em!important;white-space:nowrap!important;padding:4px 9px!important;border-radius:6px!important;border:1px solid rgba(255,255,255,.16)!important;box-shadow:0 6px 18px rgba(0,0,0,.45)!important;pointer-events:none!important;opacity:0!important;visibility:hidden!important;transition:opacity .15s ease,transform .15s ease!important;z-index:10!important; }
+.member-detail-parity .detail-gallery-color-picker .detail-swatch:hover::before { opacity:1!important;visibility:visible!important;transform:translateX(-50%) translateY(0)!important; }
+.member-detail-parity .detail-gallery-caption { max-width:calc(100% - 220px)!important; }
+@media (max-width:600px) {
+    .member-detail-parity .detail-gallery-caption { left:12px!important;bottom:12px!important;max-width:calc(100% - 150px)!important;padding:6px 9px!important; }
+    .member-detail-parity .detail-gallery-color-picker { right:12px!important;bottom:12px!important;padding:4px 8px!important;gap:6px!important;max-height:32px!important; }
+    .member-detail-parity .detail-gallery-color-picker .detail-swatch { width:20px!important;height:20px!important;min-width:20px!important;min-height:20px!important;max-width:20px!important;max-height:20px!important;flex:0 0 20px!important; }
+}
+.preorder-dialog{background:#fff;color:#142038;border-color:#e2e8f0;box-shadow:0 24px 80px #0f172a40}
+.preorder-modal-brand,.preorder-modal-copy h3{color:#142038}
+.preorder-modal-copy p,.preorder-modal-secondary a{color:#64748b}
+.preorder-modal-close{color:#142038;border-color:#e2e8f0;background:#f8fafc}
+.preorder-modal-meta{background:#fff4f5;border-color:#fecdd3}
+.preorder-modal-meta span{color:#be123c}
+.preorder-modal-feedback.is-success{color:#047857}.preorder-modal-feedback.is-error{color:#be123c}
+</style>
+@endpush
 @section('content')
 <div class="yza-detail-page member-detail-parity">
     <main class="detail-page">
         <section class="detail-heading">
-            <x-vehicle-back-button :url="route('pelanggan.katalog-mobil.index')" label="Kembali ke Katalog Member" />
+            <x-vehicle-back-button :url="$backLink['url']" :label="$backLink['label']" />
             <div class="detail-heading-grid">
                 <div class="detail-heading-copy"><p class="detail-kicker">YZA AUTOMOTIVE · PREMIUM COLLECTION</p><h1>{{ $mobil->merk }} {{ $modelName }}</h1><p class="detail-subtitle">Unit pilihan dengan pemeriksaan dealer dan pengalaman berkendara yang lebih percaya diri.</p></div>
                 <div class="detail-heading-price"><span>Harga terbaik</span><strong>{{ $price }}</strong></div>
@@ -129,14 +165,23 @@
         <section class="detail-showcase" aria-label="Detail kendaraan">
             <div class="detail-info-column">
                 <div class="detail-panel detail-summary-panel" data-detail-vehicle-id="{{ $mobil->id_mobil }}">
-                    <div class="detail-brand-header"><div class="detail-brand-identity"><span class="detail-brand-logo"><img src="{{ $brandLogo }}" alt="Logo {{ $brand }}"></span><div><span class="detail-label">Brand</span><strong>{{ $brand }}</strong><small>AUTOMOTIVE</small></div><button class="detail-favorite" type="button" data-detail-favorite aria-label="Tambahkan ke favorit" aria-pressed="false">♡</button></div><div class="detail-statuses"><span class="detail-condition"><i></i>{{ $condition }}</span>@if($isLimitedEdition)<span class="detail-limited-badge">LIMITED EDITION</span>@endif<span class="detail-available-badge detail-status-badge {{ $statusMeta['class'] }}"><i></i>{{ $statusMeta['label'] }}</span>@if($availability['detail'] ?? false)<small class="detail-stock-copy">{{ $availability['detail'] }}</small>@endif</div></div>
+                    <div class="detail-brand-header">
+                        <div class="detail-brand-identity">
+                            <span class="detail-brand-logo"><img src="{{ $brandLogo }}" alt="Logo {{ $brand }}"></span>
+                            <div><span class="detail-label">Brand</span><strong>{{ $brand }}</strong><small>AUTOMOTIVE</small></div>
+                        </div>
+                        <div class="detail-statuses">
+                            <span class="detail-condition"><i></i>{{ $condition }}</span>
+                            @if($isLimitedEdition)<span class="detail-limited-badge">LIMITED EDITION</span>@endif
+                        </div>
+                        <button class="detail-favorite" type="button" data-detail-favorite aria-label="Tambahkan ke favorit" aria-pressed="false">♡</button>
+                    </div>
                     <p class="detail-description">{{ $mobil->deskripsi ?: 'Kendaraan terawat dengan karakter berkendara yang nyaman untuk aktivitas harian maupun perjalanan akhir pekan.' }}</p>
-                <div class="detail-actions detail-actions-reference"><a class="detail-button detail-button-primary" href="{{ yza_whatsapp_url($whatsappText) }}" target="_blank" rel="noopener">{!! $uiIcon('whatsapp') !!}<span class="detail-button-text">Tanya via WhatsApp</span><span>→</span></a><div class="detail-action-row">@if($isAvailable)<a class="detail-button detail-button-ghost" data-purchase-link data-purchase-url="{{ route('pelanggan.pesanan-mobil.create', ['mobil' => $mobil->id_mobil]) }}" href="{{ route('pelanggan.pesanan-mobil.create', ['mobil' => $mobil->id_mobil, 'warna' => $defaultColorKey]) }}"><span class="detail-button-text">Beli Sekarang</span><span>→</span></a>@elseif($canPreorder)<button class="detail-button detail-button-ghost member-purchase-status" type="button" data-preorder-trigger aria-haspopup="dialog" aria-controls="preorder-modal"><span class="detail-button-text">Pre-order Sekarang</span><span>→</span></button>@else<span class="detail-button detail-button-ghost member-purchase-status" aria-disabled="true"><span class="detail-button-text">{{ $statusMeta['label'] }}</span><span>→</span></span>@endif</div></div>
+                <div class="detail-actions detail-actions-reference"><a class="detail-button detail-button-primary" href="{{ yza_whatsapp_url($whatsappText) }}" target="_blank" rel="noopener">{!! $uiIcon('whatsapp') !!}<span class="detail-button-text">Tanya via WhatsApp</span><span>→</span></a><div class="detail-action-row"><a class="detail-button detail-button-ghost" data-purchase-link href="{{ $defaultGallery['purchase_url'] ?? '#' }}" @if(empty($defaultGallery['purchase_url'])) hidden @endif><span class="detail-button-text">Lanjutkan Pembelian</span><span>→</span></a><button class="detail-button detail-button-ghost" type="button" data-preorder-trigger @if(!empty($defaultGallery['purchase_url'])) hidden @endif aria-haspopup="dialog" aria-controls="preorder-modal"><span class="detail-button-text">Ajukan Pre-Order</span><span>→</span></button></div></div>
                 </div>
                 <div class="detail-panel detail-spec-panel"><div class="detail-section-head"><div><p class="detail-kicker">SPESIFIKASI KENDARAAN</p><h2>Detail kendaraan</h2></div><span class="detail-code">{{ $mobil->kode_mobil ?: 'YZA-UNIT' }}</span></div><div class="detail-spec-grid detail-spec-grid-reference"><div><span class="detail-spec-icon">{!! $uiIcon('engine') !!}</span><span>Tipe</span><strong>{{ $mobil->tipe ?: '-' }}</strong></div><div><span class="detail-spec-icon">{!! $uiIcon('year') !!}</span><span>Tahun</span><strong>{{ $mobil->tahun ?: '-' }}</strong></div><div><span class="detail-spec-icon">{!! $uiIcon('gear') !!}</span><span>Transmisi</span><strong>{{ strtoupper($mobil->transmisi ?: '-') }}</strong></div><div><span class="detail-spec-icon">{!! $uiIcon('fuel') !!}</span><span>Bahan bakar</span><strong>{{ ucfirst($mobil->bahan_bakar ?: '-') }}</strong></div><div><span class="detail-spec-icon">{!! $uiIcon('color') !!}</span><span>Warna</span><strong id="detail-spec-color">{{ $colorName }}</strong></div><div><span class="detail-spec-icon">{!! $uiIcon('condition') !!}</span><span>Kondisi</span><strong>{{ $condition }}</strong></div><div class="detail-spec-status"><span class="detail-spec-icon">{!! $uiIcon('status') !!}</span><span>Status</span><strong class="detail-status-tag {{ $statusMeta['class'] }}">{{ $statusMeta['label'] }}</strong></div></div></div>
-                <div class="detail-panel detail-color-panel"><div class="detail-section-head"><div><p class="detail-kicker">PILIHAN WARNA</p><h2>Personalisasi</h2></div><span id="selected-color">{{ $colorName }}</span></div><div class="detail-swatches" role="group" aria-label="Pilihan warna kendaraan">@foreach($galleryData as $colorKey => $color)<button class="detail-swatch {{ $colorKey === $defaultColorKey ? 'is-active' : '' }}" type="button" data-color-key="{{ $colorKey }}" data-color="{{ $color['label'] }}" style="--swatch:{{ $color['swatch'] }}" aria-label="Pilih warna {{ $color['label'] }}" aria-pressed="{{ $colorKey === $defaultColorKey ? 'true' : 'false' }}"></button>@endforeach</div></div>
             </div>
-            <div class="detail-gallery-column"><div class="detail-gallery-frame"><div class="detail-gallery-topline"><span class="detail-gallery-counter" id="detail-gallery-counter">01 / {{ str_pad((string) count($defaultGallery['images'] ?? []), 2, '0', STR_PAD_LEFT) }}</span><span class="detail-gallery-mark"><b>YZA</b> SHOWROOM VIEW</span></div><button class="detail-gallery-arrow detail-gallery-arrow-prev" type="button" aria-label="Foto sebelumnya"><span aria-hidden="true">←</span></button><img id="detail-main-image" src="{{ $primaryImage }}" alt="{{ $mobil->merk }} {{ $modelName }}" class="detail-main-image"><button class="detail-gallery-arrow detail-gallery-arrow-next" type="button" aria-label="Foto berikutnya"><span aria-hidden="true">→</span></button><div class="detail-image-shade"></div><div class="detail-gallery-caption"><span>{{ $mobil->merk }} {{ $modelName }}</span><small id="detail-gallery-caption">{{ ($defaultGallery['images'][0]['label'] ?? 'Front view') }} · YZA Automotive</small></div></div><div id="detail-thumbnails" class="detail-thumbnails" role="list" aria-label="Galeri foto kendaraan">@foreach($defaultGallery['images'] ?? [] as $index => $image)<button class="detail-thumbnail {{ $index === 0 ? 'is-active' : '' }}" type="button" data-index="{{ $index }}" role="listitem" aria-label="Lihat {{ $image['label'] }}"><img src="{{ $image['src'] }}" alt="{{ $image['label'] }} {{ $mobil->model }}"><span>0{{ $index + 1 }}</span></button>@endforeach</div><div class="detail-gallery-note"><span>✦</span> Pilih warna dan sudut kendaraan untuk melihat detail showroom.</div></div>
+            <div class="detail-gallery-column"><div class="detail-gallery-frame"><div class="detail-gallery-topline"><span class="detail-gallery-counter" id="detail-gallery-counter">{{ count($defaultGallery['images'] ?? []) ? '01 / '.str_pad((string) count($defaultGallery['images']), 2, '0', STR_PAD_LEFT) : '—' }}</span><div class="detail-gallery-badges"><span class="detail-gallery-mark"><b>YZA</b> SHOWROOM VIEW</span><span class="detail-available-badge detail-status-badge {{ $statusMeta['class'] }}"><i></i>{{ $statusMeta['label'] }}</span></div></div><button class="detail-gallery-arrow detail-gallery-arrow-prev" type="button" aria-label="Foto sebelumnya"><span aria-hidden="true">←</span></button><img id="detail-main-image" src="{{ $primaryImage }}" alt="{{ $mobil->merk }} {{ $modelName }}" class="detail-main-image"><button class="detail-gallery-arrow detail-gallery-arrow-next" type="button" aria-label="Foto berikutnya"><span aria-hidden="true">→</span></button><div class="detail-image-shade"></div><div class="detail-gallery-caption"><span>{{ $mobil->merk }} {{ $modelName }}</span><small id="detail-gallery-caption">{{ ($defaultGallery['images'][0]['label'] ?? 'Front view') }} · YZA Automotive</small></div>@if(!empty($galleryData))<div class="detail-gallery-color-picker" role="radiogroup" aria-label="Pilihan warna kendaraan">@foreach($galleryData as $colorKey => $color)<button class="detail-swatch {{ ($color['stock'] ?? 0) === 0 ? 'is-out-of-stock' : '' }} {{ $colorKey === $defaultColorKey ? 'is-active' : '' }}" type="button" role="radio" data-color-key="{{ $colorKey }}" data-color="{{ $color['label'] }}" data-tooltip="{{ $color['label'] }} · {{ ($color['stock'] ?? 0) > 0 ? $color['stock'].' unit siap jual' : 'Stok Habis' }}" style="--swatch:{{ $color['swatch'] }}" title="{{ $color['label'] }} · {{ ($color['stock'] ?? 0) > 0 ? $color['stock'].' unit siap jual' : 'Stok Habis' }}" aria-label="{{ $color['label'] }}: {{ ($color['stock'] ?? 0) > 0 ? $color['stock'].' unit siap jual' : 'Stok Habis' }}" aria-checked="{{ $colorKey === $defaultColorKey ? 'true' : 'false' }}"></button>@endforeach</div>@endif</div><div id="detail-thumbnails" class="detail-thumbnails" role="list" aria-label="Galeri foto kendaraan">@foreach($defaultGallery['images'] ?? [] as $index => $image)<button class="detail-thumbnail {{ $index === 0 ? 'is-active' : '' }}" type="button" data-index="{{ $index }}" role="listitem" aria-label="Lihat {{ $image['label'] }}"><img src="{{ $image['src'] }}" alt="{{ $image['label'] }} {{ $mobil->model }}"><span>0{{ $index + 1 }}</span></button>@endforeach</div><div class="detail-gallery-note"><span>✦</span> Pilih warna dan sudut kendaraan untuk melihat detail showroom.</div></div>
         </section>
     </main>
 </div>
@@ -146,7 +191,7 @@
     <section class="preorder-dialog" role="dialog" aria-modal="true" aria-labelledby="preorder-title" aria-describedby="preorder-description" tabindex="-1">
         <button class="preorder-modal-close" type="button" data-preorder-close aria-label="Tutup pre-order">×</button>
         <div class="preorder-modal-brand"><img src="{{ asset('images/branding/logo-yza.png') }}" alt="YZA Automotive"><span>YZA AUTOMOTIVE</span></div>
-        <div class="preorder-modal-content"><div class="preorder-modal-visual"><img src="{{ $primaryImage }}" alt="{{ $mobil->merk }} {{ $modelName }}"></div><div class="preorder-modal-copy"><span class="detail-kicker">PREMIUM MEMBER BENEFIT</span><h2 id="preorder-title">PRE-ORDER EKSKLUSIF</h2><h3>{{ $mobil->merk }} {{ $modelName }}</h3><p id="preorder-description">Dapatkan notifikasi saat stok kendaraan ini kembali tersedia. Pre-order tidak memerlukan pembayaran dan tidak menjamin reservasi unit.</p><div class="preorder-modal-meta"><span>STOK HABIS</span><strong>{{ $price }}</strong></div><div class="preorder-modal-feedback" data-preorder-feedback role="status" aria-live="polite"></div><form data-preorder-form method="post" action="{{ route('pelanggan.preorder.store') }}">@csrf @if($mobil->showcase_slug)<input type="hidden" name="slug" value="{{ $mobil->showcase_slug }}">@else<input type="hidden" name="mobil" value="{{ $mobil->id_mobil }}">@endif<button class="preorder-modal-submit" type="submit" data-preorder-submit>DAFTAR PRE-ORDER <span>→</span></button></form><div class="preorder-modal-secondary"><a href="{{ yza_whatsapp_url($whatsappText) }}" target="_blank" rel="noopener">KONSULTASI VIA WHATSAPP</a><a href="{{ route('pelanggan.preorder.index') }}" data-preorder-list-link hidden>LIHAT PRE-ORDER SAYA</a></div></div></div>
+        <div class="preorder-modal-content"><div class="preorder-modal-visual"><img src="{{ $primaryImage }}" alt="{{ $mobil->merk }} {{ $modelName }}"></div><div class="preorder-modal-copy"><span class="detail-kicker">PREMIUM MEMBER BENEFIT</span><h2 id="preorder-title">PRE-ORDER EKSKLUSIF</h2><h3>{{ $mobil->merk }} {{ $modelName }}</h3><p id="preorder-description">Dapatkan notifikasi saat stok kendaraan ini kembali tersedia. Pre-order tidak memerlukan pembayaran dan tidak menjamin reservasi unit.</p><div class="preorder-modal-meta"><span>STOK HABIS</span><strong>{{ $price }}</strong></div><div class="preorder-modal-feedback" data-preorder-feedback role="status" aria-live="polite"></div><p>{{ $mobil->tipe }} · {{ $mobil->tahun }} · <strong data-preorder-color>{{ $colorName }}</strong></p><form data-preorder-form method="post" action="{{ route('pelanggan.preorder.store') }}">@csrf @if($mobil->showcase_slug)<input type="hidden" name="slug" value="{{ $mobil->showcase_slug }}">@else<input type="hidden" name="mobil" value="{{ $mobil->id_mobil }}">@endif<input type="hidden" name="warna" value="{{ $colorName }}"><button class="preorder-modal-submit" type="submit" data-preorder-submit>DAFTAR PRE-ORDER <span>→</span></button></form><div class="preorder-modal-secondary"><a href="{{ yza_whatsapp_url($whatsappText) }}" target="_blank" rel="noopener">KONSULTASI VIA WHATSAPP</a><a href="{{ route('pelanggan.preorder.index') }}" data-preorder-list-link hidden>LIHAT PRE-ORDER SAYA</a></div></div></div>
     </section>
 </div>
 @endif
@@ -175,19 +220,32 @@
     const specColor = document.getElementById('detail-spec-color');
     const counter = document.getElementById('detail-gallery-counter');
     const caption = document.getElementById('detail-gallery-caption');
-    const swatches = [...document.querySelectorAll('.detail-swatch')];
+    const swatches = [...document.querySelectorAll('.detail-gallery-color-picker .detail-swatch, .detail-swatch')];
     const purchaseLink = document.querySelector('[data-purchase-link]');
-    const updatePurchaseLink = () => { if (!purchaseLink) return; const url = new URL(purchaseLink.dataset.purchaseUrl, window.location.origin); url.searchParams.set('warna', state.color); purchaseLink.href = url.toString(); };
+    const updatePurchaseLink = () => {
+        const color = galleryData[state.color]; if (!color) return;
+        if (purchaseLink) { purchaseLink.hidden = !color.purchase_url; purchaseLink.href = color.purchase_url || '#'; }
+        const trigger = document.querySelector('[data-preorder-trigger]'); if (trigger) trigger.hidden = !!color.purchase_url;
+        const status = document.querySelector('[data-color-stock-status]'); if (status) status.textContent = color.stock > 0 ? color.stock + ' unit siap jual' : 'Stok Habis';
+        document.querySelectorAll('.detail-status-badge, .detail-spec-status .detail-status-tag').forEach(badge => {
+            badge.textContent = color.stock > 0 ? 'TERSEDIA · ' + color.stock + ' UNIT' : 'STOK HABIS';
+            badge.classList.remove('is-last','is-low','is-empty','is-available'); badge.classList.add(color.stock > 0 ? 'is-available' : 'is-empty');
+        });
+        const colorName = document.querySelector('[data-preorder-color]'); if (colorName) colorName.textContent = color.label;
+        const input = document.querySelector('[data-preorder-form] input[name="warna"]'); if (input) input.value = color.label;
+        const submit = document.querySelector('[data-preorder-submit]'); if (submit) { submit.hidden = false; submit.disabled = false; submit.classList.remove('is-loading'); submit.querySelector('span').textContent = '→'; }
+        document.querySelector('[data-preorder-list-link]')?.setAttribute('hidden', '');
+    };
     const renderGallery = () => {
-        const gallery = galleryData[state.color] || galleryData.default; const images = gallery?.images || []; if (!images.length) return;
+        const gallery = galleryData[state.color] || {};  const images = gallery?.images || []; if (!images.length) return;
         state.index = Math.min(state.index, images.length - 1); const image = images[state.index]; mainImage.src = image.src || fallbackImage; mainImage.alt = `${image.label} {{ $mobil->model }}`; counter.textContent = `${String(state.index + 1).padStart(2, '0')} / ${String(images.length).padStart(2, '0')}`; caption.textContent = `${image.label} · YZA Automotive`;
         thumbnailsRoot.innerHTML = images.map((item, index) => `<button class="detail-thumbnail ${index === state.index ? 'is-active' : ''}" type="button" data-index="${index}" role="listitem" aria-label="Lihat ${item.label}"><img src="${item.src}" alt="${item.label} {{ $mobil->model }}"><span>0${index + 1}</span></button>`).join('');
     };
-    const changeColor = swatch => { state.color = swatch.dataset.colorKey; state.index = 0; swatches.forEach(item => { const active = item === swatch; item.classList.toggle('is-active', active); item.setAttribute('aria-pressed', active ? 'true' : 'false'); }); colorLabel.textContent = swatch.dataset.color; if (specColor) specColor.textContent = swatch.dataset.color; updatePurchaseLink(); renderGallery(); };
+    const changeColor = swatch => { state.color = swatch.dataset.colorKey; state.index = 0; swatches.forEach(item => { const active = item === swatch; item.classList.toggle('is-active', active); item.setAttribute('aria-pressed', active ? 'true' : 'false'); item.setAttribute('aria-checked', active ? 'true' : 'false'); }); if (colorLabel) colorLabel.textContent = swatch.dataset.color; if (specColor) specColor.textContent = swatch.dataset.color; updatePurchaseLink(); renderGallery(); };
     swatches.forEach(swatch => swatch.addEventListener('click', () => changeColor(swatch)));
     thumbnailsRoot.addEventListener('click', event => { const thumbnail = event.target.closest('.detail-thumbnail'); if (!thumbnail) return; state.index = Number(thumbnail.dataset.index); renderGallery(); });
-    document.querySelector('.detail-gallery-arrow-prev')?.addEventListener('click', () => { const count = (galleryData[state.color] || galleryData.default).images.length; state.index = (state.index - 1 + count) % count; renderGallery(); });
-    document.querySelector('.detail-gallery-arrow-next')?.addEventListener('click', () => { const count = (galleryData[state.color] || galleryData.default).images.length; state.index = (state.index + 1) % count; renderGallery(); });
+    document.querySelector('.detail-gallery-arrow-prev')?.addEventListener('click', () => { const count = (galleryData[state.color]?.images || []).length; if (!count) return; state.index = (state.index - 1 + count) % count; renderGallery(); });
+    document.querySelector('.detail-gallery-arrow-next')?.addEventListener('click', () => { const count = (galleryData[state.color]?.images || []).length; if (!count) return; state.index = (state.index + 1) % count; renderGallery(); });
     mainImage.addEventListener('error', () => { if (mainImage.src !== fallbackImage) mainImage.src = fallbackImage; });
     renderGallery();
     updatePurchaseLink();
@@ -201,11 +259,11 @@
     const preorderListLink = preorderModal?.querySelector('[data-preorder-list-link]');
     let preorderSubmitting = false;
     const closePreorder = () => { if (!preorderModal || preorderSubmitting) return; preorderModal.hidden = true; preorderModal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('preorder-modal-open'); preorderTrigger?.focus(); };
-    const openPreorder = () => { if (!preorderModal) return; preorderModal.hidden = false; preorderModal.setAttribute('aria-hidden', 'false'); document.body.classList.add('preorder-modal-open'); preorderFeedback.textContent = ''; preorderDialog?.focus(); };
+    const openPreorder = () => { if (!preorderModal) return; preorderModal.hidden = false; preorderModal.setAttribute('aria-hidden', 'false'); document.body.classList.add('preorder-modal-open'); preorderSubmitting = false; preorderFeedback.textContent = ''; preorderDialog?.focus(); };
     preorderTrigger?.addEventListener('click', openPreorder);
     preorderModal?.querySelectorAll('[data-preorder-close]').forEach(item => item.addEventListener('click', closePreorder));
     document.addEventListener('keydown', event => { if (!preorderModal || preorderModal.hidden) return; if (event.key === 'Escape') { closePreorder(); return; } if (event.key !== 'Tab') return; const focusables = [...preorderDialog.querySelectorAll('button:not([hidden]), a:not([hidden]), input:not([hidden])')].filter(item => !item.disabled); if (!focusables.length) return; const first = focusables[0]; const last = focusables[focusables.length - 1]; if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); } else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); } });
-    preorderForm?.addEventListener('submit', async event => { event.preventDefault(); if (preorderSubmitting) return; preorderSubmitting = true; preorderSubmit.disabled = true; preorderSubmit.classList.add('is-loading'); preorderSubmit.querySelector('span').textContent = '…'; preorderFeedback.textContent = 'Menyimpan pre-order…'; preorderFeedback.className = 'preorder-modal-feedback is-pending'; try { const response = await fetch(preorderForm.action, { method: 'POST', body: new FormData(preorderForm), headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' }, credentials: 'same-origin' }); const data = await response.json(); if (!response.ok || !data.ok) throw new Error(data.message || 'Pre-order belum dapat disimpan.'); preorderFeedback.textContent = data.message; preorderFeedback.className = 'preorder-modal-feedback is-success'; preorderSubmit.hidden = true; preorderListLink.hidden = false; } catch (error) { preorderFeedback.textContent = error.message || 'Terjadi kesalahan. Silakan coba lagi.'; preorderFeedback.className = 'preorder-modal-feedback is-error'; preorderSubmitting = false; preorderSubmit.disabled = false; preorderSubmit.classList.remove('is-loading'); preorderSubmit.querySelector('span').textContent = '→'; } });
+    preorderForm?.addEventListener('submit', async event => { event.preventDefault(); if (preorderSubmitting) return; preorderSubmitting = true; preorderSubmit.disabled = true; preorderSubmit.classList.add('is-loading'); preorderSubmit.querySelector('span').textContent = '…'; preorderFeedback.textContent = 'Menyimpan pre-order…'; preorderFeedback.className = 'preorder-modal-feedback is-pending'; try { const response = await fetch(preorderForm.action, { method: 'POST', body: new FormData(preorderForm), headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' }, credentials: 'same-origin' }); const data = await response.json(); if (!response.ok || !data.ok) throw new Error(data.message || 'Pre-order belum dapat disimpan.'); preorderFeedback.textContent = data.message; preorderFeedback.className = 'preorder-modal-feedback is-success'; preorderSubmit.hidden = true; preorderListLink.hidden = false; } catch (error) { preorderFeedback.textContent = error.message || 'Terjadi kesalahan. Silakan coba lagi.'; preorderFeedback.className = 'preorder-modal-feedback is-error'; preorderSubmitting = false; preorderSubmit.disabled = false; preorderSubmit.classList.remove('is-loading'); preorderSubmit.querySelector('span').textContent = '→'; } finally { preorderSubmitting = false; } });
 })();
 </script>
 @endpush

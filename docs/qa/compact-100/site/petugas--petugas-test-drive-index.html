@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="vMDflIQbcOIwL837y9hRSQWi6lzy2KmD6GzkwEZE">
+    <title>Test Drive · YZA Automotive</title>
+    <link rel="stylesheet" href="http://127.0.0.1:8011/css/app.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8011/assets/css/vehicle-badges.css?v=stock-badges-20261010">
+                        <link rel="stylesheet" href="http://127.0.0.1:8011/assets/css/responsive-foundation.css?v=1793927409">
+<script src="http://127.0.0.1:8011/assets/js/responsive-foundation.js?v=1793681254" defer></script>
+</head>
+<body class="  ">
+            <div class="yza-shell">
+                            <header class="yza-header">
+                    <a class="yza-brand" href="http://127.0.0.1:8000">
+                        <img src="http://127.0.0.1:8011/images/branding/logo-yza.png" alt="YZA Automotive">
+                        <span>YZA Automotive</span>
+                    </a>
+                    <div class="yza-header-actions">
+                                                    <form method="post" action="http://127.0.0.1:8011/logout" class="yza-logout-form">
+                                <input type="hidden" name="_token" value="vMDflIQbcOIwL837y9hRSQWi6lzy2KmD6GzkwEZE" autocomplete="off">                                <button class="yza-logout-button" type="submit">Keluar</button>
+                            </form>
+                                                <button class="yza-menu-toggle" type="button" aria-label="Buka navigasi" aria-expanded="false">☰</button>
+                    </div>
+                </header>
+            
+            <div class="yza-body ">
+                                                            <aside class="yza-sidebar" aria-label="Navigasi utama">
+                            <div class="yza-sidebar-placeholder">Navigasi akan diaktifkan pada tahap authentication dan modul.</div>
+                        </aside>
+                                                    <main class="yza-content">
+                                        <div class="admin-testdrive-page">
+    <div class="testdrive-breadcrumb"><span>⌂</span><b>›</b><span>Layanan &amp; Operasional</span><b>›</b><strong>Test Drive</strong></div>
+    <div class="testdrive-page-header"><span class="testdrive-eyebrow">LAYANAN &amp; OPERASIONAL</span><h1>Test Drive</h1><p>Kelola jadwal test drive pelanggan, pantau status, dan atur proses pengalaman berkendara dengan mudah.</p></div>
+    <section class="testdrive-hero"><div class="testdrive-hero-copy"><span>TEST DRIVE MANAGEMENT</span><h2>Kelola <em>Test Drive</em> dengan Mudah</h2><p>Pantau seluruh pengajuan test drive, jadwal kunjungan, konfirmasi admin, hingga penyelesaian dalam satu tampilan yang terintegrasi.</p></div><div class="testdrive-hero-points"><div><b>▣</b><span>Proses penjadwalan<br>lebih rapi</span></div><div><b>ϟ</b><span>Pantau status<br>lebih cepat</span></div><div><b>♣</b><span>Pengalaman pelanggan<br>lebih premium</span></div></div></section>
+    <section class="testdrive-stats" aria-label="Ringkasan test drive">
+        <div class="testdrive-stat tone-red"><span>▣</span><div><strong>1</strong><small>Total Pengajuan</small></div><i>↗</i></div>
+        <div class="testdrive-stat tone-amber"><span>◷</span><div><strong>0</strong><small>Menunggu Konfirmasi</small></div><i>↗</i></div>
+        <div class="testdrive-stat tone-blue"><span>▣</span><div><strong>0</strong><small>Dijadwalkan</small></div><i>↗</i></div>
+        <div class="testdrive-stat tone-green"><span>✓</span><div><strong>1</strong><small>Selesai</small></div><i>↗</i></div>
+        <div class="testdrive-stat tone-rose"><span>×</span><div><strong>0</strong><small>Dibatalkan / Ditolak</small></div><i>↗</i></div>
+    </section>
+    <section class="testdrive-panel">
+        <div class="testdrive-panel-heading"><div class="testdrive-section-icon">🚘</div><div><h2>Daftar Test Drive</h2><p>Daftar seluruh jadwal test drive pelanggan beserta statusnya.</p></div><span class="testdrive-total">1 pengajuan</span></div>
+        <form class="testdrive-filter-bar" method="get" action="http://127.0.0.1:8011/admin/test-drive"><label class="testdrive-search"><span>⌕</span><input name="q" value="" placeholder="Cari kode test drive, nama pelanggan, atau mobil..." aria-label="Cari test drive"></label><select name="status" aria-label="Filter status"><option value="">Semua Status</option><option value="menunggu" >Menunggu</option><option value="disetujui" >Dijadwalkan</option><option value="selesai" >Selesai</option><option value="ditolak" >Ditolak</option><option value="dibatalkan" >Dibatalkan</option></select><label class="testdrive-date"><span>▣</span><input type="date" name="date" value="" aria-label="Pilih tanggal"></label><button class="testdrive-apply" type="submit">⌯ &nbsp; Terapkan</button><a class="testdrive-reset" href="http://127.0.0.1:8011/admin/test-drive">↻ &nbsp; Reset</a></form>
+        <div class="testdrive-table-wrap"><table class="testdrive-table"><thead><tr><th>Kode Test Drive</th><th>Pelanggan</th><th>Mobil</th><th>Jadwal</th><th>Status</th><th>Aksi</th></tr></thead><tbody>
+                                <tr><td><strong>TDRV-202609-STAGE2-01</strong><small>#1</small></td><td><strong>Stage 2 Member Two</strong><small>Member #2</small></td><td><div class="testdrive-car"><span class="testdrive-car-thumb"><img src="http://127.0.0.1:8011/assets/images/vehicles/avanza/gray/front.png" alt="Mercedes Amg GT Black Series" loading="lazy"></span><span><strong>Mercedes Amg GT Black Series</strong><small>PREM-04</small></span></div></td><td><div class="testdrive-schedule"><strong>▣ &nbsp;13 Oct 2026</strong><small>◷ &nbsp;10:00 – 11:00</small></div></td><td><span class="testdrive-status status-success"><i></i>Selesai</span></td><td><div class="testdrive-actions"><a class="testdrive-detail" href="http://127.0.0.1:8011/petugas/test-drive/1">◉ &nbsp; Detail</a>
+                            </div></td></tr>
+                </tbody></table></div>
+        <div class="testdrive-pagination"><span>Menampilkan <b>1–1</b> dari <b>1</b> data</span><div><label>Per halaman <select onchange="window.location=this.value"><option value="http://127.0.0.1:8011/petugas/test-drive?perPage=10&amp;page=1" selected>10</option><option value="http://127.0.0.1:8011/petugas/test-drive?perPage=20&amp;page=1" >20</option><option value="http://127.0.0.1:8011/petugas/test-drive?perPage=50&amp;page=1" >50</option></select></label></div></div>
+    </section>
+</div>
+                </main>
+            </div>
+        </div>
+        <script src="http://127.0.0.1:8011/js/app.js" defer></script>
+            <script>document.querySelectorAll('.testdrive-table form').forEach(function(form){form.addEventListener('submit',function(){var button=form.querySelector('button');if(button){button.disabled=true;button.textContent='Memproses…';}});});</script></body>
+</html>

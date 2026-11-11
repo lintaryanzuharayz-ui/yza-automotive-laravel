@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Tests\Feature\QcPdiHardeningStage3Test" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\QcPdiHardeningStage3Test.php" tests="2" assertions="2" errors="0" failures="2" skipped="0" time="0.815503">
+    <testcase name="test_finalization_without_quality_control_is_rejected" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\QcPdiHardeningStage3Test.php" line="36" class="Tests\Feature\QcPdiHardeningStage3Test" classname="Tests.Feature.QcPdiHardeningStage3Test" assertions="1" time="0.604665">
+      <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\QcPdiHardeningStage3Test::test_finalization_without_quality_control_is_rejected&#13;
+Failed asserting that exception of type "RuntimeException" is thrown.</failure>
+    </testcase>
+    <testcase name="test_legacy_boolean_pdi_cannot_pass_without_detailed_checklist" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\QcPdiHardeningStage3Test.php" line="43" class="Tests\Feature\QcPdiHardeningStage3Test" classname="Tests.Feature.QcPdiHardeningStage3Test" assertions="1" time="0.210839">
+      <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\QcPdiHardeningStage3Test::test_legacy_boolean_pdi_cannot_pass_without_detailed_checklist&#13;
+Failed asserting that exception of type "RuntimeException" is thrown.</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

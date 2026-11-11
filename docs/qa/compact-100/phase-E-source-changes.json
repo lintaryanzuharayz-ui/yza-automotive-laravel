@@ -1,0 +1,466 @@
+[
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-sales-heading",
+    "media": null,
+    "prop": "font-size",
+    "before": "32px",
+    "after": "clamp(1.5rem,2.1vw,2rem)"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-sales-heading",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(30px,2.55vw,42px)",
+    "after": "clamp(1.5rem,2.1vw,2rem)"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-sales-heading",
+    "media": "(max-width:600px)",
+    "prop": "font-size",
+    "before": "28px",
+    "after": "clamp(1.5rem,2.1vw,2rem)"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-preorder-page .admin-sales-heading",
+    "media": null,
+    "prop": "font-size",
+    "before": "36px",
+    "after": "28px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-preorder-page .admin-sales-banner",
+    "media": null,
+    "prop": "height",
+    "before": "268px",
+    "after": "200px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-preorder-page .admin-sales-banner",
+    "media": "(max-width:760px)",
+    "prop": "height",
+    "before": "330px",
+    "after": "200px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-sales-page .admin-sales-heading",
+    "media": null,
+    "prop": "font-size",
+    "before": "36px",
+    "after": "28px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-sales-page .admin-sales-heading",
+    "media": "(max-width:760px)",
+    "prop": "font-size",
+    "before": "30px",
+    "after": "28px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-selling-page .admin-sales-heading",
+    "media": null,
+    "prop": "font-size",
+    "before": "36px",
+    "after": "28px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-selling-page .admin-sales-banner",
+    "media": null,
+    "prop": "height",
+    "before": "258px",
+    "after": "200px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-selling-page .admin-sales-banner",
+    "media": "(max-width:760px)",
+    "prop": "height",
+    "before": "320px",
+    "after": "200px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-sales-page.admin-preorder-page .admin-sales-banner",
+    "media": null,
+    "prop": "height",
+    "before": "268px",
+    "after": "200px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-sales-page.admin-preorder-page .admin-sales-banner",
+    "media": "(max-width:760px)",
+    "prop": "height",
+    "before": "330px",
+    "after": "200px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".transactions-heading-copy h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "36px",
+    "after": "28px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".transactions-heading-copy h1",
+    "media": "(max-width:900px)",
+    "prop": "font-size",
+    "before": "30px",
+    "after": "28px"
+  },
+  {
+    "file": "resources/views/operations/servis/show-premium.blade.php",
+    "selector": ".wo-hero-copy h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "32px",
+    "after": "28px"
+  },
+  {
+    "file": "resources/views/operations/servis/show-premium.blade.php",
+    "selector": ".wo-stepper",
+    "media": null,
+    "prop": "padding",
+    "before": "30px 25px 20px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/operations/servis/show-premium.blade.php",
+    "selector": ".wo-panel",
+    "media": null,
+    "prop": "padding",
+    "before": "21px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/operations/servis/show-premium.blade.php",
+    "selector": ".wo-form label",
+    "media": null,
+    "prop": "font-size",
+    "before": "11px",
+    "after": "12px"
+  },
+  {
+    "file": "resources/views/operations/servis/show-premium.blade.php",
+    "selector": ".wo-form input,.wo-form select,.wo-form textarea",
+    "media": null,
+    "prop": "min-height",
+    "before": "42px",
+    "after": "44px"
+  },
+  {
+    "file": "resources/views/operations/servis/show-premium.blade.php",
+    "selector": ".wo-form input,.wo-form select,.wo-form textarea",
+    "media": null,
+    "prop": "font-size",
+    "before": "13px",
+    "after": "14px"
+  },
+  {
+    "file": "resources/views/operations/servis/show-premium.blade.php",
+    "selector": ".wo-stepper",
+    "media": "(max-width:760px)",
+    "prop": "padding",
+    "before": "22px 12px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/operations/servis/show-premium.blade.php",
+    "selector": ".wo-panel",
+    "media": "(max-width:760px)",
+    "prop": "padding",
+    "before": "17px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "selector": ".wz-page",
+    "media": null,
+    "prop": "padding",
+    "before": "26px clamp(18px,3vw,48px) 60px",
+    "after": "18px clamp(16px,2vw,28px) 40px"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "selector": ".wz-stepper",
+    "media": null,
+    "prop": "padding",
+    "before": "19px 22px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "selector": ".wz-card",
+    "media": null,
+    "prop": "padding",
+    "before": "22px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "selector": ".wz-label",
+    "media": null,
+    "prop": "font-size",
+    "before": "10px",
+    "after": "12px"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "selector": ".wz-input,.wz-select,.wz-textarea",
+    "media": null,
+    "prop": "min-height",
+    "before": "42px",
+    "after": "44px"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "selector": ".wz-input,.wz-select,.wz-textarea",
+    "media": null,
+    "prop": "font-size",
+    "before": "13px",
+    "after": "14px"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "selector": ".wz-btn",
+    "media": null,
+    "prop": "min-height",
+    "before": "42px",
+    "after": "44px"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "selector": ".wz-page",
+    "media": "(max-width:650px)",
+    "prop": "padding",
+    "before": "18px 14px 38px",
+    "after": "18px clamp(16px,2vw,28px) 40px"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "selector": ".wz-card",
+    "media": "(max-width:650px)",
+    "prop": "padding",
+    "before": "17px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "selector": ".wz-page",
+    "media": null,
+    "prop": "padding",
+    "before": "24px clamp(20px,2vw,34px) 60px",
+    "after": "18px clamp(16px,2vw,28px) 40px"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "selector": ".wz-stepper",
+    "media": null,
+    "prop": "padding",
+    "before": "22px 28px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "selector": ".wz-card",
+    "media": null,
+    "prop": "padding",
+    "before": "28px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "selector": ".wz-label",
+    "media": null,
+    "prop": "font-size",
+    "before": "11px",
+    "after": "12px"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "selector": ".wz-input,.wz-select,.wz-textarea",
+    "media": null,
+    "prop": "min-height",
+    "before": "48px",
+    "after": "44px"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "selector": ".wz-input,.wz-select,.wz-textarea",
+    "media": null,
+    "prop": "font-size",
+    "before": "15px",
+    "after": "14px"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "selector": ".wz-btn",
+    "media": null,
+    "prop": "min-height",
+    "before": "48px",
+    "after": "44px"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "selector": ".wz-card",
+    "media": "(max-width:1200px)",
+    "prop": "padding",
+    "before": "24px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "selector": ".wz-page",
+    "media": "(max-width:650px)",
+    "prop": "padding",
+    "before": "18px 14px 38px",
+    "after": "18px clamp(16px,2vw,28px) 40px"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium.css",
+    "selector": ".service-detail-page",
+    "media": null,
+    "prop": "padding",
+    "before": "18px clamp(18px,2.4vw,44px) 60px",
+    "after": "8px 0 32px"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium.css",
+    "selector": ".service-detail-hero",
+    "media": null,
+    "prop": "min-height",
+    "before": "190px",
+    "after": "220px"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium.css",
+    "selector": ".service-detail-hero",
+    "media": null,
+    "prop": "padding",
+    "before": "30px clamp(26px,3vw,52px)",
+    "after": "22px"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium.css",
+    "selector": ".service-detail-hero h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(42px,4.2vw,70px)",
+    "after": "clamp(1.875rem,3vw,2.5rem)"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium.css",
+    "selector": ".service-detail-card",
+    "media": null,
+    "prop": "padding",
+    "before": "22px",
+    "after": "18px"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium.css",
+    "selector": ".service-detail-card h2",
+    "media": null,
+    "prop": "font-size",
+    "before": "26px",
+    "after": "22px"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium.css",
+    "selector": ".service-detail-page",
+    "media": "(max-width:760px)",
+    "prop": "padding",
+    "before": "16px 12px 40px",
+    "after": "8px 0 32px"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium.css",
+    "selector": ".service-detail-hero",
+    "media": "(max-width:760px)",
+    "prop": "min-height",
+    "before": "310px",
+    "after": "220px"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium.css",
+    "selector": ".service-detail-hero",
+    "media": "(max-width:760px)",
+    "prop": "padding",
+    "before": "26px 20px",
+    "after": "22px"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium.css",
+    "selector": ".service-detail-hero h1",
+    "media": "(max-width:760px)",
+    "prop": "font-size",
+    "before": "48px",
+    "after": "clamp(1.875rem,3vw,2.5rem)"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium.css",
+    "selector": ".service-detail-card h2",
+    "media": "(max-width:760px)",
+    "prop": "font-size",
+    "before": "23px",
+    "after": "22px"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium-overrides.css",
+    "selector": ".service-detail-page .member-approval-section",
+    "media": null,
+    "prop": "padding",
+    "before": "28px 30px",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium-overrides.css",
+    "selector": ".service-detail-page .member-approval-section",
+    "media": "(max-width:700px)",
+    "prop": "padding",
+    "before": "22px 18px",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium-overrides.css",
+    "selector": ".member-approval-page",
+    "media": null,
+    "prop": "padding",
+    "before": "28px 24px 64px",
+    "after": "20px 16px 40px"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium-overrides.css",
+    "selector": ".member-approval-page .member-approval-section",
+    "media": null,
+    "prop": "padding",
+    "before": "30px 34px",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium-overrides.css",
+    "selector": ".member-approval-page",
+    "media": "(max-width:700px)",
+    "prop": "padding",
+    "before": "20px 12px 44px",
+    "after": "20px 16px 40px"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium-overrides.css",
+    "selector": ".member-approval-page .member-approval-section",
+    "media": "(max-width:700px)",
+    "prop": "padding",
+    "before": "22px 18px",
+    "after": "20px"
+  }
+]

@@ -1,0 +1,455 @@
+[
+  {
+    "role": "admin",
+    "route": "admin.finance-dashboard.index",
+    "uri": "admin/keuangan",
+    "status": 200,
+    "file": "admin--admin-finance-dashboard-index.html",
+    "client": 305,
+    "heading": "Manajemen Pembayaran",
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "admin",
+    "route": "admin.payments.index",
+    "uri": "admin/pembayaran",
+    "status": 200,
+    "file": "admin--admin-payments-index.html",
+    "client": 305,
+    "heading": "Manajemen Pembayaran",
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "admin",
+    "route": "admin.laporan-servis.index",
+    "uri": "admin/laporan-servis",
+    "status": 200,
+    "file": "admin--admin-laporan-servis-index.html",
+    "client": 305,
+    "heading": "Laporan Servis",
+    "scroll": 339,
+    "width": 320
+  },
+  {
+    "role": "admin",
+    "route": "admin.sparepart.show",
+    "uri": "admin/sparepart/1",
+    "status": 200,
+    "file": "admin--admin-sparepart-show.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "admin",
+    "route": "admin.stok-masuk.index",
+    "uri": "admin/stok-masuk",
+    "status": 200,
+    "file": "admin--admin-stok-masuk-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "admin",
+    "route": "admin.booking-servis.index",
+    "uri": "admin/booking-servis",
+    "status": 200,
+    "file": "admin--admin-booking-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "admin",
+    "route": "admin.servis.index",
+    "uri": "admin/servis",
+    "status": 200,
+    "file": "admin--admin-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "admin",
+    "route": "petugas.booking-servis.index",
+    "uri": "petugas/booking-servis",
+    "status": 200,
+    "file": "admin--petugas-booking-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "admin",
+    "route": "petugas.servis.index",
+    "uri": "petugas/servis",
+    "status": 200,
+    "file": "admin--petugas-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.booking-servis.index",
+    "uri": "petugas/booking-servis",
+    "status": 200,
+    "file": "petugas--petugas-booking-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "petugas",
+    "route": "petugas.servis.index",
+    "uri": "petugas/servis",
+    "status": 200,
+    "file": "petugas--petugas-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "pelanggan",
+    "route": "pelanggan.trade-in.index",
+    "uri": "pelanggan/trade-in",
+    "status": 200,
+    "file": "pelanggan--pelanggan-trade-in-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.finance-dashboard.index",
+    "uri": "admin/keuangan",
+    "status": 200,
+    "file": "super_admin--admin-finance-dashboard-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.payments.index",
+    "uri": "admin/pembayaran",
+    "status": 200,
+    "file": "super_admin--admin-payments-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.laporan-servis.index",
+    "uri": "admin/laporan-servis",
+    "status": 200,
+    "file": "super_admin--admin-laporan-servis-index.html",
+    "client": 305,
+    "scroll": 339,
+    "width": 320
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.sparepart.show",
+    "uri": "admin/sparepart/1",
+    "status": 200,
+    "file": "super_admin--admin-sparepart-show.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.stok-masuk.index",
+    "uri": "admin/stok-masuk",
+    "status": 200,
+    "file": "super_admin--admin-stok-masuk-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.booking-servis.index",
+    "uri": "admin/booking-servis",
+    "status": 200,
+    "file": "super_admin--admin-booking-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "super_admin",
+    "route": "admin.servis.index",
+    "uri": "admin/servis",
+    "status": 200,
+    "file": "super_admin--admin-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.booking-servis.index",
+    "uri": "petugas/booking-servis",
+    "status": 200,
+    "file": "super_admin--petugas-booking-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "super_admin",
+    "route": "petugas.servis.index",
+    "uri": "petugas/servis",
+    "status": 200,
+    "file": "super_admin--petugas-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "owner",
+    "route": "admin.finance-dashboard.index",
+    "uri": "admin/keuangan",
+    "status": 200,
+    "file": "owner--admin-finance-dashboard-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "owner",
+    "route": "admin.payments.index",
+    "uri": "admin/pembayaran",
+    "status": 200,
+    "file": "owner--admin-payments-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "owner",
+    "route": "admin.laporan-servis.index",
+    "uri": "admin/laporan-servis",
+    "status": 200,
+    "file": "owner--admin-laporan-servis-index.html",
+    "client": 305,
+    "scroll": 339,
+    "width": 320
+  },
+  {
+    "role": "owner",
+    "route": "admin.sparepart.show",
+    "uri": "admin/sparepart/1",
+    "status": 200,
+    "file": "owner--admin-sparepart-show.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "owner",
+    "route": "admin.stok-masuk.index",
+    "uri": "admin/stok-masuk",
+    "status": 200,
+    "file": "owner--admin-stok-masuk-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "owner",
+    "route": "admin.booking-servis.index",
+    "uri": "admin/booking-servis",
+    "status": 200,
+    "file": "owner--admin-booking-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "owner",
+    "route": "admin.servis.index",
+    "uri": "admin/servis",
+    "status": 200,
+    "file": "owner--admin-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.booking-servis.index",
+    "uri": "admin/booking-servis",
+    "status": 200,
+    "file": "service_advisor--admin-booking-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "service_advisor",
+    "route": "admin.servis.index",
+    "uri": "admin/servis",
+    "status": 200,
+    "file": "service_advisor--admin-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "service_advisor",
+    "route": "petugas.booking-servis.index",
+    "uri": "petugas/booking-servis",
+    "status": 200,
+    "file": "service_advisor--petugas-booking-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "service_advisor",
+    "route": "petugas.servis.index",
+    "uri": "petugas/servis",
+    "status": 200,
+    "file": "service_advisor--petugas-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.sparepart.show",
+    "uri": "admin/sparepart/1",
+    "status": 200,
+    "file": "mechanic--admin-sparepart-show.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.stok-masuk.index",
+    "uri": "admin/stok-masuk",
+    "status": 200,
+    "file": "mechanic--admin-stok-masuk-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.booking-servis.index",
+    "uri": "admin/booking-servis",
+    "status": 200,
+    "file": "mechanic--admin-booking-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "mechanic",
+    "route": "admin.servis.index",
+    "uri": "admin/servis",
+    "status": 200,
+    "file": "mechanic--admin-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.sparepart.show",
+    "uri": "admin/sparepart/1",
+    "status": 200,
+    "file": "warehouse_staff--admin-sparepart-show.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "warehouse_staff",
+    "route": "admin.stok-masuk.index",
+    "uri": "admin/stok-masuk",
+    "status": 200,
+    "file": "warehouse_staff--admin-stok-masuk-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "finance",
+    "route": "admin.finance-dashboard.index",
+    "uri": "admin/keuangan",
+    "status": 200,
+    "file": "finance--admin-finance-dashboard-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "finance",
+    "route": "admin.payments.index",
+    "uri": "admin/pembayaran",
+    "status": 200,
+    "file": "finance--admin-payments-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "finance",
+    "route": "admin.laporan-servis.index",
+    "uri": "admin/laporan-servis",
+    "status": 200,
+    "file": "finance--admin-laporan-servis-index.html",
+    "client": 305,
+    "scroll": 339,
+    "width": 320
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.booking-servis.index",
+    "uri": "admin/booking-servis",
+    "status": 200,
+    "file": "operational_staff--admin-booking-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "operational_staff",
+    "route": "admin.servis.index",
+    "uri": "admin/servis",
+    "status": 200,
+    "file": "operational_staff--admin-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.booking-servis.index",
+    "uri": "admin/booking-servis",
+    "status": 200,
+    "file": "quality_control--admin-booking-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "role": "quality_control",
+    "route": "admin.servis.index",
+    "uri": "admin/servis",
+    "status": 200,
+    "file": "quality_control--admin-servis-index.html",
+    "client": 305,
+    "scroll": 305,
+    "width": 320
+  }
+]

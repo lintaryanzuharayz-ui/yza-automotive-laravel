@@ -11,10 +11,11 @@ use Tests\TestCase;
 class VehicleAggregateInventoryFlowTest extends TestCase
 {
     use DatabaseTransactions;
+    use \Tests\Support\CompletesQualityChecks;
 
     private function customer(): User { return User::whereHas('role', fn ($q) => $q->where('nama_role', 'pelanggan'))->firstOrFail(); }
     private function actor(): int { return (int) User::whereHas('role', fn ($q) => $q->where('nama_role', 'petugas'))->firstOrFail()->petugas->id_petugas; }
-    private function car(): Mobil { return Mobil::where('merk', 'Lamborghini')->where('model', 'Revuelto')->firstOrFail(); }
+    private function car(): Mobil { return Mobil::where('merk', 'Lamborghini')->where('model', 'Revuelto')->where('status', 'tersedia')->firstOrFail(); }
     private function stock(): array { return app(VehicleAvailabilityService::class)->for($this->car()); }
 
     public function test_reservation_settlement_handover_and_payment_failure_change_aggregate_availability_once(): void
@@ -31,7 +32,7 @@ class VehicleAggregateInventoryFlowTest extends TestCase
         app(PaymentService::class)->create($approved->id_transaksi, $actor, (string) $approved->total_tagihan, 'tunai', null, 'Aggregate stock QA');
         $this->assertSame(7, $this->stock()['stock']);
 
-        $items = array_fill_keys(['mesin', 'eksterior', 'interior', 'rem', 'ban', 'kelistrikan', 'lampu', 'ac', 'dokumen', 'final_quality'], true);
+        $items = $this->pdiInput();
         $purchase->savePdi($approved, $actor, $items);
         $purchase->schedule($approved, now()->addHour()->toDateTimeString(), 'YZA Automotive', 'Aggregate pickup');
         Carbon::setTestNow(now()->addHours(2));
@@ -61,10 +62,10 @@ class VehicleAggregateInventoryFlowTest extends TestCase
     {
         $car = $this->car();
         $before = $car->getAttribute('availability') ?? app(VehicleAvailabilityService::class)->for($car);
-        $inventory = app(VehicleInventoryService::class)->adjust($car, 10, 'QA restock', 'Penambahan operasional terverifikasi.');
-        $this->assertSame(10, (int) $inventory->stock_total);
-        $this->assertSame(10, app(VehicleAvailabilityService::class)->for($car)['stock']);
-        $this->assertDatabaseHas('vehicle_inventory_histories', ['id_vehicle_inventory' => $inventory->id_vehicle_inventory, 'jenis' => 'penyesuaian', 'jumlah_perubahan' => 2]);
+        $inventory = app(VehicleInventoryService::class)->adjust($car, 8, 'QA stock opname', 'Delapan unit beridentitas nyata dalam database testing.');
+        $this->assertSame(8, (int) $inventory->stock_total);
+        $this->assertSame(8, app(VehicleAvailabilityService::class)->for($car)['stock']);
+        $this->assertDatabaseHas('vehicle_inventory_histories', ['id_vehicle_inventory' => $inventory->id_vehicle_inventory, 'jenis' => 'penyesuaian', 'jumlah_perubahan' => 0]);
         $this->assertSame(8, (int) $before['stock']);
     }
 }

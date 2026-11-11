@@ -13,9 +13,16 @@ class OwnerDashboardController extends Controller
 {
     public function dashboard(Request $request, OwnerAnalyticsService $analytics, SalesAwardsService $awards): View
     {
+        $request->validate([
+            'from' => ['nullable', 'date_format:Y-m-d'],
+            'to' => array_filter(['nullable', 'date_format:Y-m-d', $request->filled('from') ? 'after_or_equal:from' : null]),
+        ]);
         [$from, $to] = $analytics->period($request->query('from'), $request->query('to'));
         $awardYear = now('Asia/Jakarta')->year;
-        return view('owner.dashboard', ['period' => ['from' => $from, 'to' => $to], 'kpis' => $analytics->kpis($from, $to), 'monthlySales' => $analytics->monthlySales($from, $to), 'brands' => $analytics->brandBreakdown($from, $to), 'models' => $analytics->modelBreakdown($from, $to), 'bookingSales' => $analytics->bookingSalesTrend($from, $to), 'serviceTrends' => $analytics->serviceTrends($from, $to), 'performance' => $analytics->salesPerformance($from, $to), 'topPerformers' => array_slice($awards->leaderboard($awardYear), 0, 3), 'service' => $analytics->serviceSummary($from, $to), 'payments' => $analytics->paymentSummary($from, $to), 'inventory' => $analytics->inventorySummary()]);
+        $overview = app(\App\Services\OwnerOverviewService::class);
+        $ownerInventory = $overview->inventory();
+        $ownerActivities = $overview->activities($from, $to, $analytics);
+        return view('owner.dashboard', compact('ownerInventory', 'ownerActivities') + ['period' => ['from' => $from, 'to' => $to], 'kpis' => $analytics->kpis($from, $to), 'monthlySales' => $analytics->monthlySales($from, $to), 'brands' => $analytics->brandBreakdown($from, $to), 'models' => $analytics->modelBreakdown($from, $to), 'bookingSales' => $analytics->bookingSalesTrend($from, $to), 'serviceTrends' => $analytics->serviceTrends($from, $to), 'performance' => $analytics->salesPerformance($from, $to), 'topPerformers' => array_slice($awards->leaderboard($awardYear), 0, 3), 'service' => $analytics->serviceSummary($from, $to), 'payments' => $analytics->paymentSummary($from, $to), 'inventory' => $analytics->inventorySummary()]);
     }
 
     public function serviceReport(Request $request, OwnerAnalyticsService $analytics): View
@@ -36,7 +43,15 @@ class OwnerDashboardController extends Controller
     public function paymentReport(Request $request, OwnerAnalyticsService $analytics): View
     {
         [$from, $to] = $analytics->period($request->query('from'), $request->query('to'));
-        return view('owner.payment-report', ['period' => ['from' => $from, 'to' => $to], 'summary' => $analytics->paymentReport($from, $to), 'gateway' => $analytics->paymentSummary($from, $to)]);
+        $filters = $request->validate(['q' => ['nullable', 'string', 'max:120'], 'method' => ['nullable', 'string', 'max:40'], 'status' => ['nullable', 'string', 'max:30'], 'date_basis' => ['nullable', 'in:tanggal,verified_at']]);
+        $summary = $analytics->paymentReport($from, $to, $filters);
+        $gateway = $analytics->paymentSummary($from, $to);
+        $methods = collect($summary['rows'])->pluck('metode')->filter()->unique()->sort()->values();
+        $statuses = collect($summary['rows'])->pluck('status')->filter()->unique()->sort()->values();
+        $distribution = collect($summary['rows'])->groupBy('metode')->map(fn ($rows, $method) => ['label' => $method, 'amount' => (float) $rows->sum('jumlah'), 'count' => $rows->count()])->sortByDesc('amount')->values();
+        $today = $analytics->paymentReport(now('Asia/Jakarta')->startOfDay(), now('Asia/Jakarta')->endOfDay());
+        $operations = ['today' => (float) $today['verified'], 'refund_pending' => (float) $gateway['pending_refunds'], 'verified_receipt' => (float) $gateway['net_verified'], 'review' => (int) $analytics->paymentReport($from, $to, ['status' => 'menunggu'])['rows']->count()];
+        return view('owner.payment-report', compact('filters', 'summary', 'gateway', 'methods', 'statuses', 'distribution', 'operations') + ['period' => ['from' => $from, 'to' => $to]]);
     }
 
     public function inventoryReport(Request $request, OwnerAnalyticsService $analytics): View
@@ -86,8 +101,9 @@ class OwnerDashboardController extends Controller
     public function exportPayment(Request $request, OwnerAnalyticsService $analytics): Response
     {
         [$from, $to] = $analytics->period($request->query('from'), $request->query('to'));
-        $rows = $analytics->paymentReport($from, $to)['rows']->map(fn ($row) => [$row->kode_pembayaran, $row->tanggal?->setTimezone('Asia/Jakarta')->format('d M Y H:i'), $row->metode, $row->status, (float) $row->jumlah])->all();
-        return $this->tableExport($request, 'Pendapatan dan Pembayaran', ['Kode pembayaran','Tanggal','Metode','Status','Jumlah'], $rows, $from, $to, 'pendapatan-pembayaran');
+        $filters = $request->validate(['q' => ['nullable', 'string', 'max:120'], 'method' => ['nullable', 'string', 'max:40'], 'status' => ['nullable', 'string', 'max:30'], 'date_basis' => ['nullable', 'in:tanggal,verified_at']]);
+        $rows = $analytics->paymentReport($from, $to, $filters)['rows']->map(fn ($row) => [$row->kode_pembayaran, $row->tanggal?->setTimezone('Asia/Jakarta')->format('d M Y H:i'), $row->metode, $row->status, (float) $row->jumlah, in_array(strtolower((string) $row->metode), ['midtrans', 'online'], true) ? 'Gateway' : 'Kasir / Offline'])->all();
+        return $this->tableExport($request, 'Pendapatan dan Pembayaran', ['Kode pembayaran','Tanggal','Metode','Status','Jumlah','Sumber'], $rows, $from, $to, 'pendapatan-pembayaran');
     }
 
     public function exportInventory(Request $request, OwnerAnalyticsService $analytics): Response
@@ -124,18 +140,38 @@ class OwnerDashboardController extends Controller
     public function salesReport(Request $request, OwnerAnalyticsService $analytics): View
     {
         [$from, $to] = $analytics->period($request->query('from'), $request->query('to'));
-        $filters = $request->validate(['sales' => ['nullable', 'integer'], 'brand' => ['nullable', 'string', 'max:80'], 'model' => ['nullable', 'string', 'max:100']]);
-        $rows = $analytics->finalVehicleSales($from, $to, $filters)->latest('tanggal_penjualan')->paginate(25)->withQueryString();
-        return view('owner.sales-report', ['rows' => $rows, 'period' => ['from' => $from, 'to' => $to], 'salesPeople' => Petugas::whereHas('user.role', fn ($q) => $q->where('nama_role', 'sales'))->where('status', 'aktif')->orderBy('nama_lengkap')->get(), 'brands' => Mobil::distinct()->orderBy('merk')->pluck('merk'), 'models' => Mobil::distinct()->orderBy('model')->pluck('model'), 'filters' => $filters, 'totalUnits' => (clone $analytics->finalVehicleSales($from, $to, $filters))->count(), 'totalValue' => (float) (clone $analytics->finalVehicleSales($from, $to, $filters))->sum('total_akhir')]);
+        $filters = $request->validate(['sales' => ['nullable', 'integer'], 'brand' => ['nullable', 'string', 'max:80'], 'model' => ['nullable', 'string', 'max:100'], 'q' => ['nullable', 'string', 'max:120']]);
+        $scope = $analytics->finalVehicleSales($from, $to, $filters);
+        $totalUnits = (clone $scope)->count();
+        $totalValue = (float) (clone $scope)->sum('total_akhir');
+        $verifiedPayments = (clone $scope)->whereHas('transaksi.pembayarans', fn ($q) => $q->where('arah', 'masuk')->where('status', 'terverifikasi'))->count();
+        $handedOver = (clone $scope)->whereHas('memberOrder', fn ($q) => $q->where('status', 'diserahkan'))->count();
+        $today = now('Asia/Jakarta')->toDateString();
+        $todayTransactions = (clone $scope)->whereDate('tanggal_penjualan', $today)->count();
+        $brands = (clone $scope)->join('mobil as sales_report_mobil', 'sales_report_mobil.id_mobil', '=', 'penjualan_mobil.id_mobil')->select('sales_report_mobil.merk')->distinct()->orderBy('sales_report_mobil.merk')->pluck('sales_report_mobil.merk');
+        return view('owner.sales-report', [
+            'rows' => $scope->latest('tanggal_penjualan')->paginate(25)->withQueryString(),
+            'period' => ['from' => $from, 'to' => $to],
+            'salesPeople' => Petugas::whereHas('user.role', fn ($q) => $q->where('nama_role', 'sales'))->where('status', 'aktif')->orderBy('nama_lengkap')->get(),
+            'brands' => $brands,
+            'models' => Mobil::distinct()->orderBy('model')->pluck('model'),
+            'filters' => $filters,
+            'totalUnits' => $totalUnits,
+            'totalValue' => $totalValue,
+            'verifiedPayments' => $verifiedPayments,
+            'handedOver' => $handedOver,
+            'todayTransactions' => $todayTransactions,
+            'averageValue' => $totalUnits > 0 ? $totalValue / $totalUnits : null,
+            'brandsBreakdown' => $analytics->brandBreakdown($from, $to, $filters),
+        ]);
     }
 
     public function exportSales(Request $request, OwnerAnalyticsService $analytics): Response
     {
         [$from, $to] = $analytics->period($request->query('from'), $request->query('to'));
-        $filters = $request->validate(['sales' => ['nullable', 'integer'], 'brand' => ['nullable', 'string', 'max:80'], 'model' => ['nullable', 'string', 'max:100']]);
+        $filters = $request->validate(['sales' => ['nullable', 'integer'], 'brand' => ['nullable', 'string', 'max:80'], 'model' => ['nullable', 'string', 'max:100'], 'q' => ['nullable', 'string', 'max:120']]);
         $rows = $analytics->finalVehicleSales($from, $to, $filters)->latest('tanggal_penjualan')->get();
         $format = $request->query('format', 'excel');
-        $title = 'Rekap Penjualan Kendaraan';
         if ($format === 'pdf') return response($this->pdf($rows, $from, $to), 200, ['Content-Type' => 'application/pdf', 'Content-Disposition' => 'attachment; filename="yza-rekap-penjualan.pdf"']);
         return response($this->xlsx($rows, $from, $to), 200, ['Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'Content-Disposition' => 'attachment; filename="yza-rekap-penjualan.xlsx"']);
     }
@@ -154,8 +190,8 @@ class OwnerDashboardController extends Controller
         $esc = fn ($value) => htmlspecialchars((string) $value, ENT_XML1 | ENT_COMPAT, 'UTF-8');
         $row = function (array $values) use ($esc): string { $xml = '<row>'; foreach ($values as $value) { $xml .= is_int($value) || is_float($value) ? '<c t="n"><v>'.(float) $value.'</v></c>' : '<c t="inlineStr"><is><t>'.$esc($value).'</t></is></c>'; } return $xml.'</row>'; };
         $sheet = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData>';
-        $sheet .= $row(['PT YZA Automotive — Rekap Penjualan']).$row(['Periode '.$from->format('d M Y').' - '.$to->format('d M Y')]).$row(['No transaksi','Tanggal','Pelanggan','Kendaraan','Sales','Total','Status']);
-        foreach ($rows as $item) $sheet .= $row([$item->transaksi?->kode_transaksi ?: $item->kode_penjualan, $item->tanggal_penjualan?->setTimezone('Asia/Jakarta')->format('d M Y H:i'), $item->pelanggan?->nama_lengkap ?: '—', trim(($item->mobil?->merk ?: '').' '.($item->mobil?->model ?: '')), $item->sales?->nama_lengkap ?: 'Digital / belum ditugaskan', (float) $item->total_akhir, 'Selesai']);
+        $sheet .= $row(['PT YZA Automotive — Rekap Penjualan']).$row(['Periode '.$from->format('d M Y').' - '.$to->format('d M Y')]).$row(['No transaksi','Tanggal','Pelanggan','Kendaraan','Sales','Nominal','Pembayaran','Serah-terima']);
+        foreach ($rows as $item) $sheet .= $row([$item->transaksi?->kode_transaksi ?: $item->kode_penjualan, $item->tanggal_penjualan?->setTimezone('Asia/Jakarta')->format('d M Y H:i'), $item->pelanggan?->nama_lengkap ?: '—', trim(($item->mobil?->merk ?: '').' '.($item->mobil?->model ?: '')), $item->sales?->nama_lengkap ?: 'Digital / belum ditugaskan', (float) $item->total_akhir, $this->paymentLabel($item), $this->handoverLabel($item)]);
         $sheet .= '</sheetData></worksheet>';
         $files = ['[Content_Types].xml' => '<?xml version="1.0" encoding="UTF-8"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/></Types>', '_rels/.rels' => '<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>', 'xl/workbook.xml' => '<?xml version="1.0" encoding="UTF-8"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Rekap Penjualan" sheetId="1" r:id="rId1"/></sheets></workbook>', 'xl/_rels/workbook.xml.rels' => '<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/></Relationships>', 'xl/worksheets/sheet1.xml' => $sheet];
         return $this->zipStore($files);
@@ -172,12 +208,27 @@ class OwnerDashboardController extends Controller
     private function pdf($rows, Carbon $from, Carbon $to): string
     {
         $lines = ['PT YZA Automotive - Rekap Penjualan', 'Periode: '.$from->format('d M Y').' - '.$to->format('d M Y'), ''];
-        foreach ($rows as $row) $lines[] = sprintf('%s | %s | %s | Rp %s', $row->transaksi?->kode_transaksi ?: $row->kode_penjualan, $row->tanggal_penjualan?->setTimezone('Asia/Jakarta')->format('d-m-Y'), trim(($row->mobil?->merk ?: '').' '.($row->mobil?->model ?: '')), number_format((float)$row->total_akhir, 0, ',', '.'));
+        $lines[] = 'Transaksi | Tanggal | Kendaraan | Nominal | Pembayaran | Serah-terima';
+        foreach ($rows as $row) $lines[] = sprintf('%s | %s | %s | Rp %s | %s | %s', $row->transaksi?->kode_transaksi ?: $row->kode_penjualan, $row->tanggal_penjualan?->setTimezone('Asia/Jakarta')->format('d-m-Y'), trim(($row->mobil?->merk ?: '').' '.($row->mobil?->model ?: '')), number_format((float)$row->total_akhir, 0, ',', '.'), $this->paymentLabel($row), $this->handoverLabel($row));
         $stream = "BT\n/F1 10 Tf\n40 760 Td\n";
         foreach (array_slice($lines, 0, 48) as $index => $line) $stream .= '('.str_replace(['\\', '(', ')'], ['\\\\', '\\(', '\\)'], substr($line, 0, 115)).") Tj\n0 -15 Td\n";
         $stream .= 'ET';
         $objects = ["<< /Type /Catalog /Pages 2 0 R >>", "<< /Type /Pages /Kids [3 0 R] /Count 1 >>", "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>", "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>", "<< /Length ".strlen($stream)." >>\nstream\n{$stream}\nendstream"];
         $pdf = "%PDF-1.4\n"; $offsets = [0]; foreach ($objects as $number => $object) { $offsets[$number + 1] = strlen($pdf); $pdf .= ($number + 1)." 0 obj\n{$object}\nendobj\n"; }
         $xref = strlen($pdf); $pdf .= "xref\n0 ".(count($objects) + 1)."\n0000000000 65535 f \n"; for ($i = 1; $i <= count($objects); $i++) $pdf .= sprintf("%010d 00000 n \n", $offsets[$i]); $pdf .= "trailer\n<< /Size ".(count($objects) + 1)." /Root 1 0 R >>\nstartxref\n{$xref}\n%%EOF"; return $pdf;
+    }
+
+    private function paymentLabel(PenjualanMobil $sale): string
+    {
+        $payments = $sale->transaksi?->pembayarans ?? collect();
+        if ($payments->contains(fn ($payment) => $payment->arah === 'masuk' && $payment->status === 'terverifikasi')) return 'Terverifikasi';
+        if ($payments->contains(fn ($payment) => $payment->arah === 'masuk' && in_array($payment->status, ['menunggu', 'pending'], true))) return 'Menunggu';
+        if ($payments->contains(fn ($payment) => $payment->arah === 'masuk' && in_array($payment->status, ['ditolak', 'dibatalkan', 'expired'], true))) return 'Ditolak';
+        return 'Belum ada pembayaran valid';
+    }
+
+    private function handoverLabel(PenjualanMobil $sale): string
+    {
+        return $sale->memberOrder?->status === 'diserahkan' ? 'Selesai' : 'Selesai operasional';
     }
 }

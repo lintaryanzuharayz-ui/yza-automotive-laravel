@@ -16,11 +16,24 @@ class PesananMobilMember extends Model
             'snapshot_harga' => 'decimal:2',
             'total_tagihan' => 'decimal:2',
             'syarat_disetujui' => 'boolean',
+            'manual_discount_value' => 'decimal:2',
+            'manual_discount_amount' => 'decimal:2',
+            'manual_discount_history' => 'array',
+            'manual_discount_reviewed_at' => 'datetime',
             'diputuskan_at' => 'datetime',
             'jadwal_pengambilan' => 'datetime',
             'jadwal_dikonfirmasi_at' => 'datetime',
             'diserahkan_at' => 'datetime',
         ];
+    }
+
+    public function matchesCatalogVehicle(): bool
+    {
+        return $this->mobil
+            && $this->mobil->merk === $this->snapshot_merk
+            && $this->mobil->model === $this->snapshot_model
+            && $this->mobil->tipe === $this->snapshot_tipe
+            && (int) $this->mobil->tahun === (int) $this->snapshot_tahun;
     }
 
     public function pelanggan() { return $this->belongsTo(Pelanggan::class, 'id_pelanggan', 'id_pelanggan'); }

@@ -1,0 +1,8 @@
+Tool: built-in image_gen (imagegen skill), generation mode.
+Saved asset: public/assets/images/hero/yza-admin-dashboard-studio-v2.png
+
+Final prompt:
+Create a photorealistic ultra-wide website dashboard hero BACKGROUND asset, 6:1 panoramic composition. Reproduce the visual composition of the user's latest reference image #1 hero only: immaculate white and very pale cool gray automotive studio, glossy reflective light gray floor, subtle large diagonal white architectural panels in middle, one bold vivid red diagonal parallelogram wall panel at far right. A black BMW M-style performance sedan front three-quarter view facing left, blue-white LED headlamps, dark alloy wheels, realistic polished black paint, entire car fully visible including wheels, positioned in the rightmost 40% of the image, car occupies most of height with comfortable margins. Leftmost 55% is clean nearly white empty negative space for real HTML heading and copy. Soft high-key studio light, crisp professional automotive advertising photography, restrained reflection below car. NO text, NO UI, NO dashboard, NO logos overlay, NO watermark. Wide horizontal background, not screenshot. Match the reference's clean white/black/red palette and subject framing closely.
+
+Output is a new generated illustration of the reference composition, not a pixel-identical extraction of the source. The generated 2172x724 asset is fitted proportionally in CSS, without stretching.
+Validation: desktop and narrow native browser screenshots inspected; npm run build passed; AdminDashboardRegressionTest and AdminWorkspaceNavigationTest passed (8 tests, 52 assertions); PHP lint and scoped git diff --check passed. Operational database and business logic unchanged.

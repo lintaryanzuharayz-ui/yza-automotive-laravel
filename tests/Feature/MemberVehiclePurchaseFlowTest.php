@@ -11,10 +11,11 @@ use Tests\TestCase;
 
 class MemberVehiclePurchaseFlowTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseTransactions, \Tests\Support\CreatesColorStockUnit;
+    use \Tests\Support\CompletesQualityChecks;
 
     private function user(string $role): User { return User::whereHas('role', fn ($query) => $query->where('nama_role', $role))->firstOrFail(); }
-    private function car(): Mobil { return Mobil::where('status', 'tersedia')->whereNotIn('model', ['GR Supra', 'Supra MK4', 'Revuelto', 'SF90 Stradale', '911 GT3 RS', 'GT Black Series', 'DBS 770 Ultimate', 'Corvette Z06', 'Mustang Shelby GT500', 'Challenger SRT Hellcat Redeye', 'GT-R Nismo', 'LFA'])->firstOrFail(); }
+    private function car(): Mobil { return $this->colorStockUnit(Mobil::where('status', 'tersedia')->whereNotIn('model', ['GR Supra', 'Supra MK4', 'Revuelto', 'SF90 Stradale', '911 GT3 RS', 'GT Black Series', 'DBS 770 Ultimate', 'Corvette Z06', 'Mustang Shelby GT500', 'Challenger SRT Hellcat Redeye', 'GT-R Nismo', 'LFA'])->firstOrFail()); }
     private function actor(): int { return (int) $this->user('petugas')->petugas->id_petugas; }
 
     public function test_member_checkout_snapshots_server_price_and_reserves_unit(): void
@@ -30,19 +31,19 @@ class MemberVehiclePurchaseFlowTest extends TestCase
     public function test_member_checkout_snapshots_validated_color_without_changing_price_or_inventory(): void
     {
         $customer = $this->user('pelanggan')->pelanggan;
-        $car = Mobil::where('model', 'GR Supra')->where('status', 'tersedia')->firstOrFail();
+        $car = $this->colorStockUnit(Mobil::where('model', 'GR Supra')->where('status', 'tersedia')->firstOrFail(), 'white');
         $price = (string) $car->harga_jual;
         $order = app(MemberVehiclePurchaseService::class)->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA', 'warna_pilihan' => 'white']);
 
         $this->assertSame('Pearl White', $order->snapshot_warna);
         $this->assertSame($price, (string) $order->snapshot_harga);
-        $this->assertSame((string) $car->status, (string) $car->fresh()->status);
+        $this->assertSame('dibooking', (string) $car->fresh()->status);
     }
 
     public function test_member_order_detail_renders_premium_dashboard_for_owned_order(): void
     {
         $customer = $this->user('pelanggan')->pelanggan;
-        $car = Mobil::where('model', 'GR Supra')->where('status', 'tersedia')->firstOrFail();
+        $car = $this->colorStockUnit(Mobil::where('model', 'GR Supra')->where('status', 'tersedia')->firstOrFail(), 'white');
         $order = app(MemberVehiclePurchaseService::class)->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA', 'warna_pilihan' => 'white']);
 
         $this->actingAs($customer->user)->get(route('pelanggan.pesanan-mobil.show', $order))
@@ -250,7 +251,7 @@ class MemberVehiclePurchaseFlowTest extends TestCase
         $order->transaksi->forceFill(['status' => 'dibatalkan'])->save();
         $order->penjualan->forceFill(['status' => 'proses'])->save();
         $order->forceFill(['status' => 'dibatalkan', 'catatan_admin' => 'Pembayaran ditolak; alokasi stok dilepas.'])->save();
-        $car->forceFill(['status' => 'tersedia'])->save();
+        $car->refresh()->forceFill(['status' => 'tersedia'])->save();
 
         $this->actingAs($customer->user)->get(route('pelanggan.pesanan-mobil.show', $order))
             ->assertOk()
@@ -348,7 +349,7 @@ class MemberVehiclePurchaseFlowTest extends TestCase
         $service = app(MemberVehiclePurchaseService::class);
         $order = $service->approve($service->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA']), $this->actor());
         app(PaymentService::class)->create($order->id_transaksi, $this->actor(), (string) $order->total_tagihan, 'tunai', null, 'Stage 2 full payment');
-        $service->savePdi($order, $this->actor(), ['mesin' => true, 'final_quality' => false]);
+        $service->savePdi($order, $this->actor(), $this->pdiInput('issue'));
         $this->assertSame('pdi_gagal', $order->fresh()->status);
         $this->expectException(RuntimeException::class);
         $service->handover($order, $this->actor(), ['nama_penerima' => 'Stage 2 Receiver']);
@@ -361,7 +362,7 @@ class MemberVehiclePurchaseFlowTest extends TestCase
         $service = app(MemberVehiclePurchaseService::class);
         $order = $service->approve($service->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA']), $this->actor());
         app(PaymentService::class)->create($order->id_transaksi, $this->actor(), (string) $order->total_tagihan, 'tunai', null, 'Early handover QA');
-        $items = array_fill_keys(['mesin', 'eksterior', 'interior', 'rem', 'ban', 'kelistrikan', 'lampu', 'ac', 'dokumen', 'final_quality'], true);
+        $items = $this->pdiInput();
         $service->savePdi($order, $this->actor(), $items);
         $service->schedule($order, now()->addHour()->toDateTimeString(), 'YZA Automotive', 'Early handover QA');
 
@@ -378,7 +379,7 @@ class MemberVehiclePurchaseFlowTest extends TestCase
         $service = app(MemberVehiclePurchaseService::class);
         $order = $service->approve($service->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA']), $this->actor());
         app(PaymentService::class)->create($order->id_transaksi, $this->actor(), (string) $order->total_tagihan, 'tunai', null, 'Stage 2 full payment');
-        $items = array_fill_keys(['mesin', 'eksterior', 'interior', 'rem', 'ban', 'kelistrikan', 'lampu', 'ac', 'dokumen', 'final_quality'], true);
+        $items = $this->pdiInput();
         $service->savePdi($order, $this->actor(), $items);
         $service->schedule($order, now()->addHour()->toDateTimeString(), 'YZA Automotive', 'Stage 2 pickup');
         $this->assertSame(0, KendaraanPelanggan::where('id_pelanggan', $customer->id_pelanggan)->count());
@@ -401,16 +402,16 @@ class MemberVehiclePurchaseFlowTest extends TestCase
     public function test_handover_ownership_uses_purchased_color_and_matching_gallery_not_master_default(): void
     {
         $customer = $this->user('pelanggan')->pelanggan;
-        $car = Mobil::where('model', 'GR Supra')->where('status', 'tersedia')->firstOrFail();
+        $car = $this->colorStockUnit(Mobil::where('model', 'GR Supra')->where('status', 'tersedia')->firstOrFail(), 'black');
         $service = app(MemberVehiclePurchaseService::class);
         $order = $service->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA', 'warna_pilihan' => 'black']);
 
         $this->assertSame('Obsidian Black', $order->snapshot_warna);
-        $this->assertSame('Supra Red', $car->warna);
+        $this->assertSame('Obsidian Black', $car->warna);
 
         $order = $service->approve($order, $this->actor());
         app(PaymentService::class)->create($order->id_transaksi, $this->actor(), (string) $order->total_tagihan, 'tunai', null, 'Color source QA');
-        $items = array_fill_keys(['mesin', 'eksterior', 'interior', 'rem', 'ban', 'kelistrikan', 'lampu', 'ac', 'dokumen', 'final_quality'], true);
+        $items = $this->pdiInput();
         $service->savePdi($order, $this->actor(), $items);
         $service->schedule($order, now()->addHour()->toDateTimeString(), 'YZA Automotive', 'Color source QA');
         Carbon::setTestNow(now()->addHours(2));

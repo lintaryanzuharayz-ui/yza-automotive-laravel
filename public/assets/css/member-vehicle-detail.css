@@ -1,0 +1,98 @@
+/* Compact member vehicle detail. Shared public detail styles stay unchanged. */
+.member-detail-parity .detail-page { width:100%;max-width:1440px;margin:0 auto;padding:24px 28px 40px; }
+.member-detail-parity .detail-heading { margin-bottom:24px; }
+.member-detail-parity .detail-heading>.detail-back { min-height:44px;margin-bottom:18px;padding:4px 14px 4px 5px;gap:9px;font-size:12px;max-width:100%;white-space:normal; }
+.member-detail-parity .detail-back>span { width:32px;height:32px;flex:0 0 32px; }
+.member-detail-parity .detail-heading-grid { grid-template-columns:minmax(0,1fr) minmax(240px,auto);align-items:end;gap:24px; }
+.member-detail-parity .detail-heading-copy { min-width:0; }
+.member-main-content .member-detail-parity .detail-heading h1 { margin:10px 0 12px;font-size:clamp(28px,2.7vw,40px)!important;line-height:1.12;letter-spacing:-.035em;overflow-wrap:anywhere; }
+.member-detail-parity .detail-kicker { font-size:10px;line-height:1.5;letter-spacing:.17em; }
+.member-detail-parity .detail-subtitle { margin:0;max-width:68ch;font-size:14px;line-height:1.6; }
+.member-detail-parity .detail-heading-price { min-width:0;max-width:100%;padding-bottom:8px; }
+.member-detail-parity .detail-heading-price>span { font-size:10px; }
+.member-detail-parity .detail-heading-price>strong { margin-top:6px;font-size:clamp(22px,1.8vw,28px);line-height:1.2;white-space:normal;overflow-wrap:anywhere; }
+.member-detail-parity .detail-showcase { grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:start;gap:24px; }
+.member-detail-parity :is(.detail-info-column,.detail-gallery-column) { min-width:0; }
+.member-detail-parity .detail-info-column { display:grid;gap:16px; }
+.member-detail-parity .detail-panel { min-width:0;padding:20px;border-radius:16px; }
+.member-detail-parity .detail-brand-header { display:flex;flex-direction:row;align-items:center;flex-wrap:nowrap;gap:12px;max-width:100%;margin-bottom:14px;padding:4px 0 6px;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#ed1c2e #ffffff12; }
+.member-detail-parity .detail-brand-identity { display:flex;flex:0 0 auto;gap:10px;align-items:center;min-width:0;width:auto; }
+.member-detail-parity .detail-brand-logo { flex:0 0 40px;width:40px;height:40px;min-width:0; }
+.member-detail-parity .detail-brand-logo img { width:100%;max-width:100%;height:100%;object-fit:contain; }
+.member-detail-parity .detail-brand-identity>div { min-width:0;gap:3px; }
+.member-detail-parity .detail-brand-identity strong { font-size:18px;line-height:1.2;letter-spacing:.025em;white-space:nowrap; }
+.member-detail-parity .detail-brand-identity :is(small,.detail-label) { display:none; }
+.member-detail-parity .detail-brand-header>.detail-favorite { flex:0 0 44px;margin-left:auto;width:44px;height:44px;border-radius:12px;font-size:21px; }
+.member-detail-parity .detail-statuses { flex:0 0 auto;justify-content:flex-start;align-items:center;gap:8px;min-width:0;max-width:none;flex-wrap:nowrap;margin-left:0; }
+.member-detail-parity :is(.detail-condition,.detail-available-badge,.detail-limited-badge) { flex:0 0 auto;min-height:30px;max-width:none;padding:6px 10px;font-size:11px;line-height:1.3;white-space:nowrap; }
+.member-detail-parity .detail-status-badge.is-empty i { background:#ff5360;box-shadow:0 0 8px #ff536055; }
+.member-detail-parity .detail-summary-panel .detail-description { margin:10px 0 16px;font-size:14px;line-height:1.6; }
+.member-detail-parity .detail-actions-reference { gap:8px; }
+.member-detail-parity .detail-actions-reference .detail-button { min-height:44px;padding:10px 12px;font-size:14px;line-height:1.35;border-radius:10px; }
+.member-detail-parity .detail-actions-reference .detail-button-primary { grid-template-columns:28px minmax(0,1fr) 20px;gap:8px; }
+.member-detail-parity .detail-actions-reference .detail-button-ghost { grid-template-columns:20px minmax(0,1fr) 20px;gap:8px; }
+.member-detail-parity .detail-actions-reference .detail-button .detail-button-text { white-space:normal;overflow-wrap:anywhere; }
+.member-detail-parity .detail-button-primary .detail-whatsapp-icon { width:26px;height:26px; }
+.member-detail-parity .detail-section-head { align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px; }
+.member-main-content .member-detail-parity .detail-section-head h2 { margin:5px 0 0;font-size:24px!important;line-height:1.2; }
+.member-detail-parity .detail-section-head .detail-code { min-width:0;max-width:100%;font-size:9px;line-height:1.5;overflow-wrap:anywhere; }
+.member-detail-parity .detail-spec-grid-reference { grid-template-columns:repeat(3,minmax(0,1fr));gap:8px; }
+.member-detail-parity .detail-spec-grid-reference>div { min-width:0;min-height:64px;padding:10px;grid-template-columns:22px minmax(0,1fr);column-gap:8px; }
+.member-detail-parity .detail-spec-grid-reference>div .detail-spec-icon { width:22px;height:22px; }
+.member-detail-parity .detail-spec-icon .detail-inline-icon { width:20px;height:20px; }
+.member-detail-parity .detail-spec-grid-reference>div>span:not(.detail-spec-icon) { font-size:11px; }
+.member-detail-parity .detail-spec-grid-reference>div strong { min-width:0;font-size:12px;line-height:1.4;overflow-wrap:anywhere; }
+.member-detail-parity .detail-spec-grid-reference .detail-spec-status { grid-template-columns:22px minmax(0,1fr) auto;align-items:center;min-height:54px; }
+.member-detail-parity .detail-spec-status .detail-status-tag { min-width:0;max-width:100%;padding:6px 10px;font-size:10px;white-space:normal; }
+.member-detail-parity .detail-gallery-color-picker { position:absolute!important;right:16px!important;bottom:14px!important;z-index:4!important;display:inline-flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;height:auto!important;min-height:0!important;max-height:38px!important;gap:8px!important;padding:6px 12px!important;background:rgba(7,9,12,.72)!important;backdrop-filter:blur(8px)!important;-webkit-backdrop-filter:blur(8px)!important;border:1px solid rgba(255,255,255,.16)!important;border-radius:999px!important;box-shadow:0 10px 24px rgba(0,0,0,.35)!important;box-sizing:border-box!important; }
+.member-detail-parity .detail-gallery-color-picker .detail-swatch { position:relative!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;width:22px!important;height:22px!important;min-width:22px!important;min-height:22px!important;max-width:22px!important;max-height:22px!important;flex:0 0 22px!important;aspect-ratio:1/1!important;border-radius:50%!important;padding:0!important;margin:0!important;box-sizing:border-box!important;line-height:1!important;background:var(--swatch,#ffffff)!important;border:1.5px solid rgba(255,255,255,.45)!important;cursor:pointer!important;transition:transform .18s ease,outline .18s ease,box-shadow .18s ease!important;outline:none!important;opacity:1!important; }
+.member-detail-parity .detail-gallery-color-picker .detail-swatch:hover { transform:scale(1.18)!important; }
+.member-detail-parity .detail-gallery-color-picker .detail-swatch.is-active { outline:2px solid #ef233c!important;outline-offset:2.5px!important;border-color:#fff!important;box-shadow:0 0 10px rgba(239,35,60,.55)!important; }
+.member-detail-parity .detail-gallery-color-picker .detail-swatch.is-out-of-stock { opacity:1!important; }
+.member-detail-parity .detail-gallery-color-picker .detail-swatch.is-out-of-stock::after { content:'×'!important;position:absolute!important;inset:0!important;display:flex!important;align-items:center!important;justify-content:center!important;color:#ffffff!important;font-size:13px!important;font-weight:900!important;line-height:1!important;text-shadow:0 0 3px rgba(0,0,0,.95),0 0 1px #000!important;pointer-events:none!important; }
+.member-detail-parity .detail-gallery-color-picker .detail-swatch[data-tooltip]::before { content:attr(data-tooltip)!important;position:absolute!important;bottom:calc(100% + 9px)!important;left:50%!important;transform:translateX(-50%) translateY(4px)!important;background:rgba(10,12,16,.94)!important;color:#ffffff!important;font-size:11px!important;font-weight:700!important;letter-spacing:.02em!important;white-space:nowrap!important;padding:4px 9px!important;border-radius:6px!important;border:1px solid rgba(255,255,255,.16)!important;box-shadow:0 6px 18px rgba(0,0,0,.45)!important;pointer-events:none!important;opacity:0!important;visibility:hidden!important;transition:opacity .15s ease,transform .15s ease!important;z-index:10!important; }
+.member-detail-parity .detail-gallery-color-picker .detail-swatch:hover::before { opacity:1!important;visibility:visible!important;transform:translateX(-50%) translateY(0)!important; }
+.member-detail-parity .detail-gallery-caption { left:16px;bottom:14px;max-width:calc(100% - 220px);padding:8px 12px; }
+.member-detail-parity .detail-gallery-caption>span { font-size:16px;overflow-wrap:anywhere; }
+.member-detail-parity .detail-gallery-caption>small { font-size:9px; }
+.member-detail-parity .detail-thumbnails { grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px; }
+.member-detail-parity .detail-thumbnail { min-width:0;height:68px;border-radius:9px; }
+.member-detail-parity .detail-gallery-note { margin-top:12px;font-size:11px;line-height:1.6; }
+@media(max-width:1100px) {
+    .member-detail-parity .detail-page { padding-inline:20px; }
+    .member-detail-parity .detail-showcase { grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px; }
+    .member-detail-parity .detail-spec-grid-reference { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:900px) {
+    .member-detail-parity .detail-showcase { grid-template-columns:minmax(0,1fr); }
+    .member-detail-parity .detail-heading-grid { grid-template-columns:minmax(0,1fr);gap:16px; }
+    .member-detail-parity .detail-heading-price { text-align:left; }
+    .member-detail-parity .detail-gallery-column { grid-row:1; }
+    .member-detail-parity .detail-gallery-frame { max-height:none; }
+    .member-detail-parity .detail-gallery-frame .detail-main-image { max-height:none; }
+    .member-detail-parity .detail-spec-grid-reference { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+@media(max-width:600px) {
+    .member-detail-parity .detail-page { padding:18px 16px 28px; }
+    .member-detail-parity .detail-heading { margin-bottom:18px; }
+    .member-main-content .member-detail-parity .detail-heading h1 { font-size:28px!important; }
+    .member-detail-parity .detail-panel { padding:16px; }
+    .member-main-content .member-detail-parity .detail-section-head h2 { font-size:22px!important; }
+    .member-detail-parity .detail-spec-grid-reference { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .member-detail-parity .detail-gallery-caption { left:12px;bottom:12px;max-width:calc(100% - 150px);padding:6px 9px; }
+    .member-detail-parity .detail-gallery-color-picker { right:12px;bottom:12px;padding:4px 8px;gap:6px; }
+    .member-detail-parity .detail-gallery-color-picker .detail-swatch { width:20px;height:20px; }
+    .member-detail-parity .detail-gallery-caption>span { font-size:14px; }
+    .member-detail-parity .detail-gallery-mark { max-width:65%;font-size:8px; }
+    .member-detail-parity .detail-gallery-mark b { font-size:9px; }
+    .member-detail-parity .detail-thumbnail { height:52px; }
+}
+@media(max-width:480px) {
+    .member-horizontal-shell:has(.member-detail-parity) .member-topbar { grid-template-columns:minmax(0,1fr) auto!important;gap:8px!important;padding-inline:12px!important; }
+    .member-horizontal-shell:has(.member-detail-parity) :is(.member-topbar-left,.member-topbar-brand) { min-width:0!important; }
+    .member-horizontal-shell:has(.member-detail-parity) .member-topbar-brand img { width:36px!important;height:36px!important;flex-basis:36px!important; }
+    .member-horizontal-shell:has(.member-detail-parity) .member-topbar-brand strong { overflow:hidden;text-overflow:ellipsis;font-size:11px!important; }
+    .member-horizontal-shell:has(.member-detail-parity) .member-topbar-brand small { display:none!important; }
+    .member-horizontal-shell:has(.member-detail-parity) .member-topbar-right { gap:6px!important; }
+    .member-horizontal-shell:has(.member-detail-parity) .member-profile-trigger { min-width:44px!important;padding-inline:0!important; }
+}

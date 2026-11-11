@@ -12,7 +12,18 @@ class FinancialAdjustmentController extends Controller
 {
     public function index(Request $request): View
     {
-        $items = FinancialAdjustment::with(['payment.transaksi', 'requester', 'approver', 'confirmer'])->latest()->paginate(25)->withQueryString();
+        $q = trim((string) $request->query('q'));
+        $status = trim((string) $request->query('status'));
+        $type = trim((string) $request->query('type'));
+        $items = FinancialAdjustment::with(['payment.transaksi', 'requester', 'approver', 'confirmer', 'events'])
+            ->when($q !== '', fn ($query) => $query->where(function ($search) use ($q): void {
+                $search->whereHas('transaction', fn ($transaction) => $transaction->where('kode_transaksi', 'like', "%{$q}%"))
+                    ->orWhereHas('payment', fn ($payment) => $payment->where('kode_pembayaran', 'like', "%{$q}%"))
+                    ->orWhereHas('requester', fn ($requester) => $requester->where('nama_lengkap', 'like', "%{$q}%"));
+            }))
+            ->when($status !== '', fn ($query) => $query->where('status', $status))
+            ->when($type !== '', fn ($query) => $query->where('adjustment_type', $type))
+            ->latest()->paginate(10)->withQueryString();
         $eligiblePayments = Pembayaran::with(['transaksi.pelanggan'])
             ->where('arah', 'masuk')
             ->where('status', 'terverifikasi')
@@ -25,7 +36,15 @@ class FinancialAdjustmentController extends Controller
             ->limit(50)
             ->get();
 
-        return view('admin.financial-adjustments.index', compact('items', 'eligiblePayments'));
+        $adjustmentStats = [
+            'total' => FinancialAdjustment::count(),
+            'review' => FinancialAdjustment::whereIn('status', ['requested', 'under_review'])->count(),
+            'approved' => FinancialAdjustment::where('status', 'approved')->count(),
+            'rejected' => FinancialAdjustment::where('status', 'rejected')->count(),
+        ];
+        $statuses = FinancialAdjustment::query()->whereNotNull('status')->distinct()->orderBy('status')->pluck('status');
+
+        return view('admin.financial-adjustments.index', compact('items', 'eligiblePayments', 'adjustmentStats', 'statuses', 'q', 'status', 'type'));
     }
 
     public function store(Request $request, FinancialAdjustmentService $service): RedirectResponse

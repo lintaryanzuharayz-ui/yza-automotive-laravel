@@ -23,5 +23,5 @@
     @if($isEdit)
         <div class="vehicle-edit-editable-note"><strong>Yang dapat diperbarui</strong><span>Catat kilometer terakhir kendaraan. Perubahan data resmi dilakukan melalui verifikasi admin/mitra.</span></div>
     @endif
-    <div class="vehicle-edit-actions"><a href="{{ !empty($returnToGarage) ? route('pelanggan.kendaraan.index') : route('pelanggan.kendaraan.show', $item) }}">Batal</a><button type="submit"><span aria-hidden="true">▣</span> {{ $isEdit ? 'Simpan Kilometer' : 'Simpan Kendaraan' }}</button></div>
+    <div class="vehicle-edit-actions"><a href="{{ (!$item->exists || !empty($returnToGarage)) ? route('pelanggan.kendaraan.index') : route('pelanggan.kendaraan.show', $item) }}">Batal</a><button type="submit"><span aria-hidden="true">▣</span> {{ $isEdit ? 'Simpan Kilometer' : 'Simpan Kendaraan' }}</button></div>
 </section>

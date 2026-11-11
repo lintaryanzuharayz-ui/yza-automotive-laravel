@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="C:\xampp\htdocs\yza_automotive_laravel\phpunit.xml" tests="10" assertions="75" errors="0" failures="0" skipped="0" time="2.844202">
+    <testsuite name="Feature" tests="10" assertions="75" errors="0" failures="0" skipped="0" time="2.844202">
+      <testsuite name="Tests\Feature\AdminWorkspaceNavigationTest" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\AdminWorkspaceNavigationTest.php" tests="5" assertions="36" errors="0" failures="0" skipped="0" time="2.106493">
+        <testcase name="test_admin_sidebar_destinations_render_real_workspace_pages" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\AdminWorkspaceNavigationTest.php" line="20" class="Tests\Feature\AdminWorkspaceNavigationTest" classname="Tests.Feature.AdminWorkspaceNavigationTest" assertions="8" time="0.497064"/>
+        <testcase name="test_member_cannot_open_admin_workspace_pages" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\AdminWorkspaceNavigationTest.php" line="37" class="Tests\Feature\AdminWorkspaceNavigationTest" classname="Tests.Feature.AdminWorkspaceNavigationTest" assertions="2" time="0.078811"/>
+        <testcase name="test_sidebar_auxiliary_destinations_render_real_data_pages" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\AdminWorkspaceNavigationTest.php" line="45" class="Tests\Feature\AdminWorkspaceNavigationTest" classname="Tests.Feature.AdminWorkspaceNavigationTest" assertions="16" time="1.294531"/>
+        <testcase name="test_my_garage_excludes_vehicle_without_verified_handover_source" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\AdminWorkspaceNavigationTest.php" line="65" class="Tests\Feature\AdminWorkspaceNavigationTest" classname="Tests.Feature.AdminWorkspaceNavigationTest" assertions="4" time="0.112660"/>
+        <testcase name="test_petugas_dashboard_search_and_status_filters_use_real_query_parameters" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\AdminWorkspaceNavigationTest.php" line="86" class="Tests\Feature\AdminWorkspaceNavigationTest" classname="Tests.Feature.AdminWorkspaceNavigationTest" assertions="6" time="0.123427"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\OwnerDashboardRedesignTest" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\OwnerDashboardRedesignTest.php" tests="5" assertions="39" errors="0" failures="0" skipped="0" time="0.737709">
+        <testcase name="test_dashboard_and_sales_report_share_final_sales_scope_and_period" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\OwnerDashboardRedesignTest.php" line="19" class="Tests\Feature\OwnerDashboardRedesignTest" classname="Tests.Feature.OwnerDashboardRedesignTest" assertions="13" time="0.182584"/>
+        <testcase name="test_empty_period_changes_flow_metrics_but_preserves_snapshots" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\OwnerDashboardRedesignTest.php" line="38" class="Tests\Feature\OwnerDashboardRedesignTest" classname="Tests.Feature.OwnerDashboardRedesignTest" assertions="12" time="0.189742"/>
+        <testcase name="test_invalid_and_reversed_dates_are_rejected" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\OwnerDashboardRedesignTest.php" line="49" class="Tests\Feature\OwnerDashboardRedesignTest" classname="Tests.Feature.OwnerDashboardRedesignTest" assertions="6" time="0.066663"/>
+        <testcase name="test_activity_dates_are_in_period_and_expose_no_customer_details" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\OwnerDashboardRedesignTest.php" line="56" class="Tests\Feature\OwnerDashboardRedesignTest" classname="Tests.Feature.OwnerDashboardRedesignTest" assertions="4" time="0.170250"/>
+        <testcase name="test_owner_shell_does_not_replace_admin_or_sales_shell" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\OwnerDashboardRedesignTest.php" line="67" class="Tests\Feature\OwnerDashboardRedesignTest" classname="Tests.Feature.OwnerDashboardRedesignTest" assertions="4" time="0.128470"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

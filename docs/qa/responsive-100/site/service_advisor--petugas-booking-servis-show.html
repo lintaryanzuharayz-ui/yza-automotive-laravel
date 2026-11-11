@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="8AvlzZ17AVOlAMxUaNbZEpB3xUxEU1QJbfk22PEL">
+    <title>Detail Booking BSV-202609-52D02542 · YZA Automotive</title>
+    <link rel="stylesheet" href="http://127.0.0.1:8011/css/app.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8011/assets/css/vehicle-badges.css?v=stock-badges-20261010">
+                        <link rel="stylesheet" href="http://127.0.0.1:8011/assets/css/responsive-foundation.css?v=1793924117">
+<script src="http://127.0.0.1:8011/assets/js/responsive-foundation.js?v=1793681254" defer></script>
+</head>
+<body class="  ">
+            <div class="yza-shell">
+                            <header class="yza-header">
+                    <a class="yza-brand" href="http://127.0.0.1:8000">
+                        <img src="http://127.0.0.1:8011/images/branding/logo-yza.png" alt="YZA Automotive">
+                        <span>YZA Automotive</span>
+                    </a>
+                    <div class="yza-header-actions">
+                                                    <form method="post" action="http://127.0.0.1:8011/logout" class="yza-logout-form">
+                                <input type="hidden" name="_token" value="8AvlzZ17AVOlAMxUaNbZEpB3xUxEU1QJbfk22PEL" autocomplete="off">                                <button class="yza-logout-button" type="submit">Keluar</button>
+                            </form>
+                                                <button class="yza-menu-toggle" type="button" aria-label="Buka navigasi" aria-expanded="false">☰</button>
+                    </div>
+                </header>
+            
+            <div class="yza-body ">
+                                                            <aside class="yza-sidebar" aria-label="Navigasi utama">
+                            <div class="yza-sidebar-placeholder">Navigasi akan diaktifkan pada tahap authentication dan modul.</div>
+                        </aside>
+                                                    <main class="yza-content">
+                                        <div class="admin-booking-detail-page">
+    <style>
+        .admin-booking-detail-page {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .b-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .b-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #64748B;
+            margin-bottom: 8px;
+        }
+        .b-back-arrow { font-size: 16px; font-weight: 700; color: #94A3B8; }
+        .b-heading {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 800;
+            color: #0F172A;
+            letter-spacing: -0.02em;
+        }
+
+        .admin-alert {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-size: 13.5px;
+            font-weight: 600;
+        }
+        .admin-alert.is-success {
+            background: #ECFDF5;
+            border: 1px solid #A7F3D0;
+            color: #065F46;
+        }
+        .admin-alert.is-error {
+            background: #FEF2F2;
+            border: 1px solid #FECACA;
+            color: #991B1B;
+        }
+
+        .b-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.8fr);
+            gap: 20px;
+        }
+        @media (max-width: 900px) {
+            .b-grid { grid-template-columns: 1fr; }
+        }
+
+        .b-card {
+            background: #FFFFFF;
+            border-radius: 18px;
+            border: 1px solid #E2E8F0;
+            padding: 22px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .b-card-title {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 800;
+            color: #0F172A;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .b-card-title span {
+            color: #ED172B;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+        .fact-item small {
+            display: block;
+            color: #64748B;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .fact-item strong {
+            display: block;
+            margin-top: 4px;
+            font-size: 14px;
+            color: #0F172A;
+        }
+
+        .complaint-box {
+            background: #F8FAFC;
+            border: 1px solid #F1F5F9;
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 13.5px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .badge-status {
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+        .badge-status.is-menunggu { background: #FEF3C7; color: #B45309; }
+        .badge-status.is-diterima { background: #EFF6FF; color: #1D4ED8; }
+        .badge-status.is-diproses { background: #F3E8FF; color: #7E22CE; }
+        .badge-status.is-selesai { background: #ECFDF5; color: #047857; }
+        .badge-status.is-ditolak { background: #FEF2F2; color: #B91C1C; }
+        .badge-status.is-dibatalkan { background: #F1F5F9; color: #64748B; }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .form-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #CBD5E1;
+            border-radius: 9px;
+            font-size: 13px;
+            color: #0F172A;
+            box-sizing: border-box;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: #ED172B;
+            box-shadow: 0 0 0 3px rgba(237, 23, 43, 0.12);
+        }
+
+        .btn-submit-primary {
+            height: 42px;
+            padding: 0 20px;
+            border-radius: 10px;
+            background: #ED172B;
+            color: #FFFFFF;
+            font-size: 13px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            box-shadow: 0 4px 12px rgba(237, 23, 43, 0.25);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+        .btn-submit-primary:hover {
+            background: #D91325;
+            transform: translateY(-1px);
+        }
+        .btn-submit-danger {
+            height: 42px;
+            padding: 0 18px;
+            border-radius: 10px;
+            background: #FEF2F2;
+            color: #DC2626;
+            font-size: 13px;
+            font-weight: 700;
+            border: 1px solid #FECACA;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .btn-submit-danger:hover {
+            background: #FEE2E2;
+        }
+        .btn-secondary {
+            height: 40px;
+            padding: 0 16px;
+            border-radius: 10px;
+            background: #F1F5F9;
+            color: #334155;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #E2E8F0;
+        }
+    </style>
+
+    
+    <div class="b-header">
+        <div>
+            <nav class="b-breadcrumb">
+                <span class="b-back-arrow">&lsaquo;</span>
+                <a href="http://127.0.0.1:8011/petugas/booking-servis" style="color: #64748B; text-decoration: none;">Booking Servis</a>
+                <span style="color: #CBD5E1;">&gt;</span>
+                <span style="color: #0F172A; font-weight: 700;">BSV-202609-52D02542</span>
+            </nav>
+            <h1 class="b-heading">Detail Pengajuan Booking #BSV-202609-52D02542</h1>
+        </div>
+
+        <a class="btn-secondary" href="http://127.0.0.1:8011/petugas/booking-servis">
+            &larr; Kembali ke Antrian
+        </a>
+    </div>
+
+        
+    <div class="b-grid">
+        
+        <main style="display: flex; flex-direction: column; gap: 20px;">
+            <section class="b-card">
+                <h2 class="b-card-title"><span>01</span> Pelanggan & Kendaraan</h2>
+                <div class="facts-grid">
+                    <div class="fact-item">
+                        <small>Nama Pelanggan</small>
+                        <strong>Stage 2 Member Two</strong>
+                    </div>
+                    <div class="fact-item">
+                        <small>Nomor WhatsApp / HP</small>
+                        <strong>080000000003</strong>
+                    </div>
+                    <div class="fact-item">
+                        <small>Unit Kendaraan</small>
+                        <strong>YZA Synthetic Other (2025)</strong>
+                    </div>
+                    <div class="fact-item">
+                        <small>Nomor Polisi</small>
+                        <strong style="color: #ED172B;">STAGE3-002</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section class="b-card">
+                <h2 class="b-card-title"><span>02</span> Layanan & Jadwal</h2>
+                <div class="facts-grid">
+                    <div class="fact-item">
+                        <small>Jenis Servis Diminta</small>
+                        <strong>Servis Berkala</strong>
+                    </div>
+                    <div class="fact-item">
+                        <small>Estimasi Biaya Jasa</small>
+                        <strong>Rp 250.000</strong>
+                    </div>
+                    <div class="fact-item">
+                        <small>Tanggal Booking</small>
+                        <strong>13 October 2026</strong>
+                    </div>
+                    <div class="fact-item">
+                        <small>Jam Kedatangan</small>
+                        <strong>10:00 WIB</strong>
+                    </div>
+                    <div class="fact-item">
+                        <small>Preferensi Teknisi Pelanggan</small>
+                        <strong>Tidak ada preferensi</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section class="b-card">
+                <h2 class="b-card-title"><span>03</span> Keluhan & Catatan Pelanggan</h2>
+                <div class="complaint-box">
+                    <strong>Keluhan:</strong><br>
+                    Synthetic baseline
+                </div>
+                            </section>
+        </main>
+
+        
+        <aside style="display: flex; flex-direction: column; gap: 20px;">
+            <section class="b-card">
+                <h2 class="b-card-title"><span>04</span> Status Booking</h2>
+                <div>
+                    <span class="badge-status is-selesai">
+                        Selesai
+                    </span>
+                </div>
+
+                
+                                    <div style="border-top: 1px solid #F1F5F9; padding-top: 14px;">
+                        <p style="margin: 0 0 10px; font-size: 13px; color: #1D4ED8; font-weight: 600;">
+                            Kendaraan ini sudah memiliki Work Order: <strong>SRV-202609-70A40DC2</strong>
+                        </p>
+                        <a class="btn-submit-primary" style="width: 100%; box-sizing: border-box;" href="http://127.0.0.1:8011/petugas/servis/1">
+                            Buka Work Order Servis &rarr;
+                        </a>
+                        <p style="margin: 10px 0 0; font-size: 12px; color: #64748B;">Work Order Aktif · Stage 2 Petugas</p>
+                    </div>
+                            </section>
+        </aside>
+    </div>
+</div>
+                </main>
+            </div>
+        </div>
+        <script src="http://127.0.0.1:8011/js/app.js" defer></script>
+            </body>
+</html>

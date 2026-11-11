@@ -18,7 +18,7 @@ class OwnerAnalyticsService
 
     public function finalVehicleSales(?Carbon $from = null, ?Carbon $to = null, array $filters = []): Builder
     {
-        $query = PenjualanMobil::query()->with(['pelanggan', 'mobil', 'sales', 'transaksi.pembayarans', 'memberOrder.serahTerima']);
+        $query = PenjualanMobil::query()->with(['pelanggan', 'mobil.foto', 'sales', 'transaksi.pembayarans', 'memberOrder.serahTerima']);
         $query->where('penjualan_mobil.status', 'selesai')
             ->whereHas('transaksi', fn ($q) => $q->where('status', '<>', 'dibatalkan'))
             ->where(function ($q): void {
@@ -29,6 +29,15 @@ class OwnerAnalyticsService
         if (!empty($filters['sales'])) $query->where('id_sales', $filters['sales']);
         if (!empty($filters['brand'])) $query->whereHas('mobil', fn ($q) => $q->where('merk', $filters['brand']));
         if (!empty($filters['model'])) $query->whereHas('mobil', fn ($q) => $q->where('model', $filters['model']));
+        if (!empty($filters['q'])) {
+            $needle = trim((string) $filters['q']);
+            $query->where(function ($search) use ($needle): void {
+                $search->where('kode_penjualan', 'like', "%{$needle}%")
+                    ->orWhereHas('transaksi', fn ($transaction) => $transaction->where('kode_transaksi', 'like', "%{$needle}%"))
+                    ->orWhereHas('pelanggan', fn ($customer) => $customer->where('nama_lengkap', 'like', "%{$needle}%"))
+                    ->orWhereHas('mobil', fn ($car) => $car->where('merk', 'like', "%{$needle}%")->orWhere('model', 'like', "%{$needle}%"));
+            });
+        }
         return $query;
     }
 
@@ -59,9 +68,9 @@ class OwnerAnalyticsService
         return $this->finalVehicleSales($from, $to)->selectRaw("DATE_FORMAT(tanggal_penjualan, '%Y-%m') AS period, COUNT(*) AS units, SUM(total_akhir) AS amount")->groupBy('period')->orderBy('period')->get()->map(fn ($row) => ['period' => $row->period, 'units' => (int) $row->units, 'amount' => (float) $row->amount])->all();
     }
 
-    public function brandBreakdown(?Carbon $from = null, ?Carbon $to = null): array
+    public function brandBreakdown(?Carbon $from = null, ?Carbon $to = null, array $filters = []): array
     {
-        return $this->finalVehicleSales($from, $to)->join('mobil as report_mobil', 'report_mobil.id_mobil', '=', 'penjualan_mobil.id_mobil')->selectRaw('report_mobil.merk AS label, COUNT(DISTINCT penjualan_mobil.id_penjualan) AS units')->groupBy('report_mobil.merk')->orderByDesc('units')->get()->map(fn ($row) => ['label' => $row->label, 'units' => (int) $row->units])->all();
+        return $this->finalVehicleSales($from, $to, $filters)->join('mobil as report_mobil', 'report_mobil.id_mobil', '=', 'penjualan_mobil.id_mobil')->selectRaw('report_mobil.merk AS label, COUNT(DISTINCT penjualan_mobil.id_penjualan) AS units')->groupBy('report_mobil.merk')->orderByDesc('units')->get()->map(fn ($row) => ['label' => $row->label, 'units' => (int) $row->units])->all();
     }
 
     public function salesPerformance(?Carbon $from = null, ?Carbon $to = null): array
@@ -130,9 +139,24 @@ class OwnerAnalyticsService
             ->latest('tanggal_masuk');
     }
 
-    public function paymentReport(?Carbon $from = null, ?Carbon $to = null): array
+    public function paymentReport(?Carbon $from = null, ?Carbon $to = null, array $filters = []): array
     {
-        $query = Pembayaran::query()->with('transaksi')->where('arah', 'masuk')->when($from, fn ($q) => $q->where('tanggal', '>=', $from))->when($to, fn ($q) => $q->where('tanggal', '<=', $to));
+        // Optional verification-date view lets Owner reconcile the dashboard KPI.
+        // The existing payment-date report remains the default for all other callers.
+        $dateColumn = ($filters['date_basis'] ?? '') === 'verified_at' ? 'verified_at' : 'tanggal';
+        $query = Pembayaran::query()->with(['transaksi.pelanggan'])->where('arah', 'masuk')
+            ->when($from, fn ($q) => $q->where($dateColumn, '>=', $from))
+            ->when($to, fn ($q) => $q->where($dateColumn, '<=', $to))
+            ->when($filters['method'] ?? null, fn ($q, $value) => $q->where('metode', $value))
+            ->when($filters['status'] ?? null, fn ($q, $value) => $q->where('status', $value))
+            ->when(trim((string) ($filters['q'] ?? '')), function ($q) use ($filters): void {
+                $needle = trim((string) $filters['q']);
+                $q->where(function ($search) use ($needle): void {
+                    $search->where('kode_pembayaran', 'like', "%{$needle}%")
+                        ->orWhereHas('transaksi', fn ($transaction) => $transaction->where('kode_transaksi', 'like', "%{$needle}%"))
+                        ->orWhereHas('transaksi.pelanggan', fn ($customer) => $customer->where('nama_lengkap', 'like', "%{$needle}%"));
+                });
+            });
         $rows = $query->latest('tanggal')->get();
         return ['rows' => $rows, 'verified' => (float) $rows->where('status', 'terverifikasi')->sum('jumlah'), 'pending' => (float) $rows->where('status', 'menunggu')->sum('jumlah'), 'rejected' => (float) $rows->where('status', 'ditolak')->sum('jumlah'), 'online' => (float) $rows->whereIn('metode', ['midtrans', 'online'])->where('status', 'terverifikasi')->sum('jumlah'), 'offline' => (float) $rows->whereNotIn('metode', ['midtrans', 'online'])->where('status', 'terverifikasi')->sum('jumlah')];
     }

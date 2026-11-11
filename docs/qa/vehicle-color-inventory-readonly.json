@@ -1,0 +1,76 @@
+{
+    "audited_at": "2026-11-08T12:36:19+07:00",
+    "car_rows": 26,
+    "catalog_color_rows": 44,
+    "aggregate_rows": 12,
+    "duplicate_nonempty_vin_groups": 0,
+    "target": [
+        {
+            "id": 252,
+            "code": "PREM-03",
+            "model": "Porsche 911 GT3 RS",
+            "variant": "4.0 Performance",
+            "year": 2024,
+            "inventory_color": "Guards Red",
+            "status": "tersedia",
+            "vin_present": true,
+            "engine_present": true,
+            "aggregate": {
+                "id": 5,
+                "stock_total": 2,
+                "sold_units": 0,
+                "reserved": 0,
+                "available": 2
+            },
+            "catalog_colors": [
+                {
+                    "id": 70,
+                    "name": "Guards Red",
+                    "slug": "guards-red",
+                    "hex": "#c91c26",
+                    "images": 4,
+                    "existing_images": 4
+                },
+                {
+                    "id": 71,
+                    "name": "Racing Yellow",
+                    "slug": "racing-yellow",
+                    "hex": "#e4b51b",
+                    "images": 4,
+                    "existing_images": 4
+                },
+                {
+                    "id": 72,
+                    "name": "GT Silver Metallic",
+                    "slug": "gt-silver-metallic",
+                    "hex": "#aeb3b8",
+                    "images": 4,
+                    "existing_images": 4
+                },
+                {
+                    "id": 73,
+                    "name": "Jet Black Metallic",
+                    "slug": "jet-black-metallic",
+                    "hex": "#151618",
+                    "images": 4,
+                    "existing_images": 4
+                },
+                {
+                    "id": 74,
+                    "name": "Arctic Grey",
+                    "slug": "arctic-grey",
+                    "hex": "#777d84",
+                    "images": 4,
+                    "existing_images": 4
+                }
+            ],
+            "gallery_colors": [
+                "Guards Red",
+                "Racing Yellow",
+                "GT Silver Metallic",
+                "Jet Black Metallic",
+                "Arctic Grey"
+            ]
+        }
+    ]
+}

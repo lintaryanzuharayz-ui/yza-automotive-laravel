@@ -1,0 +1,135 @@
+[
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "beforeBytes": 290085,
+    "afterBytes": 290093,
+    "bladeOutsideStylesPreserved": null,
+    "sha256": "a7f4fa53af69911f1f00ac4a174ec6f5ad5cc0d9010bd320ef889ba74d81d0c1"
+  },
+  {
+    "file": "public/assets/css/member-checkout.css",
+    "beforeBytes": 8889,
+    "afterBytes": 8909,
+    "bladeOutsideStylesPreserved": null,
+    "sha256": "e0a23e5bce46f57b4cc17053e078c9c7ffb53c4db1ec00a97ff28cade65ba3a7"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "beforeBytes": 39514,
+    "afterBytes": 39649,
+    "bladeOutsideStylesPreserved": null,
+    "sha256": "ed7f3a51c3e6b1dd618eb8e3e1bd2976546eb3b42d0dbd741dfc32bcbd1d0553"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "beforeBytes": 39989,
+    "afterBytes": 40021,
+    "bladeOutsideStylesPreserved": null,
+    "sha256": "897718f76424c7d1e774a2e013946527828c7dca91279a8d0ac201b36cd8800d"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "beforeBytes": 19720,
+    "afterBytes": 19764,
+    "bladeOutsideStylesPreserved": null,
+    "sha256": "67350ae005e33448a668c53a42741f01dc6dd35ee6e9dc8c76ff78408d414cef"
+  },
+  {
+    "file": "public/assets/css/pages/login.css",
+    "beforeBytes": 11737,
+    "afterBytes": 11748,
+    "bladeOutsideStylesPreserved": null,
+    "sha256": "aa3fb36bafda1d615ffa9d88ea86df82be468a478e925d4d07848a7b049e5222"
+  },
+  {
+    "file": "public/assets/css/pages/membership-flow.css",
+    "beforeBytes": 8100,
+    "afterBytes": 8138,
+    "bladeOutsideStylesPreserved": null,
+    "sha256": "2e9700cbb969d66e70a533c394e1be50e5138fce9e9d789b258f74d09d447258"
+  },
+  {
+    "file": "public/assets/css/pages/register.css",
+    "beforeBytes": 20487,
+    "afterBytes": 20437,
+    "bladeOutsideStylesPreserved": null,
+    "sha256": "f5c254a86afae16ecce64e9a1c2d0138e0c1252fe0942a819c490e6559ff4c89"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium-overrides.css",
+    "beforeBytes": 31679,
+    "afterBytes": 31659,
+    "bladeOutsideStylesPreserved": null,
+    "sha256": "791379cfda522ca95c7af698f54f4db619a42399ec0fd6e5106922fbd0ef9cca"
+  },
+  {
+    "file": "public/assets/css/pages/service-detail-premium.css",
+    "beforeBytes": 7779,
+    "afterBytes": 7753,
+    "bladeOutsideStylesPreserved": null,
+    "sha256": "e4a1cff52b6d98079fc67c67a6b18a5b0787cb7b9742be270364c6891c9569be"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "beforeBytes": 24580,
+    "afterBytes": 24964,
+    "bladeOutsideStylesPreserved": null,
+    "sha256": "bd1f3e63dce602c075eb3672a074a4942e3e13f3d89f206ac64b3ef90c79f139"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "beforeBytes": 143740,
+    "afterBytes": 143665,
+    "bladeOutsideStylesPreserved": null,
+    "sha256": "b5880f322197e044d65103754634292ea887f1c0fb8e7a887862d422f96a5c79"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "beforeBytes": 50671,
+    "afterBytes": 50794,
+    "bladeOutsideStylesPreserved": true,
+    "sha256": "36b810a81c0abfa3b7ee050fccef5296527965eded432d99c81153ee0d5bb0a6"
+  },
+  {
+    "file": "resources/views/operations/servis/show-premium.blade.php",
+    "beforeBytes": 26047,
+    "afterBytes": 26032,
+    "bladeOutsideStylesPreserved": true,
+    "sha256": "fc93bb660c0cc0dc412e4d04333c78ad74da8e59dd8bdebe3bb2ec0824f4eff3"
+  },
+  {
+    "file": "resources/views/operations/servis/wizard.blade.php",
+    "beforeBytes": 68787,
+    "afterBytes": 68809,
+    "bladeOutsideStylesPreserved": true,
+    "sha256": "42f100a9d8cb02152e8d633cae62a2c7b17faa00da157a0c595bd0899030a579"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "beforeBytes": 29745,
+    "afterBytes": 29739,
+    "bladeOutsideStylesPreserved": true,
+    "sha256": "4b7fd877ff119642029dfce25ff5c80dbd950cb69faeb7a08e8a1f7806fea36a"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "beforeBytes": 34185,
+    "afterBytes": 34120,
+    "bladeOutsideStylesPreserved": true,
+    "sha256": "a0921add2330145a22397069da647ead50a14d549e4f79cf175fe7036a2f3b98"
+  },
+  {
+    "file": "resources/views/public/home.blade.php",
+    "beforeBytes": 49211,
+    "afterBytes": 49205,
+    "bladeOutsideStylesPreserved": true,
+    "sha256": "b412269cbb265d9d5211ad7681bb8aef6498a8acae7e2ec40edab376e11830e7"
+  },
+  {
+    "file": "tests/Ui/ResponsiveRenderCoverageTest.php",
+    "beforeBytes": 6256,
+    "afterBytes": 6457,
+    "bladeOutsideStylesPreserved": null,
+    "sha256": "bf858a6d024cff1d0f692245b2ff622b0635f89b679425417cbfd68b7ae87bdf"
+  }
+]

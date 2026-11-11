@@ -41,30 +41,56 @@ class MemberVehiclePurchaseService
         return $customer;
     }
 
+    public function createForStaff(Pelanggan $customer, Mobil $car, array $input): PesananMobilMember
+    {
+        return DB::transaction(function () use ($customer, $car, $input): PesananMobilMember {
+            $actor = auth()->user();
+            abort_unless($actor && $actor->roleKey() !== 'owner' && $actor->hasPermission('sales.manage'), 403);
+            $customer = Pelanggan::lockForUpdate()->findOrFail($customer->id_pelanggan);
+            if ($customer->status !== 'aktif') throw new RuntimeException('Pelanggan tidak aktif.');
+            app(ActiveMemberCustomerService::class)->assertEligibleLocked($customer);
+            $car = Mobil::lockForUpdate()->findOrFail($car->id_mobil);
+            if ($car->status !== 'tersedia') throw new RuntimeException('Pilih kendaraan yang tersedia.');
+            if (!empty($input['promo_id'])) throw new RuntimeException('Promo Member tidak dapat digabungkan dalam pengajuan diskon SPK.');
+            $spk = app(SmartSpkOrderService::class);
+            $quote = $spk->quote($car, $input);
+            if (isset($input['expected_base_price']) && $spk->calculate((string) $input['expected_base_price'])['base_price'] !== $quote['base_price']) {
+                throw new RuntimeException('Harga kendaraan berubah. Periksa ulang estimasi dan konfirmasi SPK.');
+            }
+            if (PesananMobilMember::where('id_pelanggan', $customer->id_pelanggan)
+                ->where('id_mobil', $car->id_mobil)
+                ->whereNotIn('status', ['ditolak', 'dibatalkan', 'diserahkan'])->exists()) {
+                throw new RuntimeException('Pelanggan sudah memiliki pesanan aktif untuk kendaraan ini.');
+            }
+            // Staff color means the selected physical/inventory row, never a
+            // gallery-only variant on the same row.
+            unset($input['warna_pilihan']);
+            $order = $this->create($customer, $car, $input);
+            $spk->recordProposal($order, $input, $quote, $actor);
+            app(MasterAuditService::class)->record('create', 'pesanan_mobil_member', $order->id_pesanan, 'Petugas mencatat pesanan awal pelanggan.');
+            return $order;
+        });
+    }
+
     public function create(Pelanggan $customer, Mobil $car, array $input): PesananMobilMember
     {
         return DB::transaction(function () use ($customer, $car, $input): PesananMobilMember {
+            $customer = Pelanggan::lockForUpdate()->findOrFail($customer->id_pelanggan);
+            if ($customer->status !== 'aktif') throw new RuntimeException('Pelanggan tidak aktif.');
+            app(ActiveMemberCustomerService::class)->assertEligibleLocked($customer);
             $car = Mobil::lockForUpdate()->findOrFail($car->id_mobil);
             $inventoryService = app(VehicleInventoryService::class);
             $inventory = VehicleInventory::lockForUpdate()->where('inventory_key', $inventoryService->key($car))->first();
-            $isAggregate = (bool) $inventory;
-            if ($isAggregate) {
-                $available = (int) $inventory->stock_total - (int) $inventory->sold_units - $inventoryService->reserveCount($car);
-                if ($available < 1) throw new RuntimeException('Stok kendaraan sudah habis.');
-            } elseif ($car->status !== 'tersedia') {
-                throw new RuntimeException('Unit sudah tidak tersedia. Silakan pilih kendaraan lain.');
+            $isAggregate = false;
+            $colorStock = app(VehicleColorStockService::class);
+            $colorStock->assertOrderable($car);
+            $selectedColor = $car->warna;
+            if (!empty($input['warna_pilihan'])) {
+                $variant = $colorStock->selected($car, $input['warna_pilihan']);
+                if ($colorStock->normalize($variant['label']) !== $colorStock->normalize($car->warna)) {
+                    throw new RuntimeException('Warna pilihan harus sesuai warna unit fisik yang dipilih.');
+                }
             }
-
-            if (!$isAggregate) {
-                $active = PesananMobilMember::where('id_mobil', $car->id_mobil)
-                    ->whereNotIn('status', ['ditolak', 'dibatalkan', 'diserahkan'])
-                    ->exists();
-                if ($active) throw new RuntimeException('Unit sedang diproses oleh pesanan lain.');
-            }
-
-            $gallery = app(VehicleGalleryService::class)->for($car);
-            $requestedColor = strtolower(trim((string) ($input['warna_pilihan'] ?? '')));
-            $selectedColor = $gallery[$requestedColor]['label'] ?? $car->warna;
             $order = new PesananMobilMember();
             $order->forceFill([
                 'nomor_pesanan' => $this->code('ORD', 'pesanan_mobil_member', 'nomor_pesanan'),
@@ -94,6 +120,8 @@ class MemberVehiclePurchaseService
         return DB::transaction(function () use ($order, $petugasId, $note): PesananMobilMember {
             $order = PesananMobilMember::lockForUpdate()->findOrFail($order->id_pesanan);
             if ($order->status !== 'menunggu_verifikasi') throw new RuntimeException('Pesanan tidak menunggu verifikasi.');
+            if ($order->id_penjualan || $order->id_transaksi) throw new RuntimeException('Pesanan sudah memiliki transaksi penjualan.');
+            if ((float) $order->manual_discount_value > 0) throw new RuntimeException('Pengajuan diskon SPK belum dapat menjadi harga sah. Kebijakan harga minimum/margin dan persetujuan independen wajib dipenuhi.');
             $car = Mobil::lockForUpdate()->findOrFail($order->id_mobil);
             $isAggregate = (bool) app(VehicleInventoryService::class)->find($car);
             if (!$isAggregate && $car->status !== 'dibooking') throw new RuntimeException('Unit tidak lagi aman untuk diproses.');
@@ -141,10 +169,8 @@ class MemberVehiclePurchaseService
             $order = PesananMobilMember::lockForUpdate()->findOrFail($order->id_pesanan);
             if ($order->status !== 'menunggu_verifikasi') throw new RuntimeException('Pesanan tidak menunggu verifikasi.');
             $car = Mobil::lockForUpdate()->findOrFail($order->id_mobil);
-            if (!app(VehicleInventoryService::class)->find($car)) {
-                Mobil::whereKey($order->id_mobil)->where('status', 'dibooking')->update(['status' => 'tersedia']);
-            }
             $order->forceFill(['status' => 'ditolak', 'id_petugas_keputusan' => $petugasId, 'diputuskan_at' => now(), 'catatan_admin' => $note])->save();
+            if ($car->status === 'dibooking' && app(VehicleColorStockService::class)->reservedIds(collect([$car->getKey()]))->isEmpty()) $car->update(['status' => 'tersedia']);
             $this->notify($order, 'Pesanan ditolak', 'Pesanan '.$order->nomor_pesanan.' ditolak admin. Silakan periksa catatan pada detail pesanan.');
             return $order;
         });
@@ -170,27 +196,8 @@ class MemberVehiclePurchaseService
             }
 
             $car = Mobil::lockForUpdate()->findOrFail($order->id_mobil);
-            $inventoryService = app(VehicleInventoryService::class);
-            $inventory = $inventoryService->find($car);
-            if ($inventory) {
-                $available = (int) $inventory->stock_total - (int) $inventory->sold_units - $inventoryService->reserveCount($car);
-                if ($available < 1) {
-                    throw new RuntimeException('Stok kendaraan sudah tidak tersedia. Silakan pilih kendaraan lain.');
-                }
-            } elseif (!in_array($car->status, ['tersedia', 'dibooking'], true)) {
-                throw new RuntimeException('Unit kendaraan sudah tidak tersedia. Silakan pilih kendaraan lain.');
-            }
-
-            if (!$inventory && PesananMobilMember::where('id_mobil', $car->id_mobil)
-                ->where('id_pesanan', '<>', $order->id_pesanan)
-                ->whereNotIn('status', ['ditolak', 'dibatalkan', 'diserahkan'])
-                ->exists()) {
-                throw new RuntimeException('Unit kendaraan sudah diproses oleh pesanan lain.');
-            }
-
-            if (!$inventory) {
-                $car->forceFill(['status' => 'dibooking'])->save();
-            }
+            app(VehicleColorStockService::class)->assertOrderable($car);
+            $car->forceFill(['status' => 'dibooking'])->save();
             $order->transaksi->forceFill(['status' => 'belum_bayar'])->save();
             $order->penjualan->forceFill(['status' => 'proses'])->save();
             $order->forceFill([
@@ -210,7 +217,8 @@ class MemberVehiclePurchaseService
             if (!in_array($order->status, ['pdi_lulus', 'siap_diambil'], true) || !$order->transaksi || $order->transaksi->status !== 'lunas') {
                 throw new RuntimeException('Jadwal pengambilan hanya dapat dibuat setelah PDI lulus dan pembayaran lunas.');
             }
-            if (!$order->pdi || $order->pdi->status !== 'lulus') throw new RuntimeException('PDI belum lulus.');
+            app(VehiclePdiIntegrityService::class)->assertPassed($order);
+            if (auth()->check()) app(InspectionIntegrityService::class)->inspector((int) auth()->user()->petugas?->id_petugas, null, 'workflow');
             $pickupAt = Carbon::parse($schedule, config('app.timezone'));
             if ($pickupAt->isPast()) throw new RuntimeException('Jadwal pengambilan harus berada di masa depan.');
             $order->forceFill(['status' => 'siap_diambil', 'jadwal_pengambilan' => $schedule, 'lokasi_pengambilan' => $location ?: 'YZA Automotive', 'status_pengambilan' => 'dijadwalkan', 'jadwal_dikonfirmasi_at' => now(), 'catatan_pengambilan' => $notes])->save();
@@ -226,18 +234,28 @@ class MemberVehiclePurchaseService
     {
         return DB::transaction(function () use ($order, $petugasId): PdiPesananMobil {
             $order = PesananMobilMember::lockForUpdate()->with(['transaksi', 'mobil'])->findOrFail($order->id_pesanan);
+            app(InspectionIntegrityService::class)->inspector($petugasId, null, 'pdi');
             $this->assertPdiEntry($order);
+            app(VehiclePdiIntegrityService::class)->binding($order);
             $pdi = PdiPesananMobil::lockForUpdate()->firstOrNew(['id_pesanan' => $order->id_pesanan]);
-            if ($pdi->status === 'lulus') return $pdi;
+            if ($pdi->status === 'lulus') {
+                try { app(VehiclePdiIntegrityService::class)->assertPassed($order); return $pdi; }
+                catch (RuntimeException $e) { /* An outdated inspection must be repeated. */ }
+            }
+            $history = app(VehiclePdiIntegrityService::class)->history($pdi);
             $pdi->forceFill([
                 'id_pesanan' => $order->id_pesanan,
                 'id_petugas' => $petugasId,
+                'checklist' => ['_history' => $history],
+                'completed_at' => null,
+                'diperiksa_at' => null,
                 'status' => 'sedang_diperiksa',
                 'result' => 'in_progress',
                 'started_at' => $pdi->started_at ?: now(),
                 'nomor_rangka_snapshot' => $order->mobil?->nomor_rangka,
                 'nomor_mesin_snapshot' => $order->mobil?->nomor_mesin,
             ])->save();
+            $order->forceFill(['status' => 'lunas', 'status_pengambilan' => 'belum_dijadwalkan'])->save();
             $this->notify($order, 'PDI dimulai', 'Kendaraan Anda sedang menjalani pemeriksaan PDI.');
             $this->audit('pdi_started', $order, $petugasId);
             return $pdi->fresh();
@@ -248,15 +266,19 @@ class MemberVehiclePurchaseService
     {
         return DB::transaction(function () use ($order, $petugasId, $input): PdiPesananMobil {
             $order = PesananMobilMember::lockForUpdate()->with(['transaksi', 'mobil', 'pdi'])->findOrFail($order->id_pesanan);
+            app(InspectionIntegrityService::class)->inspector($petugasId, null, 'pdi');
             $this->assertPdiEntry($order);
+            app(VehiclePdiIntegrityService::class)->binding($order);
             $pdi = PdiPesananMobil::lockForUpdate()->firstOrNew(['id_pesanan' => $order->id_pesanan]);
             if (!$pdi->started_at) $pdi->started_at = now();
+            $history = app(VehiclePdiIntegrityService::class)->history($pdi);
             $checklist = $this->normalizeChecklist((array) ($input['checklist'] ?? []));
             $issues = collect($checklist)->flatten(1)->filter(fn (array $item): bool => $item['result'] === 'issue');
             $hasMissing = collect($checklist)->flatten(1)->count() < collect(self::CHECKLIST)->flatten()->count();
             if ($hasMissing) throw new RuntimeException('Checklist PDI belum lengkap.');
             if ($issues->contains(fn (array $item): bool => trim((string) ($item['notes'] ?? '')) === '')) throw new RuntimeException('Setiap temuan ISSUE wajib memiliki catatan.');
             $status = $issues->isNotEmpty() ? 'perlu_perbaikan' : 'lulus';
+            if ($status === 'lulus') app(VehiclePdiIntegrityService::class)->assertPhysicalIdentity($order);
             $pdi->forceFill([
                 'id_pesanan' => $order->id_pesanan,
                 'id_petugas' => $petugasId,
@@ -269,6 +291,10 @@ class MemberVehiclePurchaseService
                 'nomor_mesin_snapshot' => $order->mobil?->nomor_mesin,
                 'catatan' => $input['catatan'] ?? null,
             ] + $this->legacyChecklistFlags($checklist))->save();
+            $checklist['_history'] = $history;
+            $pdi->checklist = $checklist;
+            $checklist['_integrity'] = app(VehiclePdiIntegrityService::class)->proof($order, $pdi);
+            $pdi->forceFill(['checklist' => $checklist])->save();
             $order->forceFill(['status' => $status === 'lulus' ? 'pdi_lulus' : 'pdi_gagal', 'status_pengambilan' => $status === 'lulus' ? 'belum_dijadwalkan' : 'belum_dijadwalkan'])->save();
             $this->notify($order, $status === 'lulus' ? 'PDI lulus' : 'PDI memerlukan tindak lanjut', $status === 'lulus' ? 'Kendaraan Anda telah lulus pemeriksaan PDI.' : 'Pemeriksaan kendaraan memerlukan tindak lanjut sebelum kendaraan dapat diserahkan.');
             $this->audit($status === 'lulus' ? 'pdi_completed' : 'pdi_issue', $order, $petugasId);
@@ -278,41 +304,31 @@ class MemberVehiclePurchaseService
 
     public function savePdi(PesananMobilMember $order, int $petugasId, array $input): PdiPesananMobil
     {
-        return DB::transaction(function () use ($order, $petugasId, $input): PdiPesananMobil {
-            $order = PesananMobilMember::lockForUpdate()->with('transaksi')->findOrFail($order->id_pesanan);
-            if (in_array($order->status, ['diserahkan', 'dibatalkan', 'ditolak'], true) || !$order->transaksi || $order->transaksi->status !== 'lunas') throw new RuntimeException('PDI hanya dapat dilakukan setelah pelunasan terverifikasi dan sebelum serah-terima.');
-            $items = ['mesin', 'eksterior', 'interior', 'rem', 'ban', 'kelistrikan', 'lampu', 'ac', 'dokumen', 'final_quality'];
-            $values = array_fill_keys($items, false);
-            foreach ($items as $item) $values[$item] = (bool) ($input[$item] ?? false);
-            $pdi = PdiPesananMobil::firstOrNew(['id_pesanan' => $order->id_pesanan]);
-            $status = in_array(false, $values, true) ? 'perlu_perbaikan' : 'lulus';
-            $pdi->forceFill($values + ['id_pesanan' => $order->id_pesanan, 'id_petugas' => $petugasId, 'status' => $status, 'result' => $status === 'lulus' ? 'passed' : 'needs_correction', 'started_at' => $pdi->started_at ?: now(), 'completed_at' => now(), 'catatan' => $input['catatan'] ?? null, 'diperiksa_at' => now()])->save();
-            $order->update(['status' => $status === 'lulus' ? 'pdi_lulus' : 'pdi_gagal']);
-            return $pdi;
-        });
+        return $this->completePdi($order, $petugasId, $input);
     }
 
     public function handover(PesananMobilMember $order, int $petugasId, array $input): SerahTerimaPesananMobil
     {
         return DB::transaction(function () use ($order, $petugasId, $input): SerahTerimaPesananMobil {
             $order = PesananMobilMember::lockForUpdate()->with(['transaksi', 'penjualan', 'pdi', 'serahTerima'])->findOrFail($order->id_pesanan);
+            app(InspectionIntegrityService::class)->inspector($petugasId, null, 'workflow');
             if ($order->status === 'diserahkan' && $order->serahTerima) return $order->serahTerima;
             if ($order->status !== 'siap_diambil' || !$order->transaksi || $order->transaksi->status !== 'lunas') throw new RuntimeException('Pesanan belum memenuhi syarat serah-terima.');
-            if (!$order->pdi || $order->pdi->status !== 'lulus') throw new RuntimeException('PDI belum lulus.');
+            app(VehiclePdiIntegrityService::class)->assertPassed($order);
             if (!$order->jadwal_pengambilan || !in_array($order->status_pengambilan, ['dijadwalkan', 'siap_diambil'], true)) throw new RuntimeException('Jadwal pengambilan belum valid.');
             if ($order->jadwal_pengambilan->isFuture()) throw new RuntimeException('Serah-terima belum dapat dilakukan sebelum jadwal pengambilan tiba.');
             $pdi = PdiPesananMobil::where('id_pesanan', $order->id_pesanan)->where('status', 'lulus')->exists();
             if (!$pdi) throw new RuntimeException('PDI belum lulus.');
             $handover = SerahTerimaPesananMobil::firstOrNew(['id_pesanan' => $order->id_pesanan]);
             $handover->forceFill(['id_pesanan' => $order->id_pesanan, 'id_petugas' => $petugasId, 'nama_penerima' => trim($input['nama_penerima']), 'nomor_identitas' => $input['nomor_identitas'] ?? null, 'pelunasan_terverifikasi' => true, 'dokumen_lengkap' => true, 'kendaraan_sesuai' => true, 'catatan' => $input['catatan'] ?? null, 'diserahkan_at' => now()])->save();
-            $order->penjualan->forceFill(['status' => 'selesai'])->save();
             $car = Mobil::lockForUpdate()->findOrFail($order->id_mobil);
+            if (app(VehicleColorStockService::class)->sold($car)) throw new RuntimeException('Identitas unit ini sudah diserahkan atau terjual melalui transaksi lain.');
+            $order->penjualan->forceFill(['status' => 'selesai'])->save();
             $inventoryService = app(VehicleInventoryService::class);
             if ($inventoryService->find($car)) {
                 $inventoryService->recordSale($car, 1, 'pesanan_mobil_member', $order->id_pesanan, 'Unit agregat diserahkan kepada pelanggan.');
-            } else {
-                $car->forceFill(['status' => 'terjual'])->save();
             }
+            $car->forceFill(['status' => 'terjual'])->save();
             $order->forceFill(['status' => 'diserahkan', 'status_pengambilan' => 'diserahkan', 'diserahkan_at' => now()])->save();
             $vehicle = app(VerifiedCarOwnershipService::class)->syncVehicleFromCompletedSale($order->penjualan->fresh(['mobil', 'transaksi', 'memberOrder']), $handover);
             $this->notify($order, 'Serah terima selesai', 'Serah terima kendaraan telah selesai. Kendaraan Anda sekarang tersedia di My Garage.');
@@ -335,7 +351,7 @@ class MemberVehiclePurchaseService
             foreach ($items as $key) {
                 $value = $input[$key] ?? $input[$section][$key] ?? [];
                 $result = strtolower((string) (is_array($value) ? ($value['result'] ?? '') : $value));
-                if (!in_array($result, ['pass', 'issue', 'na'], true)) $result = 'issue';
+                if (!in_array($result, ['pass', 'issue', 'na'], true)) throw new RuntimeException('Checklist PDI belum lengkap atau hasil tidak valid.');
                 $normalized[$section][$key] = ['result' => $result, 'notes' => trim((string) (is_array($value) ? ($value['notes'] ?? '') : ''))];
             }
         }

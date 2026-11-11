@@ -1,0 +1,37 @@
+✔ panel shows four latest messages, keeps unread 3 separate from total 6, and ignores operational summaries (35.1567ms)
+✔ bell opens without an auto-close timer and can close again (5.9757ms)
+✔ unread filter changes items without changing global total (7.3073ms)
+✔ Escape and outside click close, and ArrowDown enters keyboard controls (2.8622ms)
+✔ message links retain server open URLs and payloads are rendered as text (4.6546ms)
+✔ unread, category dots and pending tasks use separate authoritative values (2.9568ms)
+✔ reading one of several messages retains the dot, and stale snapshots cannot restore old counts (1.1293ms)
+✔ polling has one timer, drains the server cursor and never repeats a toast (3.3654ms)
+✔ visibility pauses polling and authentication loss stops further requests (1.4275ms)
+✔ account switch clears old account presentation and does not display the other account payload (1.4225ms)
+✔ mark-as-read applies server response without a page reload and broadcasts only invalidation (2.8215ms)
+✔ logout stops polling, clears notification presentation and rejects late state updates (1.2536ms)
+✔ sale starts with informative placeholders and hidden promo summary (5.4411ms)
+✔ promo requires customer and vehicle and rejects stacking manual discount (29.4114ms)
+✔ server preview follows selected customer and updates both summaries without claiming applied (5.195ms)
+✔ stale promo response cannot overwrite changed selection (5.9118ms)
+✔ DP and booking relationship are validated against selected unit (3.1041ms)
+✔ modal opens in place, closes, restores focus, and fills buyer data (5.7364ms)
+✔ groups every three digits without floating point rounding (2.3885ms)
+✔ Indonesian input round trips to canonical numeric strings (0.9951ms)
+✔ only monetary fields qualify, never years, quantity, phone, IDs or percentage (1.0614ms)
+✔ wizard starts at step one with no invented quote or unit (7.7298ms)
+✔ catalog-only color remains visible with photo, no eligible unit and no save (5.9473ms)
+✔ variant change updates the actual unit and filters colors without changing model (3.8507ms)
+✔ swatches select actual compatible unit and image, without including another model (5.1194ms)
+✔ step navigation preserves buyer information and requires server quote (29.0914ms)
+✔ nonzero quotes are marked pending and cannot be saved without proposal storage (4.1123ms)
+✔ stale quote cannot overwrite a newly selected color or failed quote (3.3023ms)
+✔ step-three save is a draft and never marks discount approved in the UI (4.6648ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 214.4195

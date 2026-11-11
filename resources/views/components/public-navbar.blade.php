@@ -21,11 +21,9 @@
     </a>
     <button class="show-mobile-toggle show-search" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="show-nav-links">☰</button>
     <nav class="show-nav-links" id="show-nav-links" aria-label="Navigasi publik">
-        <a class="{{ $isLanding ? 'active' : '' }}" href="{{ $href('beranda') }}" @if($isLanding) aria-current="page" @endif>Beranda</a>
         <a class="{{ $isMobil ? 'active' : '' }}" href="{{ $isLanding ? '#mobil' : route('mobil.index') }}" @if($isMobil) aria-current="page" @endif>Mobil</a>
-        <a href="{{ $memberHref }}">YZA Member</a>
+        <a href="{{ $isLanding ? '#yza-member' : $memberHref }}">YZA Member</a>
         <a href="{{ $href('jual-mobil') }}">Jual Mobil</a>
-        <a href="{{ $href('jual-mobil') }}">Trade-In</a>
         <a href="{{ $href('servis') }}">Servis</a>
         <a href="{{ $href('tentang') }}">Tentang Kami</a>
         <a href="{{ $href('kontak') }}">Kontak</a>

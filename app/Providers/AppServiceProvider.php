@@ -20,6 +20,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        app(\App\Services\StaffNotificationService::class)->registerObservers();
+        app(\App\Services\PreorderInventoryNotificationService::class)->registerObservers();
+        \Illuminate\Support\Facades\Event::listen(\Illuminate\Auth\Events\Login::class, function ($event): void {
+            if (request()->hasSession()) {
+                request()->session()->put('yza_toast_welcome_user', $event->user->getAuthIdentifier());
+            }
+        });
+
         Servis::created(function (Servis $servis): void {
             if ($servis->id_petugas && class_exists(ServiceWorkOrderAssignment::class)) {
                 ServiceWorkOrderAssignment::create([

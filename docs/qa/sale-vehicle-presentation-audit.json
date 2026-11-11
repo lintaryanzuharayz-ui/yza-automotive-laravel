@@ -1,0 +1,67 @@
+{
+    "database": "yza_automotive_laravel",
+    "read_only": true,
+    "sales": [
+        {
+            "sale_id": 1,
+            "sale_code": "SALE-202609-8203F497",
+            "mobil_id": 5,
+            "customer_id": 1,
+            "order_ids": [],
+            "sale_total": "240000000.00",
+            "current_unit_color": "Putih",
+            "source": "Data unit terhubung saat ini; snapshot spesifikasi penjualan tidak tersedia.",
+            "vehicle": "Toyota Yaris",
+            "variant": "1.5 S",
+            "year": 2022,
+            "ordered_color": "Putih",
+            "image": "http://127.0.0.1:8000/assets/images/vehicle-photo-unavailable.svg",
+            "photo_verified": false,
+            "warning": null,
+            "order_status": null,
+            "sale_status": "selesai"
+        },
+        {
+            "sale_id": 2912,
+            "sale_code": "SALE-202610-B348ABA7",
+            "mobil_id": 195,
+            "customer_id": 750,
+            "order_ids": [
+                1
+            ],
+            "sale_total": "2350000000.00",
+            "current_unit_color": "Supra Red",
+            "source": "Snapshot pesanan member",
+            "vehicle": "Toyota GR Supra",
+            "variant": "Performance",
+            "year": 2024,
+            "ordered_color": "Obsidian Black",
+            "image": "http://127.0.0.1:8000/assets/images/vehicles/toyota-gr-supra/black/front.png",
+            "photo_verified": true,
+            "warning": null,
+            "order_status": "diserahkan",
+            "sale_status": "selesai"
+        },
+        {
+            "sale_id": 2938,
+            "sale_code": "SALE-202610-4EAD3A40",
+            "mobil_id": 257,
+            "customer_id": 750,
+            "order_ids": [
+                18
+            ],
+            "sale_total": "2500000000.00",
+            "current_unit_color": "TorRed",
+            "source": "Snapshot pesanan member",
+            "vehicle": "Dodge Challenger SRT Hellcat Redeye",
+            "variant": "6.2L Supercharged V8",
+            "year": 2023,
+            "ordered_color": "Destroyer Grey",
+            "image": "http://127.0.0.1:8000/assets/images/vehicles/premium/dodge-challenger-srt-hellcat-redeye/destroyer-grey/front.png",
+            "photo_verified": true,
+            "warning": "Status pesanan dibatalkan; status penjualan tercatat proses. Perlu verifikasi petugas.",
+            "order_status": "dibatalkan",
+            "sale_status": "proses"
+        }
+    ]
+}

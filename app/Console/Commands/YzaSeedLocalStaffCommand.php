@@ -89,6 +89,13 @@ class YzaSeedLocalStaffCommand extends Command
         ];
 
         foreach ($accounts as $account) {
+            // Keep the explicit-role fixture for isolated tests only. Never recreate
+            // the retired duplicate on the operational local/uat/production database.
+            if ($account['username'] === 'superadmin506'
+                && !(app()->environment('testing') && DB::connection()->getDatabaseName() === 'yza_automotive_laravel_test')) {
+                $this->line('Lewati superadmin506: hanya tersedia sebagai fixture database testing terisolasi.');
+                continue;
+            }
             $role = Role::where('nama_role', $account['role'])->firstOrFail();
             $user = User::where('username', $account['username'])->first();
             if ($user) {

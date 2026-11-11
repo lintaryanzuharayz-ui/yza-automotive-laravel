@@ -31,28 +31,28 @@
     </style>
     <section class="notification-hero">
         <div class="notification-hero-copy"><span class="eyebrow">YZA Automotive · Member Lounge</span><h1>Notifikasi Member</h1><p>Informasi terbaru seputar layanan, kendaraan, dan keanggotaan Anda.</p></div>
-        <div class="notification-summary"><div><strong>{{ $notifications->total() }}</strong><span>Total kabar</span></div><div><strong>{{ $unreadCount }}</strong><span>Belum dibaca</span></div></div>
+        <div class="notification-summary"><div><strong data-notification-total>{{ $notifications->total() }}</strong><span>Total kabar</span></div><div><strong data-notification-unread-total>{{ $unreadCount }}</strong><span>Belum dibaca</span></div></div>
     </section>
     <div class="notification-toolbar"><div><h2>Aktivitas terbaru</h2><p>Informasi paling baru dari perjalanan layanan YZA Anda.</p></div><div class="notification-toolbar-actions">
         @if($unreadCount > 0)
-            <form class="notification-mark-all-form" method="post" action="{{ route('notifications.read-all') }}">@csrf @method('PATCH')<button class="notification-mark-all" type="submit"><span aria-hidden="true">✓</span> Tandai semua telah dibaca</button></form>
+            <form class="notification-mark-all-form" data-notification-read-form method="post" action="{{ route('notifications.read-all') }}">@csrf @method('PATCH')<button class="notification-mark-all" type="submit"><span aria-hidden="true">✓</span> Tandai semua telah dibaca</button></form>
         @else
             <span class="notification-mark-all notification-mark-all-done"><span aria-hidden="true">✓</span> Semua telah dibaca</span>
         @endif
         <div class="notification-filters"><a class="notification-filter {{ $filter !== 'unread' ? 'is-active' : '' }}" href="{{ route('notifications.index') }}">Semua</a><a class="notification-filter {{ $filter === 'unread' ? 'is-active' : '' }}" href="{{ route('notifications.index', ['filter' => 'unread']) }}">Belum dibaca</a></div>
     </div></div>
     @if(session('status'))<div class="notification-feedback" role="status">{{ session('status') }}</div>@endif
-    <div class="notification-list">
+    <div class="notification-list" data-member-notification-center>
         @forelse($notifications as $notification)
             @php($meta = $typeMeta[$notification->tipe] ?? ['label' => 'Update', 'icon' => '•'])
             @php($notificationTitle = strtolower($notification->judul))
             @php($iconMeta = match (true) { str_contains($notificationTitle, 'pembayaran') || str_contains($notificationTitle, 'ditolak') => ['class' => 'is-alert', 'icon' => '!'], str_contains($notificationTitle, 'diterima') || str_contains($notificationTitle, 'terverifikasi') => ['class' => 'is-success', 'icon' => '✓'], str_contains($notificationTitle, 'diperlukan') => ['class' => 'is-tools', 'icon' => '⚒'], str_contains($notificationTitle, 'dikerjakan') || str_contains($notificationTitle, 'pemeriksaan') => ['class' => 'is-progress', 'icon' => '⚙'], default => ['class' => 'is-neutral', 'icon' => $meta['icon']] })
-            <article class="notification-item {{ $notification->is_read ? 'is-read' : 'is-unread' }}">
+            <article data-notification-id="{{ $notification->id_notifikasi }}" class="notification-item {{ $notification->is_read ? 'is-read' : 'is-unread' }}">
                 <a class="notification-item-content" href="{{ route('notifications.open', $notification) }}">
                     <span class="notification-item-icon {{ $iconMeta['class'] }}" aria-hidden="true">{{ $iconMeta['icon'] }}</span>
                     <span class="notification-item-copy"><span class="notification-item-kicker">@if(!$notification->is_read)<i class="notification-unread-dot"></i>@endif {{ $meta['label'] }}</span><h2>{{ $notification->judul }}</h2><p>{{ $notification->pesan }}</p><time>{{ $notification->created_at?->format('d M Y · H:i') }}</time></span>
                 </a>
-                @if(!$notification->is_read)<form class="notification-item-action" method="post" action="{{ route('notifications.read', $notification) }}">@csrf @method('PATCH')<button type="submit">Tandai dibaca</button></form>@endif
+                @if(!$notification->is_read)<form class="notification-item-action" data-notification-read-form method="post" action="{{ route('notifications.read', $notification) }}">@csrf @method('PATCH')<button type="submit">Tandai dibaca</button></form>@endif
             </article>
         @empty
             <div class="notification-empty"><strong>Belum ada kabar untuk Anda</strong>Notifikasi servis dan aktivitas akun akan tampil di sini.</div>

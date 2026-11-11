@@ -1,0 +1,32 @@
+✔ panel shows four latest messages, keeps unread 3 separate from total 6, and ignores operational summaries (28.6897ms)
+✔ bell opens without an auto-close timer and can close again (3.5005ms)
+✔ unread filter changes items without changing global total (3.6902ms)
+✔ Escape and outside click close, and ArrowDown enters keyboard controls (1.9853ms)
+✔ message links retain server open URLs and payloads are rendered as text (2.5765ms)
+✔ unread, category dots and pending tasks use separate authoritative values (2.727ms)
+✔ reading one of several messages retains the dot, and stale snapshots cannot restore old counts (1.1279ms)
+✔ polling has one timer, drains the server cursor and never repeats a toast (3.4667ms)
+✔ visibility pauses polling and authentication loss stops further requests (1.8723ms)
+✔ account switch clears old account presentation and does not display the other account payload (1.2755ms)
+✔ mark-as-read applies server response without a page reload and broadcasts only invalidation (2.3659ms)
+✔ logout stops polling, clears notification presentation and rejects late state updates (1.2059ms)
+✔ sale starts with informative placeholders and hidden promo summary (2.8768ms)
+✔ promo requires customer and vehicle and rejects stacking manual discount (21.9444ms)
+✔ server preview follows selected customer and updates both summaries without claiming applied (2.9779ms)
+✔ stale promo response cannot overwrite changed selection (2.4965ms)
+✔ DP and booking relationship are validated against selected unit (1.9185ms)
+✔ modal opens in place, closes, restores focus, and fills buyer data (3.6901ms)
+✔ wizard starts at step one with no invented quote or unit (3.621ms)
+✔ swatches select actual compatible unit and image, without including another model (3.3066ms)
+✔ step navigation preserves buyer information and requires server quote (27.5327ms)
+✔ nonzero quotes are marked pending and cannot be saved without proposal storage (4.2915ms)
+✔ stale quote cannot overwrite a newly selected color or failed quote (2.5169ms)
+✔ step-three save is a draft and never marks discount approved in the UI (3.8595ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 195.5962

@@ -3,7 +3,10 @@
 @section('admin-page-title', 'Penjualan Mobil')
 
 @section('content')
-<div class="admin-sales-page">
+@php
+    $salesRoutePrefix = request()->routeIs('admin.*') ? 'admin' : 'petugas';
+@endphp
+<div class="admin-sales-page admin-selling-page">
     {{-- Header Penjualan Mobil --}}
     <header class="admin-sales-header">
         <div class="admin-sales-header-left">
@@ -35,9 +38,10 @@
             <div class="admin-sales-banner">
                 <img src="{{ asset('assets/images/hero/yza-admin-sales-banner.jpg') }}" alt="YZA Automotive Premium Sports Car" class="admin-banner-img" loading="eager">
                 <div class="admin-banner-overlay"></div>
-                <div class="admin-banner-content">
-                    <span class="admin-banner-brand">YZA AUTOMOTIVE</span>
-                    <span class="admin-banner-tagline">DRIVE A BETTER TOMORROW</span>
+                <div class="admin-selling-hero-copy">
+                    <span class="admin-selling-eyebrow">YZA AUTOMOTIVE</span>
+                    <h2>Penjualan Mobil</h2>
+                    <p>Kelola seluruh proses penjualan mobil dari pemesanan hingga serah terima, dengan sistem yang terintegrasi dan profesional.</p>
                 </div>
             </div>
         </div>
@@ -64,7 +68,11 @@
                 <div class="admin-stat-trend">
                     <span class="trend-indicator is-positive">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                        +100%
+                        @if($stats['prev_month'] > 0)
+                            {{ round(($stats['current_month'] - $stats['prev_month']) / $stats['prev_month'] * 100) }}%
+                        @else
+                            {{ $stats['current_month'] }} bulan ini
+                        @endif
                     </span>
                     <span class="trend-text">Dibanding bulan lalu</span>
                 </div>
@@ -131,7 +139,7 @@
                 <div class="admin-stat-info">
                     <span class="admin-stat-label">Total Pendapatan</span>
                     <strong class="admin-stat-value is-currency">
-                        Rp {{ number_format($stats['pendapatan_terverifikasi'] > 0 ? $stats['pendapatan_terverifikasi'] : $stats['total_nilai_kontrak'], 0, ',', '.') }}
+                        Rp {{ number_format($stats['pendapatan_terverifikasi'], 0, ',', '.') }}
                     </strong>
                 </div>
             </div>
@@ -145,7 +153,7 @@
     </section>
 
     {{-- Container Data Penjualan --}}
-    <section class="admin-sales-card">
+    <section class="admin-sales-card" id="sales-list">
         {{-- Card Header --}}
         <div class="admin-sales-card-header">
             <div class="card-header-left">
@@ -161,13 +169,6 @@
                     <h2 class="card-header-title">Daftar Penjualan Mobil</h2>
                     <p class="card-header-subtitle">Semua data transaksi penjualan mobil di YZA Automotive</p>
                 </div>
-            </div>
-
-            <div class="card-header-right">
-                <a class="btn-create-sale" href="{{ route(request()->user()->roleName().'.penjualan-mobil.create') }}">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    <span>+ Buat Penjualan</span>
-                </a>
             </div>
         </div>
 
@@ -225,15 +226,9 @@
                         @php
                             $car = $row->mobil;
                             $customer = $row->pelanggan;
-                            $fotoMobil = $car?->foto?->first()?->url();
-                            if (!$fotoMobil) {
-                                if (str_contains(strtolower($car?->model ?? ''), 'supra')) {
-                                    $fotoMobil = asset('assets/images/vehicles/toyota-gr-supra/black/front.png');
-                                } else {
-                                    $fotoMobil = asset('assets/images/hero/yza-hero-black-v2.png');
-                                }
-                            }
-                            $customerIdentifier = $car?->kode_mobil ?? ($customer?->nomor_telepon ?: 'ID: PEL-'.str_pad($row->id_pelanggan, 4, '0', STR_PAD_LEFT));
+                            $vehicle = $row->vehicle_presentation;
+                            $fotoMobil = $vehicle['image'];
+                            $customerIdentifier = $customer?->kode_pelanggan ?: 'ID pelanggan: '.$row->id_pelanggan;
                             $statusClean = strtolower((string) $row->status);
                         @endphp
                         <tr>
@@ -248,17 +243,22 @@
                                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                                     </div>
                                     <div class="customer-meta">
-                                        <strong class="customer-name">{{ $customer?->nama_lengkap ?? 'Pelanggan Umum' }}</strong>
+                                        <strong class="customer-name">{{ $customer?->nama_lengkap ?? 'Data pelanggan tidak tersedia' }}</strong>
                                         <span class="customer-subtext">{{ $customerIdentifier }}</span>
                                     </div>
                                 </div>
                             </td>
                             <td class="td-car">
                                 <div class="car-cell">
-                                    <img src="{{ $fotoMobil }}" alt="{{ $car?->merk }} {{ $car?->model }}" class="car-thumb" loading="lazy">
-                                    <div class="car-meta">
-                                        <strong class="car-title">{{ $car?->merk }} {{ $car?->model }} {{ $car?->tahun ? $car->tahun : '' }}</strong>
-                                        <span class="car-brand">{{ $car?->merk ?? 'Toyota' }}</span>
+                                    <img src="{{ $fotoMobil }}" alt="{{ $vehicle['image_alt'] }}" class="car-thumb" loading="lazy" onerror="this.onerror=null;this.src='{{ asset('assets/images/vehicle-photo-unavailable.svg') }}'">
+                                    <div class="car-meta" title="{{ $vehicle['source'] }}">
+                                        <strong class="car-title">{{ $vehicle['name'] }} {{ $vehicle['year'] }}</strong>
+                                        <span class="car-brand">{{ $vehicle['variant'] ?: 'Varian belum tercatat' }} · {{ $vehicle['color'] ?: 'Warna belum tercatat' }}</span>
+                                        <small>Kode unit: {{ $vehicle['unit_code'] ?: 'Belum tercatat' }}</small>
+                                        @if(!$vehicle['snapshot'])<small>Spesifikasi unit saat ini; arsip pesanan tidak tersedia.</small>@endif
+                                        @if(!$vehicle['has_photo'])<small>Foto warna ini belum tersedia.</small>@endif
+                                        @if($vehicle['has_photo'])<small>{{ $vehicle['photo_source'] }}</small>@endif
+                                        @if($vehicle['warning'])<small class="text-danger">{{ $vehicle['warning'] }}</small>@endif
                                     </div>
                                 </div>
                             </td>
@@ -289,7 +289,7 @@
                             </td>
                             <td class="td-action">
                                 <div class="action-cell">
-                                    <a href="{{ route(request()->user()->roleName().'.penjualan-mobil.show', $row) }}" class="btn-detail-view" title="Lihat detail penjualan">
+                                    <a href="{{ route($salesRoutePrefix.'.penjualan-mobil.show', $row) }}" class="btn-detail-view" title="Lihat detail penjualan">
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="3" r="3"></circle></svg>
                                         <span>Lihat Detail</span>
                                     </a>
@@ -299,17 +299,17 @@
                                             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
                                         </button>
                                         <div class="action-dropdown-menu" data-dropdown-menu hidden>
-                                            <a href="{{ route(request()->user()->roleName().'.penjualan-mobil.show', $row) }}" class="dropdown-item">
+                                            <a href="{{ route($salesRoutePrefix.'.penjualan-mobil.show', $row) }}" class="dropdown-item">
                                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                                                 <span>Detail Transaksi</span>
                                             </a>
                                             @if($row->id_transaksi)
-                                                <a href="{{ Route::has(request()->user()->roleName().'.invoice.car-sale') ? route(request()->user()->roleName().'.invoice.car-sale', $row->id_transaksi) : '#' }}" class="dropdown-item" target="_blank">
+                                                <a href="{{ Route::has($salesRoutePrefix.'.invoice.car-sale') ? route($salesRoutePrefix.'.invoice.car-sale', $row->id_transaksi) : '#' }}" class="dropdown-item" target="_blank">
                                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                                                     <span>Invoice / Kwitansi</span>
                                                 </a>
                                                 @if($statusClean === 'proses')
-                                                    <a href="{{ Route::has(request()->user()->roleName().'.car-sale.payment.create') ? route(request()->user()->roleName().'.car-sale.payment.create', $row->id_transaksi) : '#' }}" class="dropdown-item">
+                                                    <a href="{{ Route::has($salesRoutePrefix.'.car-sale.payment.create') ? route($salesRoutePrefix.'.car-sale.payment.create', $row->id_transaksi) : '#' }}" class="dropdown-item">
                                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg>
                                                         <span>Catat Pembayaran</span>
                                                     </a>
@@ -350,6 +350,10 @@
     </section>
 </div>
 @endsection
+
+@push('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/order-sales-refinement.css') }}?v={{ filemtime(public_path('assets/css/order-sales-refinement.css')) }}">
+@endpush
 
 @push('scripts')
 <script>

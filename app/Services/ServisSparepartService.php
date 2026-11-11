@@ -18,6 +18,7 @@ class ServisSparepartService
         return DB::transaction(function () use ($serviceId, $sparepartId, $qty): ServisSparepart {
             if ($qty <= 0) throw new RuntimeException('Jumlah harus lebih dari 0.');
             $s = Servis::with(['approvalRequests.items', 'kendaraan'])->lockForUpdate()->findOrFail($serviceId);
+            app(WorkOrderAuthorizationService::class)->assertCurrentActor($s);
             if ($s->status !== 'dikerjakan' || $s->id_transaksi !== null) throw new RuntimeException('Spare part hanya dapat diubah saat servis dikerjakan.');
             $p = Sparepart::where('status', 'aktif')->lockForUpdate()->findOrFail($sparepartId);
             app(SparepartFitmentService::class)->assertUsableForVehicle($p, $s->kendaraan);
@@ -33,6 +34,7 @@ class ServisSparepartService
             $item = ServisSparepart::where('id_servis', $serviceId)->where('id_sparepart', $sparepartId)->lockForUpdate()->first();
             $newQty = $qty + ($item ? (int) $item->jumlah : 0);
             if ($newQty > (int) $p->stok) throw new RuntimeException('Jumlah melebihi stok tersedia.');
+            app(InspectionIntegrityService::class)->invalidate($s, 'Sparepart berubah');
             if ($item) {
                 $item->forceFill(['jumlah' => $newQty, 'harga_satuan' => $p->harga_jual, 'subtotal' => $this->subtotal((string) $p->harga_jual, $newQty)])->save();
                 return $item;
@@ -47,8 +49,10 @@ class ServisSparepartService
     {
         DB::transaction(function () use ($serviceId, $itemId): void {
             $s = Servis::lockForUpdate()->findOrFail($serviceId);
+            app(WorkOrderAuthorizationService::class)->assertCurrentActor($s);
             if ($s->status !== 'dikerjakan' || $s->id_transaksi !== null) throw new RuntimeException('Spare part tidak dapat dihapus pada status servis ini.');
             ServisSparepart::where('id_servis', $serviceId)->whereKey($itemId)->firstOrFail()->delete();
+            app(InspectionIntegrityService::class)->invalidate($s, 'Sparepart dihapus');
         });
     }
 }

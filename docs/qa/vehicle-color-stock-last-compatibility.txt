@@ -1,0 +1,8 @@
+PHPUnit 11.5.56 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.2.4
+Configuration: C:\xampp\htdocs\yza_automotive_laravel\phpunit.xml
+
+Time: 00:11.100, Memory: 60.00 MB
+
+OK (24 tests, 62 assertions)

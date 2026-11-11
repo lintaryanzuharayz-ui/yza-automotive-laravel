@@ -5,51 +5,12 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/member-home.css') }}?v={{ filemtime(public_path('assets/css/member-home.css')) }}">
     <link rel="stylesheet" href="{{ asset('assets/css/showroom.css') }}?v=garage-showcase-20261010">
+    <link rel="stylesheet" href="{{ asset('assets/css/member-home-reference.css') }}?v={{ filemtime(public_path('assets/css/member-home-reference.css')) }}">
 @endpush
 
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.yza-home *').forEach(function (element) {
-    const backgroundImage = getComputedStyle(element).backgroundImage;
-    if (!backgroundImage || backgroundImage === 'none' || !backgroundImage.includes('url(')) return;
-    const imageLayers = backgroundImage.match(/url\([^)]*\)/g);
-    if (imageLayers && imageLayers.length) {
-      element.style.backgroundImage = imageLayers.join(', ');
-    }
-  });
-
-  const accessHeading = Array.from(document.querySelectorAll('.yza-home h2, .yza-home h3'))
-    .find(function (element) { return /Layanan Eksklusif YZA/i.test(element.textContent || ''); });
-  const accessSection = accessHeading && (accessHeading.closest('section') || accessHeading.parentElement);
-  if (accessSection) {
-    const serviceImages = [
-      '/assets/images/member/service-bengkel.png',
-      '/assets/images/member/service-test-drive.png',
-      '/assets/images/member/service-car-wash.png',
-      '/assets/images/member/service-trade-in.png'
-    ];
-    const serviceCards = Array.from(accessSection.querySelectorAll('*'))
-      .filter(function (element) {
-        const rect = element.getBoundingClientRect();
-        return rect.width > 250 && rect.height > 120 && rect.height < 420;
-      })
-      .filter(function (element) {
-        return !Array.from(element.children).some(function (child) {
-          const childRect = child.getBoundingClientRect();
-          return childRect.width > 250 && childRect.height > 120 && childRect.height < 420;
-        });
-      })
-      .slice(0, 4);
-    serviceCards.forEach(function (card, index) {
-      if (!serviceImages[index]) return;
-      card.style.backgroundImage = 'url("' + serviceImages[index] + '")';
-      card.style.backgroundSize = 'cover';
-      card.style.backgroundPosition = 'center';
-      card.style.backgroundRepeat = 'no-repeat';
-    });
-  }
-
   document.querySelectorAll('.yza-home a, .yza-home button').forEach(function (element) {
     if (!/lihat\s+semua/i.test(element.textContent || '')) return;
 
@@ -82,47 +43,51 @@ document.addEventListener('DOMContentLoaded', function () {
     $statusCopy = ['active' => 'Membership aktif', 'pending_payment' => 'Menunggu aktivasi', 'cancelled' => 'Membership dibatalkan'];
 @endphp
 
-<div class="yza-home" data-yza-home>
+<div class="yza-home yza-home-reference" data-yza-home>
     <section class="yza-home-hero" aria-labelledby="yza-home-title">
+        <div class="yza-home-wall-brand" aria-hidden="true"><strong>YZA</strong><small>AUTOMOTIVE</small></div>
         <div class="yza-home-hero-copy">
             <span class="yza-home-kicker">YZA PREMIUM MEMBER</span>
             <h1 id="yza-home-title">Selamat Datang Kembali,<br><em>{{ $customer->nama_lengkap }}</em></h1>
             <p>Nikmati pengalaman otomotif eksklusif, kelola kendaraan Anda, dan akses seluruh layanan premium YZA Automotive.</p>
+            <div class="yza-home-hero-actions">
+                <a class="yza-home-primary" href="{{ route('pelanggan.katalog-mobil.index') }}"><x-member-home-icon name="car" />Beli Mobil <b aria-hidden="true">→</b></a>
+            </div>
             <div class="yza-home-member-meta">
                 <span class="yza-home-status"><i></i>{{ $memberStatusLabel }} MEMBER</span>
-                <span>Member sejak {{ optional($memberSince)->format('d M Y') ?: '-' }}</span>
+                <span class="yza-home-since"><x-member-home-icon name="calendar" />Member sejak {{ optional($memberSince)->format('d M Y') ?: '-' }}</span>
             </div>
         </div>
         <article class="yza-home-member-card" aria-label="Kartu membership digital">
             <div class="yza-member-card-top">
                 <img src="{{ asset('images/branding/logo-yza.png') }}" alt="YZA Automotive">
-                <span>PREMIUM <b>MEMBER</b></span>
+                <span><x-member-home-icon name="crown" />PREMIUM MEMBER</span>
             </div>
             <small class="yza-member-card-label">MEMBER ID</small>
             <strong class="yza-member-card-code">{{ $memberId }}</strong>
             <i class="yza-member-card-rule"></i>
-            <small class="yza-member-card-label">NAME</small>
+            <small class="yza-member-card-label">NAMA</small>
             <strong class="yza-member-card-name">{{ strtoupper($customer->nama_lengkap) }}</strong>
             <div class="yza-member-card-meta">
                 <small>MEMBER SINCE<strong>{{ optional($memberSince)->format('d M Y') ?: '-' }}</strong></small>
-                <small>STATUS<strong>{{ $memberStatusLabel }}</strong></small>
+                <small>STATUS<strong class="{{ $memberStatus === 'ACTIVE' ? 'is-active' : '' }}">{{ $memberStatusLabel }}</strong></small>
             </div>
         </article>
     </section>
 
     <section class="yza-home-stats" aria-label="Ringkasan member">
-        <a href="{{ route('pelanggan.kendaraan.index') }}"><span class="yza-home-stat-icon">▣</span><small>KENDARAAN YZA</small><strong>{{ ($verifiedVehicles ?? collect())->count() }}</strong><em>Unit terverifikasi</em></a>
-        <a href="{{ route('pelanggan.booking.index') }}"><span class="yza-home-stat-icon">□</span><small>BOOKING AKTIF</small><strong>{{ $activeBookingCount }}</strong><em>Perlu perhatian</em></a>
-        <a href="{{ route('pelanggan.poin') }}"><span class="yza-home-stat-icon">✦</span><small>YZA POINTS</small><strong>{{ number_format((int) ($pointAccount?->saldo ?? 0), 0, ',', '.') }}</strong><em>Points tersedia</em></a>
-        <a href="{{ route('pelanggan.promo.index') }}"><span class="yza-home-stat-icon">◇</span><small>PROMO MEMBER</small><strong>{{ $activePromoCount }}</strong><em>Promo aktif</em></a>
+        <a href="{{ route('pelanggan.kendaraan.index') }}"><span class="yza-home-stat-icon"><x-member-home-icon name="car" /></span><small>KENDARAAN YZA</small><strong>{{ ($verifiedVehicles ?? collect())->count() }}</strong><em>Unit terverifikasi</em><b class="yza-home-stat-arrow" aria-hidden="true">›</b></a>
+        <a href="{{ route('pelanggan.booking.index') }}"><span class="yza-home-stat-icon"><x-member-home-icon name="calendar" /></span><small>BOOKING AKTIF</small><strong>{{ $activeBookingCount }}</strong><em>Dalam proses layanan</em><b class="yza-home-stat-arrow" aria-hidden="true">›</b></a>
+        <a href="{{ route('pelanggan.poin') }}"><span class="yza-home-stat-icon"><x-member-home-icon name="coins" /></span><small>YZA POINTS</small><strong>{{ number_format((int) ($pointAccount?->saldo ?? 0), 0, ',', '.') }}</strong><em>Points tersedia</em><b class="yza-home-stat-arrow" aria-hidden="true">›</b></a>
+        <a href="{{ route('pelanggan.promo.index') }}"><span class="yza-home-stat-icon"><x-member-home-icon name="tag" /></span><small>PROMO MEMBER</small><strong>{{ $activePromoCount }}</strong><em>Promo aktif untuk Anda</em><b class="yza-home-stat-arrow" aria-hidden="true">›</b></a>
     </section>
 
-    <section class="yza-home-section" aria-labelledby="yza-home-services-title">
-        <div class="yza-home-section-head"><div><span class="yza-home-kicker">MEMBER ACCESS</span><h2 id="yza-home-services-title">Layanan Eksklusif YZA</h2><p>Temukan layanan otomotif yang sesuai dengan kebutuhan kendaraan dan perjalanan Anda.</p></div><a href="{{ route('pelanggan.katalog-mobil.index') }}">Jelajahi Koleksi Mobil <b>→</b></a></div>
+    <section class="yza-home-section yza-home-services-section" aria-labelledby="yza-home-services-title">
+        <div class="yza-home-section-head"><div><span class="yza-home-kicker">MEMBER ACCESS</span><h2 id="yza-home-services-title" aria-label="Layanan Eksklusif YZA">Layanan Eksklusif <em>YZA</em></h2><p>Temukan layanan otomotif yang sesuai dengan kebutuhan kendaraan dan perjalanan Anda.</p></div><a href="{{ route('pelanggan.booking.index') }}">Jelajahi Semua Layanan <b>→</b></a></div>
         <div class="yza-home-service-grid">
             @foreach($services as $service)
-                <article class="yza-home-service-card {{ $service['locked'] ? 'is-locked' : '' }}" style="--service-image: url('{{ asset('assets/images/member/'.$service['image']) }}')">
-                    <div><span>{{ $service['locked'] ? 'TERSEDIA SETELAH PEMBELIAN YZA' : 'YZA MEMBER' }}</span><h3>{{ $service['title'] }}</h3><p>{{ $service['copy'] }}</p></div>
+                <article class="yza-home-service-card {{ $service['locked'] ? 'is-locked' : '' }}" style="--service-image: url('{{ asset('assets/images/member/reference-'.str_replace('.png', '.jpg', $service['image'])) }}')">
+                    <div><span class="yza-home-service-icon"><x-member-home-icon :name="['tools', 'wheel', 'wash', 'trade'][$loop->index]" /></span><h3>{{ $service['title'] }}</h3><p>{{ $service['copy'] }}</p>@if($service['locked'])<small class="yza-home-service-restriction">Tersedia setelah pembelian YZA</small>@endif</div>
                     @if($service['locked'])<span class="yza-home-locked">Belum tersedia</span>@else<a href="{{ route($service['route']) }}">{{ $service['cta'] }} <b>→</b></a>@endif
                 </article>
             @endforeach
@@ -136,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="show-container">
             <div class="show-section-heading">
                 <div><span class="section-kicker">MY YZA GARAGE</span><h2 id="yza-home-garage-title">Pilihan Mobil Sport <em>YZA</em></h2><p>Jelajahi koleksi mobil sport eksklusif pilihan YZA Automotive.</p></div>
-                <div class="featured-carousel-actions"><a class="show-link" href="{{ route('pelanggan.katalog-mobil.index') }}"><span>Lihat Semua Mobil</span><b aria-hidden="true">→</b></a></div>
+                <div class="featured-carousel-actions"><a class="show-link" aria-label="Lihat Semua Mobil di Koleksi Mobil YZA" href="{{ route('pelanggan.katalog-mobil.index') }}"><span>Lihat Semua Mobil</span><b aria-hidden="true">→</b></a></div>
             </div>
           <div class="featured-carousel" data-member-sport-carousel data-carousel-count="{{ ($catalogCars ?? collect())->count() }}">
                 <div class="featured-carousel-viewport" data-member-carousel-viewport>
@@ -159,13 +124,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             <div class="featured-card"><div class="featured-body"><h3>Belum ada mobil sport tersedia</h3></div></div>
                         @endforelse
           </div>
-          @if(($verifiedVehicles ?? collect())->isNotEmpty())
-            <p class="yza-home-garage-owned-note">
-              <strong>Kendaraan terverifikasi Anda:</strong>
-              {{ $verifiedVehicles->pluck('mobil')->filter()->map(fn ($vehicle) => trim($vehicle->merk.' '.$vehicle->model))->implode(', ') }}
-              <a href="{{ route('pelanggan.kendaraan.index') }}">Lihat garasi →</a>
-            </p>
-          @endif
         </div>
                 <div class="featured-carousel-footer"><div class="featured-carousel-progress" data-member-carousel-progress></div><span class="featured-carousel-counter" data-member-carousel-counter>01 / {{ str_pad((string) max(1, ($catalogCars ?? collect())->count()), 2, '0', STR_PAD_LEFT) }}</span></div>
             </div>

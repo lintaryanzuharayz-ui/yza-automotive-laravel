@@ -23,6 +23,10 @@ class WorkOrderStageService
         $current = array_search($this->currentStage($servis), self::STAGES, true);
         $target = array_search($stage, self::STAGES, true);
         if ($current === false || $target === false) return false;
+        if ($stage === 'finalisasi' && !$servis->id_transaksi && $servis->status !== 'selesai') {
+            try { app(ServiceExecutionService::class)->assertCanFinalize($servis->id_servis); }
+            catch (\RuntimeException $e) { return false; }
+        }
         if ($target <= $current) return true;
         if ($stage === 'quality-control') return $servis->status === 'dikerjakan' && $servis->approvalRequests->where('status', 'pending')->isEmpty();
         if ($stage === 'finalisasi') return $servis->status === 'dikerjakan' && $servis->approvalRequests->where('status', 'pending')->isEmpty() && (!$servis->qualityControl || $servis->qualityControl->status === 'passed');

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="C:\xampp\htdocs\yza_automotive_laravel\phpunit.xml" tests="14" assertions="138" errors="0" failures="0" skipped="0" time="2.882299">
+    <testsuite name="Feature" tests="14" assertions="138" errors="0" failures="0" skipped="0" time="2.882299">
+      <testsuite name="Tests\Feature\LandingExperienceTest" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\LandingExperienceTest.php" tests="3" assertions="38" errors="0" failures="0" skipped="0" time="0.824318">
+        <testcase name="test_blank_company_phone_keeps_public_contact_and_appointment_destination_usable" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\LandingExperienceTest.php" line="13" class="Tests\Feature\LandingExperienceTest" classname="Tests.Feature.LandingExperienceTest" assertions="5" time="0.557699"/>
+        <testcase name="test_public_navigation_matches_content_and_visit_form_keeps_its_fields" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\LandingExperienceTest.php" line="21" class="Tests\Feature\LandingExperienceTest" classname="Tests.Feature.LandingExperienceTest" assertions="28" time="0.136496"/>
+        <testcase name="test_configured_contact_is_escaped_and_used_for_location_instead_of_generic_map_claims" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\LandingExperienceTest.php" line="37" class="Tests\Feature\LandingExperienceTest" classname="Tests.Feature.LandingExperienceTest" assertions="5" time="0.130123"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\VehicleConfiguratorTest" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\VehicleConfiguratorTest.php" tests="6" assertions="71" errors="0" failures="0" skipped="0" time="1.355172">
+        <testcase name="test_public_sport_showcases_use_the_generic_premium_detail" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\VehicleConfiguratorTest.php" line="11" class="Tests\Feature\VehicleConfiguratorTest" classname="Tests.Feature.VehicleConfiguratorTest" assertions="20" time="0.442010"/>
+        <testcase name="test_configurator_is_data_driven_and_has_expected_colors_and_four_views_for_sport_cars" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\VehicleConfiguratorTest.php" line="24" class="Tests\Feature\VehicleConfiguratorTest" classname="Tests.Feature.VehicleConfiguratorTest" assertions="38" time="0.055398"/>
+        <testcase name="test_unknown_showcase_is_not_exposed" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\VehicleConfiguratorTest.php" line="45" class="Tests\Feature\VehicleConfiguratorTest" classname="Tests.Feature.VehicleConfiguratorTest" assertions="1" time="0.074681"/>
+        <testcase name="test_detail_back_link_is_explicitly_aware_of_landing_or_catalog_origin" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\VehicleConfiguratorTest.php" line="50" class="Tests\Feature\VehicleConfiguratorTest" classname="Tests.Feature.VehicleConfiguratorTest" assertions="4" time="0.314472"/>
+        <testcase name="test_detail_back_link_falls_back_safely_for_direct_or_external_return_urls" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\VehicleConfiguratorTest.php" line="62" class="Tests\Feature\VehicleConfiguratorTest" classname="Tests.Feature.VehicleConfiguratorTest" assertions="5" time="0.247927"/>
+        <testcase name="test_landing_and_catalog_cards_emit_explicit_navigation_state" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\VehicleConfiguratorTest.php" line="74" class="Tests\Feature\VehicleConfiguratorTest" classname="Tests.Feature.VehicleConfiguratorTest" assertions="3" time="0.220683"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\YzaMemberLandingTest" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\YzaMemberLandingTest.php" tests="5" assertions="29" errors="0" failures="0" skipped="0" time="0.702809">
+        <testcase name="test_guest_sees_member_value_and_register_cta" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\YzaMemberLandingTest.php" line="18" class="Tests\Feature\YzaMemberLandingTest" classname="Tests.Feature.YzaMemberLandingTest" assertions="5" time="0.122326"/>
+        <testcase name="test_pending_customer_sees_activation_cta" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\YzaMemberLandingTest.php" line="29" class="Tests\Feature\YzaMemberLandingTest" classname="Tests.Feature.YzaMemberLandingTest" assertions="5" time="0.123516"/>
+        <testcase name="test_active_customer_sees_member_center_cta" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\YzaMemberLandingTest.php" line="43" class="Tests\Feature\YzaMemberLandingTest" classname="Tests.Feature.YzaMemberLandingTest" assertions="5" time="0.119280"/>
+        <testcase name="test_cancelled_customer_uses_existing_membership_status_flow" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\YzaMemberLandingTest.php" line="57" class="Tests\Feature\YzaMemberLandingTest" classname="Tests.Feature.YzaMemberLandingTest" assertions="4" time="0.145115"/>
+        <testcase name="test_admin_and_petugas_are_not_presented_as_active_customers" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\YzaMemberLandingTest.php" line="70" class="Tests\Feature\YzaMemberLandingTest" classname="Tests.Feature.YzaMemberLandingTest" assertions="10" time="0.192571"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

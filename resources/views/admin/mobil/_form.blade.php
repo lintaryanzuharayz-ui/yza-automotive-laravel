@@ -1,4 +1,11 @@
 @csrf
+<label>Alasan perubahan stok<input name="alasan_stok" minlength="5" maxlength="160" required></label>
+<label>Bukti / nomor dokumen verifikasi<input name="bukti_stok" minlength="5" maxlength="500" required></label>
+@if(!empty($catalogKey))
+<input type="hidden" name="catalog_identity" value="{{ $catalogKey }}">
+<p class="alert alert-info">Unit untuk {{ $catalogModel->merk }} {{ $catalogModel->model }} · {{ $catalogKey }}. Isi kode unit, VIN, nomor mesin dan data fisik asli. Unit baru menunggu pemeriksaan.</p>
+@error('catalog_identity')<small class="alert alert-error">{{ $message }}</small>@enderror
+@endif
 <label>Kode mobil<input name="kode_mobil" value="{{ old('kode_mobil',$mobil->kode_mobil) }}" required></label>@error('kode_mobil')<small>{{ $message }}</small>@enderror
 <label>Showroom slug <small>(opsional, contoh: audi-r8)</small><input name="showcase_slug" value="{{ old('showcase_slug',$mobil->showcase_slug) }}" placeholder="audi-r8"></label>@error('showcase_slug')<small>{{ $message }}</small>@enderror
 <label>Merk<input name="merk" value="{{ old('merk',$mobil->merk) }}" required></label><label>Model<input name="model" value="{{ old('model',$mobil->model) }}" required></label><label>Tipe<input name="tipe" value="{{ old('tipe',$mobil->tipe) }}"></label><label>Tahun<input type="number" name="tahun" value="{{ old('tahun',$mobil->tahun) }}"></label><label>Warna<input name="warna" value="{{ old('warna',$mobil->warna) }}" required></label>

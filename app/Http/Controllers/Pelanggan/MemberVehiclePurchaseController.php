@@ -49,8 +49,8 @@ class MemberVehiclePurchaseController extends Controller
 
     private function decorateOrder(PesananMobilMember $order, VehicleGalleryService $gallery): void
     {
-        $galleryData = $order->mobil ? $gallery->for($order->mobil) : [];
-        $selected = collect($galleryData)->first(fn (array $item) => strcasecmp((string) ($item['label'] ?? ''), (string) $order->snapshot_warna) === 0) ?: collect($galleryData)->first();
+        $selected = $order->matchesCatalogVehicle()
+            ? $gallery->forColor($order->mobil, $order->snapshot_warna) : [];
         $images = $selected['images'] ?? [];
         $payment = $order->transaksi?->pembayarans?->sortByDesc(fn ($item) => $item->verified_at ?: $item->tanggal)->first();
         $stage = match ($order->status) {
@@ -63,9 +63,17 @@ class MemberVehiclePurchaseController extends Controller
             default => 2,
         };
         $order->setAttribute('presentation_gallery', $images);
-        $order->setAttribute('presentation_image', $images[0]['src'] ?? asset('assets/images/hero/yza-hero-reference-v3.png'));
+        $image = $images[0]['src'] ?? null;
+        if ($image === asset('assets/images/hero/yza-hero-reference-v3.png')) {
+            $images = [];
+            $image = null;
+            $order->setAttribute('presentation_gallery', []);
+        }
+        $order->setAttribute('presentation_image', $image ?: asset('assets/images/vehicle-photo-unavailable.svg'));
         $order->setAttribute('presentation_photo_count', count($images));
-        $order->setAttribute('presentation_color', $order->snapshot_warna ?: $order->mobil?->warna ?: 'Warna pilihan');
+        $order->setAttribute('presentation_color', $order->snapshot_warna ?: 'Belum tercatat');
+        $order->setAttribute('presentation_swatch', $selected['swatch'] ?? null);
+        $order->setAttribute('presentation_transmission', $order->matchesCatalogVehicle() ? ($order->mobil?->transmisi ?: 'Belum tercatat') : 'Belum tercatat');
         $order->setAttribute('presentation_status', $this->statusMeta($order));
         $order->setAttribute('presentation_timeline', $this->timeline($order, $stage, $payment));
     }
@@ -109,8 +117,12 @@ class MemberVehiclePurchaseController extends Controller
         $stock = $availability->for($mobil);
         abort_unless($stock['can_purchase'], 404);
         $customer = $service->customerFor(request()->user());
-        $galleryData = $gallery->for($mobil);
-        $defaultColorKey = $gallery->defaultColor($mobil);
+        $colorStock = app(\App\Services\VehicleColorStockService::class);
+        try { $selected = $colorStock->selected($mobil, $request->query('warna')); }
+        catch (\RuntimeException $e) { abort(422, $e->getMessage()); }
+        abort_unless($colorStock->normalize($selected['label']) === $colorStock->normalize($mobil->warna), 409, 'Pilih unit dengan warna fisik yang sesuai.');
+        $galleryData = collect($colorStock->colors($mobil))->filter(fn ($color) => $colorStock->normalize($color['label']) === $colorStock->normalize($mobil->warna))->all();
+        $defaultColorKey = array_key_first($galleryData);
         $requestedColor = strtolower(trim((string) $request->query('warna', '')));
         $selectedColorKey = array_key_exists($requestedColor, $galleryData) ? $requestedColor : $defaultColorKey;
         $defaultGallery = $galleryData[$selectedColorKey] ?? reset($galleryData);
@@ -121,7 +133,17 @@ class MemberVehiclePurchaseController extends Controller
         ));
     }
     public function store(StoreMemberVehiclePurchaseRequest $request, Mobil $mobil, MemberVehiclePurchaseService $service): RedirectResponse { try { $order = $service->create($service->customerFor($request->user()), $mobil, $request->validated()); return redirect()->route('pelanggan.pesanan-mobil.show', $order)->with('success', 'Pesanan diterima dan menunggu verifikasi admin.'); } catch (Throwable $e) { return back()->withInput()->withErrors($e->getMessage()); } }
-    public function show(PesananMobilMember $pesanan_mobil, MemberVehiclePurchaseService $service, VehicleGalleryService $gallery): View { $customer = $service->customerFor(request()->user()); abort_unless((int) $pesanan_mobil->id_pelanggan === (int) $customer->id_pelanggan, 404); $pesanan_mobil->load(['mobil', 'transaksi.pembayarans', 'transaksi.gatewayPayments', 'penjualan', 'pdi', 'serahTerima']); $galleryData = $pesanan_mobil->mobil ? $gallery->for($pesanan_mobil->mobil) : []; $selectedGallery = $pesanan_mobil->mobil ? $gallery->forColor($pesanan_mobil->mobil, $pesanan_mobil->snapshot_warna) : []; $vehicleImage = $selectedGallery['images'][0]['src'] ?? asset('assets/images/hero/yza-hero-reference-v3.png'); return view('pelanggan.pesanan-mobil.show', compact('pesanan_mobil', 'galleryData', 'selectedGallery', 'vehicleImage'))->with('order', $pesanan_mobil); }
+    public function show(PesananMobilMember $pesanan_mobil, MemberVehiclePurchaseService $service, VehicleGalleryService $gallery): View
+    {
+        $customer = $service->customerFor(request()->user());
+        abort_unless((int) $pesanan_mobil->id_pelanggan === (int) $customer->id_pelanggan, 404);
+        $pesanan_mobil->load(['mobil', 'transaksi.pembayarans', 'transaksi.gatewayPayments', 'penjualan', 'pdi', 'serahTerima']);
+        $galleryData = $pesanan_mobil->mobil ? $gallery->for($pesanan_mobil->mobil) : [];
+        $selectedGallery = $pesanan_mobil->matchesCatalogVehicle()
+            ? $gallery->forColor($pesanan_mobil->mobil, $pesanan_mobil->snapshot_warna) : [];
+        $vehicleImage = $selectedGallery['images'][0]['src'] ?? asset('assets/images/vehicle-photo-unavailable.svg');
+        return view('pelanggan.pesanan-mobil.show', compact('pesanan_mobil', 'galleryData', 'selectedGallery', 'vehicleImage'))->with('order', $pesanan_mobil);
+    }
     public function offlinePayment(Request $request, PesananMobilMember $pesanan_mobil, MemberVehiclePurchaseService $service, PaymentService $payments): RedirectResponse
     {
         try {

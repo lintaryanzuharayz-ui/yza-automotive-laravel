@@ -6,12 +6,13 @@
     <title>Daftar YZA Member · YZA Automotive</title>
     <link rel="icon" href="{{ asset('assets/images/branding/logo-yza.png') }}">
     @foreach (['variables.css','base.css','components.css','pages/login.css','pages/pelanggan.css','pages/register.css'] as $style)
-        <link rel="stylesheet" href="{{ asset('assets/css/'.$style) }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/'.$style).($style === 'pages/register.css' ? '?v=compact-20261106' : '') }}">
     @endforeach
     <link rel="stylesheet" href="{{ asset('assets/css/pages/membership-flow.css?v=membership-flow-20261004') }}">
+    @include('components.responsive-foundation')
 </head>
 <body>
-<main class="register-page">
+<main class="register-page register-page--compact">
     <section class="register-showcase">
         <div class="register-showcase-brand"><img src="{{ asset('assets/images/branding/logo-yza.png') }}" alt="YZA Automotive"><strong><span>YZA</span> AUTOMOTIVE</strong></div>
         <div class="register-showcase-copy">

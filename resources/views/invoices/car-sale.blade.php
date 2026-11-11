@@ -12,7 +12,7 @@
         <div class="info-item"><small>Transaksi</small><strong>{{ $transaksi->kode_transaksi }}</strong></div>
         <div class="info-item"><small>Unit</small><strong>{{ $transaksi->penjualanMobil?->mobil?->kode_mobil }} · {{ $transaksi->penjualanMobil?->mobil?->merk }} {{ $transaksi->penjualanMobil?->mobil?->model }}</strong></div>
         <div class="info-item"><small>Harga Snapshot</small><strong>{{ $transaksi->penjualanMobil?->harga_mobil }}</strong></div>
-        <div class="info-item"><small>Diskon Manual</small><strong>{{ $transaksi->penjualanMobil?->diskon }}</strong></div>
+        <div class="info-item"><small>Diskon Manual</small><strong>{{ $transaksi->id_promo ? 0 : $transaksi->penjualanMobil?->diskon }}</strong></div>
         <div class="info-item"><small>Promo</small><strong>{{ $transaksi->promo_name_snapshot ?: 'Tanpa promo' }}</strong></div>
         <div class="info-item"><small>Potongan Promo</small><strong>{{ $transaksi->promo_code_snapshot ? $transaksi->diskon : 0 }}</strong></div>
         <div class="info-item"><small>Metode</small><strong>{{ ucfirst($transaksi->penjualanMobil?->metode_pembelian ?? '') }}</strong></div>

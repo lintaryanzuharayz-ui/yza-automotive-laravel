@@ -72,7 +72,7 @@ class AdminRealtimeNotificationsTest extends TestCase
 
         $response->assertOk();
         $notification = collect($response->json('notifications'))
-            ->first(fn (array $item) => $item['id'] === Notifikasi::where('referensi_id', $booking->id_booking_servis)->latest('id_notifikasi')->value('id_notifikasi'));
+            ->first(fn (array $item) => $item['id'] === Notifikasi::where('id_user', $admin->id_user)->where('referensi_tipe', 'booking_servis')->where('referensi_id', $booking->id_booking_servis)->latest('id_notifikasi')->value('id_notifikasi'));
 
         $this->assertNotNull($notification);
         $this->assertSame(route('admin.booking-servis.show', $booking->id_booking_servis), $notification['url']);

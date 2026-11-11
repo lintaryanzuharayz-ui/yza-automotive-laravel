@@ -15,9 +15,11 @@
         }
     }
     $galleryData = $galleryData ?? ['default' => ['label' => $mobil->warna ?: 'Pilihan warna tersedia', 'swatch' => '#20a9c7', 'images' => [['type' => 'front', 'label' => 'Front view', 'src' => $landingVehicleImage]]]];
-    $defaultColorKey = $defaultColorKey ?? array_key_first($galleryData);
+    $galleryData = app(\App\Services\VehicleColorStockService::class)->colors($mobil);
+    $defaultColorKey = array_key_exists($defaultColorKey ?? '', $galleryData) ? $defaultColorKey : array_key_first($galleryData);
+    foreach ($galleryData as $key => $color) if (mb_strtolower((string) request('warna')) === mb_strtolower($key)) $defaultColorKey = $key;
     $defaultGallery = $galleryData[$defaultColorKey];
-    $primaryImage = $defaultGallery['images'][0]['src'];
+    $primaryImage = $defaultGallery['images'][0]['src'] ?? asset('assets/images/vehicle-photo-unavailable.svg');
     $brand = strtoupper((string) ($mobil->merk ?: 'YZA AUTOMOTIVE'));
     $brandLogo = \App\Support\BrandLogo::path($mobil->merk, $mobil->model);
     $uiIcon = static function (string $name): string {
@@ -70,7 +72,8 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/public-navbar.css') }}?v=public-navbar-20261004">
     <link rel="stylesheet" href="{{ asset('assets/css/mobil-detail.css') }}?v=detail-wide-20261011b">
-</head>
+    @include('components.responsive-foundation')
+<style>.detail-swatch.is-out-of-stock{position:relative;opacity:.65}.detail-swatch.is-out-of-stock::after{content:'×';position:absolute;inset:0;display:grid;place-items:center;color:#ed172b;font-size:22px;font-weight:900;text-shadow:0 0 3px white}[data-public-color-stock]{color:#64748b;font-size:13px}[data-public-color-action]{margin-bottom:12px}</style></head>
 <body class="yza-detail-page">
     <div class="detail-orb detail-orb-one"></div><div class="detail-orb detail-orb-two"></div>
     <x-public-navbar />
@@ -86,17 +89,31 @@
             <div class="detail-info-column">
                 <div class="detail-panel detail-summary-panel" data-detail-vehicle-id="{{ $mobil->id_mobil }}">
                     <div class="detail-brand-header">
-                        <div class="detail-brand-identity"><span class="detail-brand-logo"><img src="{{ $brandLogo }}" alt="Logo {{ $brand }}"></span><div><span class="detail-label">Brand</span><strong>{{ $brand }}</strong><small>AUTOMOTIVE</small></div><button class="detail-favorite" type="button" data-detail-favorite aria-label="Tambahkan {{ $mobil->merk }} {{ $modelName }} ke favorit" aria-pressed="false">♡</button></div>
-                        <div class="detail-statuses"><span class="detail-condition"><i></i>{{ $condition }}</span>@if($availability['is_limited_edition'] ?? false)<span class="detail-limited-badge">LIMITED EDITION</span>@endif<span class="detail-available-badge detail-status-badge {{ $availabilityClass }}"><i></i>{{ $availabilityLabel }}</span>@if($availability['detail'] ?? false)<small class="detail-stock-copy">{{ $availability['detail'] }}</small>@endif</div>
+                        <div class="detail-brand-identity">
+                            <span class="detail-brand-logo"><img src="{{ $brandLogo }}" alt="Logo {{ $brand }}"></span>
+                            <div><span class="detail-label">Brand</span><strong>{{ $brand }}</strong><small>AUTOMOTIVE</small></div>
+                        </div>
+                        <div class="detail-statuses">
+                            <span class="detail-condition"><i></i>{{ $condition }}</span>
+                            @if($availability['is_limited_edition'] ?? false)<span class="detail-limited-badge">LIMITED EDITION</span>@endif
+                        </div>
+                        <button class="detail-favorite" type="button" data-detail-favorite aria-label="Tambahkan {{ $mobil->merk }} {{ $modelName }} ke favorit" aria-pressed="false">♡</button>
                     </div>
                     <p class="detail-description">{{ $mobil->deskripsi ?: 'Kendaraan terawat dengan karakter berkendara yang nyaman untuk aktivitas harian maupun perjalanan akhir pekan.' }}</p>
-                    <div class="detail-actions detail-actions-reference"><a class="detail-button detail-button-primary" href="{{ yza_whatsapp_url($whatsappText) }}" target="_blank" rel="noopener">{!! $uiIcon('whatsapp') !!}<span class="detail-button-text">Tanya via WhatsApp</span><span>→</span></a><div class="detail-action-row"><a class="detail-button detail-button-ghost" href="{{ url('/#janji-temu') }}">{!! $uiIcon('calendar') !!}<span class="detail-button-text">Jadwalkan kunjungan</span><span>→</span></a><a class="detail-button detail-button-ghost" href="{{ $tradeInCtaUrl }}" data-trade-in-trigger>{!! $uiIcon('trade') !!}<span class="detail-button-text">Trade-in / Tukar Tambah</span><span>→</span></a></div></div>
+                    <div class="detail-actions detail-actions-reference"><a class="detail-button detail-button-primary" href="{{ yza_whatsapp_url($whatsappText) }}" target="_blank" rel="noopener">{!! $uiIcon('whatsapp') !!}<span class="detail-button-text">Tanya via WhatsApp</span><span>→</span></a><div class="detail-action-row"><a class="detail-button detail-button-ghost" href="{{ url('/#janji-temu') }}">{!! $uiIcon('calendar') !!}<span class="detail-button-text">Jadwalkan kunjungan</span></a><a class="detail-button detail-button-ghost" href="{{ $tradeInCtaUrl }}" data-trade-in-trigger>{!! $uiIcon('trade') !!}<span class="detail-button-text">Trade-in / Tukar Tambah</span></a></div></div>
                 </div>
                 <div class="detail-panel detail-spec-panel"><div class="detail-section-head"><div><p class="detail-kicker">SPESIFIKASI KENDARAAN</p><h2>Detail kendaraan</h2></div><span class="detail-code">{{ $mobil->kode_mobil ?: 'YZA-UNIT' }}</span></div><div class="detail-spec-grid detail-spec-grid-reference"><div><span class="detail-spec-icon">{!! $uiIcon('engine') !!}</span><span>Tipe</span><strong>{{ $mobil->tipe ?: '-' }}</strong></div><div><span class="detail-spec-icon">{!! $uiIcon('year') !!}</span><span>Tahun</span><strong>{{ $mobil->tahun ?: '-' }}</strong></div><div><span class="detail-spec-icon">{!! $uiIcon('gear') !!}</span><span>Transmisi</span><strong>{{ strtoupper($mobil->transmisi ?: '-') }}</strong></div><div><span class="detail-spec-icon">{!! $uiIcon('fuel') !!}</span><span>Bahan bakar</span><strong>{{ ucfirst($mobil->bahan_bakar ?: '-') }}</strong></div><div><span class="detail-spec-icon">{!! $uiIcon('color') !!}</span><span>Warna</span><strong id="detail-spec-color">{{ $colorName }}</strong></div><div><span class="detail-spec-icon">{!! $uiIcon('condition') !!}</span><span>Kondisi</span><strong>{{ $condition }}</strong></div><div class="detail-spec-status"><span class="detail-spec-icon">{!! $uiIcon('status') !!}</span><span>Status</span><strong class="detail-status-tag {{ $availabilityClass }}">{{ $availabilityLabel }}</strong></div></div></div>
-                <div class="detail-panel detail-color-panel"><div class="detail-section-head"><div><p class="detail-kicker">PILIHAN WARNA</p><h2>Personalisasi</h2></div><span id="selected-color">{{ $colorName }}</span></div><div class="detail-swatches" role="group" aria-label="Pilihan warna kendaraan">@foreach($galleryData as $colorKey => $color)<button class="detail-swatch {{ $colorKey === $defaultColorKey ? 'is-active' : '' }}" type="button" data-color-key="{{ $colorKey }}" data-color="{{ $color['label'] }}" style="--swatch:{{ $color['swatch'] }}" aria-label="Pilih warna {{ $color['label'] }}" aria-pressed="{{ $colorKey === $defaultColorKey ? 'true' : 'false' }}"></button>@endforeach</div></div>
+                <div class="detail-panel detail-color-panel"><div class="detail-section-head"><div><p class="detail-kicker">PILIHAN WARNA</p><h2>Personalisasi</h2></div><span id="selected-color">{{ $colorName }}</span></div><p data-public-color-stock aria-live="polite">{{ $defaultGallery['stock'] > 0 ? $defaultGallery['stock'].' unit siap jual' : 'Stok Habis' }}</p><a class="detail-button detail-button-ghost" data-public-color-action href="{{ $defaultGallery['purchase_url'] ?: route('pelanggan.preorder.create', array_filter(['mobil'=>$mobil->id_mobil,'slug'=>$mobil->showcase_slug,'warna'=>$defaultGallery['label']])) }}">{{ $defaultGallery['stock'] > 0 ? 'Lanjutkan Pembelian' : 'Ajukan Pre-Order' }}</a><div class="detail-swatches" role="group" aria-label="Pilihan warna kendaraan">@foreach($galleryData as $colorKey => $color)<button class="detail-swatch {{ $color['stock'] === 0 ? 'is-out-of-stock' : '' }} {{ $colorKey === $defaultColorKey ? 'is-active' : '' }}" type="button" data-color-key="{{ $colorKey }}" data-color="{{ $color['label'] }}" style="--swatch:{{ $color['swatch'] }}" title="{{ $color['label'] }}: {{ $color['stock'] }} ready" aria-label="{{ $color['label'] }}: {{ $color['stock'] > 0 ? $color['stock'].' unit siap jual' : 'Stok Habis' }}" aria-pressed="{{ $colorKey === $defaultColorKey ? 'true' : 'false' }}"></button>@endforeach</div></div>
             </div>
             <div class="detail-gallery-column">
-                <div class="detail-gallery-frame"><div class="detail-gallery-topline"><span class="detail-gallery-counter" id="detail-gallery-counter">01 / {{ str_pad((string) count($defaultGallery['images']), 2, '0', STR_PAD_LEFT) }}</span><span class="detail-gallery-mark"><b>YZA</b> SHOWROOM VIEW</span></div><button class="detail-gallery-arrow detail-gallery-arrow-prev" type="button" aria-label="Foto sebelumnya"><span aria-hidden="true">←</span></button><img id="detail-main-image" src="{{ $primaryImage }}" alt="{{ $mobil->merk }} {{ $modelName }}" class="detail-main-image"><button class="detail-gallery-arrow detail-gallery-arrow-next" type="button" aria-label="Foto berikutnya"><span aria-hidden="true">→</span></button><div class="detail-image-shade"></div><div class="detail-gallery-caption"><span>{{ $mobil->merk }} {{ $modelName }}</span><small id="detail-gallery-caption">{{ $defaultGallery['images'][0]['label'] }} · YZA Automotive</small></div></div>
+                <div class="detail-gallery-frame">
+                    <div class="detail-gallery-topline">
+                        <span class="detail-gallery-counter" id="detail-gallery-counter">01 / {{ str_pad((string) count($defaultGallery['images']), 2, '0', STR_PAD_LEFT) }}</span>
+                        <div class="detail-gallery-badges">
+                            <span class="detail-gallery-mark"><b>YZA</b> SHOWROOM VIEW</span>
+                            <span class="detail-available-badge detail-status-badge {{ $availabilityClass }}"><i></i>{{ $availabilityLabel }}</span>
+                        </div>
+                    </div><button class="detail-gallery-arrow detail-gallery-arrow-prev" type="button" aria-label="Foto sebelumnya"><span aria-hidden="true">←</span></button><img id="detail-main-image" src="{{ $primaryImage }}" alt="{{ $mobil->merk }} {{ $modelName }}" class="detail-main-image"><button class="detail-gallery-arrow detail-gallery-arrow-next" type="button" aria-label="Foto berikutnya"><span aria-hidden="true">→</span></button><div class="detail-image-shade"></div><div class="detail-gallery-caption"><span>{{ $mobil->merk }} {{ $modelName }}</span><small id="detail-gallery-caption">{{ $defaultGallery['images'][0]['label'] }} · YZA Automotive</small></div></div>
                 <div id="detail-thumbnails" class="detail-thumbnails" role="list" aria-label="Galeri foto kendaraan">@foreach($defaultGallery['images'] as $index => $image)<button class="detail-thumbnail {{ $index === 0 ? 'is-active' : '' }}" type="button" data-index="{{ $index }}" role="listitem" aria-label="Lihat {{ $image['label'] }}"><img src="{{ $image['src'] }}" alt="{{ $image['label'] }} {{ $mobil->model }}"><span>0{{ $index + 1 }}</span></button>@endforeach</div>
                 <div class="detail-gallery-note"><span>✦</span> Pilih warna dan sudut kendaraan untuk melihat detail showroom.</div>
             </div>
@@ -184,6 +201,14 @@
                 swatches.forEach((item) => { const active = item === swatch; item.classList.toggle('is-active', active); item.setAttribute('aria-pressed', active ? 'true' : 'false'); });
                 colorLabel.textContent = swatch.dataset.color;
                 if (specColor) specColor.textContent = swatch.dataset.color;
+                const color = galleryData[state.color];
+                document.querySelector('[data-public-color-stock]').textContent = color.stock > 0 ? color.stock + ' unit siap jual' : 'Stok Habis';
+                document.querySelectorAll('.detail-showcase .detail-status-tag,.detail-showcase .detail-status-badge').forEach(badge => { badge.textContent = color.stock > 0 ? 'TERSEDIA · ' + color.stock + ' UNIT' : 'STOK HABIS'; badge.classList.remove('is-last','is-low','is-available','is-empty'); badge.classList.add(color.stock > 0 ? 'is-available' : 'is-empty'); });
+                const action = document.querySelector('[data-public-color-action]');
+                const preorder = new URL(@json(route('pelanggan.preorder.create')), location.origin);
+                preorder.searchParams.set(@json($mobil->showcase_slug ? 'slug' : 'mobil'), @json((string) ($mobil->showcase_slug ?: $mobil->id_mobil)));
+                preorder.searchParams.set('warna', color.label);
+                action.href = color.purchase_url || preorder.toString(); action.textContent = color.stock > 0 ? 'Lanjutkan Pembelian' : 'Ajukan Pre-Order';
                 renderGallery();
             };
             swatches.forEach((swatch) => swatch.addEventListener('click', () => changeColor(swatch)));
@@ -193,8 +218,8 @@
                 state.index = Number(thumbnail.dataset.index);
                 renderGallery();
             });
-            document.querySelector('.detail-gallery-arrow-prev')?.addEventListener('click', () => { const count = (galleryData[state.color] || galleryData.default).images.length; state.index = (state.index - 1 + count) % count; renderGallery(); });
-            document.querySelector('.detail-gallery-arrow-next')?.addEventListener('click', () => { const count = (galleryData[state.color] || galleryData.default).images.length; state.index = (state.index + 1) % count; renderGallery(); });
+            document.querySelector('.detail-gallery-arrow-prev')?.addEventListener('click', () => { const count = (galleryData[state.color]?.images || []).length; if (!count) return; state.index = (state.index - 1 + count) % count; renderGallery(); });
+            document.querySelector('.detail-gallery-arrow-next')?.addEventListener('click', () => { const count = (galleryData[state.color]?.images || []).length; if (!count) return; state.index = (state.index + 1) % count; renderGallery(); });
             mainImage.addEventListener('error', () => { if (mainImage.src !== fallbackImage) { mainImage.src = fallbackImage; } });
             renderGallery();
             const recommendationRoot = document.querySelector('[data-detail-recommendations]');

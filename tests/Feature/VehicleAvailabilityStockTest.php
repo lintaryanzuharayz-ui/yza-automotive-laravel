@@ -58,7 +58,11 @@ class VehicleAvailabilityStockTest extends TestCase
 
         foreach ([['GR Supra', 'TERSEDIA · 5 UNIT'], ['Revuelto', 'TERSEDIA · 8 UNIT'], ['Supra MK4', 'STOK MENIPIS · SISA 3 UNIT']] as [$model, $label]) {
             $car = Mobil::where('model', $model)->firstOrFail();
-            $this->get('/mobil/'.$car->id_mobil)->assertOk()->assertSee($label);
+            $res = $this->get('/mobil/'.$car->id_mobil)->assertOk()->assertSee($label);
+            $res->assertSee('Jadwalkan kunjungan');
+            $res->assertSee('Trade-in / Tukar Tambah');
+            $this->assertMatchesRegularExpression('#<a[^>]*href="[^"]*janji-temu[^"]*"[^>]*>(?:(?!→).)*?Jadwalkan kunjungan(?:(?!→).)*?</a>#s', $res->getContent());
+            $this->assertMatchesRegularExpression('#<a[^>]*data-trade-in-trigger[^>]*>(?:(?!→).)*?Trade-in / Tukar Tambah(?:(?!→).)*?</a>#s', $res->getContent());
         }
     }
 }

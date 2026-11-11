@@ -33,6 +33,18 @@ class SparepartController extends Controller
             'barang_servis' => (int) abs(\App\Models\RiwayatStok::where('jenis_transaksi', 'servis')->sum('jumlah_perubahan')),
             'fitment_review' => Sparepart::whereDoesntHave('fitments', fn ($q) => $q->where('status_verifikasi', 'verified_fit'))->count(),
         ];
+        $categoryDistribution = KategoriSparepart::query()
+            ->where('status', 'aktif')
+            ->withCount(['sparepart as active_sparepart_count' => fn ($q) => $q->where('status', 'aktif')])
+            ->orderByDesc('active_sparepart_count')
+            ->get();
+        $categoryTotal = max(1, (int) $categoryDistribution->sum('active_sparepart_count'));
+        $operational = [
+            'restock_today' => (int) \App\Models\RiwayatStok::whereDate('tanggal', today())->where('jenis_transaksi', 'stok_masuk')->sum('jumlah_perubahan'),
+            'goods_received' => $stats['barang_masuk'],
+            'critical_stock' => Sparepart::where('status', 'aktif')->whereColumn('stok', '<=', 'stok_minimum')->count(),
+            'work_order_usage' => $stats['barang_servis'],
+        ];
 
         return view('admin.sparepart.index', [
             'items' => Sparepart::with(['kategori', 'supplier', 'fitments'])
@@ -50,6 +62,9 @@ class SparepartController extends Controller
             'categories' => KategoriSparepart::where('status', 'aktif')->orderBy('nama_kategori')->get(),
             'suppliers' => \App\Models\Supplier::where('status', 'aktif')->orderBy('nama_supplier')->get(),
             'stats' => $stats,
+            'categoryDistribution' => $categoryDistribution,
+            'categoryTotal' => $categoryTotal,
+            'operational' => $operational,
         ]);
     }
     public function create(): View { return view('admin.sparepart.create', ['item' => new Sparepart(['harga_beli' => 0, 'harga_jual' => 0, 'stok_minimum' => 0, 'satuan' => 'pcs']), 'categories' => KategoriSparepart::where('status','aktif')->orderBy('nama_kategori')->get(), 'suppliers' => Supplier::where('status','aktif')->orderBy('nama_supplier')->get()]); }

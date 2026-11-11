@@ -163,7 +163,7 @@
         /* Enam Kartu Statistik Inventori (6 KPI Cards) */
         .sparepart-kpi-grid {
             display: grid;
-            grid-template-columns: repeat(6, minmax(0, 1fr));
+            grid-template-columns: repeat(7, minmax(0, 1fr));
             gap: 14px;
         }
         @media (max-width: 1400px) { .sparepart-kpi-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
@@ -575,7 +575,7 @@
             <div class="sparepart-title-group">
                 <div class="sparepart-title-icon" aria-hidden="true">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="12 2 2 7 12 12 22 7 12 2"><polygon>
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
                         <polyline points="2 17 12 22 22 17"></polyline>
                         <polyline points="2 12 12 17 22 12"></polyline>
                     </svg>
@@ -722,6 +722,7 @@
     </section>
 
     {{-- Main Container Card --}}
+    <div class="sparepart-content-grid">
     <main class="sparepart-main-card">
         {{-- Card Header --}}
         <div class="sparepart-card-header">
@@ -906,9 +907,45 @@
         </div>
 
         {{-- Pagination --}}
-        <div>
-            {{ $items->links() }}
+        <div class="sparepart-pagination">
+            {{ $items->onEachSide(1)->links('pagination::bootstrap-4') }}
         </div>
     </main>
+    <aside class="sparepart-analytics">
+        <section class="sparepart-analytics-card">
+            <div class="analytics-heading"><div class="analytics-icon">▥</div><div><h2>Distribusi Kategori</h2><p>Jumlah SKU aktif berdasarkan kategori.</p></div><span>Lihat Semua</span></div>
+            <div class="category-list">
+                @forelse($categoryDistribution as $category)
+                    @php($categoryPercent = round(($category->active_sparepart_count / $categoryTotal) * 100))
+                    <div class="category-row"><div class="category-row-top"><span>{{ $category->nama_kategori }}</span><strong>{{ $categoryPercent }}%</strong></div><div class="category-track"><i style="width:{{ $categoryPercent }}%"></i></div><small>{{ $category->active_sparepart_count }} SKU aktif</small></div>
+                @empty
+                    <div class="analytics-empty">Belum ada kategori aktif.</div>
+                @endforelse
+            </div>
+        </section>
+        <section class="sparepart-analytics-card">
+            <div class="analytics-heading"><div class="analytics-icon">◷</div><div><h2>Ringkasan Operasional</h2><p>Informasi aktual dari aktivitas inventori.</p></div></div>
+            <div class="operational-grid">
+                <div class="operational-tile is-green"><span>↥</span><div><strong>{{ number_format($operational['restock_today']) }}</strong><small>Restock hari ini</small></div></div>
+                <div class="operational-tile is-blue"><span>⇩</span><div><strong>{{ number_format($operational['goods_received']) }}</strong><small>Barang masuk</small></div></div>
+                <div class="operational-tile is-red"><span>!</span><div><strong>{{ number_format($operational['critical_stock']) }}</strong><small>Stok kritis</small></div></div>
+                <div class="operational-tile is-purple"><span>⚒</span><div><strong>{{ number_format($operational['work_order_usage']) }}</strong><small>WO memakai sparepart</small></div></div>
+            </div>
+            <p class="analytics-note">Angka mengikuti riwayat stok dan status master aktual. Tidak ada perubahan stok yang dilakukan saat halaman dibuka.</p>
+        </section>
+    </aside>
+    </div>
 </div>
+<style>
+.admin-content:has(> .admin-sparepart-page) > .admin-page-heading{display:none!important}
+.admin-sparepart-page{max-width:1480px;margin:0 auto;padding:8px 0 24px;gap:18px}
+.sparepart-header{display:grid;grid-template-columns:minmax(0,.95fr) minmax(560px,1.55fr);align-items:stretch;gap:20px}
+.sparepart-header-left{min-width:0}.sparepart-header-right{min-width:0;flex-basis:auto}.sparepart-banner{height:142px;border-radius:18px}.sparepart-banner-content{padding-left:28px}.banner-tagline-top{font-size:13px}.banner-tagline-bottom{font-size:11px}
+.sparepart-title-group{align-items:flex-start}.sparepart-heading{font-size:30px}.sparepart-subheading{max-width:520px}
+.sparepart-kpi-grid{gap:12px}.sparepart-kpi-card{min-height:132px;border-color:rgba(148,163,184,.22);box-shadow:0 9px 24px rgba(15,23,42,.05)}.sparepart-kpi-card:hover{box-shadow:0 14px 30px rgba(15,23,42,.1)}.kpi-icon-box{width:40px;height:40px;border-radius:12px}
+.sparepart-content-grid{display:grid;grid-template-columns:minmax(0,1.72fr) minmax(285px,.78fr);gap:14px;align-items:start}.sparepart-main-card{min-width:0;margin:0;border-radius:18px;box-shadow:0 10px 28px rgba(15,23,42,.06)}.sparepart-analytics{display:grid;gap:14px;min-width:0}.sparepart-analytics-card{border:1px solid #e2e8f0;border-radius:18px;background:#fff;box-shadow:0 10px 28px rgba(15,23,42,.06);overflow:hidden}.sparepart-pagination{display:flex;justify-content:flex-end;min-height:34px;margin-top:14px;overflow:hidden}.sparepart-pagination nav{display:flex;align-items:center}.sparepart-pagination .pagination{display:flex;align-items:center;gap:6px;margin:0;padding:0;list-style:none}.sparepart-pagination .page-item{margin:0}.sparepart-pagination .page-link{display:flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 9px;border:1px solid #dbe4ef;border-radius:9px;background:#fff;color:#475569;font-size:12px;font-weight:700;text-decoration:none;line-height:1}.sparepart-pagination .page-item.active .page-link{border-color:#ed1b2f;background:#ed1b2f;color:#fff;box-shadow:0 5px 12px rgba(237,27,47,.2)}.sparepart-pagination .page-item.disabled .page-link{background:#f8fafc;color:#a8b4c3;cursor:not-allowed}.sparepart-pagination .page-link:hover{border-color:#ed1b2f;color:#ed1b2f}.sparepart-pagination .page-item.active .page-link:hover{color:#fff}.sparepart-pagination svg{width:16px!important;height:16px!important;max-width:16px;display:block}.analytics-heading{display:flex;align-items:center;gap:11px;padding:17px 16px 14px;border-bottom:1px solid #eef2f6}.analytics-icon{display:grid;width:36px;height:36px;place-items:center;border-radius:11px;color:#ed172b;background:#fff0f3;font-size:18px}.analytics-heading h2{margin:0;color:#142038;font-size:16px;letter-spacing:-.02em}.analytics-heading p{margin:3px 0 0;color:#8290a3;font-size:10px}.analytics-heading>span{margin-left:auto;color:#e01e38;font-size:9px;font-weight:800}.category-list{padding:12px 16px 15px}.category-row{padding:8px 0;border-bottom:1px solid #f0f3f6}.category-row:last-child{border-bottom:0}.category-row-top{display:flex;justify-content:space-between;gap:8px;color:#35455f;font-size:10px}.category-row-top strong{color:#52627b;font-size:9px}.category-track{height:7px;margin:7px 0 4px;overflow:hidden;border-radius:20px;background:#e9edf2}.category-track i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#ed1737,#ff5267)}.category-row small{color:#8996a8;font-size:9px}.analytics-empty{padding:20px 0;color:#8794a6;font-size:11px;text-align:center}.operational-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:14px 16px 9px}.operational-tile{display:flex;min-height:70px;align-items:center;gap:8px;padding:10px;border:1px solid #e5ebf2;border-radius:11px;background:linear-gradient(145deg,#fff,#fbfcfe)}.operational-tile>span{display:grid;width:32px;height:32px;place-items:center;border-radius:10px;font-weight:800}.operational-tile strong,.operational-tile small{display:block}.operational-tile strong{color:#17263e;font-size:16px;line-height:1.1}.operational-tile small{margin-top:4px;color:#7b899d;font-size:8px}.operational-tile.is-green>span{color:#079765;background:#e1f8ed}.operational-tile.is-blue>span{color:#2879e7;background:#e8f1ff}.operational-tile.is-red>span{color:#df203b;background:#ffe7eb}.operational-tile.is-purple>span{color:#7041d2;background:#f0eaff}.analytics-note{margin:0 16px 15px;padding:9px;border-radius:8px;color:#7b899d;background:#f7f9fb;font-size:9px;line-height:1.4}
+@media(max-width:1400px){.sparepart-kpi-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.sparepart-header{grid-template-columns:1fr 1.35fr}}
+@media(max-width:1100px){.sparepart-content-grid{grid-template-columns:1fr}.sparepart-analytics{grid-template-columns:1fr 1fr}.sparepart-header{grid-template-columns:1fr}.sparepart-header-right{width:100%}}
+@media(max-width:700px){.admin-sparepart-page{padding:4px 0 18px}.sparepart-kpi-grid{grid-template-columns:1fr 1fr}.sparepart-analytics{grid-template-columns:1fr}.sparepart-banner{height:128px}.sparepart-heading{font-size:27px}.sparepart-main-card{padding:16px}.sparepart-card-header{align-items:flex-start}.header-action-group{width:100%}.header-action-group a{flex:1;justify-content:center}.sparepart-filter-toolbar{flex-wrap:wrap}.filter-wrap{min-width:calc(50% - 5px)!important}.filter-wrap.search-box{min-width:100%!important}}
+</style>
 @endsection

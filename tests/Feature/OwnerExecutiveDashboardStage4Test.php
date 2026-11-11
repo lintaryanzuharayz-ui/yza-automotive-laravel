@@ -22,7 +22,7 @@ class OwnerExecutiveDashboardStage4Test extends TestCase
     public function test_owner_login_redirects_to_executive_dashboard(): void
     {
         $this->post(route('login.store'), ['identity' => 'owner506', 'password' => 'owner506'])->assertRedirect(route('owner.dashboard'));
-        $this->get(route('owner.dashboard'))->assertOk()->assertSee('EXECUTIVE DASHBOARD');
+        $this->get(route('owner.dashboard'))->assertOk()->assertSee('Executive Overview');
     }
 
     public function test_owner_can_read_reports_but_cannot_mutate_finance_or_inventory(): void

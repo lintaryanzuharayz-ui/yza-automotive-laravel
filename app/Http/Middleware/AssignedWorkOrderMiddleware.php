@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\WorkOrderAuthorizationService;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -9,10 +10,12 @@ class AssignedWorkOrderMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user()?->roleKey() === 'mechanic') {
-            $servis = $request->route('servis');
-            $petugasId = $request->user()->petugas?->id_petugas;
-            abort_unless($servis && ((int) $servis->id_petugas === (int) $petugasId || $servis->assignments()->where('id_petugas', $petugasId)->whereNull('unassigned_at')->exists()), 403);
+        $service = $request->route('servis');
+        abort_unless($request->user() && $service, 403);
+        app(WorkOrderAuthorizationService::class)->authorize($request->user(), $service, 'view');
+        foreach (['detail_servis', 'servis_sparepart', 'approval'] as $parameter) {
+            $child = $request->route($parameter);
+            if ($child) abort_unless((int) $child->id_servis === (int) $service->id_servis, 404);
         }
         return $next($request);
     }

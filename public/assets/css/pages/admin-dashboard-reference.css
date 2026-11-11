@@ -1,0 +1,146 @@
+/* Admin dashboard reference: compact operations overview with a studio hero. */
+body.admin-dashboard-reference { background: #f4f6fa; }
+.admin-dashboard-reference .admin-shell .admin-main { padding: 24px !important; background: radial-gradient(ellipse at 70% 100%,#e8edf5,transparent 65%),#f5f7fb; }
+.admin-dashboard-reference .admin-shell .admin-content { max-width: 1600px; }
+.admin-dashboard-reference .admin-page-heading { margin: 0 0 24px; }
+.admin-dashboard-reference .admin-page-heading h1 { margin: 0; font-size: 28px !important; font-weight: 800; letter-spacing: -.035em; }
+.admin-dashboard-reference .admin-command-center { display: grid; gap: 24px; }
+.admin-dashboard-reference .admin-shell .admin-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 174px;
+    height: auto;
+    padding: 24px 32px;
+    border: 1px solid #e4e8ef;
+    border-radius: 14px;
+    background: #f7f8fa url('../../images/hero/yza-admin-dashboard-studio-v2.png') right center / auto 150% no-repeat;
+    box-shadow: 0 3px 6px #12213b09;
+}
+.admin-dashboard-reference .admin-shell .admin-hero-copy { max-width: 60%; padding: 0 !important; z-index: 1; }
+.admin-dashboard-reference .admin-hero .admin-eyebrow { font-size: 11px; letter-spacing: .035em; }
+.admin-dashboard-reference .admin-hero h1 { margin: 12px 0 8px; font-size: clamp(22px,1.9vw,30px) !important; line-height: 1.2; letter-spacing: -.035em; }
+.admin-dashboard-reference .admin-hero h1 em { font-style: normal; color: #ed102a; }
+.admin-dashboard-reference .admin-hero p { margin: 0; max-width: 68ch; color: #59667b; font-size: 13px; line-height: 1.6; }
+.admin-dashboard-reference .admin-shell .admin-hero-art { display: none; }
+.admin-dashboard-reference .admin-service-grid { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)) !important; gap: 12px; }
+.admin-dashboard-reference .admin-service-card { position: relative; display: grid; grid-template-columns: 44px minmax(0,1fr); grid-template-rows: auto 1fr; align-content: start; align-items: start; gap: 5px 14px; min-height: 100px; padding: 16px !important; border: 1px solid #eef0f5; border-radius: 14px; box-shadow: 0 6px 12px #23365308; overflow: hidden; }
+.admin-dashboard-reference .admin-service-card:first-child::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 3px; background: #f01330; }
+.admin-dashboard-reference .admin-service-card-top { display: contents; }
+.admin-dashboard-reference .admin-service-card .admin-metric-kicker { display: none; }
+.admin-dashboard-reference .admin-service-card .admin-metric-icon { grid-column: 1; grid-row: 1/3; width: 42px; height: 44px; border-radius: 11px; color: #f0112b; background: #ffebef; }
+.admin-dashboard-reference .admin-metric-icon svg { width: 26px; height: 26px; }
+.admin-dashboard-reference .admin-service-card > strong { grid-column: 2; grid-row: 1; font-size: 26px; line-height: 1; color: #0e1420; }
+.admin-dashboard-reference .admin-service-card > div:last-child { grid-column: 2; grid-row: 2; display: grid; gap: 5px; }
+.admin-dashboard-reference .admin-service-card b { font-size: 13px; line-height: 1.25; }
+.admin-dashboard-reference .admin-service-card > div:last-child > span { color: #647086; font-size: 11px; line-height: 1.4; }
+.admin-dashboard-reference .admin-dashboard-grid { display: grid; grid-template-columns: minmax(0,1.6fr) minmax(0,1fr); gap: 20px; align-items: start; }
+.admin-dashboard-reference .admin-panel { padding: 18px; border: 1px solid #e9edf3; border-radius: 16px; box-shadow: 0 8px 18px #20365209; }
+.admin-dashboard-reference .admin-panel-heading { display: flex; align-items: center; gap: 14px; padding-bottom: 14px; margin: 0; border: 0; }
+.admin-dashboard-reference .admin-panel-heading > div { min-width: 0; flex: 1; }
+.admin-dashboard-reference .admin-panel-heading > div:has(.admin-panel-symbol) { display: grid; grid-template-columns: 28px minmax(0,1fr); column-gap: 12px; }
+.admin-dashboard-reference .admin-panel-symbol { grid-column: 1; grid-row: 1/3; color: #f0152d; }
+.admin-dashboard-reference .admin-panel-symbol svg { display: block; width: 24px; height: 27px; }
+.admin-dashboard-reference .admin-panel-heading h2 { margin: 0 0 5px; font-size: 18px; letter-spacing: -.025em; line-height: 1.2; }
+.admin-dashboard-reference .admin-panel-heading > div:has(.admin-panel-symbol) :is(h2,p) { grid-column: 2; }
+.admin-dashboard-reference .admin-panel-heading p { margin: 0; color: #637087; font-size: 11px; line-height: 1.4; }
+.admin-dashboard-reference .admin-panel-link { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 12px; min-height: 34px; padding: 8px 15px; border-radius: 9px; font-size: 11px; box-shadow: none; }
+.admin-dashboard-reference :is(.admin-order-table-head,.admin-order-row) { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(0,1fr) minmax(0,1.25fr) minmax(0,1.25fr) minmax(0,.95fr); gap: 10px; padding: 10px 4px; font-size: 10px; }
+.admin-dashboard-reference .admin-order-table-head { min-height: 32px; color: #566076; background: #f1f3f7; font-size: 9px; letter-spacing: 0; }
+.admin-dashboard-reference .admin-order-table-head > :last-child,
+.admin-dashboard-reference .admin-order-detail,
+.admin-dashboard-reference .admin-order-car img { display: none; }
+.admin-dashboard-reference .admin-order-row { min-height: 42px; border-bottom: 1px solid #eef0f5; border-radius: 0; }
+.admin-dashboard-reference .admin-order-row :is(strong,b) { font-size: 10px; font-weight: 600; overflow-wrap: anywhere; }
+.admin-dashboard-reference .admin-order-date { font-size: 10px; line-height: 1.35; }
+.admin-dashboard-reference .admin-status-badge { justify-self: start; max-width: 100%; padding: 5px 8px; font-size: 9px; text-align: center; white-space: normal; }
+.admin-dashboard-reference .admin-attention-item { grid-template-columns: 26px minmax(0,1fr) auto; gap: 12px; padding: 12px 0; }
+.admin-dashboard-reference .admin-alert-icon { width: 24px; height: 24px; background: none; color: #ed102a; border: 0; border-radius: 0; }
+.admin-dashboard-reference .admin-alert-icon svg { width: 22px; height: 24px; }
+.admin-dashboard-reference .admin-attention-item strong { font-size: 12px; }
+.admin-dashboard-reference .admin-attention-item small { margin-top: 4px; font-size: 11px; color: #627086; }
+.admin-dashboard-reference .admin-count { min-width: 28px; height: 24px; padding: 3px 7px; border-radius: 8px; background: #ffe7ec; color: #ed102a; font-size: 12px; }
+@media (max-width:1250px) {
+    .admin-dashboard-reference .admin-service-grid { grid-template-columns: repeat(3,minmax(0,1fr)) !important; }
+    .admin-dashboard-reference .admin-dashboard-grid { grid-template-columns: minmax(0,1fr); }
+}
+@media (max-width:760px) {
+    .admin-dashboard-reference .admin-shell .admin-main { padding: 16px !important; }
+    .admin-dashboard-reference .admin-page-heading h1 { font-size: 24px !important; }
+    .admin-dashboard-reference .admin-shell .admin-hero { min-height: 250px; padding: 22px; align-items: flex-start; background-position: 72% 100%; background-size: auto 100%; }
+    .admin-dashboard-reference .admin-shell .admin-hero-copy { max-width: 100%; padding-bottom: 90px !important; }
+    .admin-dashboard-reference .admin-hero h1 { font-size: 23px !important; }
+    .admin-dashboard-reference .admin-hero p { font-size: 12px; }
+    .admin-dashboard-reference .admin-service-grid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+    .admin-dashboard-reference .admin-service-card { grid-template-columns: 32px minmax(0,1fr); gap: 8px; padding: 12px !important; }
+    .admin-dashboard-reference .admin-service-card .admin-metric-icon { width: 32px; height: 36px; }
+    .admin-dashboard-reference .admin-metric-icon svg { width: 22px; height: 22px; }
+    .admin-dashboard-reference .admin-panel-heading { flex-wrap: wrap; }
+    .admin-dashboard-reference .admin-orders-panel { overflow-x: auto; }
+    .admin-dashboard-reference :is(.admin-order-table-head,.admin-order-row) { min-width: 620px; }
+}
+.admin-dashboard-reference .admin-service-card .admin-metric-icon svg { stroke: #ef102c !important; color: #ef102c !important; }
+.admin-dashboard-reference .admin-order-list,
+.admin-dashboard-reference .admin-attention-list { gap: 0; }
+.admin-dashboard-reference .admin-order-row :is(.admin-order-main,.admin-order-car,.admin-order-date) { min-height: 0; }
+.admin-dashboard-reference .admin-order-row :is(strong,b),
+.admin-dashboard-reference .admin-order-date { font-size: 11px; }
+.admin-dashboard-reference .admin-order-main strong { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.admin-dashboard-reference .admin-order-row { min-height: 44px; padding-block: 9px; }
+.admin-dashboard-reference .admin-order-table-head { font-size: 10px; }
+.admin-dashboard-reference .admin-attention-extra { margin-top: 4px; }
+.admin-dashboard-reference .admin-attention-extra > summary { padding: 10px 0 0; color: #647086; font-size: 11px; cursor: pointer; }
+.admin-dashboard-reference .admin-order-car { min-width: 0; }
+.admin-dashboard-reference .admin-order-car b { white-space: normal !important; overflow-wrap: anywhere; line-height: 1.4; }
+
+/* Match the reference composition while keeping the live dashboard data. */
+body.admin-dashboard-reference { font-family: Arial, Helvetica, sans-serif; }
+.admin-dashboard-reference :is(h1,h2,strong,b) { font-family: inherit; }
+.admin-dashboard-reference .admin-shell .admin-content { max-width: none; }
+.admin-dashboard-reference .admin-page-heading { margin-bottom: 24px; }
+.admin-dashboard-reference .admin-page-heading h1 { font-size: 30px !important; }
+.admin-dashboard-reference .admin-command-center { gap: 18px; }
+.admin-dashboard-reference .admin-shell:not(.owner-shell) .admin-hero {
+    min-height: 190px !important; padding: 22px 32px !important;
+    border-radius: 16px; background-position: right center;
+}
+.admin-dashboard-reference .admin-shell:not(.owner-shell) .admin-hero-copy {
+    flex: 0 1 58%; max-width: 58%; padding: 0 !important;
+}
+.admin-dashboard-reference .admin-shell .admin-hero h1 { font-size: 30px !important; line-height: 1.08; margin: 10px 0 12px; font-weight: 800; }
+.admin-dashboard-reference .admin-hero h1 em { display: block; }
+.admin-dashboard-reference .admin-hero p { max-width: 58ch; color: #283f64; font-size: 13px; line-height: 1.5; }
+.admin-dashboard-reference .admin-shell:not(.owner-shell) .admin-service-card { min-height: 96px; padding: 16px !important; align-content: center; }
+.admin-dashboard-reference .admin-service-card > strong { font-size: 29px; }
+.admin-dashboard-reference .admin-service-card > div:last-child > span { color: #334766; }
+.admin-dashboard-reference .admin-dashboard-grid { gap: 16px; grid-template-columns: minmax(0,1.57fr) minmax(0,1fr); align-items: stretch; }
+.admin-dashboard-reference .admin-panel { padding: 16px; box-shadow: 0 8px 20px #2036520c; }
+.admin-dashboard-reference .admin-panel-heading { padding-bottom: 14px; }
+.admin-dashboard-reference .admin-panel-heading h2 { font-size: 18px; font-weight: 800; }
+.admin-dashboard-reference .admin-panel-link { border: 1px solid #f0152d; border-radius: 999px; background: #fff; color: #ef102c; min-height: 36px; padding: 8px 16px; }
+.admin-dashboard-reference .admin-panel-link:hover { background: #fff0f3; box-shadow: 0 3px 10px #ed172b15; }
+.admin-dashboard-reference .admin-panel-link:focus-visible { outline: 2px solid #ed172b; outline-offset: 3px; }
+.admin-dashboard-reference .admin-order-list { padding-top: 0; }
+.admin-dashboard-reference .admin-order-row { min-height: 42px; padding: 9px 4px; }
+.admin-dashboard-reference .admin-attention-list { padding-top: 0; }
+.admin-dashboard-reference .admin-attention-item { grid-template-columns: 26px minmax(0,1fr) auto 10px; padding: 10px 0; }
+.admin-dashboard-reference .admin-attention-item::after { content: '›'; color: #334766; font-size: 22px; line-height: 1; }
+.admin-dashboard-reference .admin-attention-item strong { font-size: 12px; }
+.admin-dashboard-reference .admin-attention-item small { font-size: 11px; }
+.admin-dashboard-reference .admin-attention-extra > summary { font-size: 10px; padding-top: 5px; }
+.admin-dashboard-reference .admin-order-row :is(strong,b),
+.admin-dashboard-reference .admin-order-date { font-size: 12px; text-align: left; }
+.admin-dashboard-reference .admin-order-table-head { text-align: left; }
+
+@media (max-width:1250px) {
+    .admin-dashboard-reference .admin-dashboard-grid { grid-template-columns: 1fr; }
+}
+@media (max-width:760px) {
+    .admin-dashboard-reference .admin-shell:not(.owner-shell) .admin-hero { min-height: 320px !important; padding: 22px !important; align-items: flex-start; background-size: auto 70%; background-position: right bottom; }
+    .admin-dashboard-reference .admin-shell:not(.owner-shell) .admin-hero-copy { flex-basis: 100%; max-width: 100%; padding: 0 0 140px !important; }
+    .admin-dashboard-reference .admin-shell .admin-hero h1 { font-size: 25px !important; }
+    .admin-dashboard-reference .admin-hero p { font-size: 12px; }
+    .admin-dashboard-reference .admin-page-heading h1 { font-size: 25px !important; }
+    .admin-dashboard-reference .admin-service-card > strong { font-size: 26px; }
+    .admin-dashboard-reference .admin-panel-heading { gap: 10px; }
+}

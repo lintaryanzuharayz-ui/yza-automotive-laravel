@@ -18,6 +18,8 @@ class ServiceExecutionService
         ['key' => 'functional_check', 'label' => 'Final functional check atau road-test selesai bila relevan'],
     ];
 
+    public static function qcDefinition(): array { return self::QC_ITEMS; }
+
     public function recordEvent(int $serviceId, string $key, string $label, ?string $actorType = null, ?int $actorId = null, array $metadata = []): ServiceExecutionEvent
     {
         return ServiceExecutionEvent::create([
@@ -29,23 +31,28 @@ class ServiceExecutionService
 
     public function createFinding(int $serviceId, array $data, int $actorId): ServiceFinding
     {
-        $service = Servis::findOrFail($serviceId);
-        if (!in_array($service->status, ['pemeriksaan', 'dikerjakan'], true) || $service->id_transaksi) {
-            throw new RuntimeException('Temuan hanya dapat dibuat saat Work Order masih berjalan.');
-        }
-        $finding = ServiceFinding::create([
-            'id_servis' => $serviceId, 'title' => trim($data['title']), 'description' => trim($data['description']),
-            'recommendation' => $data['recommendation'] ?? null, 'severity' => $data['severity'] ?? 'info',
-            'created_by' => $actorId,
-        ]);
-        $this->recordEvent($serviceId, 'finding_created', 'Temuan tambahan dibuat', 'petugas', $actorId, ['finding_id' => $finding->id_service_finding]);
-        return $finding;
+        return DB::transaction(function () use ($serviceId, $data, $actorId): ServiceFinding {
+            $service = Servis::lockForUpdate()->findOrFail($serviceId);
+            app(WorkOrderAuthorizationService::class)->assertCurrentActor($service, 'work');
+            if (!in_array($service->status, ['pemeriksaan', 'dikerjakan'], true) || $service->id_transaksi) {
+                throw new RuntimeException('Temuan hanya dapat dibuat saat Work Order masih berjalan.');
+            }
+            app(InspectionIntegrityService::class)->invalidate($service, 'Temuan baru');
+            $finding = ServiceFinding::create([
+                'id_servis' => $serviceId, 'title' => trim($data['title']), 'description' => trim($data['description']),
+                'recommendation' => $data['recommendation'] ?? null, 'severity' => $data['severity'] ?? 'info',
+                'created_by' => $actorId,
+            ]);
+            $this->recordEvent($serviceId, 'finding_created', 'Temuan tambahan dibuat', 'petugas', $actorId, ['finding_id' => $finding->id_service_finding]);
+            return $finding;
+        });
     }
 
     public function createApprovalRequest(int $serviceId, array $data, int $actorId): ServiceApprovalRequest
     {
         return DB::transaction(function () use ($serviceId, $data, $actorId): ServiceApprovalRequest {
             $service = Servis::with('kendaraan')->lockForUpdate()->findOrFail($serviceId);
+            app(WorkOrderAuthorizationService::class)->assertCurrentActor($service, 'work');
             if (!in_array($service->status, ['pemeriksaan', 'dikerjakan'], true) || $service->id_transaksi) {
                 throw new RuntimeException('Approval hanya dapat dibuat saat Work Order masih berjalan.');
             }
@@ -66,6 +73,7 @@ class ServiceExecutionService
                     throw new RuntimeException('Approval revisi harus terhubung ke klarifikasi approval lama yang sah.');
                 }
             }
+            app(InspectionIntegrityService::class)->invalidate($service, 'Persetujuan baru');
             $request = ServiceApprovalRequest::create([
                 'id_servis' => $serviceId, 'id_service_finding' => $data['id_service_finding'] ?? null,
                 'title' => trim($data['title']), 'reason' => trim($data['reason']), 'requested_by' => $actorId,
@@ -108,6 +116,7 @@ class ServiceExecutionService
     {
         return DB::transaction(function () use ($serviceId, $approvalId, $actorId, $reason): ServiceExecutionEvent {
             $service = Servis::lockForUpdate()->findOrFail($serviceId);
+            app(WorkOrderAuthorizationService::class)->assertCurrentActor($service, 'work');
             if ($service->id_transaksi || !in_array($service->status, ['pemeriksaan', 'dikerjakan'], true)) {
                 throw new RuntimeException('Klarifikasi hanya dapat diajukan saat Work Order masih berjalan.');
             }
@@ -134,6 +143,14 @@ class ServiceExecutionService
 
     public function decide(int $serviceId, int $approvalId, string $decision, ?string $note, int $customerId): ServiceApprovalRequest
     {
+        if ($user = auth()->user()) {
+            if ($user->roleName() !== 'pelanggan' || $user->status !== 'aktif'
+                || (int) $user->pelanggan?->id_pelanggan !== $customerId) {
+                throw new \Illuminate\Auth\Access\AuthorizationException();
+            }
+        } elseif (!app()->runningInConsole()) {
+            throw new \Illuminate\Auth\Access\AuthorizationException();
+        }
         return DB::transaction(function () use ($serviceId, $approvalId, $decision, $note, $customerId): ServiceApprovalRequest {
             $request = ServiceApprovalRequest::with('items')->lockForUpdate()->where('id_servis', $serviceId)->findOrFail($approvalId);
             $service = Servis::lockForUpdate()->findOrFail($serviceId);
@@ -142,6 +159,7 @@ class ServiceExecutionService
             $target = $decision === 'approve' ? 'approved' : 'rejected';
             if ($request->status === $target) return $request;
             if ($request->status !== 'pending') throw new RuntimeException('Approval sudah diputuskan dan tidak dapat diubah.');
+            app(InspectionIntegrityService::class)->invalidate($service, 'Keputusan persetujuan berubah');
             if ($target === 'approved') $this->applyApprovedItems($service, $request);
             $request->forceFill(['status' => $target, 'responded_at' => now(), 'customer_note' => $note])->save();
             $this->recordEvent($serviceId, 'approval_'.$target, $target === 'approved' ? 'Approval customer disetujui' : 'Approval customer ditolak', 'pelanggan', $customerId, ['approval_id' => $request->id_service_approval_request]);
@@ -191,17 +209,24 @@ class ServiceExecutionService
     {
         if (ServiceApprovalRequest::where('id_servis', $serviceId)->where('status', 'pending')->exists()) throw new RuntimeException('Finalisasi ditahan karena masih ada approval customer yang menunggu.');
         if ($this->hasUnresolvedApprovalClarification($serviceId)) throw new RuntimeException('Finalisasi ditahan karena klarifikasi approval belum diselesaikan melalui approval revisi yang sah.');
-        $qc = ServiceQualityControl::where('id_servis', $serviceId)->first();
-        if ($qc && $qc->status !== 'passed') throw new RuntimeException('Finalisasi ditahan sampai Quality Control berstatus lulus.');
+        $service = Servis::findOrFail($serviceId);
+        $this->assertReadyForQualityControl($serviceId);
+        app(InspectionIntegrityService::class)->assertValidQc($service);
     }
 
     public function startQualityControl(int $serviceId, int $actorId): ServiceQualityControl
     {
         return DB::transaction(function () use ($serviceId, $actorId): ServiceQualityControl {
             $service = Servis::lockForUpdate()->findOrFail($serviceId);
+            app(WorkOrderAuthorizationService::class)->assertCurrentActor($service, 'qc');
+            app(InspectionIntegrityService::class)->inspector($actorId, $service);
+            $this->assertReadyForQualityControl($serviceId);
             if ($service->status !== 'dikerjakan' || $service->id_transaksi) throw new RuntimeException('QC hanya dapat dimulai saat pengerjaan aktif.');
             $qc = ServiceQualityControl::firstOrCreate(['id_servis' => $serviceId], ['status' => 'not_started']);
-            if ($qc->status === 'passed') return $qc->load('items');
+            if ($qc->status === 'passed') {
+                try { app(InspectionIntegrityService::class)->assertValidQc($service); return $qc->load('items'); }
+                catch (RuntimeException $e) { app(InspectionIntegrityService::class)->invalidate($service, 'Pekerjaan berubah'); $qc->refresh(); }
+            }
             $qc->forceFill(['status' => 'in_progress'])->save();
             foreach (self::QC_ITEMS as $item) $qc->items()->firstOrCreate(['item_key' => $item['key']], ['label_snapshot' => $item['label'], 'is_mandatory' => true]);
             $this->recordEvent($serviceId, 'qc_started', 'Quality Control dimulai', 'petugas', $actorId);
@@ -212,11 +237,17 @@ class ServiceExecutionService
     public function updateQualityControl(int $serviceId, array $items, ?string $notes, int $actorId): ServiceQualityControl
     {
         return DB::transaction(function () use ($serviceId, $items, $notes, $actorId): ServiceQualityControl {
+            $service = Servis::lockForUpdate()->findOrFail($serviceId);
+            app(WorkOrderAuthorizationService::class)->assertCurrentActor($service, 'qc');
             $qc = ServiceQualityControl::with('items')->where('id_servis', $serviceId)->lockForUpdate()->firstOrFail();
+            app(InspectionIntegrityService::class)->inspector($actorId, $service);
+            $this->assertReadyForQualityControl($serviceId);
+            app(InspectionIntegrityService::class)->inspector($actorId, $service);
+            $this->assertReadyForQualityControl($serviceId);
             if ($qc->status === 'passed') throw new RuntimeException('QC yang sudah lulus tidak dapat diubah.');
             foreach ($items as $itemId => $data) {
                 $item = $qc->items->firstWhere('id_service_quality_control_item', (int) $itemId);
-                if (!$item) continue;
+                if (!$item) throw new RuntimeException('Item checklist Quality Control bukan milik Work Order ini.');
                 $result = strtoupper((string) ($data['result'] ?? ''));
                 if (!in_array($result, ['PASS', 'FAIL', 'N/A'], true)) throw new RuntimeException('Hasil checklist QC tidak valid.');
                 if ($result === 'FAIL' && trim((string) ($data['note'] ?? '')) === '') throw new RuntimeException('Checklist QC yang FAIL wajib memiliki catatan.');
@@ -226,7 +257,7 @@ class ServiceExecutionService
             $missing = $qc->items()->where('is_mandatory', true)->whereNull('result')->exists();
             $status = $hasFail ? 'failed' : ($missing ? 'in_progress' : 'passed');
             $qc->forceFill(['status' => $status, 'checked_by' => $status === 'passed' ? $actorId : null, 'checked_at' => $status === 'passed' ? now() : null, 'notes' => $notes])->save();
-            $this->recordEvent($serviceId, 'qc_'.$status, $status === 'passed' ? 'Quality Control lulus' : ($status === 'failed' ? 'Quality Control perlu perbaikan ulang' : 'Quality Control diperbarui'), 'petugas', $actorId);
+            $this->recordEvent($serviceId, 'qc_'.$status, $status === 'passed' ? 'Quality Control lulus' : ($status === 'failed' ? 'Quality Control perlu perbaikan ulang' : 'Quality Control diperbarui'), 'petugas', $actorId, app(InspectionIntegrityService::class)->metadata($service, $qc));
             if ($status === 'passed') app(ServiceNotificationService::class)->forService($qc->servis()->with('pelanggan')->first(), 'Quality Control selesai', 'Quality Control servis telah lulus.');
             return $qc->fresh('items');
         });

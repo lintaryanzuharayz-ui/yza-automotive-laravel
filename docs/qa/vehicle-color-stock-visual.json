@@ -1,0 +1,84 @@
+{
+  "fixture": "Rendered Laravel responses from isolated testing database; all browser network requests intercepted locally",
+  "results": [
+    {
+      "surface": "member",
+      "width": 1366,
+      "status": "PASS",
+      "stockSwitch": true,
+      "ctaSwitch": true,
+      "correctPreorderColor": true,
+      "noWrongPhotoSwitch": true,
+      "modalFits": true
+    },
+    {
+      "surface": "member",
+      "width": 768,
+      "status": "PASS",
+      "stockSwitch": true,
+      "ctaSwitch": true,
+      "correctPreorderColor": true,
+      "noWrongPhotoSwitch": true,
+      "modalFits": true
+    },
+    {
+      "surface": "member",
+      "width": 390,
+      "status": "PASS",
+      "stockSwitch": true,
+      "ctaSwitch": true,
+      "correctPreorderColor": true,
+      "noWrongPhotoSwitch": true,
+      "modalFits": true
+    },
+    {
+      "surface": "admin",
+      "width": 1366,
+      "action": "stock",
+      "status": "PASS",
+      "colorCards": 4,
+      "modalFits": true
+    },
+    {
+      "surface": "admin",
+      "width": 1366,
+      "action": "gallery",
+      "status": "PASS",
+      "colorCards": 4,
+      "modalFits": true
+    },
+    {
+      "surface": "admin",
+      "width": 768,
+      "action": "stock",
+      "status": "PASS",
+      "colorCards": 4,
+      "modalFits": true
+    },
+    {
+      "surface": "admin",
+      "width": 768,
+      "action": "gallery",
+      "status": "PASS",
+      "colorCards": 4,
+      "modalFits": true
+    },
+    {
+      "surface": "admin",
+      "width": 390,
+      "action": "stock",
+      "status": "PASS",
+      "colorCards": 4,
+      "modalFits": true
+    },
+    {
+      "surface": "admin",
+      "width": 390,
+      "action": "gallery",
+      "status": "PASS",
+      "colorCards": 4,
+      "modalFits": true
+    }
+  ],
+  "errors": []
+}

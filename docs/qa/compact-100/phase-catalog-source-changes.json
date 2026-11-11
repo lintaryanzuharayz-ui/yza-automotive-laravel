@@ -1,0 +1,714 @@
+[
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero",
+    "media": null,
+    "prop": "min-height",
+    "before": "142px",
+    "after": "220px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero",
+    "media": null,
+    "prop": "padding",
+    "before": "30px 28px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "44px",
+    "after": "clamp(1.875rem,3.2vw,2.75rem)"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero p",
+    "media": null,
+    "prop": "font-size",
+    "before": "18px",
+    "after": "15px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-image img",
+    "media": null,
+    "prop": "object-fit",
+    "before": "cover",
+    "after": "contain"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body",
+    "media": null,
+    "prop": "padding",
+    "before": "10px 12px 12px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero",
+    "media": "(max-width:800px)",
+    "prop": "min-height",
+    "before": "145px",
+    "after": "220px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero",
+    "media": "(max-width:800px)",
+    "prop": "padding",
+    "before": "25px 18px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero h1",
+    "media": "(max-width:800px)",
+    "prop": "font-size",
+    "before": "35px",
+    "after": "clamp(1.875rem,3.2vw,2.75rem)"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero p",
+    "media": "(max-width:800px)",
+    "prop": "font-size",
+    "before": "14px",
+    "after": "15px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body",
+    "media": "(max-width:800px)",
+    "prop": "padding",
+    "before": "9px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero",
+    "media": null,
+    "prop": "min-height",
+    "before": "208px",
+    "after": "220px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero",
+    "media": null,
+    "prop": "padding",
+    "before": "34px 38px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "58px",
+    "after": "clamp(1.875rem,3.2vw,2.75rem)"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero p",
+    "media": null,
+    "prop": "font-size",
+    "before": "20px",
+    "after": "15px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body",
+    "media": null,
+    "prop": "padding",
+    "before": "10px 14px 13px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero h1",
+    "media": "(max-width:1200px) and (min-width:801px)",
+    "prop": "font-size",
+    "before": "48px",
+    "after": "clamp(1.875rem,3.2vw,2.75rem)"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero",
+    "media": "(max-width:800px)",
+    "prop": "min-height",
+    "before": "190px",
+    "after": "220px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero",
+    "media": "(max-width:800px)",
+    "prop": "padding",
+    "before": "25px 20px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero h1",
+    "media": "(max-width:800px)",
+    "prop": "font-size",
+    "before": "39px",
+    "after": "clamp(1.875rem,3.2vw,2.75rem)"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero",
+    "media": null,
+    "prop": "min-height",
+    "before": "250px",
+    "after": "220px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero",
+    "media": null,
+    "prop": "padding",
+    "before": "38px 42px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "54px",
+    "after": "clamp(1.875rem,3.2vw,2.75rem)"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero p",
+    "media": null,
+    "prop": "font-size",
+    "before": "18px",
+    "after": "15px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body",
+    "media": null,
+    "prop": "padding",
+    "before": "15px 16px 16px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body h3",
+    "media": null,
+    "prop": "font-size",
+    "before": "18px",
+    "after": "17px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero h1",
+    "media": "(max-width:1100px) and (min-width:801px)",
+    "prop": "font-size",
+    "before": "46px",
+    "after": "clamp(1.875rem,3.2vw,2.75rem)"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero",
+    "media": "(max-width:800px)",
+    "prop": "padding",
+    "before": "28px 22px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero h1",
+    "media": "(max-width:800px)",
+    "prop": "font-size",
+    "before": "38px",
+    "after": "clamp(1.875rem,3.2vw,2.75rem)"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body",
+    "media": "(max-width:800px)",
+    "prop": "padding",
+    "before": "12px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body h3",
+    "media": "(max-width:800px)",
+    "prop": "font-size",
+    "before": "15px",
+    "after": "17px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body",
+    "media": null,
+    "prop": "padding",
+    "before": "17px 18px 18px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body h3",
+    "media": null,
+    "prop": "font-size",
+    "before": "19px",
+    "after": "17px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body h3",
+    "media": "(max-width:800px)",
+    "prop": "font-size",
+    "before": "18px",
+    "after": "17px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-image",
+    "media": null,
+    "prop": "aspect-ratio",
+    "before": "1.36",
+    "after": "16/10"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-image img",
+    "media": null,
+    "prop": "object-fit",
+    "before": "cover",
+    "after": "contain"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body",
+    "media": null,
+    "prop": "padding",
+    "before": "18px 18px 18px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body h3",
+    "media": null,
+    "prop": "font-size",
+    "before": "18px",
+    "after": "17px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body",
+    "media": "(max-width:800px)",
+    "prop": "padding",
+    "before": "15px 14px 16px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body h3",
+    "media": "(max-width:800px)",
+    "prop": "font-size",
+    "before": "16px",
+    "after": "17px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body h3",
+    "media": "(max-width:420px)",
+    "prop": "font-size",
+    "before": "18px",
+    "after": "17px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-image",
+    "media": "(max-width:420px)",
+    "prop": "aspect-ratio",
+    "before": "1.42",
+    "after": "16/10"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body",
+    "media": null,
+    "prop": "min-height",
+    "before": "218px",
+    "after": "150px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body",
+    "media": "(max-width:800px)",
+    "prop": "min-height",
+    "before": "205px",
+    "after": "150px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body h3",
+    "media": "(max-width:800px)",
+    "prop": "font-size",
+    "before": "16px",
+    "after": "17px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-card-body",
+    "media": "(max-width:420px)",
+    "prop": "min-height",
+    "before": "214px",
+    "after": "150px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero",
+    "media": null,
+    "prop": "min-height",
+    "before": "280px",
+    "after": "220px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero",
+    "media": null,
+    "prop": "padding",
+    "before": "38px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(44px,3.35vw,62px)",
+    "after": "clamp(1.875rem,3.2vw,2.75rem)"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero p",
+    "media": null,
+    "prop": "font-size",
+    "before": "18px",
+    "after": "15px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero",
+    "media": "(max-width:800px)",
+    "prop": "padding",
+    "before": "28px 22px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-hero h1",
+    "media": "(max-width:800px)",
+    "prop": "font-size",
+    "before": "38px",
+    "after": "clamp(1.875rem,3.2vw,2.75rem)"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-inventory .catalog-card-body",
+    "media": null,
+    "prop": "padding",
+    "before": "14px 16px 15px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/mobil/index.blade.php",
+    "selector": ".catalog-inventory .catalog-card-body",
+    "media": "(max-width:800px)",
+    "prop": "padding",
+    "before": "12px 13px 14px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-hero",
+    "media": null,
+    "prop": "padding",
+    "before": "42px 48px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-hero h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(42px,5vw,74px)",
+    "after": "clamp(1.875rem,3.2vw,2.75rem)"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-hero p",
+    "media": null,
+    "prop": "font-size",
+    "before": "20px",
+    "after": "15px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body",
+    "media": null,
+    "prop": "padding",
+    "before": "14px 16px 16px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body h3",
+    "media": null,
+    "prop": "font-size",
+    "before": "17px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body h3",
+    "media": null,
+    "prop": "min-height",
+    "before": "43px",
+    "after": "44px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-hero",
+    "media": "(max-width:600px)",
+    "prop": "padding",
+    "before": "28px 22px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-hero h1",
+    "media": "(max-width:600px)",
+    "prop": "font-size",
+    "before": "42px",
+    "after": "clamp(1.875rem,3.2vw,2.75rem)"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-hero p",
+    "media": "(max-width:600px)",
+    "prop": "font-size",
+    "before": "17px",
+    "after": "15px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-hero",
+    "media": null,
+    "prop": "min-height",
+    "before": "250px",
+    "after": "220px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-hero",
+    "media": null,
+    "prop": "padding",
+    "before": "38px 42px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-hero h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "54px",
+    "after": "clamp(1.875rem,3.2vw,2.75rem)"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-hero p",
+    "media": null,
+    "prop": "font-size",
+    "before": "18px",
+    "after": "15px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body",
+    "media": null,
+    "prop": "padding",
+    "before": "14px 16px 15px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body h3",
+    "media": null,
+    "prop": "font-size",
+    "before": "17px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body h3",
+    "media": null,
+    "prop": "min-height",
+    "before": "43px",
+    "after": "44px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-hero",
+    "media": "(max-width:800px)",
+    "prop": "padding",
+    "before": "28px 22px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-hero h1",
+    "media": "(max-width:800px)",
+    "prop": "font-size",
+    "before": "38px",
+    "after": "clamp(1.875rem,3.2vw,2.75rem)"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body",
+    "media": "(max-width:800px)",
+    "prop": "padding",
+    "before": "12px 13px 14px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body",
+    "media": null,
+    "prop": "padding",
+    "before": "17px 16px 17px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body h3",
+    "media": null,
+    "prop": "min-height",
+    "before": "46px",
+    "after": "44px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body",
+    "media": "(max-width:800px)",
+    "prop": "padding",
+    "before": "14px 13px 15px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body h3",
+    "media": "(max-width:800px)",
+    "prop": "font-size",
+    "before": "16px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body",
+    "media": null,
+    "prop": "padding",
+    "before": "19px 16px 19px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body h3",
+    "media": null,
+    "prop": "font-size",
+    "before": "20px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body h3",
+    "media": null,
+    "prop": "min-height",
+    "before": "52px",
+    "after": "44px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body h3",
+    "media": "(max-width:800px)",
+    "prop": "font-size",
+    "before": "17px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body",
+    "media": null,
+    "prop": "padding",
+    "before": "22px 18px 21px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body h3",
+    "media": null,
+    "prop": "font-size",
+    "before": "22px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body h3",
+    "media": null,
+    "prop": "min-height",
+    "before": "58px",
+    "after": "44px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body h3",
+    "media": null,
+    "prop": "font-size",
+    "before": "24px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body h3",
+    "media": null,
+    "prop": "min-height",
+    "before": "60px",
+    "after": "44px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body h3",
+    "media": "(max-width:800px)",
+    "prop": "font-size",
+    "before": "19px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body h3",
+    "media": null,
+    "prop": "font-size",
+    "before": "23px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/pelanggan/katalog-mobil/index.blade.php",
+    "selector": ".member-catalog-page .catalog-card-body h3",
+    "media": null,
+    "prop": "min-height",
+    "before": "58px",
+    "after": "44px"
+  }
+]

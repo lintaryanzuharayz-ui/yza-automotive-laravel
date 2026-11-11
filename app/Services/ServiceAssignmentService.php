@@ -10,6 +10,7 @@ class ServiceAssignmentService
 {
     public function recordInitial(Servis $servis, int $petugasId, ?int $actorPetugasId = null, ?string $reason = 'Penugasan awal Work Order'): void
     {
+        app(WorkOrderAuthorizationService::class)->assertCurrentActor($servis, 'manage');
         ServiceWorkOrderAssignment::create([
             'id_servis' => $servis->id_servis,
             'id_petugas' => $petugasId,
@@ -22,6 +23,7 @@ class ServiceAssignmentService
 
     public function assignPrimary(Servis $servis, int $petugasId, ?int $actorPetugasId = null, ?string $reason = null): Servis
     {
+        app(WorkOrderAuthorizationService::class)->assertCurrentActor($servis, 'manage');
         return DB::transaction(function () use ($servis, $petugasId, $actorPetugasId, $reason): Servis {
             $servis = Servis::lockForUpdate()->findOrFail($servis->id_servis);
             $this->assertTechnician($petugasId);
@@ -39,6 +41,7 @@ class ServiceAssignmentService
 
     public function setAssistants(Servis $servis, array $petugasIds, ?int $actorPetugasId = null, ?string $reason = null): void
     {
+        app(WorkOrderAuthorizationService::class)->assertCurrentActor($servis, 'manage');
         DB::transaction(function () use ($servis, $petugasIds, $actorPetugasId, $reason): void {
             $servis = Servis::lockForUpdate()->findOrFail($servis->id_servis);
             $ids = collect($petugasIds)->map(fn ($id) => (int) $id)->filter()->unique()->values();

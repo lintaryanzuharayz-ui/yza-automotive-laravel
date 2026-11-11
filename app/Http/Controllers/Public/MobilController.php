@@ -96,17 +96,14 @@ class MobilController extends Controller
 
     public function memberShowcase(string $slug, VehicleGalleryService $galleryService)
     {
+        $bound = $this->showcaseInventory($slug);
+        if ($bound) return $this->memberShowcaseView($bound, $galleryService);
         $premium = Mobil::query()->where('kode_mobil', 'like', 'PREM-%')->where('status', 'tersedia')->get()->first(fn (Mobil $car): bool => Str::slug($car->merk.' '.$car->model) === $slug);
         if ($premium && $galleryService->isReady($premium)) {
             return $this->memberShowcaseView($premium, $galleryService);
         }
 
-        $showcases = [
-            'audi-r8' => ['merk' => 'Audi', 'model' => 'R8', 'tipe' => 'Performance', 'tahun' => 2024, 'transmisi' => 'automatic', 'harga_jual' => 1850000000, 'kondisi' => 'baru', 'warna' => 'Ibis White', 'kode_mobil' => 'SHOWCASE-AUDI-R8', 'bahan_bakar' => 'bensin', 'image' => asset('assets/images/catalog/sport/audi-r8.png')],
-            'bmw-m4' => ['merk' => 'BMW', 'model' => 'M4', 'tipe' => 'Competition', 'tahun' => 2024, 'transmisi' => 'automatic', 'harga_jual' => 2100000000, 'kondisi' => 'baru', 'warna' => 'Toronto Red', 'kode_mobil' => 'SHOWCASE-BMW-M4', 'bahan_bakar' => 'bensin', 'image' => asset('assets/images/catalog/sport/bmw-m4.png')],
-            'bugatti-chiron' => ['merk' => 'Bugatti', 'model' => 'Chiron', 'tipe' => 'Super Sport', 'tahun' => 2024, 'transmisi' => 'automatic', 'harga_jual' => 68000000000, 'kondisi' => 'baru', 'warna' => 'Atlantic Blue', 'kode_mobil' => 'SHOWCASE-BUGATTI-CHIRON', 'bahan_bakar' => 'bensin', 'image' => asset('assets/images/catalog/sport/bugatti-chiron.png')],
-            'mclaren-720s' => ['merk' => 'McLaren', 'model' => '720S', 'tipe' => 'Performance', 'tahun' => 2024, 'transmisi' => 'automatic', 'harga_jual' => 7900000000, 'kondisi' => 'baru', 'warna' => 'Papaya Spark', 'kode_mobil' => 'SHOWCASE-MCLAREN-720S', 'bahan_bakar' => 'bensin', 'image' => asset('assets/images/catalog/sport/mclaren-720s.png')],
-        ];
+        $showcases = collect(config('vehicle_showcases'))->map(fn ($data) => array_replace($data, ['image' => asset($data['image'])]))->all();
         abort_unless(isset($showcases[$slug]), 404);
         $inventory = $this->showcaseInventory($slug);
         if ($inventory) {
@@ -127,12 +124,7 @@ class MobilController extends Controller
 
     private function catalogShowcases()
     {
-        $showcases = [
-            'audi-r8' => ['merk' => 'Audi', 'model' => 'R8', 'tipe' => 'Performance', 'tahun' => 2024, 'transmisi' => 'automatic', 'harga_jual' => 1850000000, 'kondisi' => 'baru', 'warna' => 'Ibis White', 'kode_mobil' => 'SHOWCASE-AUDI-R8', 'bahan_bakar' => 'bensin', 'image' => asset('assets/images/catalog/sport/audi-r8.png')],
-            'bmw-m4' => ['merk' => 'BMW', 'model' => 'M4', 'tipe' => 'Competition', 'tahun' => 2024, 'transmisi' => 'automatic', 'harga_jual' => 2100000000, 'kondisi' => 'baru', 'warna' => 'Toronto Red', 'kode_mobil' => 'SHOWCASE-BMW-M4', 'bahan_bakar' => 'bensin', 'image' => asset('assets/images/catalog/sport/bmw-m4.png')],
-            'bugatti-chiron' => ['merk' => 'Bugatti', 'model' => 'Chiron', 'tipe' => 'Super Sport', 'tahun' => 2024, 'transmisi' => 'automatic', 'harga_jual' => 68000000000, 'kondisi' => 'baru', 'warna' => 'Atlantic Blue', 'kode_mobil' => 'SHOWCASE-BUGATTI-CHIRON', 'bahan_bakar' => 'bensin', 'image' => asset('assets/images/catalog/sport/bugatti-chiron.png')],
-            'mclaren-720s' => ['merk' => 'McLaren', 'model' => '720S', 'tipe' => 'Performance', 'tahun' => 2024, 'transmisi' => 'automatic', 'harga_jual' => 7900000000, 'kondisi' => 'baru', 'warna' => 'Papaya Spark', 'kode_mobil' => 'SHOWCASE-MCLAREN-720S', 'bahan_bakar' => 'bensin', 'image' => asset('assets/images/catalog/sport/mclaren-720s.png')],
-        ];
+        $showcases = collect(config('vehicle_showcases'))->map(fn ($data) => array_replace($data, ['image' => asset($data['image'])]))->all();
 
         return collect($showcases)->map(function (array $data, string $slug) {
             $image = $data['image'];
@@ -149,15 +141,13 @@ class MobilController extends Controller
 
     private function showcaseInventory(string $slug): ?Mobil
     {
-        return Mobil::query()
-            ->where('showcase_slug', $slug)
-            ->where('status', '!=', 'nonaktif')
-            ->first();
+        $car = app(\App\Services\CatalogVehicleIdentityService::class)->resolve('showcase:'.$slug);
+        return $car?->exists && $car->status !== 'nonaktif' ? $car : null;
     }
 
     public function catalogPreorder(string $slug): Mobil
     {
-        $car = $this->catalogShowcases()->first(fn (Mobil $item): bool => $item->showcase_slug === $slug);
+        $car = app(\App\Services\CatalogVehicleIdentityService::class)->resolve('showcase:'.$slug);
         abort_unless($car, 404);
         return $car;
     }
@@ -202,7 +192,7 @@ class MobilController extends Controller
 
         abort_unless($request->user()->roleName() === 'pelanggan', 403);
         $customer = $request->user()->pelanggan;
-        if (!$customer?->membership?->isActive()) {
+        if (!app(\App\Services\ActiveMemberCustomerService::class)->query()->whereKey($customer?->id_pelanggan)->exists()) {
             $this->rememberTradeInIntent($request, $query);
             return redirect()->route('pelanggan.membership.activation')
                 ->with('status', 'Aktifkan YZA Member untuk melanjutkan Trade-In.');
@@ -227,7 +217,7 @@ class MobilController extends Controller
         }
 
         abort_unless($request->user()->roleName() === 'pelanggan', 403);
-        if ($request->user()->pelanggan?->membership?->isActive()) {
+        if (app(\App\Services\ActiveMemberCustomerService::class)->query()->whereKey($request->user()->pelanggan?->id_pelanggan)->exists()) {
             return redirect()->route('trade-in.entry', $query);
         }
 
@@ -250,6 +240,8 @@ class MobilController extends Controller
 
     public function showcase(Request $request, string $slug)
     {
+        $registered = $this->showcaseInventory($slug);
+        if ($registered) return view('mobil.show', $this->detailViewData($request, $registered, app(VehicleGalleryService::class)));
         $premium = Mobil::query()->where('kode_mobil', 'like', 'PREM-%')->where('status', 'tersedia')->get()->first(fn (Mobil $car): bool => Str::slug($car->merk.' '.$car->model) === $slug);
         if ($premium && app(VehicleGalleryService::class)->isReady($premium)) {
             return view('mobil.show', $this->detailViewData($request, $premium, app(VehicleGalleryService::class)));
@@ -270,12 +262,7 @@ class MobilController extends Controller
             return view('mobil.show', $this->detailViewData($request, $mobil, app(VehicleGalleryService::class), $showcaseImage));
         }
 
-        $showcases = [
-            'audi-r8' => ['merk' => 'Audi', 'model' => 'R8', 'tipe' => 'Performance', 'tahun' => 2024, 'transmisi' => 'automatic', 'harga_jual' => 1850000000, 'kondisi' => 'baru', 'warna' => 'Ibis White', 'bahan_bakar' => 'bensin', 'kode_mobil' => 'SHOWCASE-AUDI-R8', 'deskripsi' => 'Audi R8 Performance dengan karakter sporty, kabin premium, dan performa yang dirancang untuk pengalaman berkendara berkelas.', 'image' => asset('assets/images/catalog/sport/audi-r8.png')],
-            'bmw-m4' => ['merk' => 'BMW', 'model' => 'M4', 'tipe' => 'Competition', 'tahun' => 2024, 'transmisi' => 'automatic', 'harga_jual' => 2100000000, 'kondisi' => 'baru', 'warna' => 'Toronto Red', 'bahan_bakar' => 'bensin', 'kode_mobil' => 'SHOWCASE-BMW-M4', 'deskripsi' => 'BMW M4 Competition yang agresif, presisi, dan tetap nyaman untuk penggunaan harian dengan sentuhan performa M.', 'image' => asset('assets/images/catalog/sport/bmw-m4.png')],
-            'bugatti-chiron' => ['merk' => 'Bugatti', 'model' => 'Chiron', 'tipe' => 'Super Sport', 'tahun' => 2024, 'transmisi' => 'automatic', 'harga_jual' => 68000000000, 'kondisi' => 'baru', 'warna' => 'Atlantic Blue', 'bahan_bakar' => 'bensin', 'kode_mobil' => 'SHOWCASE-BUGATTI-CHIRON', 'deskripsi' => 'Bugatti Chiron Super Sport untuk Anda yang menginginkan kemewahan ekstrem, detail ikonik, dan performa tanpa kompromi.', 'image' => asset('assets/images/catalog/sport/bugatti-chiron.png')],
-            'mclaren-720s' => ['merk' => 'McLaren', 'model' => '720S', 'tipe' => 'Performance', 'tahun' => 2024, 'transmisi' => 'automatic', 'harga_jual' => 7900000000, 'kondisi' => 'baru', 'warna' => 'Papaya Spark', 'bahan_bakar' => 'bensin', 'kode_mobil' => 'SHOWCASE-MCLAREN-720S', 'deskripsi' => 'McLaren 720S Performance dengan siluet eksotis, respons tajam, dan pengalaman berkendara yang sangat dinamis.', 'image' => asset('assets/images/catalog/sport/mclaren-720s.png')],
-        ];
+        $showcases = collect(config('vehicle_showcases'))->map(fn ($data) => array_replace($data, ['image' => asset($data['image'])]))->all();
         abort_unless(isset($showcases[$slug]), 404);
         $inventory = $this->showcaseInventory($slug);
         if ($inventory) {
@@ -289,7 +276,8 @@ class MobilController extends Controller
         $showcaseImage = $data['image'];
         unset($data['image']);
         $mobil = new Mobil($data);
-        $mobil->setAttribute('status', 'tersedia');
+        $mobil->setAttribute('status', 'katalog');
+        $mobil->setAttribute('showcase_slug', $slug);
         return view('mobil.show', $this->detailViewData($request, $mobil, app(VehicleGalleryService::class), $showcaseImage));
     }
 

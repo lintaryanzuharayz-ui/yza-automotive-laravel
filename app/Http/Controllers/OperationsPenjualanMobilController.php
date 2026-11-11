@@ -20,6 +20,8 @@ class OperationsPenjualanMobilController extends Controller
         $query = PenjualanMobil::with([
             'pelanggan',
             'mobil.foto',
+            'mobil.warnaPilihan.galeri',
+            'memberOrders',
             'transaksi.pembayarans',
             'petugas',
             'booking',
@@ -54,6 +56,8 @@ class OperationsPenjualanMobilController extends Controller
         }
 
         $rows = $query->latest('tanggal_penjualan')->latest('id_penjualan')->paginate(10)->withQueryString();
+        $presentation = app(\App\Services\SaleVehiclePresentationService::class);
+        $rows->getCollection()->each(fn ($sale) => $sale->setAttribute('vehicle_presentation', $presentation->for($sale)));
 
         $totalPenjualan = PenjualanMobil::count();
         $unitDiproses = PenjualanMobil::where('status', 'proses')->count();
@@ -94,7 +98,65 @@ class OperationsPenjualanMobilController extends Controller
             'to' => $to,
         ]);
     }
-    public function create() { return view('operations.penjualan-mobil.create', ['customers'=>Pelanggan::where('status','aktif')->orderBy('nama_lengkap')->get(), 'cars'=>Mobil::whereIn('status',['tersedia','dibooking'])->orderBy('merk')->get(), 'bookings'=>BookingMobil::with(['pelanggan','mobil'])->where('status','dikonfirmasi')->latest()->get(), 'promos'=>\App\Models\PromoMember::visible()->whereIn('berlaku_untuk',['semua','penjualan_mobil'])->get()]); }
-    public function store(StorePenjualanMobilRequest $request, PenjualanMobilService $service) { try { $data=$request->validated(); $id=$service->createWithPromo($data, (int)($request->user()->petugas?->id_petugas ?: app(InventoryService::class)->actorPetugasId($request->user()->id_user)), $request->integer('promo_id')?:null)->id_penjualan; return redirect()->route($request->user()->roleName().'.penjualan-mobil.show',$id)->with('success','Penjualan mobil dibuat dan unit dicadangkan.'); } catch(Throwable $e) { return back()->withInput()->withErrors($e->getMessage()); } }
-    public function show(PenjualanMobil $penjualan_mobil) { $penjualan_mobil->load(['pelanggan','mobil','booking','petugas','transaksi']); return view('operations.penjualan-mobil.show',['sale'=>$penjualan_mobil]); }
+    public function create(Request $request)
+    {
+        $orders = \App\Models\PesananMobilMember::with(['penjualan', 'pelanggan', 'transaksi', 'mobil'])
+            ->whereIn('status', ['menunggu_pembayaran', 'lunas', 'pdi_lulus', 'siap_diambil'])
+            ->whereHas('penjualan', fn ($q) => $q->where('status', 'proses'))
+            ->whereHas('transaksi', fn ($q) => $q->where('status', '<>', 'dibatalkan'))
+            ->latest()->get();
+        if ($request->filled('id_pesanan')) {
+            $request->validate(['id_pesanan' => ['required', 'integer']]);
+            $order = $orders->firstWhere('id_pesanan', $request->integer('id_pesanan'));
+            abort_unless($order && $order->matchesCatalogVehicle() && $order->penjualan && $order->id_transaksi
+                && $order->transaksi->jenis_transaksi === 'penjualan_mobil'
+                && (int) $order->transaksi->id_pelanggan === (int) $order->id_pelanggan
+                && (int) $order->id_transaksi === (int) $order->penjualan->id_transaksi
+                && (int) $order->id_mobil === (int) $order->penjualan->id_mobil
+                && (int) $order->id_pelanggan === (int) $order->penjualan->id_pelanggan, 422, 'Pesanan belum memenuhi syarat atau relasi transaksi tidak sesuai.');
+            $prefix = $request->routeIs('admin.*') ? 'admin' : 'petugas';
+            return redirect()->route($prefix.'.penjualan-mobil.show', $order->id_penjualan);
+        }
+        $submissionKey = (string) \Illuminate\Support\Str::uuid();
+        $submissions = $request->session()->get('car_sale_submissions', []);
+        $submissions[$submissionKey] = ['user' => $request->user()->id_user, 'sale' => null,
+            'code' => app(PenjualanMobilService::class)->newSaleCode()];
+        $request->session()->put('car_sale_submissions', array_slice($submissions, -20, null, true));
+        return view('operations.penjualan-mobil.create', [
+            'submissionKey' => $submissionKey,
+            'sourceOrders' => $orders,
+            'customers' => Pelanggan::where('status', 'aktif')->orderBy('nama_lengkap')->get(),
+            'cars' => Mobil::with('foto')->whereIn('status', ['tersedia', 'dibooking'])->orderBy('merk')->get(),
+            'bookings' => BookingMobil::with(['pelanggan', 'mobil'])->where('status', 'dikonfirmasi')->latest()->get(),
+            'promos' => \App\Models\PromoMember::visible()->whereIn('berlaku_untuk', ['semua', 'penjualan_mobil'])->get(),
+        ]);
+    }
+
+    public function promoPreview(Request $request, \App\Services\PromoEngineService $engine)
+    {
+        $data = $request->validate([
+            'id_pelanggan' => ['required', 'integer', 'exists:pelanggan,id_pelanggan'],
+            'id_mobil' => ['required', 'integer', 'exists:mobil,id_mobil'],
+            'promo_id' => ['required', 'integer', 'exists:promo_member,id_promo'],
+        ]);
+        try {
+            $customer = Pelanggan::where('status', 'aktif')->findOrFail($data['id_pelanggan']);
+            app(\App\Services\ActiveMemberCustomerService::class)->assertEligibleLocked($customer);
+            $car = Mobil::findOrFail($data['id_mobil']);
+            return response()->json($engine->calculate(\App\Models\PromoMember::findOrFail($data['promo_id']),
+                (string) $car->harga_jual, 'penjualan_mobil', $customer))->header('Cache-Control', 'private, no-store');
+        } catch (\RuntimeException $e) {
+            return response()->json(['message' => $e->getMessage()], 422);
+        }
+    }
+    public function store(StorePenjualanMobilRequest $request, PenjualanMobilService $service)
+    {
+        $data = $request->validated();
+        $prefix = $request->routeIs('admin.*') ? 'admin' : 'petugas';
+        $order = \App\Models\PesananMobilMember::with(['penjualan', 'pelanggan', 'mobil'])->findOrFail($data['id_pesanan']);
+
+        return redirect()->route($prefix.'.penjualan-mobil.show', $order->id_penjualan)
+            ->with('success', 'Transaksi penjualan dari pesanan SPK telah dibuka.');
+    }
+    public function show(PenjualanMobil $penjualan_mobil) { $penjualan_mobil->load(['pelanggan','mobil.foto','mobil.warnaPilihan.galeri','memberOrders','booking','petugas','transaksi']); return view('operations.penjualan-mobil.show',['sale'=>$penjualan_mobil,'vehicle'=>app(\App\Services\SaleVehiclePresentationService::class)->for($penjualan_mobil)]); }
 }

@@ -3,7 +3,8 @@
 @section('admin-page-title', 'Pesanan Mobil')
 
 @section('content')
-<div class="admin-sales-page">
+<div class="admin-sales-page admin-orders-page">
+    @include('admin.pesanan-mobil._create-modal')
     {{-- Header Pesanan Mobil Member --}}
     <header class="admin-sales-header">
         <div class="admin-sales-header-left">
@@ -29,7 +30,7 @@
                     </svg>
                 </div>
                 <div>
-                    <h1 class="admin-sales-heading">Pesanan Mobil Member</h1>
+                    <h1 class="admin-sales-heading">Pesanan <span>Mobil</span></h1>
                     <p class="admin-sales-subheading">Kelola dan pantau pesanan mobil dari member, verifikasi pembayaran, dan proses serah-terima.</p>
                 </div>
             </div>
@@ -39,6 +40,12 @@
             <div class="admin-sales-banner">
                 <img src="{{ asset('assets/images/hero/yza-admin-sales-banner.jpg') }}" alt="YZA Automotive Premium Sports Car" class="admin-banner-img" loading="eager">
                 <div class="admin-banner-overlay"></div>
+                <div class="admin-order-hero-copy">
+                    <span class="admin-order-hero-eyebrow">YZA AUTOMOTIVE · MEMBER SALES</span>
+                    <h2>Pesanan <em>Mobil</em></h2>
+                    <p>Kelola seluruh pesanan mobil dengan mudah, mulai dari verifikasi pembayaran hingga proses serah-terima.</p>
+                    <div class="admin-order-hero-actions"><a href="#orders-list" class="admin-order-hero-secondary">ⓘ &nbsp; Panduan Proses Pesanan</a></div>
+                </div>
                 <div class="admin-banner-content">
                     <span class="admin-banner-brand">YZA AUTOMOTIVE</span>
                     <span class="admin-banner-tagline">DRIVE A BETTER TOMORROW</span>
@@ -185,7 +192,7 @@
     </section>
 
     {{-- Container Daftar Pesanan Mobil --}}
-    <section class="admin-sales-card">
+    <section class="admin-sales-card" id="orders-list">
         {{-- Card Header --}}
         <div class="admin-sales-card-header">
             <div class="card-header-left">
@@ -204,10 +211,12 @@
             </div>
 
             <div class="card-header-right">
-                <a class="btn-create-sale" href="{{ route('admin.penjualan-mobil.create') }}">
+                @if(auth()->user()->hasPermission('sales.manage') && auth()->user()->roleKey() !== 'owner')
+                <button type="button" class="btn-create-sale" data-order-create-open aria-haspopup="dialog" aria-controls="order-create-dialog">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    <span>+ Tambah Pesanan</span>
-                </a>
+                    <span>Tambah Pesanan</span>
+                </button>
+                @endif
             </div>
         </div>
 
@@ -251,6 +260,10 @@
         {{-- Tabel Daftar Pesanan Mobil --}}
         <div class="admin-sales-table-wrapper">
             <table class="admin-sales-table admin-orders-table">
+                <colgroup>
+                    <col class="order-col-number"><col class="order-col-id"><col class="order-col-customer"><col class="order-col-car">
+                    <col class="order-col-date"><col class="order-col-payment"><col class="order-col-status"><col class="order-col-actions">
+                </colgroup>
                 <thead>
                     <tr>
                         <th class="th-no">#</th>
@@ -258,8 +271,8 @@
                         <th class="th-customer">Customer</th>
                         <th class="th-car">Mobil</th>
                         <th class="th-total">Tanggal Pesan</th>
-                        <th class="th-status" style="width: 13%;">Pembayaran</th>
-                        <th class="th-status" style="width: 11%;">Status</th>
+                        <th class="th-status">Pembayaran</th>
+                        <th class="th-status">Status</th>
                         <th class="th-action">Aksi</th>
                     </tr>
                 </thead>
@@ -268,16 +281,9 @@
                         @php
                             $car = $order->mobil;
                             $customer = $order->pelanggan;
-                            $fotoMobil = $car?->foto?->first()?->url();
-                            if (!$fotoMobil) {
-                                if (str_contains(strtolower($order->snapshot_model ?? ''), 'supra')) {
-                                    $fotoMobil = asset('assets/images/vehicles/toyota-gr-supra/black/front.png');
-                                } else {
-                                    $fotoMobil = asset('assets/images/hero/yza-hero-black-v2.png');
-                                }
-                            }
+                            $fotoMobil = $order->ordered_vehicle_image;
                             $customerIdentifier = $car?->kode_mobil ?? ($customer?->kode_pelanggan ?: ($order->telepon_pembeli ?: 'ID: PEL-'.str_pad($order->id_pelanggan, 4, '0', STR_PAD_LEFT)));
-                            $orderIdDisplay = $order->penjualan?->kode_penjualan ?: $order->nomor_pesanan;
+                            $orderIdDisplay = $order->nomor_pesanan;
                             $cleanStatus = strtolower((string) $order->status);
 
                             // Status Pembayaran yang akurat
@@ -296,18 +302,16 @@
                             </td>
                             <td class="td-customer">
                                 <div class="customer-cell">
-                                    <div class="customer-avatar" aria-hidden="true">
-                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                                    </div>
+                                    <div class="customer-avatar" aria-hidden="true">{{ strtoupper(substr($order->nama_pembeli ?: $customer?->nama_lengkap ?: 'P', 0, 1)) }}</div>
                                     <div class="customer-meta">
-                                        <strong class="customer-name">{{ $customer?->nama_lengkap ?: $order->nama_pembeli }}</strong>
+                                        <strong class="customer-name">{{ $order->nama_pembeli ?: $customer?->nama_lengkap }}</strong>
                                         <span class="customer-subtext">{{ $customerIdentifier }}</span>
                                     </div>
                                 </div>
                             </td>
                             <td class="td-car">
                                 <div class="car-cell">
-                                    <img src="{{ $fotoMobil }}" alt="{{ $order->snapshot_merk }} {{ $order->snapshot_model }}" class="car-thumb" loading="lazy">
+                                    <img src="{{ $fotoMobil }}" alt="{{ $order->snapshot_merk }} {{ $order->snapshot_model }} warna {{ $order->snapshot_warna }}" class="car-thumb" loading="lazy">
                                     <div class="car-meta">
                                         <strong class="car-title">{{ $order->snapshot_merk }} {{ $order->snapshot_model }} {{ $order->snapshot_tahun ?: '' }}</strong>
                                         <span class="car-brand">{{ $order->snapshot_merk }}</span>
@@ -329,7 +333,9 @@
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                                         <span>Menunggu Verifikasi</span>
                                     </span>
-                                @elseif($cleanStatus === 'ditolak' || $cleanStatus === 'dibatalkan')
+                                @elseif($cleanStatus === 'menunggu_verifikasi')
+                                <span class="badge-status is-waiting"><span>Menunggu Keputusan Admin</span></span>
+                            @elseif($cleanStatus === 'ditolak' || $cleanStatus === 'dibatalkan')
                                     <span class="badge-status is-cancelled">
                                         <span>Dibatalkan</span>
                                     </span>
@@ -389,10 +395,10 @@
                                             </button>
                                             <button type="button" class="dropdown-item" data-order-detail
                                                 data-order-id="{{ $orderIdDisplay }}"
-                                                data-customer="{{ $customer?->nama_lengkap ?: $order->nama_pembeli }}"
+                                                data-customer="{{ $order->nama_pembeli ?: $customer?->nama_lengkap }}"
                                                 data-email="{{ $order->email_pembeli }}"
                                                 data-car="{{ $order->snapshot_merk }} {{ $order->snapshot_model }}"
-                                                data-type="{{ $order->snapshot_tipe ?: 'New Car' }}"
+                                                data-type="{{ $order->snapshot_tipe ?: 'Belum tercatat' }}"
                                                 data-year="{{ $order->snapshot_tahun ?: '-' }}"
                                                 data-color="{{ $order->snapshot_warna ?: '-' }}"
                                                 data-price="Rp {{ number_format((float) $order->total_tagihan, 0, ',', '.') }}"
@@ -425,13 +431,19 @@
                                     </div>
 
                                     @if($cleanStatus === 'menunggu_verifikasi')
-                                        <form id="approve-order-{{ $order->id_pesanan }}" method="post" action="{{ route('admin.pesanan-mobil.approve', $order) }}" style="display: none;">
+                                        <form id="approve-order-{{ $order->id_pesanan }}" data-order-decision-form data-order-number="{{ $order->nomor_pesanan }}" data-order-buyer="{{ $order->nama_pembeli }}" data-order-vehicle="{{ trim($order->snapshot_merk.' '.$order->snapshot_model) }}" data-order-spec="{{ implode(' · ', array_filter([$order->snapshot_tipe, $order->snapshot_tahun, $order->snapshot_warna])) }}" data-order-total="Rp {{ number_format((float) $order->total_tagihan, 0, ',', '.') }}" method="post" action="{{ route('admin.pesanan-mobil.approve', $order) }}" style="display: none;">
                                             @csrf
                                             <input type="hidden" name="catatan_admin" value="Pesanan disetujui oleh admin.">
+                                            <input type="hidden" name="confirmation_reviewed" value="">
+                                            <input type="hidden" name="confirmation_order" value="">
+                                            <input type="hidden" name="confirmation_decision" value="approve">
                                         </form>
-                                        <form id="reject-order-{{ $order->id_pesanan }}" method="post" action="{{ route('admin.pesanan-mobil.reject', $order) }}" style="display: none;">
+                                        <form id="reject-order-{{ $order->id_pesanan }}" data-order-decision-form data-order-number="{{ $order->nomor_pesanan }}" data-order-buyer="{{ $order->nama_pembeli }}" data-order-vehicle="{{ trim($order->snapshot_merk.' '.$order->snapshot_model) }}" data-order-spec="{{ implode(' · ', array_filter([$order->snapshot_tipe, $order->snapshot_tahun, $order->snapshot_warna])) }}" data-order-total="Rp {{ number_format((float) $order->total_tagihan, 0, ',', '.') }}" method="post" action="{{ route('admin.pesanan-mobil.reject', $order) }}" style="display: none;">
                                             @csrf
                                             <input type="hidden" name="catatan_admin" value="Pesanan ditolak oleh admin.">
+                                            <input type="hidden" name="confirmation_reviewed" value="">
+                                            <input type="hidden" name="confirmation_order" value="">
+                                            <input type="hidden" name="confirmation_decision" value="reject">
                                         </form>
                                     @endif
                                 </div>
@@ -473,13 +485,27 @@
             <span class="admin-confirm-icon">!</span>
             <h2 id="decision-title" data-decision-title>Konfirmasi Keputusan Pesanan</h2>
             <p data-decision-message>Pastikan keputusan pesanan sudah benar.</p>
+            <p class="decision-step" data-decision-step aria-live="polite">Langkah 1 dari 2 · Periksa pesanan</p>
+            <dl class="decision-summary" data-decision-summary></dl>
+            <label class="decision-review" data-decision-review-label>
+                <input type="checkbox" data-decision-reviewed>
+                Saya sudah memeriksa nomor pesanan, pembeli, kendaraan, warna, dan total tagihan.
+            </label>
+            <div data-decision-final hidden>
+                <label class="decision-code-label" for="decision-order-code">Ketik nomor pesanan berikut untuk melanjutkan:</label>
+                <strong data-decision-order-code></strong>
+                <input id="decision-order-code" data-decision-code type="text" autocomplete="off" spellcheck="false" placeholder="Ketik nomor pesanan persis seperti di atas">
+                <p data-decision-error role="alert" hidden>Nomor pesanan belum sesuai.</p>
+            </div>
             <label class="admin-reject-note" data-reject-note hidden>
                 Alasan penolakan (opsional)
-                <textarea data-reject-input rows="3" placeholder="Tuliskan alasan penolakan pesanan..."></textarea>
+                <textarea data-reject-input rows="3" maxlength="1000" placeholder="Tuliskan alasan penolakan pesanan..."></textarea>
             </label>
             <div class="admin-confirm-actions">
                 <button type="button" class="admin-modal-button is-cancel" data-decision-cancel>Batal</button>
-                <button type="button" class="admin-modal-button is-confirm" data-decision-submit>Konfirmasi</button>
+                <button type="button" class="admin-modal-button is-cancel" data-decision-back hidden>Kembali</button>
+                <button type="button" class="admin-modal-button is-confirm" data-decision-next disabled>Lanjut ke konfirmasi akhir</button>
+                <button type="button" class="admin-modal-button is-confirm" data-decision-submit hidden disabled>Kirim keputusan</button>
             </div>
         </div>
     </div>
@@ -489,15 +515,8 @@
         @php
             $car = $order->mobil;
             $customer = $order->pelanggan;
-            $fotoMobil = $car?->foto?->first()?->url();
-            if (!$fotoMobil) {
-                if (str_contains(strtolower($order->snapshot_model ?? ''), 'supra')) {
-                    $fotoMobil = asset('assets/images/vehicles/toyota-gr-supra/black/front.png');
-                } else {
-                    $fotoMobil = asset('assets/images/hero/yza-hero-black-v2.png');
-                }
-            }
-            $customerIdentifier = $car?->kode_mobil ?? ($customer?->kode_pelanggan ?: ($order->telepon_pembeli ?: 'ID: PEL-'.str_pad($order->id_pelanggan, 4, '0', STR_PAD_LEFT)));
+            $fotoMobil = $order->ordered_vehicle_image;
+            $customerIdentifier = $car?->kode_mobil ?: 'Belum tercatat';
             $orderIdDisplay = $order->penjualan?->kode_penjualan ?: $order->nomor_pesanan;
             $cleanStatus = strtolower((string) $order->status);
             $transaksi = $order->transaksi;
@@ -577,6 +596,8 @@
                                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                                     <span>Menunggu Verifikasi</span>
                                 </span>
+                            @elseif($cleanStatus === 'menunggu_verifikasi')
+                                <span class="badge-status is-waiting"><span>Menunggu Keputusan Admin</span></span>
                             @elseif($cleanStatus === 'ditolak' || $cleanStatus === 'dibatalkan')
                                 <span class="badge-status is-cancelled">
                                     <span>Dibatalkan</span>
@@ -598,6 +619,7 @@
 
                 {{-- Body Modal --}}
                 <div class="modal-scrollable-body">
+                    @include('admin.pesanan-mobil._discount-review')
                     <div class="modal-detail-columns">
                         {{-- Kolom Kiri: Detail Mobil --}}
                         <div class="modal-column-card">
@@ -613,12 +635,12 @@
 
                             <div class="modal-vehicle-showcase">
                                 <div class="vehicle-image-stage">
-                                    <img src="{{ $fotoMobil }}" alt="{{ $order->snapshot_merk }} {{ $order->snapshot_model }}" class="vehicle-stage-img">
-                                    <span class="vehicle-badge-pill">{{ $order->snapshot_tipe ?: 'Official Unit' }}</span>
+                                    <img src="{{ $fotoMobil }}" alt="{{ $order->snapshot_merk }} {{ $order->snapshot_model }} warna {{ $order->snapshot_warna }}" class="vehicle-stage-img">
+                                    <span class="vehicle-badge-pill">{{ $order->snapshot_tipe ?: 'Belum tercatat' }}</span>
                                 </div>
                                 <div class="vehicle-header-info">
                                     <h4 class="vehicle-name">{{ $order->snapshot_merk }} {{ $order->snapshot_model }} {{ $order->snapshot_tahun ?: '' }}</h4>
-                                    <span class="vehicle-brand">{{ $order->snapshot_merk }} &bull; Sport / Luxury Collection</span>
+                                    <span class="vehicle-brand">Spesifikasi tersimpan saat member memesan</span>
                                 </div>
                             </div>
 
@@ -638,30 +660,26 @@
                                 <div class="spec-tile">
                                     <span class="spec-label">Warna Pilihan</span>
                                     <strong class="spec-value">
-                                        <span class="color-dot" style="background-color: {{ str_contains(strtolower($order->snapshot_warna ?? ''), 'white') ? '#FFFFFF; border: 1px solid #CBD5E1' : '#0F172A' }};"></span>
-                                        {{ $order->snapshot_warna ?: 'Sesuai Standar' }}
+                                        @if($order->ordered_vehicle_swatch)<span class="color-dot" style="background-color: {{ $order->ordered_vehicle_swatch }}; border: 1px solid #CBD5E1;"></span>@endif
+                                        {{ $order->snapshot_warna ?: 'Belum tercatat' }}
                                     </strong>
                                 </div>
                                 <div class="spec-tile">
                                     <span class="spec-label">Tipe Kendaraan</span>
-                                    <strong class="spec-value">{{ $order->snapshot_tipe ?: 'New Car' }}</strong>
+                                    <strong class="spec-value">{{ $order->snapshot_tipe ?: 'Belum tercatat' }}</strong>
                                 </div>
                                 <div class="spec-tile">
-                                    <span class="spec-label">Kode Mobil Unit</span>
+                                    <span class="spec-label">Kode Mobil Katalog</span>
                                     <strong class="spec-value">{{ $car?->kode_mobil ?: $customerIdentifier }}</strong>
                                 </div>
-                                @if($car?->nomor_rangka)
                                 <div class="spec-tile is-wide">
                                     <span class="spec-label">Nomor Rangka (VIN)</span>
-                                    <strong class="spec-value font-mono">{{ $car->nomor_rangka }}</strong>
+                                    <strong class="spec-value font-mono">{{ $order->ordered_vehicle_vin ?: 'Belum ditetapkan' }}</strong>
                                 </div>
-                                @endif
-                                @if($car?->nomor_mesin)
                                 <div class="spec-tile is-wide">
                                     <span class="spec-label">Nomor Mesin</span>
-                                    <strong class="spec-value font-mono">{{ $car->nomor_mesin }}</strong>
+                                    <strong class="spec-value font-mono">{{ $order->ordered_vehicle_engine_number ?: 'Belum ditetapkan' }}</strong>
                                 </div>
-                                @endif
                             </div>
                         </div>
 
@@ -682,7 +700,7 @@
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                                 </div>
                                 <div class="customer-info-meta">
-                                    <h4 class="customer-full-name">{{ $customer?->nama_lengkap ?: $order->nama_pembeli }}</h4>
+                                    <h4 class="customer-full-name">{{ $order->nama_pembeli ?: $customer?->nama_lengkap }}</h4>
                                     <span class="customer-id-tag">{{ $customer?->kode_pelanggan ?: ('ID: PEL-'.str_pad($order->id_pelanggan, 4, '0', STR_PAD_LEFT)) }}</span>
                                 </div>
                             </div>
@@ -741,7 +759,7 @@
                                 </div>
                                 <div class="spec-tile">
                                     <span class="spec-label">Status PDI (Inspeksi)</span>
-                                    <strong class="spec-value">{{ $order->pdi ? ($order->pdi->final_quality ? 'PDI Lulus' : 'Dalam PDI') : 'Menunggu PDI' }}</strong>
+                                    <strong class="spec-value">{{ $order->pdi ? ($order->pdi->status === 'lulus' ? 'PDI Lulus' : ($order->pdi->status === 'perlu_perbaikan' ? 'PDI Perlu Perbaikan' : 'Dalam PDI')) : 'Menunggu PDI' }}</strong>
                                 </div>
                                 <div class="spec-tile">
                                     <span class="spec-label">Jadwal Pengambilan</span>
@@ -763,6 +781,13 @@
                                     </div>
                                 </div>
 
+                                @if($isPaidForWorkflow && $pdiStatus === 'lulus' && !$order->serahTerima && (auth()->user()->roleKey() === 'super_admin' || auth()->user()->hasPermission('qc.manage')))
+                                    <form method="post" action="{{ route('admin.pesanan-mobil.pdi.start', $order) }}" class="workflow-form">
+                                        @csrf
+                                        <p>Perubahan identitas kendaraan atau pesanan memerlukan pemeriksaan ulang sebelum pengambilan.</p>
+                                        <button type="submit" class="btn-modal-approve">Validasi Ulang PDI</button>
+                                    </form>
+                                @endif
                                 @if(!$isPaidForWorkflow)
                                     <p class="workflow-locked-note">Workflow terkunci sampai pembayaran berstatus Lunas.</p>
                                 @elseif(!$pdi)
@@ -782,6 +807,7 @@
                                                         <div class="workflow-check-row">
                                                             <label>{{ ucwords(str_replace('_', ' ', $item)) }}
                                                                 <select name="checklist[{{ $section }}][{{ $item }}][result]" required>
+                                                                    <option value="">Pilih hasil pemeriksaan</option>
                                                                     <option value="pass" @selected(($existing['result'] ?? '') === 'pass')>PASS</option>
                                                                     <option value="na" @selected(($existing['result'] ?? '') === 'na')>N/A</option>
                                                                     <option value="issue" @selected(($existing['result'] ?? '') === 'issue')>ISSUE</option>
@@ -796,7 +822,7 @@
                                         <label class="workflow-wide-field">Catatan PDI<textarea name="catatan" rows="2" placeholder="Catatan pemeriksaan sintetis UAT"></textarea></label>
                                         <button type="submit" class="btn-modal-approve">Simpan &amp; Selesaikan PDI</button>
                                     </form>
-                                @elseif(!$order->jadwal_pengambilan)
+                                @elseif(!$order->jadwal_pengambilan || $order->status_pengambilan === 'belum_dijadwalkan')
                                     <div class="workflow-success-note">PDI LULUS. Jadwal pengambilan dapat dibuat.</div>
                                     <form method="post" action="{{ route('admin.pesanan-mobil.schedule', $order) }}" class="workflow-form workflow-inline-form">
                                         @csrf
@@ -809,7 +835,7 @@
                                     <div class="workflow-success-note">Pickup terjadwal: {{ $order->jadwal_pengambilan->format('d M Y, H:i') }} · {{ $order->lokasi_pengambilan }}</div>
                                     <form method="post" action="{{ route('admin.pesanan-mobil.handover', $order) }}" class="workflow-form workflow-inline-form">
                                         @csrf
-                                        <label>Nama Penerima<input type="text" name="nama_penerima" value="{{ $customer?->nama_lengkap ?: $order->nama_pembeli }}" required></label>
+                                        <label>Nama Penerima<input type="text" name="nama_penerima" value="{{ $order->nama_pembeli ?: $customer?->nama_lengkap }}" required></label>
                                         <label>Nomor Identitas<input type="text" name="nomor_identitas" value="UAT-SYNTHETIC-{{ $order->id_pesanan }}"></label>
                                         <label>Catatan<input type="text" name="catatan" value="Serah terima sintetis UAT"></label>
                                         <button type="submit" class="btn-modal-approve">Selesaikan Serah Terima</button>
@@ -857,7 +883,70 @@
 @endsection
 
 @push('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/order-sales-refinement.css') }}?v={{ filemtime(public_path('assets/css/order-sales-refinement.css')) }}">
 <style>
+.admin-content:has(> .admin-orders-page) > .admin-page-heading{display:none!important}
+.admin-orders-page{width:100%;max-width:1680px;margin:0 auto;padding:4px 0 26px;box-sizing:border-box;gap:18px;overflow:visible}
+.admin-orders-page .admin-sales-header{display:block;min-width:0}
+.admin-orders-page .admin-sales-header-left,.admin-orders-page .admin-sales-header-right{min-width:0}
+.admin-orders-page .admin-sales-title-group{align-items:flex-start;gap:0}
+.admin-orders-page .admin-sales-icon-box{display:none}
+.admin-orders-page .admin-sales-heading{font-size:clamp(30px,2.55vw,42px);line-height:1.08;letter-spacing:-.045em;margin:0}
+.admin-orders-page .admin-sales-subheading{max-width:620px;font-size:13px;line-height:1.5;margin-top:7px}
+.admin-orders-page .admin-sales-banner{width:100%;height:218px;margin-top:18px;border-radius:18px;overflow:hidden;box-shadow:0 16px 34px rgba(15,23,42,.14)}
+.admin-orders-page .admin-sales-banner:after{content:"";position:absolute;inset:0;border:1px solid rgba(255,255,255,.48);border-radius:inherit;pointer-events:none;z-index:4}
+.admin-orders-page .admin-banner-content{position:absolute;top:27px;right:34px;margin:0;z-index:3;max-width:300px}
+.admin-orders-page .admin-order-hero-copy{max-width:390px;padding:28px 34px;box-sizing:border-box}
+.admin-orders-page .admin-order-hero-copy h2{font-size:clamp(26px,2vw,36px);line-height:1.05}
+.admin-orders-page .admin-order-hero-copy p{max-width:340px;line-height:1.45}
+.admin-orders-page .admin-order-hero-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+.admin-orders-page .admin-order-hero-actions a{min-height:39px;box-sizing:border-box;align-items:center}
+.admin-orders-page .admin-orders-stats-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:13px;min-width:0}
+.admin-orders-page .admin-stat-card{min-width:0;min-height:160px;border-radius:16px;gap:18px;box-shadow:0 9px 24px rgba(15,23,42,.07);transition:transform .18s ease,box-shadow .18s ease}
+.admin-orders-page .admin-stat-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(15,23,42,.12)}
+.admin-orders-page .admin-stat-top{display:grid;grid-template-columns:44px minmax(0,1fr);align-items:start}
+.admin-orders-page .admin-stat-icon{width:44px;height:44px;border-radius:12px}
+.admin-orders-page .admin-stat-icon svg{width:23px;height:23px}
+.admin-orders-page .admin-stat-info{min-width:0}
+.admin-orders-page .admin-stat-label{display:flex;align-items:flex-start;min-height:34px;font-size:12px;line-height:17px;white-space:normal;overflow:visible;overflow-wrap:anywhere}
+.admin-orders-page .admin-stat-value{margin-top:2px;font-size:32px;line-height:1.15;font-variant-numeric:tabular-nums}
+.admin-orders-page .admin-stat-bottom{margin-top:auto;padding-top:12px;min-height:30px;box-sizing:border-box}
+.admin-orders-page .admin-stat-status{display:flex;align-items:flex-start;gap:7px;font-size:11px;line-height:1.45}
+.admin-orders-page .admin-stat-status svg{flex:0 0 14px;margin-top:1px}
+.admin-orders-page .admin-stat-status span{min-width:0;white-space:normal;overflow:visible;overflow-wrap:anywhere}
+.admin-shell:not(.owner-shell) .admin-orders-page .admin-orders-stats-grid{grid-template-columns:repeat(6,minmax(170px,1fr))!important;grid-auto-flow:column;gap:12px;overflow-x:auto;overflow-y:hidden;padding-block:4px 10px;scrollbar-width:thin}
+@media(max-width:540px){.admin-orders-page .admin-stat-top{grid-template-columns:minmax(0,1fr);justify-items:center;gap:10px}.admin-orders-page .admin-stat-info{width:100%;text-align:center}.admin-orders-page .admin-stat-label{justify-content:center;align-items:center}.admin-orders-page .admin-stat-status{font-size:10px}.admin-orders-page .admin-stat-value{font-size:28px}}
+.admin-orders-page .admin-sales-card{width:100%;min-width:0;box-sizing:border-box;overflow:hidden;border-radius:18px;box-shadow:0 12px 30px rgba(15,23,42,.08)}
+.admin-orders-page .admin-sales-card-header{gap:18px;min-width:0}
+.admin-orders-page .card-header-left,.admin-orders-page .card-header-right{min-width:0}
+.admin-orders-page .card-header-left>div:last-child{min-width:0}
+.admin-orders-page .card-header-subtitle{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.admin-orders-page .admin-sales-filters{min-width:0}
+.admin-orders-page .admin-sales-filters{display:grid;grid-template-columns:minmax(260px,1.5fr) minmax(180px,.8fr) minmax(300px,1.1fr) auto;align-items:center;gap:12px}
+.admin-orders-page .admin-sales-filters>*{min-width:0}
+.admin-orders-page .admin-sales-filters .filter-search-wrap,.admin-orders-page .admin-sales-filters .filter-select-wrap,.admin-orders-page .admin-sales-filters .filter-date-wrap{height:46px;box-sizing:border-box}
+.admin-orders-page .admin-sales-filters .filter-actions{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.admin-orders-page .admin-sales-table-wrapper{width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;border-radius:12px}
+.admin-orders-page .admin-orders-table{min-width:1360px;table-layout:fixed}
+.admin-orders-page .admin-orders-table .order-col-number{width:50px}
+.admin-orders-page .admin-orders-table .order-col-id{width:180px}
+.admin-orders-page .admin-orders-table .order-col-customer{width:210px}
+.admin-orders-page .admin-orders-table .order-col-date{width:125px}
+.admin-orders-page .admin-orders-table .order-col-payment,.admin-orders-page .admin-orders-table .order-col-status{width:180px}
+.admin-orders-page .admin-orders-table .order-col-actions{width:156px}
+.admin-orders-page .admin-orders-table th{width:auto;padding:17px 12px;white-space:normal;line-height:1.4}
+.admin-orders-page .admin-orders-table td{padding:20px 12px;white-space:normal;overflow:visible}
+.admin-orders-page .admin-orders-table .badge-status{box-sizing:border-box;max-width:100%;min-width:0;min-height:36px;padding:8px 10px;justify-content:center;white-space:normal;line-height:1.45;text-align:center;vertical-align:middle}
+.admin-orders-page .admin-orders-table .badge-status svg{flex:0 0 15px;align-self:center}
+.admin-orders-page .admin-orders-table .badge-status>span{min-width:0;white-space:normal;overflow-wrap:anywhere}
+.admin-orders-page .admin-orders-table .action-cell{justify-content:center;gap:8px;flex-wrap:wrap}
+.admin-orders-page .admin-orders-table .btn-detail-view{padding:12px 13px;white-space:nowrap}
+.admin-orders-page .admin-orders-table .btn-more-options{flex:0 0 36px;width:36px}
+.admin-orders-page .admin-orders-table :is(.car-cell,.customer-cell)>div{min-width:0}
+.admin-orders-page .admin-orders-table :is(.car-title,.customer-name,.customer-subtext,.sale-code){white-space:normal;overflow-wrap:anywhere;line-height:1.45}
+@media (max-width:1400px){.admin-orders-page .admin-orders-stats-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.admin-orders-page .admin-sales-filters{grid-template-columns:minmax(220px,1.35fr) minmax(170px,.8fr) minmax(260px,1fr) auto}}
+@media (max-width:900px){.admin-orders-page .admin-sales-banner{height:230px}.admin-orders-page .admin-orders-stats-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.admin-orders-page .admin-sales-card-header{align-items:flex-start;flex-wrap:wrap}.admin-orders-page .admin-sales-filters{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-orders-page .admin-sales-filters .filter-search-wrap{grid-column:1/-1}.admin-orders-page .admin-sales-filters .filter-date-wrap{grid-column:1/-1}}
+@media (max-width:760px){.admin-orders-page{padding:0 0 20px}.admin-orders-page .admin-sales-heading{font-size:29px}.admin-orders-page .admin-sales-subheading{font-size:12px}.admin-orders-page .admin-sales-banner{height:270px;border-radius:15px}.admin-orders-page .admin-banner-content{display:none}.admin-orders-page .admin-order-hero-copy{top:24px;left:22px;width:calc(100% - 44px);padding:0}.admin-orders-page .admin-orders-stats-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.admin-orders-page .admin-stat-card{min-height:122px;padding:15px}.admin-orders-page .admin-sales-card{border-radius:15px}.admin-orders-page .admin-sales-card-header{padding:18px 16px}.admin-orders-page .card-header-subtitle{white-space:normal;line-height:1.4}.admin-orders-page .admin-sales-filters{grid-template-columns:1fr;padding:0 16px 16px}.admin-orders-page .admin-sales-filters .filter-search-wrap,.admin-orders-page .admin-sales-filters .filter-date-wrap{grid-column:auto}.admin-orders-page .admin-sales-filters .filter-actions{flex-wrap:wrap}.admin-orders-page .admin-sales-table-wrapper{margin:0 16px;width:calc(100% - 32px)}}
 .admin-purchase-workflow{margin-top:18px;padding:18px;border:1px solid #e8ebef;border-radius:14px;background:#fbfcfd}.workflow-locked-note,.workflow-success-note{padding:12px 14px;border-radius:10px;background:#f4f6f8;color:#647486;font-size:12px}.workflow-success-note{background:#edf9f1;color:#187344}.workflow-form{display:grid;gap:12px;margin-top:12px}.workflow-checklist-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.workflow-checklist-section{min-width:0;padding:12px;border:1px solid #e4e8ec;border-radius:10px;background:#fff}.workflow-checklist-section legend{padding:0 6px;color:#263442;font-size:11px;font-weight:800;text-transform:uppercase}.workflow-check-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(110px,1fr);gap:8px;margin-top:8px}.workflow-check-row label,.workflow-inline-form label,.workflow-wide-field{display:grid;gap:5px;color:#647486;font-size:11px;font-weight:700}.workflow-check-row select,.workflow-check-row input,.workflow-inline-form input,.workflow-wide-field textarea{width:100%;box-sizing:border-box;padding:8px;border:1px solid #dce3e9;border-radius:7px;background:#fff;color:#263442;font:inherit;font-size:11px}.workflow-inline-form{grid-template-columns:repeat(3,minmax(0,1fr));align-items:end}.workflow-inline-form button{grid-column:1/-1;justify-self:start}@media(max-width:760px){.workflow-checklist-grid,.workflow-inline-form{grid-template-columns:1fr}.workflow-check-row{grid-template-columns:1fr}}
 /* Tombol Order ID di Tabel */
 .sale-code-btn {
@@ -886,8 +975,22 @@
     box-sizing: border-box;
 }
 .admin-confirm-modal {
-    z-index: 200;
+    z-index: 400;
 }
+.admin-confirm-dialog { max-height: calc(100dvh - 40px); overflow-y: auto; }
+.decision-step { color: #64748b; font-size: 12px; font-weight: 700; }
+.decision-summary { margin: 16px 0; padding: 12px; background: #f7f9fc; border: 1px solid #e2e8f0; border-radius: 12px; text-align: left; }
+.decision-summary div { display: grid; grid-template-columns: 90px minmax(0,1fr); gap: 12px; padding: 4px 0; }
+.decision-summary dt { color: #64748b; font-size: 12px; }
+.decision-summary dd { margin: 0; font-size: 13px; font-weight: 700; overflow-wrap: anywhere; }
+.decision-review { display: flex; align-items: flex-start; gap: 10px; text-align: left; font-size: 13px; }
+.decision-review input { margin-top: 3px; flex: 0 0 auto; }
+.decision-code-label { display: block; margin: 12px 0 8px; font-size: 13px; }
+[data-decision-order-code] { display: block; margin-bottom: 10px; overflow-wrap: anywhere; }
+[data-decision-code] { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; }
+[data-decision-error] { color: #b91c1c; font-size: 12px; }
+.admin-confirm-actions { flex-wrap: wrap; }
+.admin-confirm-actions button:disabled { opacity: .45; cursor: not-allowed; }
 .admin-confirm-modal[hidden], .admin-order-detail-modal[hidden] {
     display: none !important;
 }
@@ -900,7 +1003,8 @@
 }
 .admin-confirm-dialog {
     position: relative;
-    width: min(520px, calc(100% - 32px));
+    width: min(520px, 100%);
+    box-sizing: border-box;
     padding: 36px 36px 32px;
     border-radius: 20px;
     background: #FFFFFF;
@@ -1434,6 +1538,9 @@
 @endpush
 
 @push('scripts')
+<script src="{{ asset('assets/js/order-create-modal.js') }}?v={{ filemtime(public_path('assets/js/order-create-modal.js')) }}" defer></script>
+<script src="{{ asset('assets/js/smart-spk-modal.js') }}?v={{ filemtime(public_path('assets/js/smart-spk-modal.js')) }}" defer></script>
+<script src="{{ asset('assets/js/admin-order-decision.js') }}?v={{ filemtime(public_path('assets/js/admin-order-decision.js')) }}" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     // Dropdown more options handling
@@ -1533,66 +1640,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Confirmation Decision Modal Handling
     var decisionModal = document.querySelector('[data-decision-modal]');
-    if (decisionModal) {
-        var targetForm = null;
-        var titleNode = decisionModal.querySelector('[data-decision-title]');
-        var messageNode = decisionModal.querySelector('[data-decision-message]');
-        var noteNode = decisionModal.querySelector('[data-reject-note]');
-        var inputNode = decisionModal.querySelector('[data-reject-input]');
-        var submitNode = decisionModal.querySelector('[data-decision-submit]');
-
-        var closeDecision = function () {
-            decisionModal.hidden = true;
-            targetForm = null;
-            if (noteNode) noteNode.hidden = true;
-            if (inputNode) inputNode.value = '';
-            // Only restore scroll if detail modal is also closed
-            var hasOpenDetail = document.querySelector('.admin-order-detail-modal:not([hidden])');
-            if (!hasOpenDetail) {
-                document.body.style.overflow = '';
-            }
-        };
-
-        document.querySelectorAll('[data-decision]').forEach(function (btn) {
-            btn.addEventListener('click', function (e) {
-                e.stopPropagation();
-                targetForm = document.getElementById(btn.dataset.form);
-                var isReject = btn.dataset.decision === 'reject';
-                if (titleNode) titleNode.textContent = isReject ? 'Konfirmasi Penolakan Pesanan' : 'Konfirmasi Persetujuan Pesanan';
-                if (messageNode) messageNode.textContent = isReject ? 'Apakah Anda yakin ingin menolak pesanan ini? Unit mobil akan dilepas kembali ke stok.' : 'Apakah Anda yakin ingin menyetujui pesanan ini? Transaksi pembayaran akan dibuat untuk pelanggan.';
-                if (noteNode) noteNode.hidden = !isReject;
-                if (submitNode) {
-                    submitNode.textContent = isReject ? 'Ya, Tolak Pesanan' : 'Ya, Setujui Pesanan';
-                    submitNode.classList.toggle('is-approve', !isReject);
-                }
-                decisionModal.hidden = false;
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
-        decisionModal.querySelectorAll('[data-decision-cancel]').forEach(function (btn) {
-            btn.addEventListener('click', closeDecision);
-        });
-
-        if (submitNode) {
-            submitNode.addEventListener('click', function () {
-                if (!targetForm) return;
-                if (noteNode && !noteNode.hidden && inputNode) {
-                    var noteField = targetForm.querySelector('[name="catatan_admin"]');
-                    if (noteField) noteField.value = inputNode.value.trim() || 'Pesanan ditolak oleh admin.';
-                }
-                targetForm.submit();
-            });
-        }
-    }
 
     // Escape Key to close any active modal
     document.addEventListener('keydown', function (e) {
+        if (e.defaultPrevented) return;
         if (e.key === 'Escape') {
             if (decisionModal && !decisionModal.hidden) {
-                decisionModal.hidden = true;
+                return; // The decision dialog owns cancellation and focus restoration.
             } else {
                 closeAllDetailModals();
             }
