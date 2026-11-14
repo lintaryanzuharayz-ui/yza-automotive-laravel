@@ -1,0 +1,92 @@
+[
+  {
+    "formColumns": "237.2px",
+    "imageFit": "contain",
+    "imageInside": true,
+    "overflow": 0,
+    "specColumns": "113.6px 113.6px",
+    "submitInside": true,
+    "width": 320
+  },
+  {
+    "formColumns": "292.4px",
+    "imageFit": "contain",
+    "imageInside": true,
+    "overflow": 0,
+    "specColumns": "141.2px 141.2px",
+    "submitInside": true,
+    "width": 375
+  },
+  {
+    "formColumns": "307.6px",
+    "imageFit": "contain",
+    "imageInside": true,
+    "overflow": 0,
+    "specColumns": "148.8px 148.8px",
+    "submitInside": true,
+    "width": 390
+  },
+  {
+    "formColumns": "347.6px",
+    "imageFit": "contain",
+    "imageInside": true,
+    "overflow": 0,
+    "specColumns": "168.8px 168.8px",
+    "submitInside": true,
+    "width": 430
+  },
+  {
+    "formColumns": "326.6px 326.6px",
+    "imageFit": "contain",
+    "imageInside": true,
+    "overflow": 0,
+    "specColumns": "130px 130px 130px 130px",
+    "submitInside": true,
+    "width": 768
+  },
+  {
+    "formColumns": "261.475px 261.487px",
+    "imageFit": "contain",
+    "imageInside": true,
+    "overflow": 0,
+    "specColumns": "149.712px 149.725px",
+    "submitInside": true,
+    "width": 1024
+  },
+  {
+    "formColumns": "341.413px 341.425px",
+    "imageFit": "contain",
+    "imageInside": true,
+    "overflow": 0,
+    "specColumns": "85.6875px 85.6875px 85.6875px 85.7px",
+    "submitInside": true,
+    "width": 1280
+  },
+  {
+    "formColumns": "388.138px 388.138px",
+    "imageFit": "contain",
+    "imageInside": true,
+    "overflow": 0,
+    "specColumns": "98.825px 98.8375px 98.825px 98.8375px",
+    "submitInside": true,
+    "width": 1440
+  },
+  {
+    "formColumns": "458.663px 458.675px",
+    "imageFit": "contain",
+    "imageInside": true,
+    "overflow": 0,
+    "specColumns": "118.662px 118.662px 118.662px 118.675px",
+    "submitInside": true,
+    "width": 1672
+  },
+  {
+    "formColumns": "467.237px 467.25px",
+    "imageFit": "contain",
+    "imageInside": true,
+    "overflow": 0,
+    "specColumns": "121.075px 121.075px 121.075px 121.088px",
+    "submitInside": true,
+    "width": 1920
+  }
+]

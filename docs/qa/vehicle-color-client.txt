@@ -1,0 +1,34 @@
+✔ panel shows four latest messages, keeps unread 3 separate from total 6, and ignores operational summaries (28.5262ms)
+✔ bell opens without an auto-close timer and can close again (5.2207ms)
+✔ unread filter changes items without changing global total (9.0101ms)
+✔ Escape and outside click close, and ArrowDown enters keyboard controls (3.7922ms)
+✔ message links retain server open URLs and payloads are rendered as text (5.5643ms)
+✔ unread, category dots and pending tasks use separate authoritative values (3.1387ms)
+✔ reading one of several messages retains the dot, and stale snapshots cannot restore old counts (1.2651ms)
+✔ polling has one timer, drains the server cursor and never repeats a toast (4.0301ms)
+✔ visibility pauses polling and authentication loss stops further requests (1.6718ms)
+✔ account switch clears old account presentation and does not display the other account payload (1.7429ms)
+✔ mark-as-read applies server response without a page reload and broadcasts only invalidation (3.1561ms)
+✔ logout stops polling, clears notification presentation and rejects late state updates (1.783ms)
+✔ sale starts with informative placeholders and hidden promo summary (3.9443ms)
+✔ promo requires customer and vehicle and rejects stacking manual discount (28.3194ms)
+✔ server preview follows selected customer and updates both summaries without claiming applied (3.7638ms)
+✔ stale promo response cannot overwrite changed selection (4.171ms)
+✔ DP and booking relationship are validated against selected unit (2.3959ms)
+✔ modal opens in place, closes, restores focus, and fills buyer data (4.9869ms)
+✔ wizard starts at step one with no invented quote or unit (6.1991ms)
+✔ catalog-only color remains visible with photo, no eligible unit and no save (4.7942ms)
+✔ variant change updates the actual unit and filters colors without changing model (2.6012ms)
+✔ swatches select actual compatible unit and image, without including another model (2.8988ms)
+✔ step navigation preserves buyer information and requires server quote (36.8827ms)
+✔ nonzero quotes are marked pending and cannot be saved without proposal storage (4.1775ms)
+✔ stale quote cannot overwrite a newly selected color or failed quote (2.9204ms)
+✔ step-three save is a draft and never marks discount approved in the UI (5.1567ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 232.7002

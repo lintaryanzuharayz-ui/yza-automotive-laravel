@@ -1,0 +1,1050 @@
+[
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".show-nav.public-navbar .show-brand img",
+    "media": null,
+    "prop": "width",
+    "before": "3.25rem",
+    "after": "3rem"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".show-nav.public-navbar .show-brand img",
+    "media": null,
+    "prop": "height",
+    "before": "3rem",
+    "after": "2.75rem"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".showroom .show-hero-inner",
+    "media": null,
+    "prop": "min-height",
+    "before": "clamp(33rem,calc(100svh - var(--ui-header)),44rem)",
+    "after": "clamp(28rem,calc(76svh - var(--ui-header)),36rem)"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".showroom .show-hero-inner",
+    "media": null,
+    "prop": "padding",
+    "before": "3rem var(--ui-gutter)",
+    "after": "2rem var(--ui-gutter)"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".showroom .show-hero-inner",
+    "media": null,
+    "prop": "gap",
+    "before": "2rem",
+    "after": "1.5rem"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".showroom .show-hero-inner",
+    "media": null,
+    "prop": "grid-template-columns",
+    "before": "minmax(0,1fr) minmax(14rem,18rem)",
+    "after": "minmax(0,1fr) minmax(14rem,16rem)"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".showroom .hero-copy-premium h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(2.5rem,5.2vw,4.75rem)",
+    "after": "clamp(2.5rem,4.1vw,3.5rem)"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".showroom .hero-vehicle-info",
+    "media": null,
+    "prop": "max-width",
+    "before": "18rem",
+    "after": "16rem"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".showroom .hero-vehicle-info",
+    "media": null,
+    "prop": "padding",
+    "before": "1.5rem",
+    "after": "1.125rem"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".showroom .show-hero-inner",
+    "media": "(max-width:640px)",
+    "prop": "grid-template-columns",
+    "before": "minmax(0,1fr)",
+    "after": "minmax(0,1fr) minmax(14rem,16rem)"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".showroom .hero-vehicle-info",
+    "media": "(max-width:640px)",
+    "prop": "max-width",
+    "before": "100%",
+    "after": "16rem"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".showroom .hero-copy-premium h1",
+    "media": "(max-width:640px)",
+    "prop": "font-size",
+    "before": "clamp(2rem,9vw,3.5rem)",
+    "after": "clamp(2.5rem,4.1vw,3.5rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-proof-line",
+    "media": null,
+    "prop": "gap",
+    "before": "18px",
+    "after": "16px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info h2",
+    "media": null,
+    "prop": "font-size",
+    "before": "24px",
+    "after": "26px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info strong",
+    "media": null,
+    "prop": "font-size",
+    "before": "18px",
+    "after": "22px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info a",
+    "media": null,
+    "prop": "font-size",
+    "before": "12px",
+    "after": "14px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .show-section",
+    "media": null,
+    "prop": "padding",
+    "before": "58px 0",
+    "after": "48px 0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .show-section-heading h2",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(2rem,3.2vw,3.4rem)",
+    "after": "clamp(1.75rem,2.6vw,2.25rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-proof-line",
+    "media": "(max-width:560px)",
+    "prop": "gap",
+    "before": "7px",
+    "after": "16px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .show-section",
+    "media": "(max-width:560px)",
+    "prop": "padding",
+    "before": "44px 0",
+    "after": "48px 0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info",
+    "media": "(min-width:801px) and (max-width:1450px)",
+    "prop": "padding",
+    "before": "15px",
+    "after": "18px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-media",
+    "media": null,
+    "prop": "height",
+    "before": "218px",
+    "after": "190px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-body",
+    "media": null,
+    "prop": "min-height",
+    "before": "126px",
+    "after": "128px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-body",
+    "media": null,
+    "prop": "padding",
+    "before": "15px 15px 14px",
+    "after": "16px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-body h3",
+    "media": null,
+    "prop": "font-size",
+    "before": "16px",
+    "after": "17px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-body small",
+    "media": null,
+    "prop": "font-size",
+    "before": "11px",
+    "after": "13px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-media",
+    "media": "(max-width:560px)",
+    "prop": "height",
+    "before": "230px",
+    "after": "190px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-media",
+    "media": null,
+    "prop": "height",
+    "before": "280px",
+    "after": "190px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-body",
+    "media": null,
+    "prop": "min-height",
+    "before": "160px",
+    "after": "128px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-body",
+    "media": null,
+    "prop": "padding",
+    "before": "20px 20px 18px",
+    "after": "16px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-body h3",
+    "media": null,
+    "prop": "font-size",
+    "before": "18px",
+    "after": "17px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-body small",
+    "media": null,
+    "prop": "font-size",
+    "before": "12px",
+    "after": "13px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-media",
+    "media": "(max-width:1100px)",
+    "prop": "height",
+    "before": "260px",
+    "after": "190px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-media",
+    "media": "(max-width:560px)",
+    "prop": "height",
+    "before": "250px",
+    "after": "190px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-body",
+    "media": "(max-width:560px)",
+    "prop": "min-height",
+    "before": "150px",
+    "after": "128px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .testimonials .show-section-heading h2",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(2.6rem,4.2vw,4.5rem)",
+    "after": "clamp(1.75rem,2.6vw,2.25rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .testimonials .show-section-heading h2",
+    "media": "(max-width:800px)",
+    "prop": "font-size",
+    "before": "clamp(2.35rem,8vw,3.3rem)",
+    "after": "clamp(1.75rem,2.6vw,2.25rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info",
+    "media": "(min-width:801px)",
+    "prop": "padding",
+    "before": "21px",
+    "after": "18px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info h2",
+    "media": "(min-width:801px)",
+    "prop": "font-size",
+    "before": "27px",
+    "after": "26px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info strong",
+    "media": "(min-width:801px)",
+    "prop": "font-size",
+    "before": "20px",
+    "after": "22px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info",
+    "media": "(min-width:801px)",
+    "prop": "min-height",
+    "before": "238px",
+    "after": "256px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info",
+    "media": "(min-width:801px)",
+    "prop": "padding",
+    "before": "23px 22px 20px",
+    "after": "18px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info h2",
+    "media": "(min-width:801px)",
+    "prop": "font-size",
+    "before": "25px",
+    "after": "26px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info strong",
+    "media": "(min-width:801px)",
+    "prop": "font-size",
+    "before": "19px",
+    "after": "22px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info a",
+    "media": "(min-width:801px)",
+    "prop": "min-height",
+    "before": "48px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info a",
+    "media": "(min-width:801px)",
+    "prop": "padding",
+    "before": "12px 16px",
+    "after": "10px 13px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info a",
+    "media": "(min-width:801px)",
+    "prop": "font-size",
+    "before": "13px",
+    "after": "14px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-buttons",
+    "media": "(min-width:801px)",
+    "prop": "gap",
+    "before": "16px",
+    "after": "12px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-buttons .show-cta,.showroom .hero-buttons .show-ghost",
+    "media": "(min-width:801px)",
+    "prop": "min-height",
+    "before": "58px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-buttons .show-cta,.showroom .hero-buttons .show-ghost",
+    "media": "(min-width:801px)",
+    "prop": "padding",
+    "before": "15px 28px",
+    "after": "10px 20px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-buttons .show-cta,.showroom .hero-buttons .show-ghost",
+    "media": "(min-width:801px)",
+    "prop": "font-size",
+    "before": "15px",
+    "after": "14px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info",
+    "media": "(min-width:801px)",
+    "prop": "min-height",
+    "before": "320px",
+    "after": "256px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info",
+    "media": "(min-width:801px)",
+    "prop": "padding",
+    "before": "25px 24px 23px",
+    "after": "18px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info h2",
+    "media": "(min-width:801px)",
+    "prop": "font-size",
+    "before": "32px",
+    "after": "26px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info strong",
+    "media": "(min-width:801px)",
+    "prop": "font-size",
+    "before": "25px",
+    "after": "22px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info a",
+    "media": "(min-width:801px)",
+    "prop": "min-height",
+    "before": "56px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info a",
+    "media": "(min-width:801px)",
+    "prop": "padding",
+    "before": "14px 17px",
+    "after": "10px 13px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-vehicle-info a",
+    "media": "(min-width:801px)",
+    "prop": "font-size",
+    "before": "15px",
+    "after": "14px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-buttons",
+    "media": "(min-width:801px)",
+    "prop": "gap",
+    "before": "20px",
+    "after": "12px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .hero-proof-line",
+    "media": "(min-width:801px)",
+    "prop": "gap",
+    "before": "26px",
+    "after": "16px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-carousel-controls .featured-carousel-button",
+    "media": null,
+    "prop": "width",
+    "before": "48px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-carousel-controls .featured-carousel-button",
+    "media": null,
+    "prop": "height",
+    "before": "48px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-carousel-controls .featured-carousel-button",
+    "media": "(max-width:650px)",
+    "prop": "width",
+    "before": "38px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-carousel-controls .featured-carousel-button",
+    "media": "(max-width:650px)",
+    "prop": "height",
+    "before": "38px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-carousel-controls .featured-carousel-button",
+    "media": null,
+    "prop": "width",
+    "before": "68px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-carousel-controls .featured-carousel-button",
+    "media": null,
+    "prop": "height",
+    "before": "68px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-carousel-controls .featured-carousel-button",
+    "media": null,
+    "prop": "font-size",
+    "before": "34px",
+    "after": "24px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .featured-catalog .featured-carousel-controls .featured-carousel-button",
+    "media": "(max-width:650px)",
+    "prop": "font-size",
+    "before": "25px",
+    "after": "24px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-page",
+    "media": null,
+    "prop": "width",
+    "before": "min(1760px,100%)",
+    "after": "min(1440px,100%)"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-page",
+    "media": null,
+    "prop": "padding",
+    "before": "clamp(34px,4vw,72px) clamp(22px,3.2vw,58px) 70px",
+    "after": "24px clamp(16px,2vw,32px) 48px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-heading",
+    "media": null,
+    "prop": "gap",
+    "before": "30px",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-heading h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(2.5rem,5vw,5.8rem)",
+    "after": "clamp(1.875rem,3.3vw,3rem)"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-heading h1",
+    "media": null,
+    "prop": "line-height",
+    "before": ".95",
+    "after": "1.1"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-heading-price strong",
+    "media": null,
+    "prop": "font-size",
+    "before": "1.7rem",
+    "after": "clamp(1.5rem,2vw,1.875rem)"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-summary-panel",
+    "media": null,
+    "prop": "padding",
+    "before": "27px",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-thumbnail",
+    "media": null,
+    "prop": "min-height",
+    "before": "75px",
+    "after": "72px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-thumbnail img",
+    "media": null,
+    "prop": "height",
+    "before": "78px",
+    "after": "72px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-page",
+    "media": "(max-width:600px)",
+    "prop": "padding",
+    "before": "32px 16px 50px",
+    "after": "24px clamp(16px,2vw,32px) 48px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-heading h1",
+    "media": "(max-width:600px)",
+    "prop": "font-size",
+    "before": "clamp(2.35rem,13vw,4rem)",
+    "after": "clamp(1.875rem,3.3vw,3rem)"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-gallery-arrow",
+    "media": null,
+    "prop": "width",
+    "before": "38px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-gallery-arrow",
+    "media": null,
+    "prop": "height",
+    "before": "38px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-thumbnail",
+    "media": null,
+    "prop": "min-height",
+    "before": "92px",
+    "after": "72px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-thumbnail img",
+    "media": null,
+    "prop": "height",
+    "before": "94px",
+    "after": "72px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-gallery-arrow",
+    "media": "(max-width:600px)",
+    "prop": "width",
+    "before": "32px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-gallery-arrow",
+    "media": "(max-width:600px)",
+    "prop": "height",
+    "before": "32px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-gallery-arrow",
+    "media": null,
+    "prop": "width",
+    "before": "54px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-gallery-arrow",
+    "media": null,
+    "prop": "height",
+    "before": "54px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-gallery-arrow",
+    "media": "(max-width:600px)",
+    "prop": "width",
+    "before": "40px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-gallery-arrow",
+    "media": "(max-width:600px)",
+    "prop": "height",
+    "before": "40px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-spec-grid-reference>div",
+    "media": null,
+    "prop": "min-height",
+    "before": "62px",
+    "after": "68px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-spec-grid-reference>div",
+    "media": null,
+    "prop": "padding",
+    "before": "11px 10px",
+    "after": "10px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-spec-grid-reference>div strong",
+    "media": null,
+    "prop": "font-size",
+    "before": ".77rem",
+    "after": ".875rem"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-summary-panel .detail-description",
+    "media": null,
+    "prop": "font-size",
+    "before": ".84rem",
+    "after": ".9375rem"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-summary-panel .detail-description",
+    "media": null,
+    "prop": "margin",
+    "before": "0 0 18px",
+    "after": "12px 0 16px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-spec-grid-reference>div",
+    "media": "(max-width:600px)",
+    "prop": "min-height",
+    "before": "58px",
+    "after": "68px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-spec-grid-reference>div",
+    "media": "(max-width:600px)",
+    "prop": "padding",
+    "before": "9px 8px",
+    "after": "10px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-spec-grid-reference>div strong",
+    "media": "(max-width:600px)",
+    "prop": "font-size",
+    "before": ".7rem",
+    "after": ".875rem"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-heading h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(3.35rem,5.25vw,6.5rem)",
+    "after": "clamp(1.875rem,3.3vw,3rem)"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-heading h1",
+    "media": null,
+    "prop": "line-height",
+    "before": ".98",
+    "after": "1.1"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-heading-price strong",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(2rem,3vw,2.9rem)",
+    "after": "clamp(1.5rem,2vw,1.875rem)"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-summary-panel",
+    "media": null,
+    "prop": "padding",
+    "before": "31px",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-summary-panel .detail-description",
+    "media": null,
+    "prop": "font-size",
+    "before": "1rem",
+    "after": ".9375rem"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-actions-reference .detail-button-primary",
+    "media": null,
+    "prop": "min-height",
+    "before": "58px",
+    "after": "46px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-actions-reference .detail-button-ghost",
+    "media": null,
+    "prop": "min-height",
+    "before": "50px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-spec-grid-reference>div",
+    "media": null,
+    "prop": "min-height",
+    "before": "72px",
+    "after": "68px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-spec-grid-reference>div",
+    "media": null,
+    "prop": "padding",
+    "before": "13px 12px",
+    "after": "10px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-spec-grid-reference>div strong",
+    "media": null,
+    "prop": "font-size",
+    "before": ".84rem",
+    "after": ".875rem"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-heading h1",
+    "media": "(max-width:600px)",
+    "prop": "font-size",
+    "before": "clamp(2.35rem,13vw,4rem)",
+    "after": "clamp(1.875rem,3.3vw,3rem)"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-summary-panel",
+    "media": "(max-width:600px)",
+    "prop": "padding",
+    "before": "23px",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-summary-panel .detail-description",
+    "media": "(max-width:600px)",
+    "prop": "font-size",
+    "before": ".87rem",
+    "after": ".9375rem"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-summary-panel .detail-description",
+    "media": null,
+    "prop": "font-size",
+    "before": "1rem",
+    "after": ".9375rem"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-summary-panel .detail-description",
+    "media": null,
+    "prop": "margin",
+    "before": "22px 0 18px",
+    "after": "12px 0 16px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-actions-reference .detail-button-primary",
+    "media": null,
+    "prop": "min-height",
+    "before": "58px",
+    "after": "46px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-actions-reference .detail-button-primary",
+    "media": null,
+    "prop": "padding",
+    "before": "0 18px",
+    "after": "0 14px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-actions-reference .detail-button-ghost",
+    "media": null,
+    "prop": "min-height",
+    "before": "52px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-actions-reference .detail-button-ghost",
+    "media": null,
+    "prop": "padding",
+    "before": "0 15px",
+    "after": "0 12px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-spec-grid-reference>div",
+    "media": null,
+    "prop": "min-height",
+    "before": "96px",
+    "after": "68px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-spec-grid-reference>div",
+    "media": null,
+    "prop": "padding",
+    "before": "14px 13px",
+    "after": "10px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-spec-grid-reference>div strong",
+    "media": null,
+    "prop": "font-size",
+    "before": "1rem",
+    "after": ".875rem"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-summary-panel .detail-description",
+    "media": "(max-width:600px)",
+    "prop": "font-size",
+    "before": ".9rem",
+    "after": ".9375rem"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-spec-grid-reference>div",
+    "media": "(max-width:600px)",
+    "prop": "min-height",
+    "before": "88px",
+    "after": "68px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-spec-grid-reference>div",
+    "media": "(max-width:600px)",
+    "prop": "padding",
+    "before": "11px 10px",
+    "after": "10px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-spec-grid-reference>div strong",
+    "media": "(max-width:600px)",
+    "prop": "font-size",
+    "before": ".88rem",
+    "after": ".875rem"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-page",
+    "media": null,
+    "prop": "width",
+    "before": "min(1920px,100%)",
+    "after": "min(1440px,100%)"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-heading",
+    "media": null,
+    "prop": "gap",
+    "before": "clamp(24px,3vw,52px)",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-page",
+    "media": "(max-width:1000px)",
+    "prop": "width",
+    "before": "100%",
+    "after": "min(1440px,100%)"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-heading>.detail-back",
+    "media": null,
+    "prop": "margin",
+    "before": "0 0 24px",
+    "after": "0 0 16px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-heading-grid",
+    "media": null,
+    "prop": "gap",
+    "before": "clamp(24px,3vw,52px)",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-heading-price strong",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(2rem,3vw,2.9rem)",
+    "after": "clamp(1.5rem,2vw,1.875rem)"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-heading-grid",
+    "media": "(max-width:1000px)",
+    "prop": "gap",
+    "before": "22px",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/mobil-detail.css",
+    "selector": ".detail-heading-price strong",
+    "media": "(max-width:600px)",
+    "prop": "font-size",
+    "before": "1.8rem",
+    "after": "clamp(1.5rem,2vw,1.875rem)"
+  }
+]

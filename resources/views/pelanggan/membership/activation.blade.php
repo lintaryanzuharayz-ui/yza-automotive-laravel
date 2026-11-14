@@ -34,6 +34,7 @@
         <link rel="stylesheet" href="{{ asset('assets/css/'.$style) }}">
     @endforeach
     <link rel="stylesheet" href="{{ asset('assets/css/pages/membership-flow.css?v=membership-flow-20261004') }}">
+    @include('components.responsive-foundation')
 </head>
 <body>
 <main class="register-page membership-payment-page">

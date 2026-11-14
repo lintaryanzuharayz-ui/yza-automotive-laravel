@@ -25,7 +25,7 @@ final class VehicleBadge
         }
 
         if (str_contains($identity, 'dodge challenger')) {
-            return ['label' => 'Engine', 'value' => $type];
+            return ['label' => 'Engine', 'value' => '6.2L V8'];
         }
 
         if (str_contains($identity, 'ford mustang shelby')) {

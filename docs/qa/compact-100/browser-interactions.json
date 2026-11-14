@@ -1,0 +1,12 @@
+{
+  "origin": "http://127.0.0.1:8000",
+  "publicMenuOpen": true,
+  "accountLinksAvailable": true,
+  "escapeClosesMenu": true,
+  "escapeFocusReturnsToToggle": true,
+  "galleryNextCounter": "02 / 04",
+  "emptyLoginPasswordToggle": "password → text → password",
+  "formsSubmitted": false,
+  "externalDestinationsOpened": false,
+  "nativeZoomTested": false
+}

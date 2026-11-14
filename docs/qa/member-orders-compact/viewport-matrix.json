@@ -1,0 +1,146 @@
+[
+  {
+    "imageFits": [
+      "contain",
+      "contain",
+      "contain"
+    ],
+    "imageTransforms": [
+      "none",
+      "none",
+      "none"
+    ],
+    "overflow": 0,
+    "searchInside": true,
+    "titleFont": "28px",
+    "width": 320
+  },
+  {
+    "imageFits": [
+      "contain",
+      "contain",
+      "contain"
+    ],
+    "imageTransforms": [
+      "none",
+      "none",
+      "none"
+    ],
+    "overflow": 0,
+    "searchInside": true,
+    "titleFont": "28px",
+    "width": 375
+  },
+  {
+    "imageFits": [
+      "contain",
+      "contain",
+      "contain"
+    ],
+    "imageTransforms": [
+      "none",
+      "none",
+      "none"
+    ],
+    "overflow": 0,
+    "searchInside": true,
+    "titleFont": "28px",
+    "width": 390
+  },
+  {
+    "imageFits": [
+      "contain",
+      "contain",
+      "contain"
+    ],
+    "imageTransforms": [
+      "none",
+      "none",
+      "none"
+    ],
+    "overflow": 0,
+    "searchInside": true,
+    "titleFont": "28px",
+    "width": 430
+  },
+  {
+    "imageFits": [
+      "contain",
+      "contain",
+      "contain"
+    ],
+    "imageTransforms": [
+      "none",
+      "none",
+      "none"
+    ],
+    "overflow": 0,
+    "searchInside": true,
+    "titleFont": "27px",
+    "width": 768
+  },
+  {
+    "imageFits": [
+      "contain",
+      "contain",
+      "contain"
+    ],
+    "imageTransforms": [
+      "none",
+      "none",
+      "none"
+    ],
+    "overflow": 0,
+    "searchInside": true,
+    "titleFont": "27px",
+    "width": 1024
+  },
+  {
+    "imageFits": [
+      "contain",
+      "contain",
+      "contain"
+    ],
+    "imageTransforms": [
+      "none",
+      "none",
+      "none"
+    ],
+    "overflow": 0,
+    "searchInside": true,
+    "titleFont": "30.72px",
+    "width": 1280
+  },
+  {
+    "imageFits": [
+      "contain",
+      "contain",
+      "contain"
+    ],
+    "imageTransforms": [
+      "none",
+      "none",
+      "none"
+    ],
+    "overflow": 0,
+    "searchInside": true,
+    "titleFont": "34.56px",
+    "width": 1440
+  },
+  {
+    "imageFits": [
+      "contain",
+      "contain",
+      "contain"
+    ],
+    "imageTransforms": [
+      "none",
+      "none",
+      "none"
+    ],
+    "overflow": 0,
+    "searchInside": true,
+    "titleFont": "38px",
+    "width": 1920
+  }
+]

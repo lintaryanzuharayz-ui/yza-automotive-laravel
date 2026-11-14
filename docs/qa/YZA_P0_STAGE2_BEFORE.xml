@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Tests\Feature\PaymentSecurityStage2Test" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\PaymentSecurityStage2Test.php" tests="2" assertions="2" errors="0" failures="2" skipped="0" time="0.950177">
+    <testcase name="test_capture_challenge_never_activates_membership_or_pays_transaction" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\PaymentSecurityStage2Test.php" line="66" class="Tests\Feature\PaymentSecurityStage2Test" classname="Tests.Feature.PaymentSecurityStage2Test" assertions="1" time="0.872223">
+      <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\PaymentSecurityStage2Test::test_capture_challenge_never_activates_membership_or_pays_transaction&#13;
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'pending_payment'
++'active'
+&#13;
+C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\PaymentSecurityStage2Test.php:70</failure>
+    </testcase>
+    <testcase name="test_late_pending_does_not_regress_paid_membership_gateway" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\PaymentSecurityStage2Test.php" line="76" class="Tests\Feature\PaymentSecurityStage2Test" classname="Tests.Feature.PaymentSecurityStage2Test" assertions="1" time="0.077954">
+      <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\PaymentSecurityStage2Test::test_late_pending_does_not_regress_paid_membership_gateway&#13;
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'settlement'
++'pending'
+&#13;
+C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\PaymentSecurityStage2Test.php:82</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

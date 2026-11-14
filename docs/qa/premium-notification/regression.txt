@@ -1,0 +1,333 @@
+
+  ....................................................................................................................
+  .................................................................⨯..................................................
+  ....................................................................................................................
+  ....................................................................................................................
+  ....................................................................................................................
+  ...............
+  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\MemberVehiclePurchaseFlowTest > member order detail renders premium dashboard for owned ord…   
+  Expected: <!doctype html>\n
+<html lang="id">\n
+<head>\n
+    <meta charset="utf-8">\n
+    <meta name="viewport" content="width=device-width, initial-scale=1">\n
+    <meta name="csrf-token" content="ltblrTs2m6cGIR0c2aREYIgQXeXNUgw33Ry41i2i">\n
+    <title>Detail Pesanan ORD-202610-98290789 - YZA Automotive</title>\n
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/app.css">\n
+    <link rel="stylesheet" href="http://127.0.0.1:8000/assets/css/vehicle-badges.css?v=stock-badges-20261010">\n
+                <link rel="stylesheet" href="http://127.0.0.1:8000/assets/css/member-portal.css?v=1792159913">\n
+        <link rel="stylesheet" href="http://127.0.0.1:8000/assets/css/member-navbar-final.css?v=1793949419">\n
+            <link rel="stylesheet" href="http://127.0.0.1:8000/assets/css/member-order-detail.css?v=1792159509">\n
+<link rel="stylesheet" href="http://127.0.0.1:8000/assets/css/member-order-reference.css?v=1793967406">\n
+        <link rel="stylesheet" href="http://127.0.0.1:8000/assets/css/responsive-foundation.css?v=1793980067">\n
+<script src="http://127.0.0.1:8000/assets/js/responsive-foundation.js?v=1793979628" defer></script>\n
+    </head>\n
+<body class="member-order-detail-page  member-portal-page member-shell-page   ">\n
+                    <div class="member-app-shell member-horizontal-shell" data-member-shell>\n
+            <div class="member-workspace">\n
+                <header class="member-topbar">\n
+                    <div class="member-topbar-left"><button class="member-mobile-toggle" type="button" data-member-mobile-toggle aria-label="Buka navigasi" aria-expanded="false">☰</button><a class="member-topbar-brand" href="http://127.0.0.1:8000/pelanggan/member" aria-label="Kembali ke Beranda YZA Automotive"><img src="http://127.0.0.1:8000/images/branding/logo-yza.png" alt="YZA Automotive"><span><strong>YZA AUTOMOTIVE</strong><small>Premium Member Portal</small></span></a></div>\n
+                    <nav class="member-horizontal-nav" aria-label="Navigasi Member Center">\n
+    <details class="member-horizontal-menu "><summary><span class="member-menu-icon" aria-hidden="true"><svg class="member-reference-icon" viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">\n
+                <path d="m15 25 7-14a5 5 0 0 1 4-2h28a5 5 0 0 1 4 2l7 14M14 27l-6 6v18h9v-6h46v6h9V33l-6-6H14Z"/>\n
+            <path d="m18 26 6-12h32l6 12H18Zm-7 9 13 4m45-4-13 4M26 40h28M14 45h52"/>\n
+            <path class="member-icon-accent" d="M7 23h7m52 0h7M10 48v3h7m46 0h9v-3M27 33h26"/>\n
+            </svg>\n
+</span><span>Beli Mobil</span><span class="member-menu-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="member-horizontal-dropdown"><a href="http://127.0.0.1:8000/pelanggan/katalog-mobil">Katalog Mobil</a><a href="http://127.0.0.1:8000/pelanggan/pre-order">Pre-Order</a></div></details>\n
+    <a class="member-horizontal-link is-active" href="http://127.0.0.1:8000/pelanggan/pesanan-mobil"><span class="member-menu-icon" aria-hidden="true"><svg class="member-reference-icon" viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">\n
+                <path d="M29 14H19a3 3 0 0 0-3 3v40h42V17a3 3 0 0 0-3-3H45M30 10V7h13v3m-16 0h19v10H27V10Z"/>\n
+            <path d="M36 29h14M36 40h14M36 50h14"/>\n
+            <path class="member-icon-accent" d="m23 29 3 3 5-6m-8 14 3 3 5-6m-8 13 3 3 5-6"/>\n
+            </svg>\n
+</span><span>Pesanan Saya</span></a>\n
+    <a class="member-horizontal-link " href="http://127.0.0.1:8000/pelanggan/kendaraan"><span class="member-menu-icon" aria-hidden="true"><svg class="member-reference-icon" viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">\n
+                <path class="member-icon-accent" d="M8 23 40 8l32 15M14 24v11m52-11v11"/>\n
+            <path d="m20 36 6-10h28l6 10M18 37l-4 5v14h8v-5h36v5h8V42l-4-5H18Zm5 0h34M16 43l12 3m36-3-12 3M30 47h20M17 51h46"/>\n
+            <path class="member-icon-accent" d="M32 40h16"/>\n
+            </svg>\n
+</span><span>Kendaraan Saya</span></a>\n
+    <details class="member-horizontal-menu "><summary><span class="member-menu-icon" aria-hidden="true"><svg class="member-reference-icon" viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">\n
+                <path d="M27 11a13 13 0 0 1 15 17l25 25a5 5 0 0 1-7 7L35 35a13 13 0 0 1-17-16l8 8 8-8-7-8Z" fill="#f7f7f8" stroke="#f7f7f8"/>\n
+            <path d="m59 9 7-3 4 4-3 7-8 4-5-5 5-7ZM53 20 18 55a4 4 0 0 1-6-6l35-35" fill="#f7f7f8"/>\n
+            <path d="m24 38 10 10" stroke="#0b0d10" stroke-width="5"/>\n
+            <path class="member-icon-accent" d="m49 39 14 14m-7-10 10 10"/>\n
+            <circle cx="63" cy="56" r="1" fill="#0b0d10" stroke="none"/>\n
+            </svg>\n
+</span><span>Layanan Otomotif</span><span class="member-menu-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="member-horizontal-dropdown"><a href="http://127.0.0.1:8000/pelanggan/booking-servis">Booking Servis</a><a href="http://127.0.0.1:8000/pelanggan/test-drive">Test Drive</a><a href="http://127.0.0.1:8000/pelanggan/booking-cuci">Car Wash</a><a href="http://127.0.0.1:8000/pelanggan/trade-in">Trade-In</a></div></details>\n
+    <details class="member-horizontal-menu "><summary><span class="member-menu-icon" aria-hidden="true"><svg class="member-reference-icon" viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">\n
+                <rect x="13" y="15" width="52" height="43" rx="5"/>\n
+            <path d="M13 27h52M25 9v14M53 9v14"/>\n
+            <path class="member-icon-accent" d="m40 30 4.3 8.6 9.5 1.4-6.9 6.7 1.6 9.4-8.5-4.4-8.5 4.4 1.6-9.4-6.9-6.7 9.5-1.4L40 30Z" fill="#f7f7f8"/>\n
+            </svg>\n
+</span><span>Aktivitas Saya</span><span class="member-menu-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="member-horizontal-dropdown"><a href="http://127.0.0.1:8000/pelanggan/booking-mobil">Booking Saya</a><a href="http://127.0.0.1:8000/pelanggan/servis">Riwayat Servis</a><a href="http://127.0.0.1:8000/pelanggan/member#transaksi">Transaksi &amp; Pembayaran</a></div></details>\n
+    <details class="member-horizontal-menu "><summary><span class="member-menu-icon" aria-hidden="true"><svg class="member-reference-icon" viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">\n
+                <path class="member-icon-accent" d="M8 24h64M25 10l15 46L55 10M8 24l32 33 32-33"/>\n
+            <path d="m8 24 13-14h38l13 14-32 33L8 24Zm0 0h64M21 10l19 14 19-14"/>\n
+            </svg>\n
+</span><span>Benefit Member</span><span class="member-menu-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="member-horizontal-dropdown"><a href="http://127.0.0.1:8000/pelanggan/promo">Promo Member</a><a href="http://127.0.0.1:8000/pelanggan/poin">YZA Points</a><a href="http://127.0.0.1:8000/pelanggan/profil">Profil Member</a></div></details>\n
+</nav>\n
+<aside class="member-mobile-drawer" id="member-mobile-menu" data-member-mobile-drawer aria-label="Menu Member Center" aria-hidden="true" inert>\n
+    <div class="member-mobile-drawer-head"><div><small>NAVIGASI AKUN</small><strong>Menu Member</strong></div><button type="button" data-member-mobile-close aria-label="Tutup menu">×</button></div>\n
+    <nav class="member-mobile-drawer-links" aria-label="Pilihan menu member">\n
+        <section class="member-mobile-group"><h3>Beli Mobil</h3><div class="member-mobile-tags">\n
+            <a href="http://127.0.0.1:8000/pelanggan/katalog-mobil" ><span>Katalog</span><span class="member-mobile-tag-arrow" aria-hidden="true">›</span></a>\n
+            <a href="http://127.0.0.1:8000/pelanggan/pre-order" ><span>Pre-Order</span><span class="member-mobile-tag-arrow" aria-hidden="true">›</span></a>\n
+        </div></section>\n
+        <section class="member-mobile-group"><h3>Garasi Saya</h3><div class="member-mobile-tags">\n
+            <a href="http://127.0.0.1:8000/pelanggan/pesanan-mobil" ><span>Pesanan Saya</span><span class="member-mobile-tag-arrow" aria-hidden="true">›</span></a>\n
+            <a href="http://127.0.0.1:8000/pelanggan/kendaraan" ><span>Kendaraan Saya</span><span class="member-mobile-tag-arrow" aria-hidden="true">›</span></a>\n
+        </div></section>\n
+        <section class="member-mobile-group"><h3>Layanan Otomotif</h3><div class="member-mobile-tags">\n
+            <a href="http://127.0.0.1:8000/pelanggan/booking-servis" ><span>Booking Servis</span><span class="member-mobile-tag-arrow" aria-hidden="true">›</span></a>\n
+            <a href="http://127.0.0.1:8000/pelanggan/test-drive" ><span>Test Drive</span><span class="member-mobile-tag-arrow" aria-hidden="true">›</span></a>\n
+            <a href="http://127.0.0.1:8000/pelanggan/booking-cuci" ><span>Car Wash</span><span class="member-mobile-tag-arrow" aria-hidden="true">›</span></a>\n
+            <a href="http://127.0.0.1:8000/pelanggan/trade-in" ><span>Trade-In</span><span class="member-mobile-tag-arrow" aria-hidden="true">›</span></a>\n
+        </div></section>\n
+        <section class="member-mobile-group"><h3>Aktivitas Saya</h3><div class="member-mobile-tags">\n
+            <a href="http://127.0.0.1:8000/pelanggan/booking-mobil" ><span>Booking Saya</span><span class="member-mobile-tag-arrow" aria-hidden="true">›</span></a>\n
+            <a href="http://127.0.0.1:8000/pelanggan/servis" ><span>Riwayat Servis</span><span class="member-mobile-tag-arrow" aria-hidden="true">›</span></a>\n
+            <a href="http://127.0.0.1:8000/pelanggan/member#transaksi"><span>Transaksi &amp; Pembayaran</span><span class="member-mobile-tag-arrow" aria-hidden="true">›</span></a>\n
+        </div></section>\n
+        <section class="member-mobile-group"><h3>Benefit Member</h3><div class="member-mobile-tags">\n
+            <a href="http://127.0.0.1:8000/pelanggan/promo" ><span>Promo</span><span class="member-mobile-tag-arrow" aria-hidden="true">›</span></a>\n
+            <a href="http://127.0.0.1:8000/pelanggan/poin" ><span>YZA Points</span><span class="member-mobile-tag-arrow" aria-hidden="true">›</span></a>\n
+            <a href="http://127.0.0.1:8000/pelanggan/profil" ><span>Profil</span><span class="member-mobile-tag-arrow" aria-hidden="true">›</span></a>\n
+        </div></section>\n
+    </nav>\n
+</aside>\n
+                    <div class="member-topbar-right"><div class="member-notification-wrap"><button class="member-notification" type="button" data-member-notification-toggle data-member-notification-sync-url="http://127.0.0.1:8000/notifikasi/sync" data-member-notification-latest="0" aria-expanded="false" aria-label="Buka notifikasi" title="Notifikasi"><span aria-hidden="true">🔔</span><i data-member-notification-count aria-hidden="true"  hidden >0</i></button></div><div class="member-profile-wrap"><button class="member-profile-trigger" type="button" data-member-profile-toggle aria-expanded="false"><span class="member-avatar">S</span><span><strong>Stage 2 Member</strong><small>YZA MEMBER</small></span><b>⌄</b></button><div class="member-profile-menu" data-member-profile-menu hidden><a href="http://127.0.0.1:8000/pelanggan/profil">Profil Saya</a><a href="http://127.0.0.1:8000/pelanggan/member">Member Center</a><form method="post" action="http://127.0.0.1:8000/logout"><input type="hidden" name="_token" value="ltblrTs2m6cGIR0c2aREYIgQXeXNUgw33Ry41i2i" autocomplete="off"><button type="submit">Logout</button></form></div></div></div>\n
+                </header>\n
+                <main class="member-main-content">\n
+                                        <div class="order-detail-wrap order-detail-reference" data-order-live-state="f0aec3444675b8d4af9c773b2307dd76677f6b56">\n
+    <header class="order-detail-heading">\n
+        <a class="order-back-link" href="http://127.0.0.1:8000/pelanggan/pesanan-mobil">&larr; Kembali ke Daftar Pesanan</a><span class="order-detail-caption">Detail Pesanan</span>\n
+        <div class="order-heading-row"><div><div class="order-number-row"><h1>ORD-202610-98290789</h1><span class="order-status-badge">Menunggu Verifikasi</span></div><p>Dibuat pada 19 October 2026 &middot; 10:00 WIB</p></div><section class="order-next-card order-next-card-top"><div class="order-next-icon">!</div><div><h2>Langkah Selanjutnya</h2><p>Pesanan menunggu verifikasi admin.</p></div></section></div>\n
+    </header>\n
+    <section class="order-timeline" aria-label="Tahapan pesanan">\n
+        <div class="order-timeline-step is-done"><span class="order-timeline-dot">✓</span><strong>Checkout</strong><small>Selesai</small></div><div class="order-timeline-step is-current"><span class="order-timeline-dot">2</span><strong>Verifikasi Admin</strong><small>Menunggu</small></div><div class="order-timeline-step "><span class="order-timeline-dot">3</span><strong>Pembayaran</strong><small>Menunggu persetujuan</small></div><div class="order-timeline-step "><span class="order-timeline-dot">4</span><strong>PDI / Pemeriksaan</strong><small>Belum diperiksa</small></div><div class="order-timeline-step "><span class="order-timeline-dot">5</span><strong>Pengambilan</strong><small>Menunggu</small></div><div class="order-timeline-step "><span class="order-timeline-dot">6</span><strong>Selesai</strong><small> WIB</small></div>    </section>\n
+    <main class="order-detail-grid">\n
+        <section class="order-vehicle-card order-vehicle-panel">\n
+        <section class="order-vehicle-media order-gallery-card">\n
+            <span class="order-photo-badge">Kendaraan Pesanan</span>\n
+            <button class="order-gallery-arrow order-gallery-arrow-prev" type="button" aria-label="Foto sebelumnya">&#8249;</button>\n
+            <img id="order-main-vehicle-image" src="http://127.0.0.1:8000/assets/images/vehicles/toyota-gr-supra/white/front.png" alt="Toyota GR Supra">\n
+            <button class="order-gallery-arrow order-gallery-arrow-next" type="button" aria-label="Foto berikutnya">&#8250;</button>\n
+            <span class="order-gallery-count" data-order-gallery-count>01 / 04</span>\n
+            <div class="order-vehicle-thumbs" role="list" aria-label="Galeri Pearl White"><button class="order-vehicle-thumb is-active" type="button" data-order-image="http://127.0.0.1:8000/assets/images/vehicles/toyota-gr-supra/white/front.png" data-order-label="Front 3/4" aria-label="Lihat Front 3/4"><img src="http://127.0.0.1:8000/assets/images/vehicles/toyota-gr-supra/white/front.png" alt="Front 3/4 Toyota GR Supra"></button><button class="order-vehicle-thumb " type="button" data-order-image="http://127.0.0.1:8000/assets/images/vehicles/toyota-gr-supra/white/side.png" data-order-label="Side profile" aria-label="Lihat Side profile"><img src="http://127.0.0.1:8000/assets/images/vehicles/toyota-gr-supra/white/side.png" alt="Side profile Toyota GR Supra"></button><button class="order-vehicle-thumb " type="button" data-order-image="http://127.0.0.1:8000/assets/images/vehicles/toyota-gr-supra/white/rear.png" data-order-label="Rear 3/4" aria-label="Lihat Rear 3/4"><img src="http://127.0.0.1:8000/assets/images/vehicles/toyota-gr-supra/white/rear.png" alt="Rear 3/4 Toyota GR Supra"></button><button class="order-vehicle-thumb " type="button" data-order-image="http://127.0.0.1:8000/assets/images/vehicles/toyota-gr-supra/interior/cockpit.png" data-order-label="Interior / cockpit" aria-label="Lihat Interior / cockpit"><img src="http://127.0.0.1:8000/assets/images/vehicles/toyota-gr-supra/interior/cockpit.png" alt="Interior / cockpit Toyota GR Supra"></button></div>\n
+        </section>\n
+        <section class="order-vehicle-copy">\n
+                        <img class="order-brand-mark" src="http://127.0.0.1:8000/assets/images/brands/toyota.svg" alt="Toyota">            <div class="order-brand-row"><span class="order-eyebrow">KENDARAAN PESANAN</span><span class="order-condition">UNIT BARU</span></div><h2>Toyota GR Supra</h2><p>Performance | 2024 | Pearl White</p><strong class="order-vehicle-price">Rp 2.350.000.000</strong><div class="order-spec-grid"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 3-1 3-3 1-2 3 2 2-1 3 2 3h3l2 3h3l2-3h3l2-3-1-3 2-2-2-3-3-1-1-3H9Zm7 9a4 4 0 1 1-8 0 4 4 0 0 1 8 0"/></svg>\n
+<span>Tipe</span><strong>Performance</strong></div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16v16H4V5Zm4-3v6m8-6v6M4 11h16M8 14h2m4 0h2m-8 4h2m4 0h2"/></svg>\n
+<span>Tahun</span><strong>2024</strong></div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 3-1 3-3 1-2 3 2 2-1 3 2 3h3l2 3h3l2-3h3l2-3-1-3 2-2-2-3-3-1-1-3H9Zm7 9a4 4 0 1 1-8 0 4 4 0 0 1 8 0"/></svg>\n
+<span>Transmisi</span><strong>Automatic</strong></div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a9 9 0 1 0 0 18h2a2 2 0 0 0 1-4c-1-1 0-3 2-3h2a2 2 0 0 0 2-2 9 9 0 0 0-9-9ZM7 10h.01M9 6h.01M14 6h.01M18 10h.01"/></svg>\n
+<span>Warna</span><strong>Pearl White</strong></div></div>\n
+        </section>\n
+        </section>\n
+        <div class="order-right-column">\n
+        <section class="order-info-card order-buyer-card"><div class="order-card-title"><span class="order-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0ZM4 21v-3a8 8 0 0 1 16 0v3H4Z"/></svg>\n
+</span><div><h2>Data Pembeli</h2><p>Informasi pembeli untuk kebutuhan verifikasi.</p></div></div><dl class="order-info-list"><div><dt>Nama Lengkap</dt><dd>Stage 2 Member</dd></div><div><dt>Email</dt><dd>-</dd></div><div><dt>Nomor HP</dt><dd>08123456789</dd></div><div><dt>Alamat</dt><dd>Alamat QA</dd></div></dl></section>\n
+        <section class="order-payment-card order-payment-summary"><div class="order-card-title"><span class="order-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 3h8l4 4v14H6V3Zm8 0v5h4M9 12h6m-6 4h6"/></svg>\n
+</span><div><h2>Ringkasan Pesanan</h2><p>Detail pesanan kendaraan Anda.</p></div></div>\n
+                <div class="order-payment-row"><span>Harga Kendaraan</span><strong>Rp 2.350.000.000</strong></div><div class="order-payment-total"><span>Total Pembayaran</span><strong>Rp 2.350.000.000</strong></div>\n
+                <div class="order-payment-row order-payment-status-row"><span>Status Pembayaran</span><strong class="order-payment-status ">MENUNGGU KEPUTUSAN ADMIN</strong></div>\n
+                                    <a class="order-primary-button" href="https://wa.me/6287784304417?text=Halo%20Admin%20YZA%20Automotive%2C%20saya%20ingin%20menanyakan%20pesanan%20ORD-202610-98290789" target="_blank" rel="noopener">Hubungi Admin <span>&rarr;</span></a>\n
+                                        </section>\n
+        </div>\n
+        <section class="order-info-card order-order-info"><div class="order-card-title"><span class="order-card-icon">DOC</span><div><h2>Informasi Pesanan</h2><p>Detail snapshot pesanan yang tersimpan saat checkout.</p></div></div><dl class="order-info-list"><div><dt>Nomor Pesanan</dt><dd>ORD-202610-98290789</dd></div><div><dt>Tanggal Pesanan</dt><dd>19 October 2026, 10:00 WIB</dd></div><div><dt>Status</dt><dd><span class="order-inline-status">Menunggu Verifikasi</span></dd></div><div><dt>Metode Pembayaran</dt><dd>Menunggu verifikasi admin</dd></div></dl></section>\n
+        <section class="order-info-card order-vehicle-summary-card"><div class="order-card-title"><span class="order-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4 10 2-6h12l2 6M3 11h18v9h-3v-3H6v3H3v-9Zm0 0 4 3m14-3-4 3M9 14h6"/></svg>\n
+</span><div><h2>Kendaraan Pesanan</h2><p>Detail spesifikasi kendaraan yang dipesan.</p></div></div><dl class="order-info-list"><div><dt>Nama Kendaraan</dt><dd>Toyota GR Supra</dd></div><div><dt>Mesin</dt><dd>3.0L Turbo 6-Cylinder</dd></div><div><dt>Transmisi</dt><dd>AUTOMATIC</dd></div><div><dt>Tipe</dt><dd>Performance</dd></div><div><dt>Warna</dt><dd>Pearl White</dd></div></dl></section>\n
+        <section class="order-info-card order-post-payment-card"><div class="order-card-title"><span class="order-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Zm-4 9 3 3 5-6"/></svg>\n
+</span><div><h2>Status Pasca Pembayaran</h2><p>Informasi pemeriksaan dan pengambilan kendaraan Anda.</p></div></div>\n
+            <div class="order-post-payment-status"><div><span>Pemeriksaan PDI</span><strong class="">Belum diperiksa</strong></div><div><span>Pengambilan</span><strong>Menunggu jadwal</strong></div></div>\n
+                            <div class="order-pickup-callout"><strong>Proses berikutnya sedang disiapkan.</strong><span>Jadwal pengambilan akan muncul setelah PDI kendaraan dinyatakan lulus.</span></div>\n
+                                </section>\n
+    </main>\n
+    <p class="order-privacy-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 10h14v11H5V10Zm3 0V7a4 4 0 0 1 8 0v3m-4 4v3"/></svg>\n
+Data Anda aman dan hanya digunakan untuk proses pemesanan oleh tim YZA Automotive.</p>\n
+</div>\n
+<div class="order-invoice-modal" data-invoice-modal hidden aria-hidden="true">\n
+    <div class="order-invoice-backdrop" data-invoice-close></div>\n
+    <section class="order-invoice-dialog" role="dialog" aria-modal="true" aria-labelledby="order-invoice-title">\n
+        <header class="order-invoice-header"><div><span class="order-invoice-kicker">YZA AUTOMOTIVE · PAYMENT DOCUMENT</span><h2 id="order-invoice-title">Invoice Pembayaran</h2><p>Ringkasan transaksi resmi pesanan kendaraan Anda.</p></div><button type="button" class="order-invoice-close" data-invoice-close aria-label="Tutup invoice">&times;</button></header>\n
+        <div class="order-invoice-body" data-invoice-body><div class="order-invoice-loading"><span></span><strong>Menyiapkan invoice...</strong><small>Data pembayaran sedang dimuat dengan aman.</small></div></div>\n
+        <footer class="order-invoice-footer"><span>Dokumen digital YZA Automotive</span><button type="button" class="order-invoice-footer-close" data-invoice-close>Tutup</button></footer>\n
+    </section>\n
+</div>\n
+                </main>\n
+                                    <footer class="yza-home-footer member-shared-footer" aria-label="Footer YZA Automotive">\n
+    <div class="yza-home-footer-brand">\n
+        <span class="yza-footer-mark" aria-hidden="true">YZA</span>\n
+        <span><strong>YZA AUTOMOTIVE</strong><small>Premium Member Portal</small></span>\n
+    </div>\n
+    <nav aria-label="Footer links">\n
+        <a href="#">Kebijakan Privasi</a>\n
+        <a href="#">Syarat &amp; Ketentuan</a>\n
+        <a href="#">Bantuan</a>\n
+        <a href="#">Kontak Kami</a>\n
+    </nav>\n
+    <div class="yza-home-footer-meta">\n
+        <div class="yza-home-socials" aria-label="Sosial media"><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="YouTube">▶</a><a href="#" aria-label="TikTok">♪</a><a href="#" aria-label="Facebook">f</a></div>\n
+        <span>© 2026 YZA AUTOMOTIVE. All rights reserved.</span>\n
+    </div>\n
+</footer>\n
+                            </div>\n
+                        <div class="member-overlay" data-member-overlay></div>\n
+            <div class="member-live-toast-stack" data-member-live-toast-stack aria-live="polite" aria-atomic="false"></div>\n
+        </div>\n
+        <link rel="stylesheet" href="http://127.0.0.1:8000/assets/css/notification-panel.css?v=1794068203">\n
+<section id="yza-notification-panel" class="yza-notification-panel yza-notification-panel--member"\n
+         data-yza-notification-panel data-sync-url="http://127.0.0.1:8000/notifikasi/sync" hidden aria-label="Notifikasi" tabindex="-1">\n
+    <header class="ynp-header"><div><small>YZA AUTOMOTIVE</small><h2>Notifikasi</h2></div><span class="ynp-count" data-panel-count>0 baru</span></header>\n
+    <div class="ynp-filters" role="group" aria-label="Filter notifikasi">\n
+        <button type="button" class="is-active" data-panel-filter="all" aria-pressed="true"><span aria-hidden="true">☷</span> Semua <span data-panel-total></span></button>\n
+        <button type="button" data-panel-filter="unread" aria-pressed="false"><span aria-hidden="true">✦</span> Belum dibaca</button>\n
+        <button type="button" disabled title="Kategori Penting belum tersedia"><span aria-hidden="true">★</span> Penting</button>\n
+    </div>\n
+    <div class="ynp-list" data-panel-list aria-live="polite"></div>\n
+    <footer class="ynp-footer"><a href="http://127.0.0.1:8000/notifikasi">Lihat semua notifikasi <span aria-hidden="true">→</span></a></footer>\n
+    <script type="application/json" data-panel-initial>{"notifications":[],"unread_count":0}</script>\n
+</section>\n
+<script src="http://127.0.0.1:8000/assets/js/notification-panel.js?v=1794068112"></script>\n
+    <link rel="stylesheet" href="http://127.0.0.1:8000/assets/css/notification-toasts.css?v=1794064329">\n
+        <div class="yza-toast-stack" data-yza-toast-stack data-account="3"\n
+             data-welcome="false" data-member="true"\n
+             data-title="Selamat Datang Kembali" data-message="Nikmati layanan premium YZA Automotive" aria-live="polite" aria-relevant="additions"></div>\n
+        <script src="http://127.0.0.1:8000/assets/js/notification-toasts.js?v=1794068117"></script>\n
+        <script src="http://127.0.0.1:8000/js/app.js" defer></script>\n
+        <script>\n
+    (() => {\n
+        const shell = document.querySelector('[data-member-shell]');\n
+        if (!shell) return;\n
+        const groups = [...shell.querySelectorAll('[data-member-nav-group]')];\n
+        groups.forEach(group => group.querySelector('.member-nav-button')?.addEventListener('click', () => {\n
+            const open = group.classList.contains('is-open');\n
+            groups.forEach(item => { item.classList.remove('is-open'); item.querySelector('.member-nav-button')?.setAttribute('aria-expanded', 'false'); const sub = item.querySelector('.member-subnav'); if (sub) sub.hidden = true; });\n
+            if (!open) { group.classList.add('is-open'); group.querySelector('.member-nav-button')?.setAttribute('aria-expanded', 'true'); const sub = group.querySelector('.member-subnav'); if (sub) sub.hidden = false; }\n
+        }));\n
+        const dropdowns = [...shell.querySelectorAll('.member-horizontal-menu')];\n
+        dropdowns.forEach(menu => menu.addEventListener('toggle', () => {\n
+            if (!menu.open) return;\n
+            dropdowns.forEach(other => { if (other !== menu) other.removeAttribute('open'); });\n
+        }));\n
+        shell.addEventListener('click', event => {\n
+            if (event.target.closest('.member-horizontal-menu')) return;\n
+            dropdowns.forEach(menu => menu.removeAttribute('open'));\n
+        });\n
+        const notificationToggle = shell.querySelector('[data-member-notification-toggle]'); const notificationMenu = shell.querySelector('[data-member-notification-menu]');\n
+        const orderLiveState = shell.querySelector('[data-order-live-state]');\n
+        const notificationCount = shell.querySelector('[data-member-notification-count]'); const notificationUnreadLabel = shell.querySelector('[data-member-notification-unread-label]'); const notificationList = shell.querySelector('[data-member-notification-list]');\n
+        const syncUrl = notificationToggle?.dataset.memberNotificationSyncUrl; let latestNotificationId = Number(notificationToggle?.dataset.memberNotificationLatest || 0); let pollTimer = null; let pollInFlight = false; let pollDelay = 5000; let initialized = false;\n
+        const readableDate = value => { if (!value) return ''; const date = new Date(value); return Number.isNaN(date.getTime()) ? '' : date.toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' }); };\n
+        const setNotificationCount = count => { const value = Number(count) || 0; if (notificationCount) { notificationCount.textContent = value > 99 ? '99+' : String(value); notificationCount.hidden = value < 1; } if (notificationUnreadLabel) notificationUnreadLabel.textContent = `${value} belum dibaca`; };\n
+        const addNotificationItem = notification => { if (!notificationList || notificationList.querySelector(`[data-notification-id="${notification.id}"]`)) return; notificationList.querySelector('.member-notification-empty')?.remove(); const item = document.createElement('a'); item.className = `member-notification-item${notification.is_read ? '' : ' is-unread'}`; item.dataset.notificationId = notification.id; item.href = notification.open_url || notification.url || '#'; const icon = document.createElement('span'); icon.setAttribute('aria-hidden', 'true'); icon.textContent = notification.is_read ? '✓' : '!'; const content = document.createElement('div'); const title = document.createElement('strong'); title.textContent = notification.title; const message = document.createElement('small'); message.textContent = notification.message.length > 72 ? `${notification.message.slice(0, 69)}...` : notification.message; const time = document.createElement('time'); time.textContent = readableDate(notification.created_at); content.append(title, message, time); item.append(icon, content); notificationList.prepend(item); };\n
+        const showNotificationToast = notification => window.YzaToast?.show(notification);\n
+        const syncMemberOrderState = async () => { if (!orderLiveState || document.hidden) return; try { const response = await fetch(window.location.href, { cache: 'no-store', headers: { Accept: 'text/html', 'X-Requested-With': 'XMLHttpRequest' }, credentials: 'same-origin' }); if (!response.ok) return; const html = await response.text(); const nextDocument = new DOMParser().parseFromString(html, 'text/html'); const nextState = nextDocument.querySelector('[data-order-live-state]')?.dataset.orderLiveState; if (nextState && nextState !== orderLiveState.dataset.orderLiveState) window['location']['reload'](); } catch (_) {} };\n
+        const syncMemberNotifications = async () => { if (!syncUrl || pollInFlight || document.hidden) return; pollInFlight = true; try { const url = new URL(syncUrl, window.location.origin); url.searchParams.set('after_id', String(latestNotificationId)); const response = await fetch(url, { headers: { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest' }, credentials: 'same-origin' }); if (!response.ok) throw new Error(`Notification sync failed: ${response.status}`); const data = await response.json(); window.YzaNotificationPanel?.sync(data); setNotificationCount(data.unread_count); const notifications = Array.isArray(data.notifications) ? data.notifications : []; const incoming = notifications.filter(item => Number(item.id) > latestNotificationId).sort((a, b) => Number(a.id) - Number(b.id)); if (initialized) incoming.forEach(notification => { addNotificationItem(notification); showNotificationToast(notification); }); else notifications.forEach(addNotificationItem); latestNotificationId = Math.max(latestNotificationId, Number(data.latest_id) || 0, ...notifications.map(item => Number(item.id) || 0)); initialized = true; pollDelay = 5000; } catch (_) { pollDelay = Math.min(pollDelay + 5000, 15000); } finally { pollInFlight = false; window.clearTimeout(pollTimer); if (!document.hidden && syncUrl) pollTimer = window.setTimeout(syncMemberNotifications, pollDelay); } };\n
+        if (orderLiveState) { const orderStateTimer = window.setInterval(syncMemberOrderState, 5000); document.addEventListener('visibilitychange', () => { if (!document.hidden) syncMemberOrderState(); }); window.addEventListener('beforeunload', () => window.clearInterval(orderStateTimer), { once: true }); }\n
+        document.addEventListener('visibilitychange', () => { if (!document.hidden) { pollDelay = 5000; syncMemberNotifications(); } else window.clearTimeout(pollTimer); }); syncMemberNotifications();\n
+        const sidebar = shell.querySelector('[data-member-mobile-drawer]'); const overlay = shell.querySelector('[data-member-overlay]'); const mobile = shell.querySelector('[data-member-mobile-toggle]'); const mobileClose = shell.querySelector('[data-member-mobile-close]');\n
+        const closeDrawer = () => { if (sidebar?.contains(document.activeElement)) mobile?.focus(); sidebar?.classList.remove('is-open'); sidebar?.setAttribute('aria-hidden','true'); if (sidebar) sidebar.inert = true; overlay?.classList.remove('is-visible'); document.body.classList.remove('member-drawer-open'); mobile?.setAttribute('aria-expanded','false'); };\n
+        mobile?.addEventListener('click', () => { if (sidebar) sidebar.inert = false; sidebar?.setAttribute('aria-hidden','false'); sidebar?.classList.add('is-open'); overlay?.classList.add('is-visible'); document.body.classList.add('member-drawer-open'); mobile?.setAttribute('aria-expanded','true'); sidebar?.querySelector('[data-member-mobile-close]')?.focus(); }); mobileClose?.addEventListener('click', closeDrawer); overlay?.addEventListener('click', closeDrawer); sidebar?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeDrawer));\n
+        document.addEventListener('keydown', event => { if (event.key === 'Escape') { closeDrawer(); closeProfile(); } });\n
+        const closeNotification = () => { if (notificationMenu) notificationMenu.hidden = true; notificationToggle?.setAttribute('aria-expanded', 'false'); };\n
+        notificationToggle?.addEventListener('click', event => { event.stopPropagation(); const open = notificationMenu?.hidden ?? true; if (notificationMenu) notificationMenu.hidden = !open; notificationToggle.setAttribute('aria-expanded', open ? 'true' : 'false'); closeProfile(); });\n
+        const profileToggle = shell.querySelector('[data-member-profile-toggle]'); const profileMenu = shell.querySelector('[data-member-profile-menu]');\n
+        const closeProfile = () => { if (profileMenu) profileMenu.hidden = true; profileToggle?.setAttribute('aria-expanded', 'false'); };\n
+        profileToggle?.addEventListener('click', event => { event.stopPropagation(); const open = profileMenu?.hidden ?? true; if (profileMenu) profileMenu.hidden = !open; profileToggle.setAttribute('aria-expanded', open ? 'true' : 'false'); closeNotification(); });\n
+        document.addEventListener('click', event => { if (profileMenu && !profileMenu.contains(event.target) && !profileToggle?.contains(event.target)) closeProfile(); if (notificationMenu && !notificationMenu.contains(event.target) && !notificationToggle?.contains(event.target)) closeNotification(); });\n
+\n
+        const dismissToast = (toast) => { if (!toast || toast.classList.contains('is-closing')) return; toast.classList.add('is-closing'); window.setTimeout(() => toast.remove(), 280); };\n
+        shell.querySelectorAll('[data-member-toast]').forEach(toast => {\n
+            toast.querySelector('[data-member-toast-close]')?.addEventListener('click', () => dismissToast(toast));\n
+            window.setTimeout(() => dismissToast(toast), 4000);\n
+        });\n
+    })();\n
+    </script>\n
+            <script>\n
+(() => {\n
+    const modal = document.querySelector('[data-invoice-modal]');\n
+    if (modal && modal.parentElement !== document.body) document.body.appendChild(modal);\n
+    const body = modal?.querySelector('[data-invoice-body]');\n
+    const triggers = [...document.querySelectorAll('[data-invoice-url]')];\n
+    const close = () => { if (!modal) return; modal.hidden = true; modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('invoice-modal-open'); };\n
+    triggers.forEach(trigger => trigger.addEventListener('click', async () => {\n
+        if (!modal || !body) return;\n
+        modal.hidden = false; modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('invoice-modal-open');\n
+        body.innerHTML = '<div class="order-invoice-loading"><span></span><strong>Menyiapkan invoice...</strong><small>Data pembayaran sedang dimuat dengan aman.</small></div>';\n
+        try { const response = await fetch(trigger.dataset.invoiceUrl, { headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'text/html' } }); if (!response.ok) throw new Error('invoice'); body.innerHTML = await response.text(); } catch (error) { body.innerHTML = '<div class="order-invoice-error"><strong>Invoice belum dapat ditampilkan.</strong><span>Silakan coba lagi beberapa saat.</span></div>'; }\n
+    }));\n
+    modal?.querySelectorAll('[data-invoice-close]').forEach(button => button.addEventListener('click', close));\n
+    document.addEventListener('keydown', event => { if (event.key === 'Escape' && modal && !modal.hidden) close(); });\n
+})();\n
+(() => {\n
+    const actions = document.querySelector('[data-payment-actions]');\n
+    const panels = [...document.querySelectorAll('[data-payment-panel]')];\n
+    const showPanel = (name) => {\n
+        if (actions) actions.hidden = true;\n
+        panels.forEach(panel => { panel.hidden = panel.dataset.paymentPanel !== name; });\n
+    };\n
+    document.querySelectorAll('[data-payment-choice]').forEach(button => button.addEventListener('click', () => showPanel(button.dataset.paymentChoice)));\n
+    document.querySelectorAll('[data-payment-back]').forEach(button => button.addEventListener('click', () => {\n
+        panels.forEach(panel => { panel.hidden = true; });\n
+        if (actions) actions.hidden = false;\n
+    }));\n
+})();\n
+(() => {\n
+    const main = document.getElementById('order-main-vehicle-image');\n
+    const thumbs = [...document.querySelectorAll('.order-vehicle-thumb')];\n
+    if (!main || !thumbs.length) return;\n
+    let activeIndex = Math.max(0, thumbs.findIndex(thumb => thumb.classList.contains('is-active')));\n
+    const showImage = (index) => {\n
+        activeIndex = (index + thumbs.length) % thumbs.length;\n
+        const thumb = thumbs[activeIndex];\n
+        main.src = thumb.dataset.orderImage;\n
+        main.alt = thumb.dataset.orderLabel + ' Toyota GR Supra';\n
+        thumbs.forEach(item => item.classList.toggle('is-active', item === thumb));\n
+        const counter = document.querySelector('[data-order-gallery-count]');\n
+        if (counter) counter.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${String(thumbs.length).padStart(2, '0')}`;\n
+    };\n
+    thumbs.forEach((thumb, index) => thumb.addEventListener('click', () => showImage(index)));\n
+    document.querySelector('.order-gallery-arrow-prev')?.addEventListener('click', () => showImage(activeIndex - 1));\n
+    document.querySelector('.order-gallery-arrow-next')?.addEventListener('click', () => showImage(activeIndex + 1));\n
+})();\n
+(() => {\n
+    const method = document.getElementById('offline-payment-method');\n
+    const proof = document.querySelector('[data-offline-proof]');\n
+    const proofInput = document.getElementById('offline-payment-proof');\n
+    const note = document.querySelector('[data-offline-note]');\n
+    if (!method || !proof || !proofInput || !note) return;\n
+    const syncOfflineFields = () => {\n
+        const isTransfer = method.value === 'transfer';\n
+        proof.hidden = !isTransfer;\n
+        proofInput.required = isTransfer;\n
+        if (!isTransfer) proofInput.value = '';\n
+        note.textContent = isTransfer\n
+            ? 'Transfer diverifikasi setelah dana masuk rekening resmi YZA. Bukti transfer wajib diunggah.'\n
+            : 'Pembayaran tunai akan dikonfirmasi petugas setelah uang diterima di dealer.';\n
+    };\n
+    method.addEventListener('change', syncOfflineFields);\n
+    syncOfflineFields();\n
+})();\n
+</script>\n
+</body>\n
+</html>\n
+
+
+  To contain: Informasi Pembeli
+
+  at tests\Feature\MemberVehiclePurchaseFlowTest.php:51
+     47▕         $order = app(MemberVehiclePurchaseService::class)->create($customer, $car, ['nama_pembeli' => $customer->nama_lengkap, 'telepon_pembeli' => '08123456789', 'alamat_pembeli' => 'Alamat QA', 'warna_pilihan' => 'white']);
+     48▕ 
+     49▕         $this->actingAs($customer->user)->get(route('pelanggan.pesanan-mobil.show', $order))
+     50▕             ->assertOk()
+  ➜  51▕             ->assertSee('Informasi Pembeli')
+     52▕             ->assertSee('Ringkasan Pembayaran')
+     53▕             ->assertSee('Langkah Selanjutnya')
+     54▕             ->assertSee('Pearl White')
+     55▕             ->assertSee('order-vehicle-thumbs', false)
+
+
+  Tests:    1 failed, 594 passed (2826 assertions)
+  Duration: 123.13s
+

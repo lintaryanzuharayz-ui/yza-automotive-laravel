@@ -1,0 +1,95 @@
+{
+    "audit": "READ ONLY",
+    "code": "PREM-03",
+    "catalog_colors": 5,
+    "available_colors": 1,
+    "colors": [
+        {
+            "key": "guards red",
+            "name": "Guards Red",
+            "code": "guards-red",
+            "swatch": "#c91c26",
+            "image": "http:\/\/127.0.0.1:8000\/assets\/images\/vehicles\/premium\/porsche-911-gt3-rs\/guards-red\/front.png",
+            "catalog_color_ids": [
+                70
+            ],
+            "stock": 2,
+            "physical_units": 0,
+            "identified_units": 0,
+            "aggregate_stock": 2,
+            "unit_ids": [
+                252
+            ],
+            "available": true,
+            "can_preorder": false
+        },
+        {
+            "key": "racing yellow",
+            "name": "Racing Yellow",
+            "code": "racing-yellow",
+            "swatch": "#e4b51b",
+            "image": "http:\/\/127.0.0.1:8000\/assets\/images\/vehicles\/premium\/porsche-911-gt3-rs\/racing-yellow\/front.png",
+            "catalog_color_ids": [
+                71
+            ],
+            "stock": 0,
+            "physical_units": 0,
+            "identified_units": 0,
+            "aggregate_stock": 0,
+            "unit_ids": [],
+            "available": false,
+            "can_preorder": false
+        },
+        {
+            "key": "gt silver metallic",
+            "name": "GT Silver Metallic",
+            "code": "gt-silver-metallic",
+            "swatch": "#aeb3b8",
+            "image": "http:\/\/127.0.0.1:8000\/assets\/images\/vehicles\/premium\/porsche-911-gt3-rs\/gt-silver-metallic\/front.png",
+            "catalog_color_ids": [
+                72
+            ],
+            "stock": 0,
+            "physical_units": 0,
+            "identified_units": 0,
+            "aggregate_stock": 0,
+            "unit_ids": [],
+            "available": false,
+            "can_preorder": false
+        },
+        {
+            "key": "jet black metallic",
+            "name": "Jet Black Metallic",
+            "code": "jet-black-metallic",
+            "swatch": "#151618",
+            "image": "http:\/\/127.0.0.1:8000\/assets\/images\/vehicles\/premium\/porsche-911-gt3-rs\/jet-black-metallic\/front.png",
+            "catalog_color_ids": [
+                73
+            ],
+            "stock": 0,
+            "physical_units": 0,
+            "identified_units": 0,
+            "aggregate_stock": 0,
+            "unit_ids": [],
+            "available": false,
+            "can_preorder": false
+        },
+        {
+            "key": "arctic grey",
+            "name": "Arctic Grey",
+            "code": "arctic-grey",
+            "swatch": "#777d84",
+            "image": "http:\/\/127.0.0.1:8000\/assets\/images\/vehicles\/premium\/porsche-911-gt3-rs\/arctic-grey\/front.png",
+            "catalog_color_ids": [
+                74
+            ],
+            "stock": 0,
+            "physical_units": 0,
+            "identified_units": 0,
+            "aggregate_stock": 0,
+            "unit_ids": [],
+            "available": false,
+            "can_preorder": false
+        }
+    ]
+}

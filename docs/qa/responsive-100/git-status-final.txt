@@ -1,0 +1,152 @@
+ M app/Http/Controllers/Admin/LaporanServisController.php
+ M app/Http/Controllers/Admin/MemberVehiclePreorderController.php
+ M app/Http/Controllers/Admin/MemberVehiclePurchaseController.php
+ M app/Http/Controllers/Admin/MembershipController.php
+ M app/Http/Controllers/Admin/NotifikasiController.php
+ M app/Http/Controllers/Admin/PelangganController.php
+ M app/Http/Controllers/Admin/PengaturanController.php
+ M app/Http/Controllers/Admin/PetugasController.php
+ M app/Http/Controllers/Admin/PromoMemberController.php
+ M app/Http/Controllers/Admin/ServicePersonnelController.php
+ M app/Http/Controllers/Admin/ServiceScheduleController.php
+ M app/Http/Controllers/Admin/SparepartController.php
+ M app/Http/Controllers/FinancialAdjustmentController.php
+ M app/Http/Controllers/MembershipController.php
+ M app/Http/Controllers/MidtransController.php
+ M app/Http/Controllers/OperationsBookingController.php
+ M app/Http/Controllers/OperationsBookingCuciController.php
+ M app/Http/Controllers/OperationsPengajuanMobilController.php
+ M app/Http/Controllers/OperationsPenjualanMobilController.php
+ M app/Http/Controllers/OperationsServisController.php
+ M app/Http/Controllers/OperationsTestDriveController.php
+ M app/Http/Controllers/OperationsTradeInController.php
+ M app/Http/Controllers/OwnerDashboardController.php
+ M app/Http/Controllers/ServiceAssignmentController.php
+ M app/Http/Controllers/ServiceExecutionController.php
+ M app/Http/Middleware/AssignedWorkOrderMiddleware.php
+ M app/Http/Middleware/RoleModuleAccessMiddleware.php
+ M app/Http/Requests/StorePenjualanMobilRequest.php
+ M app/Services/BookingCuciService.php
+ M app/Services/GatewayPaymentGuard.php
+ M app/Services/MemberVehiclePurchaseService.php
+ M app/Services/MembershipPaymentService.php
+ M app/Services/MidtransClient.php
+ M app/Services/MidtransPaymentService.php
+ M app/Services/OwnerAnalyticsService.php
+ M app/Services/PaymentService.php
+ M app/Services/PenjualanMobilService.php
+ M app/Services/PenjualanSparepartService.php
+ M app/Services/PromoEngineService.php
+ M app/Services/ServiceAssignmentService.php
+ M app/Services/ServiceExecutionService.php
+ M app/Services/ServisService.php
+ M app/Services/ServisSparepartService.php
+ M app/Services/TradeInService.php
+ M app/Services/WorkOrderStageService.php
+ M public/assets/css/admin-portal.css
+ M resources/views/admin/financial-adjustments/index.blade.php
+ M resources/views/admin/memberships/index.blade.php
+ M resources/views/admin/mobil/index.blade.php
+ M resources/views/admin/notifications/index.blade.php
+ M resources/views/admin/pelanggan/index.blade.php
+ M resources/views/admin/pembayaran/index.blade.php
+ M resources/views/admin/pengaturan/index.blade.php
+ M resources/views/admin/pesanan-mobil/index.blade.php
+ M resources/views/admin/petugas/index.blade.php
+ M resources/views/admin/preorder/index.blade.php
+ M resources/views/admin/promo-member/index.blade.php
+ M resources/views/admin/reports/servis.blade.php
+ M resources/views/admin/servis/jadwal.blade.php
+ M resources/views/admin/servis/personel.blade.php
+ M resources/views/admin/sparepart/index.blade.php
+ M resources/views/auth/login.blade.php
+ M resources/views/auth/password.blade.php
+ M resources/views/auth/register.blade.php
+ M resources/views/components/admin-sidebar.blade.php
+ M resources/views/invoices/car-sale.blade.php
+ M resources/views/layouts/app.blade.php
+ M resources/views/mobil/show.blade.php
+ M resources/views/operations/booking-cuci/index.blade.php
+ M resources/views/operations/booking/index.blade.php
+ M resources/views/operations/pengajuan-mobil/index.blade.php
+ M resources/views/operations/penjualan-mobil/create.blade.php
+ M resources/views/operations/penjualan-mobil/index.blade.php
+ M resources/views/operations/test-drive/index.blade.php
+ M resources/views/operations/trade-in/index.blade.php
+ M resources/views/owner/dashboard.blade.php
+ M resources/views/owner/payment-report.blade.php
+ M resources/views/owner/sales-report.blade.php
+ M resources/views/pelanggan/kendaraan/_form.blade.php
+ M resources/views/pelanggan/membership/activation.blade.php
+ M resources/views/public/home.blade.php
+ M routes/web.php
+ M tests/Feature/MemberVehiclePurchaseFlowTest.php
+ M tests/Feature/MidtransSandboxStage11ATest.php
+ M tests/Feature/OwnerExecutiveDashboardStage4Test.php
+ M tests/Feature/ServicePaymentStage5DTest.php
+ M tests/Feature/ServisFinalizationStage5CTest.php
+ M tests/Feature/VehicleAggregateInventoryFlowTest.php
+?? app/Exceptions/
+?? app/Http/Controllers/Admin/AdminAuxiliaryController.php
+?? app/Http/Controllers/Admin/AdminWorkspaceController.php
+?? app/Services/InspectionIntegrityService.php
+?? app/Services/MidtransGatewayProcessor.php
+?? app/Services/OwnerOverviewService.php
+?? app/Services/VehiclePdiIntegrityService.php
+?? app/Services/WorkOrderAuthorizationService.php
+?? docs/qa/YZA_FULL_SYSTEM_AUDIT_2026-10-31.md
+?? docs/qa/YZA_FULL_SYSTEM_AUDIT_2026-10-31_EVIDENCE.md
+?? docs/qa/YZA_FULL_SYSTEM_AUDIT_2026-10-31_TEST_RESULTS.xml
+?? docs/qa/YZA_GLOBAL_RESPONSIVE_100_PERCENT_REPORT.md
+?? docs/qa/YZA_P0_STAGE1_AUTHORIZATION_FIX.md
+?? docs/qa/YZA_P0_STAGE1_BEFORE.xml
+?? docs/qa/YZA_P0_STAGE1_FOCUSED.xml
+?? docs/qa/YZA_P0_STAGE1_REGRESSION.xml
+?? docs/qa/YZA_P0_STAGE1_REGRESSION_INITIAL.xml
+?? docs/qa/YZA_P0_STAGE2_BEFORE.xml
+?? docs/qa/YZA_P0_STAGE2_FOCUSED.xml
+?? docs/qa/YZA_P0_STAGE2_FOCUSED_INITIAL.xml
+?? docs/qa/YZA_P0_STAGE2_PAYMENT_SECURITY_FIX.md
+?? docs/qa/YZA_P0_STAGE2_REGRESSION.xml
+?? docs/qa/YZA_P0_STAGE3_BEFORE.xml
+?? docs/qa/YZA_P0_STAGE3_CONCURRENCY.xml
+?? docs/qa/YZA_P0_STAGE3_FOCUSED.xml
+?? docs/qa/YZA_P0_STAGE3_FULL.xml
+?? docs/qa/YZA_P0_STAGE3_QC_PDI_HARDENING.md
+?? docs/qa/YZA_P0_STAGE4_BEFORE.xml
+?? docs/qa/YZA_P0_STAGE4_CONCURRENCY.xml
+?? docs/qa/YZA_P0_STAGE4_FOCUSED.xml
+?? docs/qa/YZA_P0_STAGE4_FULL.xml
+?? docs/qa/YZA_P0_STAGE4_PROMO_TRANSACTION_INTEGRITY.md
+?? docs/qa/YZA_P0_STAGE4_READONLY_AUDIT.json
+?? docs/qa/YZA_P0_STAGE4_READONLY_AUDIT.php
+?? docs/qa/YZA_P0_STAGE4_RESERVATION_FOCUSED.xml
+?? docs/qa/YZA_RESPONSIVE_FOCUSED_FINAL.xml
+?? docs/qa/YZA_RESPONSIVE_FULL.xml
+?? docs/qa/YZA_RESPONSIVE_FULL_FINAL.xml
+?? docs/qa/YZA_RESPONSIVE_RENDER.xml
+?? docs/qa/YZA_RESPONSIVE_RENDER_FINAL.xml
+?? docs/qa/responsive-100/
+?? public/assets/css/owner-executive.css
+?? public/assets/css/responsive-foundation.css
+?? public/assets/js/
+?? resources/views/admin/activity/
+?? resources/views/admin/audit-log/
+?? resources/views/admin/catalog/
+?? resources/views/admin/garage/
+?? resources/views/admin/roles/
+?? resources/views/admin/transactions/
+?? resources/views/components/owner-icon.blade.php
+?? resources/views/components/owner-shell.blade.php
+?? resources/views/components/responsive-foundation.blade.php
+?? tests/Feature/AdminWorkspaceNavigationTest.php
+?? tests/Feature/AuthorizationHardeningStage1Test.php
+?? tests/Feature/InspectionConcurrencyStage3Test.php
+?? tests/Feature/OwnerDashboardRedesignTest.php
+?? tests/Feature/PaymentConcurrencyStage2Test.php
+?? tests/Feature/PaymentSecurityStage2Test.php
+?? tests/Feature/PromoConcurrencyStage4Test.php
+?? tests/Feature/PromoTransactionIntegrityStage4Test.php
+?? tests/Feature/QcPdiHardeningStage3Test.php
+?? tests/Support/
+?? tests/Ui/

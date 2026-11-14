@@ -253,6 +253,516 @@
 @media(max-width:900px){.catalog-assistance{align-items:flex-start}.catalog-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:0}.catalog-footer-brand{padding-right:28px}.catalog-footer-links{min-height:170px;padding:0 24px}.catalog-footer-links:nth-child(3){border-top:1px solid rgba(255,255,255,.11);padding-top:28px}.catalog-footer-links:nth-child(4){border-top:1px solid rgba(255,255,255,.11);padding-top:28px}}
 @media(max-width:600px){.catalog-footer-wrap{width:auto;margin:0 13px}.catalog-assistance{display:block;padding:26px 22px}.catalog-assistance p{font-size:13px}.catalog-footer-cta{width:100%;margin-top:23px}.catalog-footer{padding:55px 0 25px}.catalog-footer-grid{grid-template-columns:1fr;gap:0}.catalog-footer-brand{padding:0 0 30px}.catalog-footer-links{min-height:0;padding:25px 0;border-left:0;border-top:1px solid rgba(255,255,255,.11)}.catalog-footer-links:nth-child(3),.catalog-footer-links:nth-child(4){padding-top:25px}.catalog-footer-logo{height:48px}.catalog-footer-logo img{height:48px}.catalog-footer-bottom{display:flex;flex-direction:column;gap:10px;margin-top:42px;line-height:1.5}}
 
+/* ═══════════════════════════════════════════════════════════════════════
+   PIXEL-ACCURATE REDESIGN — YZA SHOWROOM CATALOG (MATCH GAMBAR 2)
+   Target: Exact 4-column desktop layout, full card geometry, full price.
+   Viewport reference: 1885px (100% zoom baseline)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* 1. SECTION SURFACE & CANVAS */
+.catalog-inventory {
+    position: relative !important;
+    margin: 0 -28px !important;
+    padding: 72px 0 96px !important;
+    background: radial-gradient(circle at 82% 0%, rgba(229, 29, 42, 0.14), transparent 34%), #090a0c !important;
+    color: #ffffff !important;
+}
+
+/* 2. SECTION HEADING (MATCH GAMBAR 2) */
+.catalog-inventory .catalog-section-heading {
+    width: min(1640px, calc(100% - 64px)) !important;
+    max-width: 1640px !important;
+    margin: 0 auto 36px !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: space-between !important;
+    gap: 24px !important;
+}
+.catalog-inventory .catalog-section-heading > div > span {
+    display: block !important;
+    color: #ef233c !important;
+    font-size: 13.5px !important;
+    font-weight: 850 !important;
+    letter-spacing: 0.24em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 8px !important;
+}
+.catalog-inventory .catalog-section-heading h2 {
+    margin: 0 0 8px !important;
+    color: #ffffff !important;
+    font-size: clamp(34px, 2.6vw, 46px) !important;
+    font-weight: 850 !important;
+    letter-spacing: -0.03em !important;
+    line-height: 1.1 !important;
+}
+.catalog-inventory .catalog-section-heading p {
+    margin: 0 !important;
+    color: rgba(255, 255, 255, 0.68) !important;
+    font-size: 16.5px !important;
+    line-height: 1.5 !important;
+}
+.catalog-inventory .catalog-reset {
+    color: #ef233c !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    padding: 8px 16px !important;
+    border: 1px solid rgba(239, 35, 60, 0.4) !important;
+    border-radius: 999px !important;
+    transition: all 0.2s ease !important;
+}
+.catalog-inventory .catalog-reset:hover {
+    background: #ef233c !important;
+    color: #ffffff !important;
+}
+
+/* 3. FOUR-COLUMN GRID (MATCH GAMBAR 2) */
+.catalog-inventory .catalog-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 26px !important;
+    width: min(1640px, calc(100% - 64px)) !important;
+    max-width: 1640px !important;
+    margin: 0 auto !important;
+    align-items: stretch !important;
+}
+
+/* 4. CARD GEOMETRY & ELEVATION */
+.catalog-inventory .catalog-card {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    min-height: 575px !important;
+    background: #ffffff !important;
+    border-radius: 18px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.32) !important;
+    overflow: hidden !important;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease !important;
+}
+.catalog-inventory .catalog-card:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 24px 54px rgba(0, 0, 0, 0.45) !important;
+    border-color: rgba(239, 35, 60, 0.3) !important;
+}
+
+/* 5. CARD IMAGE AREA */
+.catalog-inventory .catalog-card-image {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: 242px !important;
+    min-height: 242px !important;
+    max-height: 242px !important;
+    background: #e9edf0 !important;
+    overflow: hidden !important;
+    flex: 0 0 242px !important;
+}
+.catalog-inventory .catalog-card-image img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    transition: transform 0.35s ease !important;
+}
+.catalog-inventory .catalog-card:hover .catalog-card-image img {
+    transform: scale(1.035) !important;
+}
+
+/* 6. BADGES ON PHOTO (ROW 1 + ROW 2 IN GAMBAR 2) */
+.catalog-inventory .catalog-card-badges {
+    position: absolute !important;
+    top: 14px !important;
+    left: 14px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    z-index: 2 !important;
+    max-width: calc(100% - 64px) !important;
+    pointer-events: none !important;
+}
+.catalog-inventory .catalog-badge-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    flex-wrap: nowrap !important;
+}
+.catalog-inventory .catalog-condition {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 5px 11px !important;
+    border-radius: 5px !important;
+    background: #ef233c !important;
+    color: #ffffff !important;
+    font-size: 11px !important;
+    font-weight: 850 !important;
+    letter-spacing: 0.04em !important;
+    line-height: 1 !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+}
+.catalog-inventory .catalog-sport-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 5px 11px !important;
+    border-radius: 5px !important;
+    background: #15171b !important;
+    color: #ffffff !important;
+    font-size: 11px !important;
+    font-weight: 850 !important;
+    letter-spacing: 0.04em !important;
+    line-height: 1 !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+}
+.catalog-inventory .vehicle-showcase-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 4px 9px !important;
+    border-radius: 5px !important;
+    background: #1a1d22 !important;
+    color: #dce1e8 !important;
+    font-size: 10px !important;
+    font-weight: 850 !important;
+    letter-spacing: 0.03em !important;
+    line-height: 1 !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+}
+.catalog-inventory .vehicle-stock-badge,
+.catalog-inventory .vehicle-limited-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 4px 9px !important;
+    border-radius: 5px !important;
+    font-size: 10px !important;
+    font-weight: 850 !important;
+    letter-spacing: 0.03em !important;
+    line-height: 1 !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+}
+.catalog-inventory .vehicle-stock-badge.is-available {
+    background: #17855c !important;
+    color: #ffffff !important;
+}
+.catalog-inventory .vehicle-stock-badge.is-low {
+    background: #d88c17 !important;
+    color: #ffffff !important;
+}
+.catalog-inventory .vehicle-stock-badge.is-last {
+    background: #ef1f2f !important;
+    color: #ffffff !important;
+}
+.catalog-inventory .vehicle-stock-badge.is-empty {
+    background: #4c5057 !important;
+    color: #e9edf2 !important;
+}
+.catalog-inventory .vehicle-limited-badge {
+    background: #d9b45a !important;
+    color: #17120a !important;
+}
+
+/* 7. FAVORITE BUTTON (TOP RIGHT) */
+.catalog-inventory .catalog-heart {
+    position: absolute !important;
+    top: 14px !important;
+    right: 14px !important;
+    z-index: 3 !important;
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 50% !important;
+    background: rgba(15, 17, 20, 0.75) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    color: #ffffff !important;
+    font-size: 20px !important;
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    font-family: inherit !important;
+}
+.catalog-inventory .catalog-heart:hover,
+.catalog-inventory .catalog-heart.is-favorited {
+    background: #ef233c !important;
+    border-color: #ef233c !important;
+    color: #ffffff !important;
+    transform: scale(1.08) !important;
+}
+
+/* 8. CARD BODY */
+.catalog-inventory .catalog-card-body {
+    padding: 22px 24px 24px !important;
+    background: #ffffff !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+}
+
+/* 9. BRAND ROW & SPLIT TECH BADGE */
+.catalog-inventory .catalog-brand-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    min-height: 42px !important;
+    margin-bottom: 12px !important;
+    overflow: visible !important;
+}
+.catalog-inventory .catalog-brand-logo {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex: 0 0 auto !important;
+    height: 38px !important;
+    max-width: 100px !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    overflow: visible !important;
+}
+.catalog-inventory .catalog-brand-logo img {
+    display: block !important;
+    max-height: 38px !important;
+    max-width: 96px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    object-position: left center !important;
+    filter: none !important;
+    transform: none !important;
+    background: transparent !important;
+    border: 0 !important;
+    padding: 0 !important;
+}
+.catalog-inventory .vehicle-tech-badge {
+    display: inline-flex !important;
+    align-items: stretch !important;
+    height: 32px !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+    background: #17191d !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12) !important;
+    white-space: nowrap !important;
+    max-width: fit-content !important;
+    flex: 0 0 auto !important;
+}
+.catalog-inventory .vehicle-tech-badge__label {
+    background: #e51d2a !important;
+    color: #ffffff !important;
+    padding: 0 12px !important;
+    font-size: 10.5px !important;
+    font-weight: 850 !important;
+    letter-spacing: 0.08em !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-transform: uppercase !important;
+    clip-path: none !important;
+    line-height: 1 !important;
+}
+.catalog-inventory .vehicle-tech-badge__value {
+    background: #17191d !important;
+    color: #ffffff !important;
+    padding: 0 12px !important;
+    font-size: 10.5px !important;
+    font-weight: 850 !important;
+    letter-spacing: 0.06em !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-transform: uppercase !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    line-height: 1 !important;
+}
+
+/* 10. VEHICLE NAME (H3) */
+.catalog-inventory .catalog-card-body h3 {
+    font-size: 23px !important;
+    font-weight: 850 !important;
+    color: #101113 !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.015em !important;
+    margin: 0 0 8px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    min-height: 56px !important;
+    height: auto !important;
+}
+.catalog-inventory .catalog-card-body > a {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+/* 11. METADATA */
+.catalog-inventory .catalog-meta {
+    font-size: 14.5px !important;
+    color: #8c949e !important;
+    margin: 0 0 16px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    min-height: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+}
+.catalog-inventory .catalog-meta i {
+    font-style: normal !important;
+    color: #c4c8ce !important;
+    margin: 0 4px !important;
+}
+
+/* 12. CARD FOOTER: PRICE & BIG CIRCULAR DETAIL BUTTON */
+.catalog-inventory .catalog-card-footer {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    margin-top: auto !important;
+    padding-top: 12px !important;
+    border-top: none !important;
+}
+.catalog-inventory .catalog-price {
+    color: #e51d2a !important;
+    font-size: 26px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+    letter-spacing: -0.02em !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    flex: 1 1 auto !important;
+}
+.catalog-inventory .catalog-detail-button {
+    width: 66px !important;
+    height: 66px !important;
+    min-width: 66px !important;
+    min-height: 66px !important;
+    flex: 0 0 66px !important;
+    border-radius: 50% !important;
+    background: #111315 !important;
+    color: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    transition: background 0.2s ease, transform 0.2s ease !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22) !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+.catalog-inventory .catalog-detail-button:hover {
+    background: #ef233c !important;
+    transform: scale(1.05) translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(239, 35, 60, 0.35) !important;
+}
+.catalog-inventory .catalog-detail-button span {
+    display: none !important;
+}
+.catalog-inventory .catalog-detail-button b {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #ffffff !important;
+    font-size: 26px !important;
+    font-weight: 400 !important;
+    background: transparent !important;
+    width: 100% !important;
+    height: 100% !important;
+    line-height: 1 !important;
+}
+
+/* 13. PAGINATION IN SHOWROOM VIEW */
+.catalog-inventory .catalog-pagination {
+    width: min(1640px, calc(100% - 64px)) !important;
+    max-width: 1640px !important;
+    margin: 48px auto 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 8px !important;
+}
+.catalog-inventory .catalog-pagination a {
+    display: grid !important;
+    place-items: center !important;
+    min-width: 44px !important;
+    height: 44px !important;
+    padding: 0 14px !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    border-radius: 999px !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+}
+.catalog-inventory .catalog-pagination a:hover,
+.catalog-inventory .catalog-pagination a.is-active {
+    border-color: #ef233c !important;
+    background: #ef233c !important;
+    color: #ffffff !important;
+}
+
+/* 14. RESPONSIVE BREAKPOINTS */
+@media (max-width: 1280px) and (min-width: 901px) {
+    .catalog-inventory .catalog-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 20px !important;
+    }
+    .catalog-inventory .catalog-card { min-height: 550px !important; }
+    .catalog-inventory .catalog-price { font-size: 23px !important; }
+    .catalog-inventory .catalog-detail-button { width: 58px !important; height: 58px !important; flex-basis: 58px !important; }
+    .catalog-inventory .catalog-detail-button b { font-size: 22px !important; }
+}
+@media (max-width: 900px) and (min-width: 561px) {
+    .catalog-inventory .catalog-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 16px !important;
+    }
+    .catalog-inventory .catalog-card-image { height: 210px !important; min-height: 210px !important; max-height: 210px !important; flex-basis: 210px !important; }
+    .catalog-inventory .catalog-card { min-height: 520px !important; }
+    .catalog-inventory .catalog-card-body { padding: 18px 20px 20px !important; }
+    .catalog-inventory .catalog-card-body h3 { font-size: 19px !important; min-height: 48px !important; }
+    .catalog-inventory .catalog-price { font-size: 21px !important; }
+    .catalog-inventory .catalog-detail-button { width: 52px !important; height: 52px !important; flex-basis: 52px !important; }
+    .catalog-inventory .catalog-detail-button b { font-size: 20px !important; }
+}
+@media (max-width: 560px) {
+    .catalog-inventory { padding: 48px 0 64px !important; margin: 0 -13px !important; }
+    .catalog-inventory .catalog-section-heading { width: calc(100% - 24px) !important; margin-bottom: 24px !important; }
+    .catalog-inventory .catalog-section-heading h2 { font-size: 28px !important; }
+    .catalog-inventory .catalog-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        width: calc(100% - 24px) !important;
+    }
+    .catalog-inventory .catalog-card-image { height: 220px !important; min-height: 220px !important; max-height: 220px !important; flex-basis: 220px !important; }
+    .catalog-inventory .catalog-card { min-height: 490px !important; }
+    .catalog-inventory .catalog-card-body { padding: 18px !important; }
+    .catalog-inventory .catalog-card-body h3 { font-size: 18px !important; min-height: auto !important; }
+    .catalog-inventory .catalog-price { font-size: 20px !important; }
+    .catalog-inventory .catalog-detail-button { width: 48px !important; height: 48px !important; flex-basis: 48px !important; }
+    .catalog-inventory .catalog-detail-button b { font-size: 18px !important; }
+}
+
 </style>
 @endpush
 
@@ -285,4 +795,8 @@
     });
 })();
 </script>
+@endpush
+
+@push('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/pages/public-catalog-cards.css') }}?v={{ filemtime(public_path('assets/css/pages/public-catalog-cards.css')) }}">
 @endpush

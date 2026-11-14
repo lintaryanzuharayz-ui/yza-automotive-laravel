@@ -9,17 +9,18 @@ class MidtransClient
  public function createSnapTransaction(array $payload):array
  {
   $response=Http::withBasicAuth($this->key(),'')->timeout((int)config('midtrans.timeout',15))->acceptJson()->post(config('midtrans.snap_url'),$payload);
-  if(!$response->successful()){ Log::error('Midtrans Sandbox create transaction failed',['status'=>$response->status(),'response'=>$response->json() ?: $response->body(),'order_id'=>$payload['transaction_details']['order_id']??null]); throw new RuntimeException('Midtrans Sandbox tidak dapat membuat pembayaran.'); }
+  if(!$response->successful()){ Log::error('Midtrans Sandbox create transaction failed',['status'=>$response->status(),'order_id'=>$payload['transaction_details']['order_id']??null]); throw new RuntimeException('Midtrans Sandbox tidak dapat membuat pembayaran.'); }
   $data=$response->json();if(empty($data['token'])||empty($data['redirect_url']))throw new RuntimeException('Respons Midtrans Sandbox tidak lengkap.');return $data;
  }
  public function getTransactionStatus(string $orderId):array
  {
   $response=Http::withBasicAuth($this->key(),'')->timeout((int)config('midtrans.timeout',15))->acceptJson()->get(rtrim(config('midtrans.api_url'),'/').'/'.urlencode($orderId).'/status');
-  if(!$response->successful()){ Log::error('Midtrans Sandbox status request failed',['status'=>$response->status(),'response'=>$response->json() ?: $response->body(),'order_id'=>$orderId]); throw new RuntimeException('Status Midtrans Sandbox tidak dapat diperiksa.'); }return $response->json();
+  if(!$response->successful()){ Log::error('Midtrans Sandbox status request failed',['status'=>$response->status(),'order_id'=>$orderId]); throw new \App\Exceptions\MidtransInquiryException('Status Midtrans Sandbox tidak dapat diperiksa.'); } $data=$response->json(); if(!is_array($data))throw new \App\Exceptions\MidtransInquiryException('Respons status Midtrans tidak valid.'); return $data;
  }
  public function verifySignature(array $data):bool
  {
-  foreach(['order_id','status_code','gross_amount','signature_key'] as $field)if(!array_key_exists($field,$data))return false;
+  foreach(['order_id','status_code','gross_amount','signature_key'] as $field)if(!array_key_exists($field,$data)||(!is_string($data[$field])&&!is_int($data[$field])))return false;
+  if(!preg_match('/^[a-f0-9]{128}$/D',(string)$data['signature_key']))return false;
   $expected=hash('sha512',(string)$data['order_id'].(string)$data['status_code'].(string)$data['gross_amount'].$this->key());
   return hash_equals($expected,(string)$data['signature_key']);
  }

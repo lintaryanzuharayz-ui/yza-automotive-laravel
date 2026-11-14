@@ -1,0 +1,146 @@
+[
+  {
+    "height": 568,
+    "horizontalOverflow": false,
+    "sidebarLinks": 36,
+    "taskMarkers": [
+      {
+        "color": "rgb(146, 93, 0)",
+        "icon": true
+      },
+      {
+        "color": "rgb(36, 88, 173)",
+        "icon": true
+      },
+      {
+        "color": "rgb(198, 30, 55)",
+        "icon": true
+      },
+      {
+        "color": "rgb(19, 125, 80)",
+        "icon": true
+      }
+    ],
+    "width": 320
+  },
+  {
+    "height": 844,
+    "horizontalOverflow": false,
+    "sidebarLinks": 36,
+    "taskMarkers": [
+      {
+        "color": "rgb(146, 93, 0)",
+        "icon": true
+      },
+      {
+        "color": "rgb(36, 88, 173)",
+        "icon": true
+      },
+      {
+        "color": "rgb(198, 30, 55)",
+        "icon": true
+      },
+      {
+        "color": "rgb(19, 125, 80)",
+        "icon": true
+      }
+    ],
+    "width": 390
+  },
+  {
+    "height": 900,
+    "horizontalOverflow": false,
+    "sidebarLinks": 36,
+    "taskMarkers": [
+      {
+        "color": "rgb(146, 93, 0)",
+        "icon": true
+      },
+      {
+        "color": "rgb(36, 88, 173)",
+        "icon": true
+      },
+      {
+        "color": "rgb(198, 30, 55)",
+        "icon": true
+      },
+      {
+        "color": "rgb(19, 125, 80)",
+        "icon": true
+      }
+    ],
+    "width": 768
+  },
+  {
+    "height": 768,
+    "horizontalOverflow": false,
+    "sidebarLinks": 36,
+    "taskMarkers": [
+      {
+        "color": "rgb(146, 93, 0)",
+        "icon": true
+      },
+      {
+        "color": "rgb(36, 88, 173)",
+        "icon": true
+      },
+      {
+        "color": "rgb(198, 30, 55)",
+        "icon": true
+      },
+      {
+        "color": "rgb(19, 125, 80)",
+        "icon": true
+      }
+    ],
+    "width": 1024
+  },
+  {
+    "height": 900,
+    "horizontalOverflow": false,
+    "sidebarLinks": 36,
+    "taskMarkers": [
+      {
+        "color": "rgb(146, 93, 0)",
+        "icon": true
+      },
+      {
+        "color": "rgb(36, 88, 173)",
+        "icon": true
+      },
+      {
+        "color": "rgb(198, 30, 55)",
+        "icon": true
+      },
+      {
+        "color": "rgb(19, 125, 80)",
+        "icon": true
+      }
+    ],
+    "width": 1440
+  },
+  {
+    "height": 1080,
+    "horizontalOverflow": false,
+    "sidebarLinks": 36,
+    "taskMarkers": [
+      {
+        "color": "rgb(146, 93, 0)",
+        "icon": true
+      },
+      {
+        "color": "rgb(36, 88, 173)",
+        "icon": true
+      },
+      {
+        "color": "rgb(198, 30, 55)",
+        "icon": true
+      },
+      {
+        "color": "rgb(19, 125, 80)",
+        "icon": true
+      }
+    ],
+    "width": 1920
+  }
+]

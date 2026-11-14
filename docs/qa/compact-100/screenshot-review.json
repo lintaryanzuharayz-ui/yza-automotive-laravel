@@ -1,0 +1,302 @@
+[
+  {
+    "file": "after-catalog-1024.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-catalog-1280.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-catalog-1366.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-catalog-1440.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-catalog-1920.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-catalog-320.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-catalog-375.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-catalog-390.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-catalog-430.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-catalog-768.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-detail-1024.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-detail-1280.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-detail-1366.jpg",
+    "reviewed": true,
+    "scope": "Only the visible state inspected; see report for final-source subset"
+  },
+  {
+    "file": "after-detail-1440.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-detail-1920.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-detail-320.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-detail-375.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-detail-390.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-detail-430.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-detail-768.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-landing-1024.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-landing-1280.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-landing-1366.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-landing-1440.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-landing-1920.jpg",
+    "reviewed": true,
+    "scope": "Only the visible state inspected; see report for final-source subset"
+  },
+  {
+    "file": "after-landing-320.jpg",
+    "reviewed": true,
+    "scope": "Only the visible state inspected; see report for final-source subset"
+  },
+  {
+    "file": "after-landing-375.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-landing-390.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-landing-430.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-landing-768.jpg",
+    "reviewed": true,
+    "scope": "Only the visible state inspected; see report for final-source subset"
+  },
+  {
+    "file": "after-login-1024.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-login-1280.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-login-1366.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-login-1440.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-login-1920.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-login-320.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-login-375.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-login-390.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-login-430.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-login-768.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-membership-1366.jpg",
+    "reviewed": true,
+    "scope": "Only the visible state inspected; see report for final-source subset"
+  },
+  {
+    "file": "after-public-1366.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-register-1024.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-register-1280.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-register-1366.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-register-1440.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-register-1920.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-register-320.jpg",
+    "reviewed": true,
+    "scope": "Only the visible state inspected; see report for final-source subset"
+  },
+  {
+    "file": "after-register-375.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-register-390.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-register-430.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "after-register-768.jpg",
+    "reviewed": false,
+    "scope": "NOT TESTED visually; rapid capture may contain prior viewport frame"
+  },
+  {
+    "file": "before-public-1366.jpg",
+    "reviewed": true,
+    "scope": "Only the visible state inspected; see report for final-source subset"
+  },
+  {
+    "file": "verified-catalog-section-1366.jpg",
+    "reviewed": true,
+    "scope": "Only the visible state inspected; see report for final-source subset"
+  },
+  {
+    "file": "verified-detail-320.jpg",
+    "reviewed": true,
+    "scope": "Only the visible state inspected; see report for final-source subset"
+  },
+  {
+    "file": "verified-landing-1366.jpg",
+    "reviewed": true,
+    "scope": "Only the visible state inspected; see report for final-source subset"
+  },
+  {
+    "file": "verified-login-1366.jpg",
+    "reviewed": true,
+    "scope": "Only the visible state inspected; see report for final-source subset"
+  },
+  {
+    "file": "verified-login-320.jpg",
+    "reviewed": true,
+    "scope": "Only the visible state inspected; see report for final-source subset"
+  },
+  {
+    "file": "verified-menu-320.jpg",
+    "reviewed": true,
+    "scope": "Only the visible state inspected; see report for final-source subset"
+  },
+  {
+    "file": "verified-register-1366.jpg",
+    "reviewed": true,
+    "scope": "Only the visible state inspected; see report for final-source subset"
+  }
+]

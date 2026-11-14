@@ -1,0 +1,452 @@
+[
+  {
+    "page": "landing",
+    "client": 305,
+    "height": 568,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 305,
+    "title": "TemukanMobil ImpianAnda",
+    "width": 320
+  },
+  {
+    "page": "landing",
+    "client": 360,
+    "height": 667,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 360,
+    "title": "TemukanMobil ImpianAnda",
+    "width": 375
+  },
+  {
+    "page": "landing",
+    "client": 375,
+    "height": 844,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 375,
+    "title": "TemukanMobil ImpianAnda",
+    "width": 390
+  },
+  {
+    "page": "landing",
+    "client": 415,
+    "height": 900,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 415,
+    "title": "TemukanMobil ImpianAnda",
+    "width": 430
+  },
+  {
+    "page": "landing",
+    "client": 753,
+    "height": 900,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 753,
+    "title": "TemukanMobil ImpianAnda",
+    "width": 768
+  },
+  {
+    "page": "landing",
+    "client": 1009,
+    "height": 768,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1009,
+    "title": "TemukanMobil ImpianAnda",
+    "width": 1024
+  },
+  {
+    "page": "landing",
+    "client": 1265,
+    "height": 720,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1265,
+    "title": "TemukanMobil ImpianAnda",
+    "width": 1280
+  },
+  {
+    "page": "landing",
+    "client": 1351,
+    "height": 768,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1351,
+    "title": "TemukanMobil ImpianAnda",
+    "width": 1366
+  },
+  {
+    "page": "landing",
+    "client": 1425,
+    "height": 900,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1425,
+    "title": "TemukanMobil ImpianAnda",
+    "width": 1440
+  },
+  {
+    "page": "landing",
+    "client": 1905,
+    "height": 1080,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1905,
+    "title": "TemukanMobil ImpianAnda",
+    "width": 1920
+  },
+  {
+    "page": "catalog",
+    "client": 305,
+    "height": 568,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 305,
+    "title": "Temukan Mobil Pilihan Terbaik YZA",
+    "width": 320
+  },
+  {
+    "page": "catalog",
+    "client": 360,
+    "height": 667,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 360,
+    "title": "Temukan Mobil Pilihan Terbaik YZA",
+    "width": 375
+  },
+  {
+    "page": "catalog",
+    "client": 375,
+    "height": 844,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 375,
+    "title": "Temukan Mobil Pilihan Terbaik YZA",
+    "width": 390
+  },
+  {
+    "page": "catalog",
+    "client": 415,
+    "height": 900,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 415,
+    "title": "Temukan Mobil Pilihan Terbaik YZA",
+    "width": 430
+  },
+  {
+    "page": "catalog",
+    "client": 753,
+    "height": 900,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 753,
+    "title": "Temukan Mobil Pilihan Terbaik YZA",
+    "width": 768
+  },
+  {
+    "page": "catalog",
+    "client": 1009,
+    "height": 768,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1009,
+    "title": "Temukan Mobil Pilihan Terbaik YZA",
+    "width": 1024
+  },
+  {
+    "page": "catalog",
+    "client": 1265,
+    "height": 720,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1265,
+    "title": "Temukan Mobil Pilihan Terbaik YZA",
+    "width": 1280
+  },
+  {
+    "page": "catalog",
+    "client": 1351,
+    "height": 768,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1351,
+    "title": "Temukan Mobil Pilihan Terbaik YZA",
+    "width": 1366
+  },
+  {
+    "page": "catalog",
+    "client": 1425,
+    "height": 900,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1425,
+    "title": "Temukan Mobil Pilihan Terbaik YZA",
+    "width": 1440
+  },
+  {
+    "page": "catalog",
+    "client": 1905,
+    "height": 1080,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1905,
+    "title": "Temukan Mobil Pilihan Terbaik YZA",
+    "width": 1920
+  },
+  {
+    "page": "detail",
+    "client": 305,
+    "height": 568,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 305,
+    "title": "BMW M4",
+    "width": 320
+  },
+  {
+    "page": "detail",
+    "client": 360,
+    "height": 667,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 360,
+    "title": "BMW M4",
+    "width": 375
+  },
+  {
+    "page": "detail",
+    "client": 375,
+    "height": 844,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 375,
+    "title": "BMW M4",
+    "width": 390
+  },
+  {
+    "page": "detail",
+    "client": 415,
+    "height": 900,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 415,
+    "title": "BMW M4",
+    "width": 430
+  },
+  {
+    "page": "detail",
+    "client": 753,
+    "height": 900,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 753,
+    "title": "BMW M4",
+    "width": 768
+  },
+  {
+    "page": "detail",
+    "client": 1009,
+    "height": 768,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1009,
+    "title": "BMW M4",
+    "width": 1024
+  },
+  {
+    "page": "detail",
+    "client": 1265,
+    "height": 720,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1265,
+    "title": "BMW M4",
+    "width": 1280
+  },
+  {
+    "page": "detail",
+    "client": 1351,
+    "height": 768,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1351,
+    "title": "BMW M4",
+    "width": 1366
+  },
+  {
+    "page": "detail",
+    "client": 1425,
+    "height": 900,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1425,
+    "title": "BMW M4",
+    "width": 1440
+  },
+  {
+    "page": "detail",
+    "client": 1905,
+    "height": 1080,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1905,
+    "title": "BMW M4",
+    "width": 1920
+  },
+  {
+    "page": "login",
+    "client": 305,
+    "height": 568,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 305,
+    "title": "YZA AUTOMOTIVE",
+    "width": 320
+  },
+  {
+    "page": "login",
+    "client": 360,
+    "height": 667,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 360,
+    "title": "YZA AUTOMOTIVE",
+    "width": 375
+  },
+  {
+    "page": "login",
+    "client": 375,
+    "height": 844,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 375,
+    "title": "YZA AUTOMOTIVE",
+    "width": 390
+  },
+  {
+    "page": "login",
+    "client": 415,
+    "height": 900,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 415,
+    "title": "YZA AUTOMOTIVE",
+    "width": 430
+  },
+  {
+    "page": "login",
+    "client": 753,
+    "height": 900,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 753,
+    "title": "YZA AUTOMOTIVE",
+    "width": 768
+  },
+  {
+    "page": "login",
+    "client": 1024,
+    "height": 768,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1024,
+    "title": "YZA AUTOMOTIVE",
+    "width": 1024
+  },
+  {
+    "page": "login",
+    "client": 1280,
+    "height": 720,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1280,
+    "title": "YZA AUTOMOTIVE",
+    "width": 1280
+  },
+  {
+    "page": "login",
+    "client": 1366,
+    "height": 768,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1366,
+    "title": "YZA AUTOMOTIVE",
+    "width": 1366
+  },
+  {
+    "page": "login",
+    "client": 1440,
+    "height": 900,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1440,
+    "title": "YZA AUTOMOTIVE",
+    "width": 1440
+  },
+  {
+    "page": "login",
+    "client": 1920,
+    "height": 1080,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1920,
+    "title": "YZA AUTOMOTIVE",
+    "width": 1920
+  },
+  {
+    "page": "register",
+    "client": 305,
+    "height": 568,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 305,
+    "title": "BERGABUNG MENJADIYZA MEMBER",
+    "width": 320
+  },
+  {
+    "page": "register",
+    "client": 360,
+    "height": 667,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 360,
+    "title": "BERGABUNG MENJADIYZA MEMBER",
+    "width": 375
+  },
+  {
+    "page": "register",
+    "client": 375,
+    "height": 844,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 375,
+    "title": "BERGABUNG MENJADIYZA MEMBER",
+    "width": 390
+  },
+  {
+    "page": "register",
+    "client": 415,
+    "height": 900,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 415,
+    "title": "BERGABUNG MENJADIYZA MEMBER",
+    "width": 430
+  },
+  {
+    "page": "register",
+    "client": 753,
+    "height": 900,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 753,
+    "title": "BERGABUNG MENJADIYZA MEMBER",
+    "width": 768
+  },
+  {
+    "page": "register",
+    "client": 1024,
+    "height": 768,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1024,
+    "title": "BERGABUNG MENJADIYZA MEMBER",
+    "width": 1024
+  },
+  {
+    "page": "register",
+    "client": 1280,
+    "height": 720,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1280,
+    "title": "BERGABUNG MENJADIYZA MEMBER",
+    "width": 1280
+  },
+  {
+    "page": "register",
+    "client": 1366,
+    "height": 768,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1366,
+    "title": "BERGABUNG MENJADIYZA MEMBER",
+    "width": 1366
+  },
+  {
+    "page": "register",
+    "client": 1440,
+    "height": 900,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1440,
+    "title": "BERGABUNG MENJADIYZA MEMBER",
+    "width": 1440
+  },
+  {
+    "page": "register",
+    "client": 1920,
+    "height": 1080,
+    "origin": "http://127.0.0.1:8000",
+    "scroll": 1920,
+    "title": "BERGABUNG MENJADIYZA MEMBER",
+    "width": 1920
+  }
+]

@@ -1,0 +1,20 @@
+✔ panel shows four latest messages, keeps unread 3 separate from total 6, and ignores operational summaries (28.1585ms)
+✔ bell opens without an auto-close timer and can close again (5.0677ms)
+✔ unread filter changes items without changing global total (4.9439ms)
+✔ Escape and outside click close, and ArrowDown enters keyboard controls (3.0833ms)
+✔ message links retain server open URLs and payloads are rendered as text (3.3293ms)
+✔ unread, category dots and pending tasks use separate authoritative values (4.1213ms)
+✔ reading one of several messages retains the dot, and stale snapshots cannot restore old counts (1.3568ms)
+✔ polling has one timer, drains the server cursor and never repeats a toast (4.403ms)
+✔ visibility pauses polling and authentication loss stops further requests (2.5074ms)
+✔ account switch clears old account presentation and does not display the other account payload (1.8345ms)
+✔ mark-as-read applies server response without a page reload and broadcasts only invalidation (3.3756ms)
+✔ logout stops polling, clears notification presentation and rejects late state updates (1.9275ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 196.8815

@@ -1,0 +1,10 @@
+warning: in the working copy of 'public/assets/css/member-home.css', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'public/assets/css/member-navbar-final.css', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'public/assets/css/pages/landing-original-restore.css', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'public/assets/css/pages/register.css', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/auth/login.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/auth/register.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/mobil/index.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/owner/dashboard.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/pelanggan/katalog-mobil/index.blade.php', CRLF will be replaced by LF the next time Git touches it
+warning: in the working copy of 'resources/views/pelanggan/membership/activation.blade.php', CRLF will be replaced by LF the next time Git touches it

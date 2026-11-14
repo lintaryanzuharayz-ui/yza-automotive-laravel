@@ -15,24 +15,20 @@ class RoleMiddleware
             abort(403);
         }
 
+        $allowed = collect($roles)->flatMap(fn (string $role) => explode(',', $role))->map(fn (string $role) => strtolower(trim($role)))->values()->all();
+
         $userRole = $user->roleName();
+        $userKey = $user->roleKey();
 
-        $allowedRoles = [];
-        foreach ($roles as $r) {
-            foreach (explode(',', $r) as $subRole) {
-                $allowedRoles[] = strtolower(trim($subRole));
-            }
-        }
-
-        if (in_array($userRole, $allowedRoles, true)) {
+        if (in_array($userRole, $allowed, true) || in_array($userKey, $allowed, true)) {
             return $next($request);
         }
 
-        if (in_array('admin', $allowedRoles, true) && $user->isAdmin()) {
+        if (in_array('admin', $allowed, true) && $user->isAdmin()) {
             return $next($request);
         }
 
-        if (in_array('petugas', $allowedRoles, true) && $user->isStaff()) {
+        if (in_array('petugas', $allowed, true) && $user->isStaff()) {
             return $next($request);
         }
 

@@ -1,0 +1,35 @@
+PHPUnit 11.5.56 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.2.4
+Configuration: C:\xampp\htdocs\yza_automotive_laravel\phpunit.xml
+
+Time: 02:06.909, Memory: 74.00 MB
+
+There was 1 error:
+
+1) Tests\Feature\AdminOrderVehicleImageTest::test_unavailable_order_color_never_displays_a_different_car_or_color
+RuntimeException: Warna pilihan harus sesuai warna unit fisik yang dipilih.
+
+C:\xampp\htdocs\yza_automotive_laravel\app\Services\MemberVehiclePurchaseService.php:91
+C:\xampp\htdocs\yza_automotive_laravel\vendor\laravel\framework\src\Illuminate\Database\Concerns\ManagesTransactions.php:35
+C:\xampp\htdocs\yza_automotive_laravel\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php:491
+C:\xampp\htdocs\yza_automotive_laravel\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php:363
+C:\xampp\htdocs\yza_automotive_laravel\app\Services\MemberVehiclePurchaseService.php:77
+C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\AdminOrderVehicleImageTest.php:43
+
+--
+
+There was 1 failure:
+
+1) Tests\Feature\BookingTestDriveStage4BTest::test_booking_failure_leaves_mobile_and_booking_consistent
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'menunggu'
++'dikonfirmasi'
+
+C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\BookingTestDriveStage4BTest.php:33
+
+ERRORS!
+Tests: 191, Assertions: 1334, Errors: 1, Failures: 1.

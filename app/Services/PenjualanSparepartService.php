@@ -43,7 +43,7 @@ class PenjualanSparepartService
     }
 
     public function removeDetail(int $detailId): void { DB::transaction(function() use($detailId){$detail=DetailPenjualanSparepart::lockForUpdate()->findOrFail($detailId);$this->draft((int)$detail->id_penjualan_sparepart);$detail->delete();}); }
-    public function cancel(int $saleId): void { DB::transaction(function() use($saleId){$sale=$this->draft($saleId);$sale->forceFill(['status'=>'dibatalkan'])->save();Transaksi::whereKey($sale->id_transaksi)->where('status','draft')->update(['status'=>'dibatalkan']);}); }
+    public function cancel(int $saleId): void { DB::transaction(function() use($saleId){$sale=$this->draft($saleId);$sale->forceFill(['status'=>'dibatalkan'])->save();$tx=Transaksi::whereKey($sale->id_transaksi)->where('status','draft')->lockForUpdate()->first();if($tx){$tx->forceFill(['status'=>'dibatalkan'])->save();app(PromoEngineService::class)->releaseReservation($tx);}}); }
 
     public function finalize(int $saleId,int $petugasId,?callable $beforeCommit=null): Transaksi
     {
@@ -58,5 +58,5 @@ class PenjualanSparepartService
             $sale->forceFill(['status'=>'selesai'])->save(); return $tx->fresh();
         });
     }
- public function finalizeWithPromo(int $saleId,int $petugasId,?int $promoId=null):Transaksi{$tx=$this->finalize($saleId,$petugasId);if($promoId!==null)app(PromoEngineService::class)->applyToTransaction($tx,$promoId,'penjualan_sparepart');return$tx->fresh();}
+ public function finalizeWithPromo(int $saleId,int $petugasId,?int $promoId=null):Transaksi{return DB::transaction(function()use($saleId,$petugasId,$promoId){$tx=$this->finalize($saleId,$petugasId);if($promoId!==null)app(PromoEngineService::class)->applyToTransaction($tx,$promoId,'penjualan_sparepart');return$tx->fresh();});}
 }

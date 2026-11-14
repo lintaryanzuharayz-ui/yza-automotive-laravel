@@ -1,0 +1,6 @@
+{
+    "database": "yza_automotive_laravel",
+    "outbox_installed": false,
+    "availability_state_installed": false,
+    "inspection": "read-only schema queries; no migration or business writes"
+}

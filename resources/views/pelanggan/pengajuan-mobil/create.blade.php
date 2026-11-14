@@ -9,7 +9,7 @@
     @if($targetCar)<input type="hidden" name="target_mobil" value="{{ $targetCar->id_mobil }}">@endif
     @if($errors->any())<div class="alert alert-error">{{ $errors->first() }}</div>@endif
     <label class="form-label" for="id_kendaraan_pelanggan">Kendaraan lama</label>
-    <select class="form-control" id="id_kendaraan_pelanggan" name="id_kendaraan_pelanggan" required><option value="">Pilih kendaraan</option>@foreach($vehicles as $v)<option value="{{ $v->id_kendaraan_pelanggan }}">{{ $v->merk }} {{ $v->model }} Â· {{ $v->nomor_polisi }}</option>@endforeach</select>
+    <select class="form-control" id="id_kendaraan_pelanggan" name="id_kendaraan_pelanggan" required><option value="">Pilih kendaraan</option>@foreach($vehicles as $v)<option value="{{ $v->id_kendaraan_pelanggan }}" @selected((int) $selectedVehicleId === (int) $v->id_kendaraan_pelanggan)>{{ $v->merk }} {{ $v->model }} Â· {{ $v->nomor_polisi }}</option>@endforeach</select>
     <input class="form-control" name="harga_harapan" type="number" min="0" placeholder="Harga harapan" required>
     <textarea class="form-control" name="catatan" placeholder="Catatan"></textarea>
     <button class="button button-primary" type="submit">Kirim Pengajuan Trade-In</button>

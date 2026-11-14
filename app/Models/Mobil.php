@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasMany as HasManyRelation;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Model;
 
 class Mobil extends Model
@@ -14,7 +15,7 @@ class Mobil extends Model
 
     protected function casts(): array
     {
-        return ['tahun' => 'integer', 'kilometer' => 'integer', 'harga_beli' => 'decimal:2', 'harga_jual' => 'decimal:2', 'tanggal_masuk' => 'date', 'id_mobil' => 'integer'];
+        return ['tahun' => 'integer', 'kilometer' => 'integer', 'harga_beli' => 'decimal:2', 'harga_jual' => 'decimal:2', 'tanggal_masuk' => 'date', 'id_mobil' => 'integer', 'is_limited_edition' => 'boolean'];
     }
 
     public function getRouteKeyName(): string { return 'id_mobil'; }
@@ -25,4 +26,5 @@ class Mobil extends Model
     public function bookings(): HasManyRelation { return $this->hasMany(BookingMobil::class, 'id_mobil', 'id_mobil'); }
     public function testDrives(): HasManyRelation { return $this->hasMany(TestDrive::class, 'id_mobil', 'id_mobil'); }
     public function penjualan(): HasManyRelation { return $this->hasMany(PenjualanMobil::class, 'id_mobil', 'id_mobil'); }
+    public function inventory(): HasOne { return $this->hasOne(VehicleInventory::class, 'id_mobil', 'id_mobil'); }
 }

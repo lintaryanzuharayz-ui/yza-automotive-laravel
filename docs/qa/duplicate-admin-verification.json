@@ -1,0 +1,43 @@
+{
+    "database": "yza_automotive_laravel",
+    "method": "deactivated_history_preserved",
+    "retained": {
+        "id": 1,
+        "username": "admin506",
+        "status": "aktif",
+        "staff_status": "aktif",
+        "effective_role": "super_admin",
+        "login_eligible": true,
+        "all_attributes_preserved_at_retirement_commit": true,
+        "last_login": "2026-11-08T13:51:43+07:00"
+    },
+    "target": {
+        "id": 992,
+        "username": "superadmin506",
+        "status": "nonaktif",
+        "staff_id": 242,
+        "staff_status": "nonaktif",
+        "login_eligible": false,
+        "password_unchanged": true
+    },
+    "other_table_fingerprints_preserved_at_retirement_commit": true,
+    "later_snapshot_unchanged": false,
+    "later_different_tables": [
+        "users",
+        "vehicle_inventories",
+        "vehicle_inventory_histories"
+    ],
+    "preserved_table_count": 76,
+    "audit_log_existing_prefix_unchanged": {
+        "laravel.log": true
+    },
+    "session_cleanup": {
+        "driver": "file",
+        "revoked": 1,
+        "unreadable": 0
+    },
+    "encrypted_backup_verified": true,
+    "target_notifications_retained": 3,
+    "foreign_key_constraints_checked": 142,
+    "foreign_key_orphans": []
+}

@@ -1,0 +1,27 @@
+PHPUnit 11.5.56 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.2.4
+Configuration: C:\xampp\htdocs\yza_automotive_laravel\phpunit.xml
+
+..............................................F.................  64 / 64 (100%)
+
+Time: 00:20.885, Memory: 66.00 MB
+
+There was 1 failure:
+
+1) Tests\Feature\OrderSalesWorkflowRefinementTest::test_direct_sale_is_unpaid_and_duplicate_submission_is_rejected_for_aggregate_stock
+Session has unexpected errors: 
+
+{
+    "default": [
+        "SQLSTATE[40001]: Serialization failure: 1213 Deadlock found when trying to get lock; try restarting transaction (Connection: mysql, Host: 127.0.0.1, Port: 3306, Database: yza_automotive_laravel_test, SQL: insert into `penjualan_mobil` (`kode_penjualan`, `id_transaksi`, `id_pelanggan`, `id_mobil`, `id_petugas`, `id_booking`, `tanggal_penjualan`, `harga_mobil`, `diskon`, `dp`, `total_akhir`, `metode_pembelian`, `status`, `catatan`, `updated_at`, `created_at`) values (SALE-202610-FA7DC991, 16804, 1, 5116, 1, ?, 2026-10-19 10:00:00, 100000000.00, 0, 0, 100000000.00, tunai, proses, , 2026-10-19 10:00:00, 2026-10-19 10:00:00))"
+    ]
+}
+Failed asserting that true is false.
+
+C:\xampp\htdocs\yza_automotive_laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponseAssert.php:45
+C:\xampp\htdocs\yza_automotive_laravel\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:1695
+C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\OrderSalesWorkflowRefinementTest.php:128
+
+FAILURES!
+Tests: 64, Assertions: 420, Failures: 1.

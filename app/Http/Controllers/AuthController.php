@@ -18,14 +18,13 @@ class AuthController extends Controller
     {
     }
 
-    public function create(Request $request): \Illuminate\Http\Response
+    public function create(Request $request): \Illuminate\Http\Response|RedirectResponse
     {
         if (Auth::check()) {
             Auth::logout();
             $request->session()->invalidate();
+            $request->session()->regenerateToken();
         }
-
-        $request->session()->regenerateToken();
 
         return response()
             ->view('auth.login')
@@ -34,20 +33,20 @@ class AuthController extends Controller
             ->header('Expires', 'Sun, 02 Jan 1990 00:00:00 GMT');
     }
 
-    public function createPetugas(Request $request): \Illuminate\Http\Response
+    public function createPetugas(Request $request): \Illuminate\Http\Response|RedirectResponse
     {
         if (Auth::check()) {
             Auth::logout();
             $request->session()->invalidate();
+            $request->session()->regenerateToken();
         }
-
-        $request->session()->regenerateToken();
 
         return response()
             ->view('auth.login-petugas')
             ->header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate')
             ->header('Pragma', 'no-cache')
             ->header('Expires', 'Sun, 02 Jan 1990 00:00:00 GMT');
+    }
     }
 
     public function store(Request $request, MemberAccessService $access): RedirectResponse
@@ -208,7 +207,11 @@ class AuthController extends Controller
     {
         return match ($role) {
             'admin', 'super_admin' => 'admin.dashboard',
-            'pelanggan' => 'pelanggan.dashboard',
+            'admin', 'super_admin' => 'admin.dashboard',
+            'sales' => 'sales.dashboard',
+            'owner' => 'owner.dashboard',
+            'petugas' => 'petugas.dashboard',
+            'pelanggan' => 'pelanggan.member',
             default => 'petugas.dashboard',
         };
     }

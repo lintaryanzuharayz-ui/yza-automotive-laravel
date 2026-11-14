@@ -12,6 +12,9 @@ class PembelianMobilBekasService
     {
         return DB::transaction(function() use($pengajuanId,$inspectionId,$petugasId,$note) {
             $p=PengajuanMobil::lockForUpdate()->findOrFail($pengajuanId); $i=InspeksiMobil::lockForUpdate()->where('id_inspeksi',$inspectionId)->where('id_pengajuan',$pengajuanId)->first();
+            $customer=\App\Models\Pelanggan::lockForUpdate()->findOrFail($p->id_pelanggan);
+            if($customer->status!=='aktif') throw new RuntimeException('Pelanggan tidak aktif.');
+            app(ActiveMemberCustomerService::class)->assertEligibleLocked($customer);
             if($p->status!=='disetujui'||!$i||$i->harga_penawaran===null||(float)$i->harga_penawaran<0) throw new RuntimeException('Pengajuan belum disetujui atau penawaran tidak valid.');
             if(PembelianMobilBekas::where('id_pengajuan',$pengajuanId)->where('status','<>','dibatalkan')->exists()) throw new RuntimeException('Pembelian untuk pengajuan ini sudah ada.');
             $tx=new Transaksi(); $tx->forceFill(['kode_transaksi'=>$this->code('TRX','kode_transaksi','transaksi'),'id_pelanggan'=>$p->id_pelanggan,'id_petugas'=>$petugasId,'jenis_transaksi'=>'pembelian_mobil','tanggal'=>now(),'subtotal'=>$i->harga_penawaran,'diskon'=>0,'total'=>$i->harga_penawaran,'status'=>'belum_bayar','catatan'=>$note])->save();

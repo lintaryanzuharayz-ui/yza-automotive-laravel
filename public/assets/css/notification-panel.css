@@ -1,0 +1,59 @@
+.yza-notification-panel{--ynp-bg:#fff;--ynp-text:#172033;--ynp-muted:#718096;--ynp-item:#f6f8fb;--ynp-border:#e8edf3;--ynp-hover:#fff4f5;position:fixed;top:var(--ynp-top,80px);right:16px;z-index:1200;box-sizing:border-box;width:380px;max-width:calc(100% - 24px);max-height:min(480px,calc(100dvh - var(--ynp-top,80px) - 12px));display:flex;flex-direction:column;border:1px solid var(--ynp-border);border-radius:18px;background:var(--ynp-bg);color:var(--ynp-text);box-shadow:0 18px 52px #11182726;font-family:Arial,Helvetica,sans-serif;overflow:hidden;isolation:isolate;animation:ynp-open .2s ease-out both}
+.yza-notification-panel[hidden]{display:none}
+.member-menu-label{position:relative;display:inline-block;padding-right:12px}
+.yza-menu-unread{position:absolute;right:0;top:.35em;display:inline-block;width:7px;height:7px;border-radius:50%;background:#f3193c;box-shadow:0 0 0 2px #f3193c18;pointer-events:none}
+.yza-menu-unread[hidden]{display:inline-block!important;visibility:hidden}
+.admin-nav-label-text:has(.yza-menu-unread){position:relative;padding-right:12px}
+.admin-nav-label-text .yza-menu-unread{top:.55em}
+.admin-nav-badge[hidden]{display:none!important}
+[data-notification-unread-badge][hidden],.notification-mark-all-form[hidden]{display:none!important}
+[data-member-notification-count][hidden],[data-admin-notification-count][hidden],[data-mc-notification-count][hidden]{display:none!important}
+.admin-shell [data-admin-notification-link] svg{color:#52617b;stroke:currentColor}
+[data-admin-notification-link]:focus-visible,[data-member-notification-toggle]:focus-visible{outline:2px solid #ed1533;outline-offset:3px}
+.yza-notification-panel--member{--ynp-bg:#0b0b0d;--ynp-text:#f7f7f8;--ynp-muted:#a8a8b0;--ynp-item:#151517;--ynp-border:#6e1823;--ynp-hover:#251417;background:linear-gradient(145deg,#1b0d11 0%,#09090b 32%,#0d0d0f 100%);box-shadow:0 0 0 1px #ff153322,0 12px 42px #0009,0 4px 18px #ed153320}
+.yza-notification-panel--member::before{content:"";position:absolute;pointer-events:none;z-index:-1;top:-1px;right:40px;width:130px;height:65px;transform:skewX(-47deg);background:linear-gradient(160deg,#ed002d65,transparent 72%);border-top:2px solid #ff123b;box-shadow:0 -5px 14px #ff143630}
+.yza-notification-panel--member::after{content:"";position:absolute;pointer-events:none;bottom:0;left:20px;right:20px;height:1px;background:linear-gradient(90deg,transparent,#ff123b,transparent);box-shadow:0 0 14px 2px #ff123b50}
+.ynp-header{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:16px 18px 10px;flex:none}
+.ynp-header small{display:block;font-size:8px;font-weight:800;letter-spacing:2.5px;line-height:1.4;color:var(--ynp-text)}
+.ynp-header h2{margin:7px 0 0;font-size:21px;line-height:1.15;font-weight:750;letter-spacing:-.6px;color:inherit}
+.ynp-count{flex:none;margin-bottom:2px;padding:4px 9px;border:1px solid #ed153339;border-radius:999px;color:#db1530;background:#fff0f2;font-size:11px;font-weight:700;white-space:nowrap}
+.yza-notification-panel--member .ynp-count{color:#fff;background:linear-gradient(#a00018,#52000c);border-color:#eb173c;box-shadow:0 0 12px #ed153333}
+.ynp-filters{display:flex;gap:7px;padding:0 18px 13px;flex:none}
+.ynp-filters button{display:flex;align-items:center;justify-content:center;gap:5px;min-width:0;min-height:32px;padding:6px 11px;border:1px solid var(--ynp-border);border-radius:999px;color:var(--ynp-text);background:var(--ynp-item);font:700 11px Arial,Helvetica,sans-serif;cursor:pointer;white-space:nowrap;transition:background .17s,border-color .17s,color .17s}
+.ynp-filters button.is-active{color:#fff;background:linear-gradient(120deg,#ff132e,#e00020);border-color:#ff203b;box-shadow:0 3px 12px #ed15332b}
+.ynp-filters button:hover:not(:disabled):not(.is-active){border-color:#ed15336b;background:var(--ynp-hover)}
+.ynp-filters button:disabled{cursor:default;opacity:.55}
+.ynp-list{height:324px;box-sizing:border-box;min-height:0;flex:1 1 auto;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#b1b8c466 transparent;padding:0 12px 4px;display:flex;flex-direction:column;gap:4px}
+.ynp-item{position:relative;display:grid;grid-template-columns:32px minmax(0,1fr) 12px;align-items:center;gap:10px;flex:none;min-height:68px;box-sizing:border-box;padding:6px 10px 6px 16px;border:1px solid transparent;border-radius:14px;color:var(--ynp-text);background:var(--ynp-item);text-decoration:none;transition:background .18s,transform .18s,border-color .18s,box-shadow .18s}
+.ynp-item.is-unread{background:var(--ynp-hover)}
+.ynp-item.is-unread::before{content:"";position:absolute;left:5px;top:50%;width:6px;height:6px;border-radius:50%;background:#ff173b;transform:translateY(-50%);box-shadow:0 0 7px #ff173b80}
+.ynp-item:hover{background:var(--ynp-hover);transform:translateY(-1px);border-color:#ed15334d;box-shadow:0 4px 12px #0000000d}
+.ynp-icon{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;font-size:20px;color:#94c5e5;background:radial-gradient(circle at 35% 25%,#ffffff22,#ffffff04),#24313a;transition:filter .18s,box-shadow .18s}
+.ynp-icon--alert{color:#ffb9c2;background:radial-gradient(circle at 30% 20%,#d91d38,#650313)}
+.ynp-icon--success{color:#8bffb9;background:radial-gradient(circle at 30% 20%,#158a49,#04391a)}
+.ynp-icon--progress{color:#ffdb69;background:radial-gradient(circle at 30% 20%,#7e6818,#322b0e)}
+.yza-notification-panel--backoffice .ynp-icon{background:#e8f1fa;color:#3778a7}
+.yza-notification-panel--backoffice .ynp-icon--alert{background:#ffe3e8;color:#dd1736}
+.yza-notification-panel--backoffice .ynp-icon--success{background:#def8e8;color:#15934a}
+.yza-notification-panel--backoffice .ynp-icon--progress{background:#fff1c9;color:#b7840b}
+.ynp-item:hover .ynp-icon{filter:brightness(1.12);box-shadow:0 0 12px #ed153315}
+.ynp-copy{min-width:0}.ynp-copy strong{display:block;font-size:12px;line-height:1.3;font-weight:700;overflow-wrap:anywhere;color:inherit}
+.ynp-copy p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;margin:3px 0 0;overflow:hidden;white-space:normal;overflow-wrap:anywhere;color:var(--ynp-muted);font-size:11px;line-height:1.3}
+.ynp-copy time{display:block;margin-top:3px;color:var(--ynp-muted);font-size:10px;line-height:1.2}
+.ynp-chevron{font-size:23px;font-weight:400;color:var(--ynp-muted);transition:transform .18s,color .18s}.ynp-item:hover .ynp-chevron{transform:translateX(3px);color:#ed1533}
+.ynp-footer{flex:none;margin:0 18px;border-top:1px solid var(--ynp-border)}
+.ynp-footer a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 3px;color:#f01639;font-size:12px;font-weight:700;text-decoration:none;transition:color .17s}
+.ynp-footer a:hover{color:#ff4b65}.ynp-footer a span{transition:transform .18s}.ynp-footer a:hover span{transform:translateX(3px)}
+.ynp-empty{margin:0;padding:30px 15px;text-align:center;color:var(--ynp-muted);font-size:12px;line-height:1.5}
+.yza-notification-panel :is(a,button):focus-visible{outline:2px solid #ff2949;outline-offset:-2px}
+.yza-notification-panel.is-closing{animation:ynp-close .16s ease-in both;pointer-events:none}
+[data-notification-panel-open] .yza-toast-stack{visibility:hidden;pointer-events:none}
+.member-notification-menu[data-member-notification-menu],.mc-notification-popover{display:none!important}
+@keyframes ynp-open{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ynp-close{to{opacity:0;transform:translateY(-6px)}}
+@media(max-width:480px){.yza-notification-panel{right:12px}.ynp-header{padding:16px 17px 12px}.ynp-filters{padding-inline:14px;gap:5px}.ynp-filters button{padding-inline:9px;font-size:10px}.ynp-item{gap:9px;padding-right:10px}.ynp-copy strong{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.yza-notification-panel,.yza-notification-panel.is-closing{animation:none}.yza-notification-panel *{transition:none!important}.ynp-item:hover{transform:none}}
+.ynp-list::-webkit-scrollbar{width:4px}
+.ynp-list::-webkit-scrollbar-track{background:transparent}
+.ynp-list::-webkit-scrollbar-thumb{border-radius:99px;background:#a6aeb94d}
+.ynp-list:hover::-webkit-scrollbar-thumb{background:#a6aeb980}

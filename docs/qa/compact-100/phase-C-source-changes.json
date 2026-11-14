@@ -1,0 +1,1346 @@
+[
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-section",
+    "media": null,
+    "prop": "padding",
+    "before": "86px 0 92px",
+    "after": "48px 0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-layout",
+    "media": null,
+    "prop": "gap",
+    "before": "clamp(42px,7vw,110px)",
+    "after": "32px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-layout",
+    "media": null,
+    "prop": "grid-template-columns",
+    "before": "minmax(0,1.1fr) minmax(380px,.9fr)",
+    "after": "minmax(0,1fr) minmax(0,1fr)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-copy h2",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(2.8rem,5.3vw,6rem)",
+    "after": "clamp(2rem,3.3vw,3rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-copy h2",
+    "media": null,
+    "prop": "margin",
+    "before": "12px 0 22px",
+    "after": "12px 0 18px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-copy h2",
+    "media": null,
+    "prop": "line-height",
+    "before": ".91",
+    "after": "1.08"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-price",
+    "media": null,
+    "prop": "margin",
+    "before": "30px 0 24px",
+    "after": "20px 0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-price",
+    "media": null,
+    "prop": "gap",
+    "before": "4px",
+    "after": "6px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-price strong",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(2rem,3vw,3rem)",
+    "after": "clamp(1.75rem,2.2vw,2.25rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card",
+    "media": null,
+    "prop": "padding",
+    "before": "28px 30px",
+    "after": "22px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card",
+    "media": null,
+    "prop": "min-height",
+    "before": "295px",
+    "after": "0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card img",
+    "media": null,
+    "prop": "width",
+    "before": "58px",
+    "after": "52px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card img",
+    "media": null,
+    "prop": "height",
+    "before": "48px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card-line",
+    "media": null,
+    "prop": "margin",
+    "before": "20px 0 23px",
+    "after": "16px 0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card strong",
+    "media": null,
+    "prop": "font-size",
+    "before": "27px",
+    "after": "clamp(1.5rem,2vw,1.875rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-layout",
+    "media": "(max-width:1000px)",
+    "prop": "gap",
+    "before": "46px",
+    "after": "32px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card",
+    "media": "(max-width:1000px)",
+    "prop": "min-height",
+    "before": "270px",
+    "after": "0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-section",
+    "media": "(max-width:800px)",
+    "prop": "padding",
+    "before": "64px 0 70px",
+    "after": "48px 0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-copy h2",
+    "media": "(max-width:800px)",
+    "prop": "font-size",
+    "before": "clamp(2.55rem,9vw,4.8rem)",
+    "after": "clamp(2rem,3.3vw,3rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card",
+    "media": "(max-width:800px)",
+    "prop": "width",
+    "before": "100%",
+    "after": "min(100%,480px)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-section",
+    "media": "(max-width:560px)",
+    "prop": "padding",
+    "before": "54px 0 58px",
+    "after": "48px 0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-copy h2",
+    "media": "(max-width:560px)",
+    "prop": "font-size",
+    "before": "clamp(2.35rem,12vw,3.7rem)",
+    "after": "clamp(2rem,3.3vw,3rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-copy h2",
+    "media": "(max-width:560px)",
+    "prop": "line-height",
+    "before": ".94",
+    "after": "1.08"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card",
+    "media": "(max-width:560px)",
+    "prop": "padding",
+    "before": "24px 20px",
+    "after": "22px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card",
+    "media": "(max-width:560px)",
+    "prop": "min-height",
+    "before": "265px",
+    "after": "0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card strong",
+    "media": "(max-width:560px)",
+    "prop": "font-size",
+    "before": "22px",
+    "after": "clamp(1.5rem,2vw,1.875rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-section",
+    "media": null,
+    "prop": "min-height",
+    "before": "calc(100svh - 92px)",
+    "after": "0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-section",
+    "media": null,
+    "prop": "padding",
+    "before": "clamp(54px,5.4vh,82px) 0 clamp(54px,6vh,92px)",
+    "after": "48px 0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-layout",
+    "media": null,
+    "prop": "min-height",
+    "before": "calc(100svh - 92px)",
+    "after": "0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-layout",
+    "media": null,
+    "prop": "gap",
+    "before": "clamp(42px,4vw,100px)",
+    "after": "32px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-layout",
+    "media": null,
+    "prop": "grid-template-columns",
+    "before": "minmax(0,.84fr) minmax(0,1.16fr)",
+    "after": "minmax(0,1fr) minmax(0,1fr)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-copy h2",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(3.7rem,4.7vw,5.65rem)",
+    "after": "clamp(2rem,3.3vw,3rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-copy h2",
+    "media": null,
+    "prop": "margin",
+    "before": "22px 0 27px",
+    "after": "12px 0 18px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-copy h2",
+    "media": null,
+    "prop": "line-height",
+    "before": ".94",
+    "after": "1.08"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-price",
+    "media": null,
+    "prop": "margin",
+    "before": "30px 0 29px",
+    "after": "20px 0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-price",
+    "media": null,
+    "prop": "gap",
+    "before": "7px",
+    "after": "6px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-price strong",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(3rem,3.6vw,4.1rem)",
+    "after": "clamp(1.75rem,2.2vw,2.25rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card",
+    "media": null,
+    "prop": "width",
+    "before": "min(100%,790px)",
+    "after": "min(100%,480px)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card",
+    "media": null,
+    "prop": "padding",
+    "before": "clamp(28px,2.1vw,42px)",
+    "after": "22px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card img",
+    "media": null,
+    "prop": "width",
+    "before": "72px",
+    "after": "52px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card img",
+    "media": null,
+    "prop": "height",
+    "before": "58px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card-line",
+    "media": null,
+    "prop": "margin",
+    "before": "24px 0 29px",
+    "after": "16px 0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card strong",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(2rem,2.7vw,3rem)",
+    "after": "clamp(1.5rem,2vw,1.875rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-layout",
+    "media": "(max-width:1200px) and (min-width:801px)",
+    "prop": "gap",
+    "before": "38px",
+    "after": "32px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-copy h2",
+    "media": "(max-width:1200px) and (min-width:801px)",
+    "prop": "font-size",
+    "before": "clamp(3.1rem,4.6vw,4.7rem)",
+    "after": "clamp(2rem,3.3vw,3rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-section",
+    "media": "(max-width:800px)",
+    "prop": "padding",
+    "before": "58px 0 68px",
+    "after": "48px 0"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-layout",
+    "media": "(max-width:800px)",
+    "prop": "gap",
+    "before": "36px",
+    "after": "32px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-copy h2",
+    "media": "(max-width:800px)",
+    "prop": "font-size",
+    "before": "clamp(2.8rem,11vw,5rem)",
+    "after": "clamp(2rem,3.3vw,3rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-copy h2",
+    "media": "(max-width:800px)",
+    "prop": "line-height",
+    "before": ".95",
+    "after": "1.08"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card",
+    "media": "(max-width:800px)",
+    "prop": "width",
+    "before": "100%",
+    "after": "min(100%,480px)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-copy h2",
+    "media": "(max-width:560px)",
+    "prop": "font-size",
+    "before": "clamp(2.45rem,12vw,3.7rem)",
+    "after": "clamp(2rem,3.3vw,3rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-price strong",
+    "media": "(max-width:560px)",
+    "prop": "font-size",
+    "before": "2.8rem",
+    "after": "clamp(1.75rem,2.2vw,2.25rem)"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card",
+    "media": "(max-width:560px)",
+    "prop": "padding",
+    "before": "22px 20px",
+    "after": "22px"
+  },
+  {
+    "file": "public/assets/css/showroom.css",
+    "selector": ".showroom .yza-member-card strong",
+    "media": "(max-width:560px)",
+    "prop": "font-size",
+    "before": "1.55rem",
+    "after": "clamp(1.5rem,2vw,1.875rem)"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-hero",
+    "media": null,
+    "prop": "min-height",
+    "before": "330px",
+    "after": "280px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-hero",
+    "media": null,
+    "prop": "padding",
+    "before": "38px clamp(26px,4vw,54px)",
+    "after": "24px clamp(16px,3vw,40px)"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-hero",
+    "media": null,
+    "prop": "gap",
+    "before": "36px",
+    "after": "24px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-hero",
+    "media": null,
+    "prop": "grid-template-columns",
+    "before": "minmax(0,1fr) minmax(330px,.52fr)",
+    "after": "minmax(0,1fr) minmax(260px,.48fr)"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-hero h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(42px,5vw,76px)",
+    "after": "clamp(1.875rem,3.25vw,3rem)"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-hero h1",
+    "media": null,
+    "prop": "line-height",
+    "before": ".98",
+    "after": "1.1"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-hero p",
+    "media": null,
+    "prop": "font-size",
+    "before": "16px",
+    "after": "15px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-member-card",
+    "media": null,
+    "prop": "min-height",
+    "before": "254px",
+    "after": "230px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-member-card",
+    "media": null,
+    "prop": "padding",
+    "before": "26px",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-stats",
+    "media": null,
+    "prop": "gap",
+    "before": "14px",
+    "after": "12px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-stats>a",
+    "media": null,
+    "prop": "padding",
+    "before": "20px 22px",
+    "after": "16px 18px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-stats strong",
+    "media": null,
+    "prop": "font-size",
+    "before": "38px",
+    "after": "30px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-section-head h2",
+    "media": null,
+    "prop": "font-size",
+    "before": "28px",
+    "after": "clamp(1.625rem,2.2vw,2rem)"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-service-card",
+    "media": null,
+    "prop": "min-height",
+    "before": "245px",
+    "after": "190px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-service-card",
+    "media": null,
+    "prop": "padding",
+    "before": "20px",
+    "after": "18px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-service-card h3",
+    "media": null,
+    "prop": "font-size",
+    "before": "21px",
+    "after": "22px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-hero",
+    "media": "(max-width:700px)",
+    "prop": "padding",
+    "before": "26px 20px",
+    "after": "24px clamp(16px,3vw,40px)"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-hero",
+    "media": "(max-width:700px)",
+    "prop": "gap",
+    "before": "22px",
+    "after": "24px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-hero h1",
+    "media": "(max-width:700px)",
+    "prop": "font-size",
+    "before": "42px",
+    "after": "clamp(1.875rem,3.25vw,3rem)"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-hero p",
+    "media": "(max-width:700px)",
+    "prop": "font-size",
+    "before": "14px",
+    "after": "15px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-member-card",
+    "media": "(max-width:700px)",
+    "prop": "min-height",
+    "before": "225px",
+    "after": "230px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-member-card",
+    "media": "(max-width:700px)",
+    "prop": "padding",
+    "before": "22px",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-section-head h2",
+    "media": "(max-width:700px)",
+    "prop": "font-size",
+    "before": "24px",
+    "after": "clamp(1.625rem,2.2vw,2rem)"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-hero",
+    "media": null,
+    "prop": "min-height",
+    "before": "350px",
+    "after": "280px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-hero",
+    "media": null,
+    "prop": "padding",
+    "before": "42px clamp(24px,9vw,150px)",
+    "after": "24px clamp(16px,3vw,40px)"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-hero h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(40px,4.2vw,68px)",
+    "after": "clamp(1.875rem,3.25vw,3rem)"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-stats",
+    "media": null,
+    "prop": "padding",
+    "before": "12px clamp(24px,9vw,150px) 0",
+    "after": "12px clamp(16px,3vw,40px) 0"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-stats",
+    "media": null,
+    "prop": "gap",
+    "before": "4px",
+    "after": "12px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-service-card",
+    "media": null,
+    "prop": "min-height",
+    "before": "210px",
+    "after": "190px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-hero",
+    "media": "(max-width:700px)",
+    "prop": "padding",
+    "before": "32px 20px",
+    "after": "24px clamp(16px,3vw,40px)"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-stats",
+    "media": "(max-width:700px)",
+    "prop": "gap",
+    "before": "8px",
+    "after": "12px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-garage-showcase .featured-carousel-viewport",
+    "media": null,
+    "prop": "height",
+    "before": "390px",
+    "after": "auto"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-garage-showcase .featured-media",
+    "media": null,
+    "prop": "height",
+    "before": "235px",
+    "after": "190px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-garage-showcase .featured-body",
+    "media": null,
+    "prop": "min-height",
+    "before": "136px",
+    "after": "128px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-garage-showcase .featured-body",
+    "media": null,
+    "prop": "padding",
+    "before": "18px",
+    "after": "16px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-garage-showcase .featured-carousel-viewport",
+    "media": "(max-width:650px)",
+    "prop": "height",
+    "before": "375px",
+    "after": "auto"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-garage-showcase .featured-media",
+    "media": "(max-width:650px)",
+    "prop": "height",
+    "before": "220px",
+    "after": "190px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home-garage-showcase .featured-media",
+    "media": "(max-width:650px)",
+    "prop": "flex-basis",
+    "before": "220px",
+    "after": "190px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home .yza-home-member-card",
+    "media": null,
+    "prop": "min-height",
+    "before": "280px",
+    "after": "230px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home .yza-home-member-card",
+    "media": null,
+    "prop": "padding",
+    "before": "28px 34px 24px",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home .yza-member-card-code",
+    "media": null,
+    "prop": "font-size",
+    "before": "31px",
+    "after": "clamp(1rem,1.6vw,1.375rem)"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home .yza-home-member-card",
+    "media": "(max-width:700px)",
+    "prop": "min-height",
+    "before": "240px",
+    "after": "230px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home .yza-home-member-card",
+    "media": "(max-width:700px)",
+    "prop": "padding",
+    "before": "22px",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/member-home.css",
+    "selector": ".yza-home .yza-member-card-code",
+    "media": "(max-width:700px)",
+    "prop": "font-size",
+    "before": "24px",
+    "after": "clamp(1rem,1.6vw,1.375rem)"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-hero",
+    "media": null,
+    "prop": "padding",
+    "before": "48px 54px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-hero",
+    "media": null,
+    "prop": "gap",
+    "before": "30px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-hero h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(42px,4.2vw,76px)",
+    "after": "clamp(1.875rem,3.25vw,3rem)"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-hero h1",
+    "media": null,
+    "prop": "line-height",
+    "before": ".98",
+    "after": "1.1"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-hero p",
+    "media": null,
+    "prop": "font-size",
+    "before": "18px",
+    "after": "15px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-id-card",
+    "media": null,
+    "prop": "min-height",
+    "before": "250px",
+    "after": "224px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-id-card",
+    "media": null,
+    "prop": "padding",
+    "before": "28px",
+    "after": "20px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-stats a",
+    "media": null,
+    "prop": "padding",
+    "before": "22px 24px",
+    "after": "16px 18px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-stats strong",
+    "media": null,
+    "prop": "font-size",
+    "before": "40px",
+    "after": "30px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-service-card",
+    "media": null,
+    "prop": "min-height",
+    "before": "230px",
+    "after": "192px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-service-card",
+    "media": null,
+    "prop": "padding",
+    "before": "22px",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-hero",
+    "media": "(max-width:1000px)",
+    "prop": "padding",
+    "before": "34px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-hero",
+    "media": "(max-width:700px)",
+    "prop": "padding",
+    "before": "26px 20px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-hero h1",
+    "media": "(max-width:700px)",
+    "prop": "font-size",
+    "before": "42px",
+    "after": "clamp(1.875rem,3.25vw,3rem)"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-hero p",
+    "media": "(max-width:700px)",
+    "prop": "font-size",
+    "before": "16px",
+    "after": "15px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-id-card",
+    "media": "(max-width:700px)",
+    "prop": "min-height",
+    "before": "220px",
+    "after": "224px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-id-card",
+    "media": "(max-width:700px)",
+    "prop": "padding",
+    "before": "22px",
+    "after": "20px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-stats a",
+    "media": "(max-width:700px)",
+    "prop": "padding",
+    "before": "17px",
+    "after": "16px 18px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-stats strong",
+    "media": "(max-width:700px)",
+    "prop": "font-size",
+    "before": "34px",
+    "after": "30px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-service-card",
+    "media": "(max-width:700px)",
+    "prop": "min-height",
+    "before": "210px",
+    "after": "192px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-hero",
+    "media": null,
+    "prop": "min-height",
+    "before": "360px",
+    "after": "280px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-hero",
+    "media": null,
+    "prop": "padding",
+    "before": "48px 54px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-hero h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(42px,4.2vw,72px)",
+    "after": "clamp(1.875rem,3.25vw,3rem)"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-service-card",
+    "media": null,
+    "prop": "min-height",
+    "before": "235px",
+    "after": "192px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-panel",
+    "media": null,
+    "prop": "min-height",
+    "before": "190px",
+    "after": "160px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-panel",
+    "media": null,
+    "prop": "padding",
+    "before": "26px 24px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-hero",
+    "media": "(max-width:700px)",
+    "prop": "padding",
+    "before": "28px 22px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-panel",
+    "media": "(max-width:700px)",
+    "prop": "padding",
+    "before": "22px 18px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-service-card",
+    "media": null,
+    "prop": "min-height",
+    "before": "280px",
+    "after": "192px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-service-card",
+    "media": null,
+    "prop": "padding",
+    "before": "0",
+    "after": "16px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-service-copy",
+    "media": null,
+    "prop": "padding",
+    "before": "13px 20px 15px",
+    "after": "12px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-service-copy",
+    "media": null,
+    "prop": "max-width",
+    "before": "76%",
+    "after": "100%"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-service-copy h3",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(24px, 2vw, 32px)",
+    "after": "22px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-service-card",
+    "media": "(max-width: 1000px)",
+    "prop": "min-height",
+    "before": "270px",
+    "after": "192px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-service-copy h3",
+    "media": "(max-width: 1000px)",
+    "prop": "font-size",
+    "before": "clamp(23px, 3.2vw, 30px)",
+    "after": "22px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-service-card",
+    "media": "(max-width: 700px)",
+    "prop": "min-height",
+    "before": "245px",
+    "after": "192px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-service-copy",
+    "media": "(max-width: 700px)",
+    "prop": "padding",
+    "before": "11px 15px 13px",
+    "after": "12px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-service-copy",
+    "media": "(max-width: 700px)",
+    "prop": "max-width",
+    "before": "82%",
+    "after": "100%"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-service-copy h3",
+    "media": "(max-width: 700px)",
+    "prop": "font-size",
+    "before": "25px",
+    "after": "22px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-hero",
+    "media": null,
+    "prop": "min-height",
+    "before": "340px",
+    "after": "280px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-panel",
+    "media": null,
+    "prop": "min-height",
+    "before": "190px",
+    "after": "160px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-panel",
+    "media": null,
+    "prop": "padding",
+    "before": "28px 24px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-panel",
+    "media": "(max-width:700px)",
+    "prop": "min-height",
+    "before": "180px",
+    "after": "160px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-hero",
+    "media": null,
+    "prop": "min-height",
+    "before": "360px",
+    "after": "280px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-hero",
+    "media": null,
+    "prop": "padding",
+    "before": "48px 54px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-hero h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(42px,4.2vw,72px)",
+    "after": "clamp(1.875rem,3.25vw,3rem)"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-service-card",
+    "media": null,
+    "prop": "min-height",
+    "before": "235px",
+    "after": "192px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-panel",
+    "media": null,
+    "prop": "min-height",
+    "before": "190px",
+    "after": "160px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-panel",
+    "media": null,
+    "prop": "padding",
+    "before": "26px 24px",
+    "after": "18px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-hero",
+    "media": "(max-width:700px)",
+    "prop": "padding",
+    "before": "28px 22px",
+    "after": "24px"
+  },
+  {
+    "file": "resources/views/pelanggan/member-center.blade.php",
+    "selector": ".member-center-panel",
+    "media": "(max-width:700px)",
+    "prop": "padding",
+    "before": "22px 18px",
+    "after": "18px"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".member-center-dashboard .member-center-hero",
+    "media": null,
+    "prop": "min-height",
+    "before": "20rem",
+    "after": "17.5rem"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".member-center-dashboard .member-center-hero",
+    "media": null,
+    "prop": "padding",
+    "before": "2rem var(--ui-gutter)",
+    "after": "1.5rem var(--ui-gutter)"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".member-center-dashboard .member-center-hero",
+    "media": null,
+    "prop": "gap",
+    "before": "2rem",
+    "after": "1.5rem"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".member-center-dashboard .member-center-hero h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(1.8rem,3.2vw,2.75rem)",
+    "after": "clamp(1.875rem,3.25vw,3rem)"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".member-center-dashboard :is(.member-center-id-card,.yza-home-member-card)",
+    "media": null,
+    "prop": "min-height",
+    "before": "15rem",
+    "after": "14rem"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".member-center-dashboard :is(.member-center-id-card,.yza-home-member-card)",
+    "media": null,
+    "prop": "padding",
+    "before": "1.5rem",
+    "after": "1.25rem"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".member-center-service-card",
+    "media": null,
+    "prop": "min-height",
+    "before": "13rem",
+    "after": "12rem"
+  },
+  {
+    "file": "public/assets/css/responsive-foundation.css",
+    "selector": ".member-center-service-card",
+    "media": null,
+    "prop": "padding",
+    "before": "1.25rem",
+    "after": "1rem"
+  },
+  {
+    "file": "public/assets/css/pages/membership-flow.css",
+    "selector": ".membership-payment-card",
+    "media": null,
+    "prop": "width",
+    "before": "min(94%,860px)",
+    "after": "min(94%,720px)"
+  },
+  {
+    "file": "public/assets/css/pages/membership-flow.css",
+    "selector": ".membership-payment-card",
+    "media": null,
+    "prop": "padding",
+    "before": "34px clamp(28px,3vw,44px)",
+    "after": "24px clamp(18px,2vw,28px)"
+  },
+  {
+    "file": "public/assets/css/pages/membership-flow.css",
+    "selector": ".membership-payment-card h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "clamp(34px,3.2vw,48px)",
+    "after": "clamp(1.875rem,2.4vw,2.5rem)"
+  },
+  {
+    "file": "public/assets/css/pages/membership-flow.css",
+    "selector": ".membership-payment-summary",
+    "media": null,
+    "prop": "padding",
+    "before": "20px 22px",
+    "after": "18px"
+  },
+  {
+    "file": "public/assets/css/pages/membership-flow.css",
+    "selector": ".membership-payment-summary h2",
+    "media": null,
+    "prop": "font-size",
+    "before": "28px",
+    "after": "24px"
+  },
+  {
+    "file": "public/assets/css/pages/membership-flow.css",
+    "selector": ".membership-payment-price",
+    "media": null,
+    "prop": "font-size",
+    "before": "32px",
+    "after": "28px"
+  },
+  {
+    "file": "public/assets/css/pages/membership-flow.css",
+    "selector": ".membership-payment-actions .button",
+    "media": null,
+    "prop": "min-height",
+    "before": "50px",
+    "after": "46px"
+  },
+  {
+    "file": "public/assets/css/pages/membership-flow.css",
+    "selector": ".membership-payment-card",
+    "media": "(max-width:768px)",
+    "prop": "width",
+    "before": "calc(100% - 28px)",
+    "after": "min(94%,720px)"
+  },
+  {
+    "file": "public/assets/css/pages/membership-flow.css",
+    "selector": ".membership-payment-card",
+    "media": "(max-width:768px)",
+    "prop": "padding",
+    "before": "24px 20px",
+    "after": "24px clamp(18px,2vw,28px)"
+  },
+  {
+    "file": "public/assets/css/pages/membership-flow.css",
+    "selector": ".membership-payment-card h1",
+    "media": "(max-width:768px)",
+    "prop": "font-size",
+    "before": "35px",
+    "after": "clamp(1.875rem,2.4vw,2.5rem)"
+  },
+  {
+    "file": "public/assets/css/pages/membership-flow.css",
+    "selector": ".membership-payment-summary h2",
+    "media": "(max-width:768px)",
+    "prop": "font-size",
+    "before": "25px",
+    "after": "24px"
+  }
+]

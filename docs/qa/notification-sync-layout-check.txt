@@ -1,0 +1,6 @@
+
+  .................
+
+  Tests:    17 passed (161 assertions)
+  Duration: 5.85s
+

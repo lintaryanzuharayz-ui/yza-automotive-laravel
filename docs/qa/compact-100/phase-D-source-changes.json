@@ -1,0 +1,329 @@
+[
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": "@media max-width:600px",
+    "prop": "structure",
+    "before": "orphan filter block / unexpected closing brace",
+    "after": "filter rules inside existing mobile query"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-nav-item",
+    "media": null,
+    "prop": "padding",
+    "before": "10px 12px",
+    "after": "9px 10px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-service-card",
+    "media": null,
+    "prop": "min-height",
+    "before": "164px",
+    "after": "128px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-service-card",
+    "media": null,
+    "prop": "gap",
+    "before": "14px",
+    "after": "10px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-service-card>strong",
+    "media": null,
+    "prop": "font-size",
+    "before": "34px",
+    "after": "30px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-panel",
+    "media": null,
+    "prop": "padding",
+    "before": "24px",
+    "after": "18px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-panel-heading h2",
+    "media": null,
+    "prop": "font-size",
+    "before": "21px",
+    "after": "22px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-hero-copy",
+    "media": null,
+    "prop": "padding",
+    "before": "28px 0 28px 30px",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-service-card",
+    "media": null,
+    "prop": "min-height",
+    "before": "146px",
+    "after": "128px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-hero-copy",
+    "media": "(max-width:600px)",
+    "prop": "padding",
+    "before": "22px 18px",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-hero-copy",
+    "media": "(min-width:1201px)",
+    "prop": "padding",
+    "before": "28px 0 28px 30px",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-service-card",
+    "media": "(min-width:1201px)",
+    "prop": "min-height",
+    "before": "158px",
+    "after": "128px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-service-card>strong",
+    "media": "(min-width:1201px)",
+    "prop": "font-size",
+    "before": "40px",
+    "after": "30px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-panel",
+    "media": "(min-width:1201px)",
+    "prop": "padding",
+    "before": "26px",
+    "after": "18px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-panel-heading h2",
+    "media": "(min-width:1201px)",
+    "prop": "font-size",
+    "before": "23px",
+    "after": "22px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-service-card>strong",
+    "media": "(min-width:1201px)",
+    "prop": "font-size",
+    "before": "44px",
+    "after": "30px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-panel-heading h2",
+    "media": "(min-width:1201px)",
+    "prop": "font-size",
+    "before": "26px",
+    "after": "22px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-nav-item",
+    "media": "(min-width:901px)",
+    "prop": "padding",
+    "before": "10px 12px",
+    "after": "9px 10px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-nav-item",
+    "media": "(min-width:901px)",
+    "prop": "font-size",
+    "before": "14px",
+    "after": "13px"
+  },
+  {
+    "file": "public/assets/css/admin-portal.css",
+    "selector": ".admin-nav-item",
+    "media": "(max-width:760px)",
+    "prop": "font-size",
+    "before": "14px",
+    "after": "13px"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-nav-link",
+    "media": null,
+    "prop": "min-height",
+    "before": "46px",
+    "after": "44px"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-nav-link",
+    "media": null,
+    "prop": "padding",
+    "before": "11px 13px",
+    "after": "9px 12px"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-topbar",
+    "media": null,
+    "prop": "min-height",
+    "before": "80px",
+    "after": "68px"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-topbar",
+    "media": null,
+    "prop": "padding",
+    "before": "15px 36px",
+    "after": "10px 24px"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-page-header h1",
+    "media": null,
+    "prop": "font-size",
+    "before": "34px",
+    "after": "clamp(1.5rem,2.2vw,2rem)"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-kpi",
+    "media": null,
+    "prop": "padding",
+    "before": "18px 20px 17px",
+    "after": "16px"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-kpi-value",
+    "media": null,
+    "prop": "font-size",
+    "before": "32px",
+    "after": "28px"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-panel",
+    "media": null,
+    "prop": "padding",
+    "before": "24px",
+    "after": "18px"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-panel-heading",
+    "media": null,
+    "prop": "margin-bottom",
+    "before": "22px",
+    "after": "16px"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-empty",
+    "media": null,
+    "prop": "min-height",
+    "before": "280px",
+    "after": "190px"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-kpi",
+    "media": "(min-width:1800px)",
+    "prop": "padding",
+    "before": "22px 24px",
+    "after": "16px"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-kpi-value",
+    "media": "(min-width:1800px)",
+    "prop": "font-size",
+    "before": "38px",
+    "after": "28px"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-panel-heading h2",
+    "media": "(min-width:1800px)",
+    "prop": "font-size",
+    "before": "23px",
+    "after": "20px"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-kpi",
+    "media": "(max-width:1200px)",
+    "prop": "padding",
+    "before": "15px",
+    "after": "16px"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-panel",
+    "media": "(max-width:1200px)",
+    "prop": "padding",
+    "before": "19px",
+    "after": "18px"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-page-header h1",
+    "media": "(max-width:1050px)",
+    "prop": "font-size",
+    "before": "29px",
+    "after": "clamp(1.5rem,2.2vw,2rem)"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-topbar",
+    "media": "(max-width:760px)",
+    "prop": "min-height",
+    "before": "70px",
+    "after": "68px"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-topbar",
+    "media": "(max-width:760px)",
+    "prop": "padding",
+    "before": "14px 18px",
+    "after": "10px 24px"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-page-header h1",
+    "media": "(max-width:760px)",
+    "prop": "font-size",
+    "before": "30px",
+    "after": "clamp(1.5rem,2.2vw,2rem)"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-kpi",
+    "media": "(max-width:760px)",
+    "prop": "padding",
+    "before": "14px",
+    "after": "16px"
+  },
+  {
+    "file": "public/assets/css/owner-executive.css",
+    "selector": ".oe-panel",
+    "media": "(max-width:760px)",
+    "prop": "padding",
+    "before": "19px",
+    "after": "18px"
+  }
+]

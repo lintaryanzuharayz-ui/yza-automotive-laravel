@@ -1,0 +1,14 @@
+✔ wizard starts at step one with no invented quote or unit (7.5577ms)
+✔ swatches select actual compatible unit and image, without including another model (3.8278ms)
+✔ step navigation preserves buyer information and requires server quote (33.4562ms)
+✔ nonzero quotes are marked pending and cannot be saved without proposal storage (4.3508ms)
+✔ stale quote cannot overwrite a newly selected color or failed quote (2.8747ms)
+✔ step-three save is a draft and never marks discount approved in the UI (6.6287ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 226.5469

@@ -1,0 +1,57 @@
+/* Size the entry screen to its viewport without scaling the rest of the site. */
+#yza-intro{width:100%;height:100dvh;min-height:0;overflow:hidden}
+#yza-intro .yza-intro-content{position:absolute;inset:auto;left:clamp(28px,5vw,96px);top:50%;width:min(780px,58vw);height:auto;min-height:0;max-width:calc(100% - 40px);padding:0;display:flex;flex-direction:column;align-items:center;text-align:center;transform:translateY(-50%)}
+#yza-intro .yza-intro-brand{position:relative;inset:auto;width:100%;transform:none}
+#yza-intro .yza-intro-brand img{display:block;width:clamp(90px,min(9vw,18svh),150px);height:auto;margin:0 auto 16px;object-fit:contain}
+#yza-intro .yza-intro-welcome{justify-content:center;gap:16px;width:100%;margin:0;font-size:clamp(10px,.8vw,13px);line-height:1.4;letter-spacing:.3em;white-space:nowrap}
+#yza-intro .yza-intro-welcome i{flex:1;max-width:52px;width:auto}
+#yza-intro .yza-intro-brand h1{display:flex;align-items:baseline;justify-content:center;gap:12px;width:100%;margin:16px 0 0;font-size:clamp(32px,min(4.3vw,7.8svh),66px);line-height:1.02;letter-spacing:-.045em;white-space:nowrap}
+#yza-intro .yza-intro-brand h1 :is(span,em){font-size:inherit;line-height:inherit;letter-spacing:inherit}
+#yza-intro .yza-intro-brand small{display:block;margin:12px 0 0;text-align:center;font-size:10px;line-height:1.4;letter-spacing:.35em}
+#yza-intro .yza-intro-premium{display:none}
+#yza-intro .yza-intro-services{position:relative;inset:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;width:100%;margin:clamp(24px,4svh,40px) 0 0;transform:none}
+#yza-intro .yza-intro-service{position:relative;display:grid;grid-template-columns:50px minmax(0,1fr);align-items:center;gap:12px;min-width:0;min-height:54px;padding:0 12px 0 0;margin:0;border:0}
+#yza-intro .yza-intro-service:last-child{padding-right:0}
+#yza-intro .yza-intro-service:not(:last-child)::after{top:4px;bottom:4px;right:0;height:auto}
+#yza-intro .yza-intro-service b{width:50px;height:50px;min-width:0;margin:0}
+#yza-intro :is(.yza-service-svg,.yza-intro-service b svg){width:50px;height:50px}
+#yza-intro .yza-intro-service strong{min-width:0;font-size:clamp(11px,.85vw,14px);line-height:1.25;letter-spacing:.02em;white-space:normal}
+#yza-intro .yza-intro-enter{position:relative;inset:auto;display:flex;align-items:center;justify-content:center;gap:18px;width:min(480px,100%);height:60px;min-height:48px;margin:clamp(24px,4svh,40px) auto 0;padding:0 24px;font-size:14px;line-height:1.3;letter-spacing:.14em;transform:none}
+#yza-intro .yza-intro-enter:hover{transform:translateY(-2px)}
+#yza-intro .yza-intro-car-icon{width:30px;height:30px;flex:0 0 30px;border:0;border-radius:0;transform:none}
+#yza-intro .yza-button-svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#yza-intro .yza-intro-arrow{width:28px;height:22px;flex:0 0 28px}
+#yza-intro .yza-intro-arrow svg{width:28px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#yza-intro .yza-intro-bottom{position:relative;inset:auto;display:flex;align-items:center;justify-content:center;gap:12px;width:100%;margin:20px 0 0;transform:none}
+#yza-intro .yza-intro-bottom p{margin:0;font-size:9px;line-height:1.6;letter-spacing:.1em;white-space:normal}
+#yza-intro .yza-intro-bottom span{flex:1;min-width:15px}
+@media(max-width:1000px) and (min-width:801px){#yza-intro .yza-intro-content{width:68vw}#yza-intro .yza-intro-service{grid-template-columns:42px minmax(0,1fr);gap:8px}#yza-intro .yza-intro-service b,#yza-intro .yza-service-svg,#yza-intro .yza-intro-service b svg{width:42px;height:42px}}
+@media(max-width:800px){
+    #yza-intro .yza-intro-content{left:50%;width:calc(100% - 40px);max-width:520px;transform:translate(-50%,-50%)}
+    #yza-intro .yza-intro-brand img{width:96px;margin-bottom:12px}
+    #yza-intro .yza-intro-welcome{gap:9px;font-size:9px;letter-spacing:.22em}
+    #yza-intro .yza-intro-brand h1{gap:8px;margin-top:12px;font-size:clamp(26px,7.2vw,42px)}
+    #yza-intro .yza-intro-brand small{margin-top:10px;font-size:8px;letter-spacing:.25em}
+    #yza-intro .yza-intro-services{grid-template-columns:minmax(0,1fr);gap:8px;max-width:340px;margin-top:22px}
+    #yza-intro .yza-intro-service{grid-template-columns:40px minmax(0,1fr);gap:12px;min-height:40px;padding:0 0 8px;border-bottom:1px solid #ffffff30}
+    #yza-intro .yza-intro-service:last-child{border:0;padding-bottom:0}
+    #yza-intro .yza-intro-service::after{display:none}
+    #yza-intro .yza-intro-service b,#yza-intro .yza-service-svg,#yza-intro .yza-intro-service b svg{width:40px;height:40px}
+    #yza-intro .yza-intro-service strong{font-size:12px;line-height:1.25}
+    #yza-intro .yza-intro-enter{height:52px;margin-top:22px;padding-inline:14px;gap:10px;font-size:11px;letter-spacing:.08em}
+    #yza-intro .yza-intro-car-icon,#yza-intro .yza-button-svg{width:26px;height:26px}
+    #yza-intro .yza-intro-bottom{margin-top:14px}
+    #yza-intro .yza-intro-bottom p{font-size:8px;letter-spacing:.04em}
+}
+@media(max-height:640px){
+    #yza-intro .yza-intro-brand img{width:78px;margin-bottom:10px}
+    #yza-intro .yza-intro-brand h1{margin-top:10px;font-size:clamp(26px,5svh,40px)}
+    #yza-intro .yza-intro-brand small{margin-top:8px;font-size:8px}
+    #yza-intro .yza-intro-services{margin-top:18px;gap:8px}
+    #yza-intro .yza-intro-enter{height:48px;margin-top:18px;font-size:11px}
+    #yza-intro .yza-intro-bottom{margin-top:12px}
+}
+@media(max-height:360px){
+    #yza-intro{overflow-y:auto}
+    #yza-intro .yza-intro-content{position:relative;left:auto;top:auto;width:min(780px,calc(100% - 40px));max-width:none;margin:16px auto;transform:none}
+}

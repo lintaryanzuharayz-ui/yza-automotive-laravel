@@ -9,13 +9,16 @@ class TradeInService
  public function create(int $customerId,int $pengajuanId,int $inspectionId,int $dealerCarId,int $petugasId,string $discount='0',?string $note=null):TradeIn
  {
   return DB::transaction(function()use($customerId,$pengajuanId,$inspectionId,$dealerCarId,$petugasId,$discount,$note){
+   $customer=\App\Models\Pelanggan::lockForUpdate()->findOrFail($customerId);
+   if($customer->status!=='aktif')throw new RuntimeException('Pelanggan tidak aktif.');
+   app(ActiveMemberCustomerService::class)->assertEligibleLocked($customer);
    $p=PengajuanMobil::lockForUpdate()->where('id_pengajuan',$pengajuanId)->where('id_pelanggan',$customerId)->findOrFail($pengajuanId);
    $i=InspeksiMobil::lockForUpdate()->where('id_inspeksi',$inspectionId)->where('id_pengajuan',$p->id_pengajuan)->first();
    if($p->status!=='penawaran_diberikan'||!$i||$i->harga_penawaran===null||(float)$i->harga_penawaran<0)throw new RuntimeException('Pengajuan belum memiliki penawaran yang dapat dipakai trade-in.');
    if(TradeIn::where('id_pengajuan',$p->id_pengajuan)->where('status','<>','dibatalkan')->exists())throw new RuntimeException('Trade-in untuk pengajuan ini sudah ada.');
    $car=Mobil::lockForUpdate()->find($dealerCarId);if(!$car||$car->status!=='tersedia')throw new RuntimeException('Mobil dealer tidak tersedia.');
-   $d=(float)$discount;if($d<0||$d>(float)$car->harga_jual)throw new RuntimeException('Diskon tidak valid.');
-   $difference=max(0,(float)$car->harga_jual-$d-(float)$i->harga_penawaran);
+   $d=$discount;if($d<0||$d>$car->harga_jual)throw new RuntimeException('Diskon tidak valid.');
+   $difference=(string) DB::selectOne('SELECT CAST(GREATEST(0, CAST(? AS DECIMAL(15,2)) - CAST(? AS DECIMAL(15,2)) - CAST(? AS DECIMAL(15,2))) AS DECIMAL(15,2)) AS amount',[$car->harga_jual,$d,$i->harga_penawaran])->amount;
    $tx=new Transaksi();$tx->forceFill(['kode_transaksi'=>$this->code('transaksi','kode_transaksi','TRX'),'id_pelanggan'=>$customerId,'id_petugas'=>$petugasId,'jenis_transaksi'=>'trade_in','tanggal'=>now(),'subtotal'=>$difference,'diskon'=>0,'total'=>$difference,'status'=>'belum_bayar','catatan'=>$note])->save();
    $trade=new TradeIn();$trade->forceFill(['kode_trade_in'=>$this->code('trade_in','kode_trade_in','TRD'),'id_transaksi'=>$tx->id_transaksi,'id_pelanggan'=>$customerId,'id_pengajuan'=>$p->id_pengajuan,'id_inspeksi'=>$i->id_inspeksi,'id_mobil_dibeli'=>$car->id_mobil,'id_petugas'=>$petugasId,'nilai_mobil_lama'=>$i->harga_penawaran,'harga_mobil_dibeli'=>$car->harga_jual,'diskon'=>$d,'selisih_bayar'=>$difference,'tanggal'=>now(),'status'=>'proses','catatan'=>$note])->save();
    $car->forceFill(['status'=>'dibooking'])->save();return $trade;
@@ -34,6 +37,6 @@ class TradeInService
    return $old;
   });
  }
- public function cancel(int $tradeId):void{DB::transaction(function()use($tradeId){$trade=TradeIn::lockForUpdate()->findOrFail($tradeId);$tx=Transaksi::lockForUpdate()->findOrFail($trade->id_transaksi);$car=Mobil::lockForUpdate()->findOrFail($trade->id_mobil_dibeli);if($trade->status!=='proses'||$tx->status!=='belum_bayar')throw new RuntimeException('Trade-in tidak dapat dibatalkan pada status ini.');$trade->forceFill(['status'=>'dibatalkan'])->save();$tx->forceFill(['status'=>'dibatalkan'])->save();if($car->status==='dibooking')$car->forceFill(['status'=>'tersedia'])->save();});}
- public function createWithPromo(int $customerId,int $pengajuanId,int $inspectionId,int $dealerCarId,int $petugasId,string $discount='0',?string $note=null,?int $promoId=null):TradeIn{$trade=$this->create($customerId,$pengajuanId,$inspectionId,$dealerCarId,$petugasId,$discount,$note);if($promoId!==null)app(PromoEngineService::class)->applyToTransaction($trade->transaksi,$promoId,'trade_in');return$trade->fresh(['transaksi']);}
+ public function cancel(int $tradeId):void{DB::transaction(function()use($tradeId){$trade=TradeIn::lockForUpdate()->findOrFail($tradeId);$tx=Transaksi::lockForUpdate()->findOrFail($trade->id_transaksi);$car=Mobil::lockForUpdate()->findOrFail($trade->id_mobil_dibeli);if($trade->status!=='proses'||$tx->status!=='belum_bayar')throw new RuntimeException('Trade-in tidak dapat dibatalkan pada status ini.');$trade->forceFill(['status'=>'dibatalkan'])->save();$tx->forceFill(['status'=>'dibatalkan'])->save();app(PromoEngineService::class)->releaseReservation($tx);if($car->status==='dibooking')$car->forceFill(['status'=>'tersedia'])->save();});}
+ public function createWithPromo(int $customerId,int $pengajuanId,int $inspectionId,int $dealerCarId,int $petugasId,string $discount='0',?string $note=null,?int $promoId=null):TradeIn{return DB::transaction(function()use($customerId,$pengajuanId,$inspectionId,$dealerCarId,$petugasId,$discount,$note,$promoId){$trade=$this->create($customerId,$pengajuanId,$inspectionId,$dealerCarId,$petugasId,$discount,$note);if($promoId!==null)app(PromoEngineService::class)->applyToTransaction($trade->transaksi,$promoId,'trade_in');return$trade->fresh(['transaksi']);});}
 }

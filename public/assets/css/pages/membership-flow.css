@@ -26,8 +26,8 @@
 /* Payment activation uses the same visual shell as registration, without the old app layout. */
 .membership-payment-page{height:auto;min-height:100vh;align-items:center;overflow:auto}
 .membership-payment-showcase{min-height:100vh}
-.membership-payment-card{width:min(94%,860px);max-height:none;margin:28px auto;padding:34px clamp(28px,3vw,44px);overflow:visible}
-.membership-payment-card h1{margin:10px 0 5px;color:#10151c;font-size:clamp(34px,3.2vw,48px);font-weight:900;line-height:1.02;letter-spacing:-.04em}
+.membership-payment-card{width:min(94%,720px);max-height:none;margin:28px auto;padding:24px clamp(18px,2vw,28px);overflow:visible}
+.membership-payment-card h1{margin:10px 0 5px;color:#10151c;font-size:clamp(1.875rem,2.4vw,2.5rem);font-weight:900;line-height:1.02;letter-spacing:-.04em}
 .membership-payment-card h1 em{color:#ed1c24;font-style:normal}
 .membership-payment-card .intro{max-width:720px;margin:0 0 20px;color:#667085;font-size:16px;line-height:1.45}
 .membership-payment-steps{margin-bottom:20px}
@@ -36,10 +36,10 @@
 .membership-payment-steps span.complete b,.membership-payment-steps span.active b{border-color:#ed1c24;background:#ed1c24;color:#fff;box-shadow:0 5px 14px rgba(237,28,36,.18)}
 .membership-payment-steps span.complete,.membership-payment-steps span.active{color:#17202d}
 .membership-payment-summary,.membership-payment-status,.membership-payment-member{border:1px solid #dfe5ee;border-radius:16px;background:rgba(255,255,255,.74);box-shadow:0 10px 26px rgba(16,24,40,.05)}
-.membership-payment-summary{padding:20px 22px;border-color:rgba(237,28,36,.25);background:linear-gradient(135deg,#fff5f5,#f7f9fd)}
+.membership-payment-summary{padding:18px;border-color:rgba(237,28,36,.25);background:linear-gradient(135deg,#fff5f5,#f7f9fd)}
 .membership-payment-summary .eyebrow,.membership-payment-status .eyebrow,.membership-payment-member .eyebrow{color:#ed1c24;font-size:12px;font-weight:800;letter-spacing:.14em}
-.membership-payment-summary h2{margin:8px 0 3px;color:#10151c;font-size:28px;line-height:1.05}
-.membership-payment-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin-top:6px;color:#ed1c24;font-size:32px;font-weight:900;line-height:1.05}
+.membership-payment-summary h2{margin:8px 0 3px;color:#10151c;font-size:24px;line-height:1.05}
+.membership-payment-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin-top:6px;color:#ed1c24;font-size:28px;font-weight:900;line-height:1.05}
 .membership-payment-price small{color:#667085;font-size:14px;font-weight:600}
 .membership-payment-summary>p{margin:7px 0 14px;color:#667085;font-size:15px;line-height:1.45}
 .membership-payment-benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 22px;margin:0;padding:0;list-style:none;color:#344054;font-size:15px;line-height:1.35}
@@ -63,7 +63,7 @@
 .membership-payment-member-grid strong{display:block;overflow:hidden;color:#18202c;font-size:15px;text-overflow:ellipsis;white-space:nowrap}
 .membership-payment-actions{margin-top:16px}
 .membership-payment-actions form{margin:0}
-.membership-payment-actions .button{min-height:50px;width:100%;border-radius:11px;font-size:15px;font-weight:900}
+.membership-payment-actions .button{min-height:46px;width:100%;border-radius:11px;font-size:15px;font-weight:900}
 .membership-payment-actions .form-actions{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0}
 .membership-payment-actions .button-primary{background:linear-gradient(135deg,#ff313b,#d90f18);box-shadow:0 14px 30px rgba(237,28,36,.24)}
 .membership-payment-actions .button-secondary{border-color:#667085;background:#fff;color:#18202c}
@@ -85,14 +85,14 @@
     .register-card .register-confirm{font-size:12px}
     .membership-payment-page{display:block;min-height:100vh;background-position:center top}
     .membership-payment-showcase{display:block;min-height:300px;background:transparent}
-    .membership-payment-card{width:calc(100% - 28px);margin:-46px auto 30px;padding:24px 20px;border-radius:20px}
-    .membership-payment-card h1{font-size:35px}
+    .membership-payment-card{width:min(94%,720px);margin:-46px auto 30px;padding:24px clamp(18px,2vw,28px);border-radius:20px}
+    .membership-payment-card h1{font-size:clamp(1.875rem,2.4vw,2.5rem)}
     .membership-payment-card .intro{font-size:15px}
     .membership-payment-steps{align-items:stretch;gap:5px;padding:9px 8px;font-size:9px}
     .membership-payment-steps b{width:25px;height:25px;font-size:10px}
     .membership-payment-steps span{flex-direction:column;gap:3px;text-align:center}
     .membership-payment-steps i{min-width:8px}
-    .membership-payment-summary h2{font-size:25px}
+    .membership-payment-summary h2{font-size:24px}
     .membership-payment-price{font-size:28px}
     .membership-payment-benefits{grid-template-columns:1fr;font-size:14px}
     .membership-payment-member-grid{grid-template-columns:1fr;gap:10px}

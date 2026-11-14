@@ -1,0 +1,9 @@
+@extends('layouts.app')
+@section('title', 'Penyesuaian Stok · '.$mobil->merk.' '.$mobil->model)
+@section('content')
+<div class="page-header"><div><span class="eyebrow">Inventory kendaraan · audit</span><h1>Penyesuaian stok</h1><p>{{ $mobil->merk }} {{ $mobil->model }} · {{ $mobil->tipe }}</p></div><a class="button button-secondary" href="{{ route('admin.mobil.show', $mobil) }}">Kembali</a></div>
+@if($errors->any())<div class="alert alert-error">{{ $errors->first() }}</div>@endif
+@if(session('success'))<div class="alert alert-success">{{ session('success') }}</div>@endif
+<div class="card content-card"><div class="yza-table-wrap"><table class="yza-table"><tr><th>Total stok</th><td>{{ $availability['stock_total'] ?? 'Belum terverifikasi' }} unit</td></tr><tr><th>Dapat dibeli</th><td>{{ $availability['stock'] ?? 'Belum terverifikasi' }} unit</td></tr><tr><th>Reservasi aktif</th><td>{{ $availability['reserved_units'] ?? ($availability['active_reservation_count'] ?? 0) }}</td></tr><tr><th>Terjual</th><td>{{ $availability['sold_units'] ?? '—' }}</td></tr></table></div></div>
+<form class="card master-form" method="post" action="{{ route('admin.mobil.stock.adjust', $mobil) }}">@csrf<div class="form-group"><label class="form-label" for="stok_baru">Total stok baru</label><input class="form-control" id="stok_baru" name="stok_baru" type="number" min="0" value="{{ old('stok_baru', $availability['stock_total'] ?? '') }}" required></div><div class="form-group"><label class="form-label" for="alasan">Alasan wajib</label><input class="form-control" id="alasan" name="alasan" value="{{ old('alasan') }}" required></div><div class="form-group"><label class="form-label" for="catatan">Catatan</label><textarea class="form-control" id="catatan" name="catatan">{{ old('catatan') }}</textarea></div><button class="button button-primary">Simpan penyesuaian</button></form>
+@endsection

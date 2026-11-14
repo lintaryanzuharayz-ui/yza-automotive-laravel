@@ -1,0 +1,1739 @@
+[
+  {
+    "selector": ".yza-home-member-card",
+    "media": null,
+    "decl": [
+      [
+        "display",
+        "flex",
+        false
+      ],
+      [
+        "flex-direction",
+        "column",
+        false
+      ],
+      [
+        "justify-content",
+        "flex-end",
+        false
+      ],
+      [
+        "min-width",
+        "0",
+        false
+      ],
+      [
+        "min-height",
+        "254px",
+        false
+      ],
+      [
+        "padding",
+        "26px",
+        false
+      ],
+      [
+        "border",
+        "1px solid rgba(237,28,46,.5)",
+        false
+      ],
+      [
+        "border-radius",
+        "18px",
+        false
+      ],
+      [
+        "background",
+        "linear-gradient(145deg,#202329,#101115 72%)",
+        false
+      ],
+      [
+        "box-shadow",
+        "0 16px 32px #0005",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-member-card img",
+    "media": null,
+    "decl": [
+      [
+        "width",
+        "48px",
+        false
+      ],
+      [
+        "height",
+        "48px",
+        false
+      ],
+      [
+        "object-fit",
+        "contain",
+        false
+      ],
+      [
+        "margin-bottom",
+        "auto",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-member-card>span",
+    "media": null,
+    "decl": [
+      [
+        "color",
+        "#aeb4bf",
+        false
+      ],
+      [
+        "font-size",
+        "10px",
+        false
+      ],
+      [
+        "letter-spacing",
+        ".2em",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-member-card>strong",
+    "media": null,
+    "decl": [
+      [
+        "margin",
+        "8px 0 10px",
+        false
+      ],
+      [
+        "color",
+        "#fff",
+        false
+      ],
+      [
+        "font-size",
+        "25px",
+        false
+      ],
+      [
+        "letter-spacing",
+        ".08em",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-member-card>b",
+    "media": null,
+    "decl": [
+      [
+        "color",
+        "#fff",
+        false
+      ],
+      [
+        "font-size",
+        "14px",
+        false
+      ],
+      [
+        "letter-spacing",
+        ".08em",
+        false
+      ],
+      [
+        "overflow-wrap",
+        "anywhere",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-member-card>div",
+    "media": null,
+    "decl": [
+      [
+        "display",
+        "flex",
+        false
+      ],
+      [
+        "gap",
+        "28px",
+        false
+      ],
+      [
+        "margin-top",
+        "18px",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-member-card small",
+    "media": null,
+    "decl": [
+      [
+        "color",
+        "#8e96a2",
+        false
+      ],
+      [
+        "font-size",
+        "9px",
+        false
+      ],
+      [
+        "letter-spacing",
+        ".12em",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-member-card small strong",
+    "media": null,
+    "decl": [
+      [
+        "display",
+        "block",
+        false
+      ],
+      [
+        "margin-top",
+        "4px",
+        false
+      ],
+      [
+        "color",
+        "#fff",
+        false
+      ],
+      [
+        "font-size",
+        "11px",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-stats",
+    "media": null,
+    "decl": [
+      [
+        "display",
+        "grid",
+        false
+      ],
+      [
+        "grid-template-columns",
+        "repeat(4,minmax(0,1fr))",
+        false
+      ],
+      [
+        "gap",
+        "14px",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-stats>a,.yza-home-section,.yza-home-panel",
+    "media": null,
+    "decl": [
+      [
+        "border",
+        "1px solid #2e3138",
+        false
+      ],
+      [
+        "border-radius",
+        "16px",
+        false
+      ],
+      [
+        "background",
+        "#141519",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-stats>a",
+    "media": null,
+    "decl": [
+      [
+        "position",
+        "relative",
+        false
+      ],
+      [
+        "display",
+        "grid",
+        false
+      ],
+      [
+        "gap",
+        "5px",
+        false
+      ],
+      [
+        "padding",
+        "20px 22px",
+        false
+      ],
+      [
+        "color",
+        "#fff",
+        false
+      ],
+      [
+        "text-decoration",
+        "none",
+        false
+      ],
+      [
+        "transition",
+        "transform .2s,border-color .2s,box-shadow .2s",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-stats>a:hover",
+    "media": null,
+    "decl": [
+      [
+        "transform",
+        "translateY(-3px)",
+        false
+      ],
+      [
+        "border-color",
+        "var(--red)",
+        false
+      ],
+      [
+        "box-shadow",
+        "0 12px 25px #0004",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-stats small",
+    "media": null,
+    "decl": [
+      [
+        "color",
+        "#aeb3bd",
+        false
+      ],
+      [
+        "font-size",
+        "10px",
+        false
+      ],
+      [
+        "font-weight",
+        "900",
+        false
+      ],
+      [
+        "letter-spacing",
+        ".12em",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-stats strong",
+    "media": null,
+    "decl": [
+      [
+        "font-size",
+        "38px",
+        false
+      ],
+      [
+        "line-height",
+        "1",
+        false
+      ],
+      [
+        "letter-spacing",
+        "-.05em",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-stats em",
+    "media": null,
+    "decl": [
+      [
+        "color",
+        "#8b929d",
+        false
+      ],
+      [
+        "font-size",
+        "11px",
+        false
+      ],
+      [
+        "font-style",
+        "normal",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-section-head",
+    "media": null,
+    "decl": [
+      [
+        "display",
+        "flex",
+        false
+      ],
+      [
+        "justify-content",
+        "space-between",
+        false
+      ],
+      [
+        "align-items",
+        "end",
+        false
+      ],
+      [
+        "gap",
+        "18px",
+        false
+      ],
+      [
+        "margin-bottom",
+        "20px",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-section-head h2",
+    "media": null,
+    "decl": [
+      [
+        "margin",
+        "8px 0 0",
+        false
+      ],
+      [
+        "color",
+        "#fff",
+        false
+      ],
+      [
+        "font-size",
+        "28px",
+        false
+      ],
+      [
+        "letter-spacing",
+        "-.04em",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-section-head p",
+    "media": null,
+    "decl": [
+      [
+        "margin",
+        "6px 0 0",
+        false
+      ],
+      [
+        "color",
+        "#aeb3bd",
+        false
+      ],
+      [
+        "font-size",
+        "14px",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-section-head>a",
+    "media": null,
+    "decl": [
+      [
+        "flex",
+        "0 0 auto",
+        false
+      ],
+      [
+        "color",
+        "#ff5360",
+        false
+      ],
+      [
+        "font-size",
+        "13px",
+        false
+      ],
+      [
+        "font-weight",
+        "800",
+        false
+      ],
+      [
+        "text-decoration",
+        "none",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-section-head>a b",
+    "media": null,
+    "decl": [
+      [
+        "margin-left",
+        "5px",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-service-grid",
+    "media": null,
+    "decl": [
+      [
+        "display",
+        "grid",
+        false
+      ],
+      [
+        "grid-template-columns",
+        "repeat(4,minmax(0,1fr))",
+        false
+      ],
+      [
+        "gap",
+        "14px",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-service-card",
+    "media": null,
+    "decl": [
+      [
+        "position",
+        "relative",
+        false
+      ],
+      [
+        "display",
+        "flex",
+        false
+      ],
+      [
+        "min-height",
+        "245px",
+        false
+      ],
+      [
+        "flex-direction",
+        "column",
+        false
+      ],
+      [
+        "justify-content",
+        "space-between",
+        false
+      ],
+      [
+        "overflow",
+        "hidden",
+        false
+      ],
+      [
+        "padding",
+        "20px",
+        false
+      ],
+      [
+        "border",
+        "1px solid #3b3e45",
+        false
+      ],
+      [
+        "border-radius",
+        "14px",
+        false
+      ],
+      [
+        "background",
+        "linear-gradient(0deg,#07080be8,#07080b20 75%),var(--service-image) center/cover",
+        false
+      ],
+      [
+        "color",
+        "#fff",
+        false
+      ],
+      [
+        "transition",
+        "transform .22s,box-shadow .22s,background-size .35s",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-service-card:hover",
+    "media": null,
+    "decl": [
+      [
+        "transform",
+        "translateY(-5px)",
+        false
+      ],
+      [
+        "box-shadow",
+        "0 14px 28px #0007",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-service-card>div",
+    "media": null,
+    "decl": [
+      [
+        "position",
+        "relative",
+        false
+      ],
+      [
+        "z-index",
+        "1",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-service-card>div>span",
+    "media": null,
+    "decl": [
+      [
+        "color",
+        "#ffb2ba",
+        false
+      ],
+      [
+        "font-size",
+        "9px",
+        false
+      ],
+      [
+        "font-weight",
+        "900",
+        false
+      ],
+      [
+        "letter-spacing",
+        ".1em",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-service-card h3",
+    "media": null,
+    "decl": [
+      [
+        "margin",
+        "10px 0 5px",
+        false
+      ],
+      [
+        "font-size",
+        "21px",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-service-card p",
+    "media": null,
+    "decl": [
+      [
+        "margin",
+        "0",
+        false
+      ],
+      [
+        "color",
+        "#e0e3e8",
+        false
+      ],
+      [
+        "font-size",
+        "12px",
+        false
+      ],
+      [
+        "line-height",
+        "1.5",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-service-card a,.yza-home-locked",
+    "media": null,
+    "decl": [
+      [
+        "align-self",
+        "flex-start",
+        false
+      ],
+      [
+        "padding",
+        "9px 12px",
+        false
+      ],
+      [
+        "border-radius",
+        "8px",
+        false
+      ],
+      [
+        "font-size",
+        "11px",
+        false
+      ],
+      [
+        "font-weight",
+        "800",
+        false
+      ],
+      [
+        "text-decoration",
+        "none",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-service-card a",
+    "media": null,
+    "decl": [
+      [
+        "background",
+        "var(--red)",
+        false
+      ],
+      [
+        "color",
+        "#fff",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-service-card.is-locked",
+    "media": null,
+    "decl": [
+      [
+        "filter",
+        "saturate(.65)",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-panel .yza-home-section-head",
+    "media": null,
+    "decl": [
+      [
+        "margin-bottom",
+        "10px",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-service-grid,.yza-home-stats",
+    "media": "(max-width:1050px)",
+    "decl": [
+      [
+        "grid-template-columns",
+        "repeat(2,minmax(0,1fr))",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-member-card",
+    "media": "(max-width:700px)",
+    "decl": [
+      [
+        "min-height",
+        "225px",
+        false
+      ],
+      [
+        "padding",
+        "22px",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-section-head",
+    "media": "(max-width:700px)",
+    "decl": [
+      [
+        "display",
+        "grid",
+        false
+      ],
+      [
+        "align-items",
+        "start",
+        false
+      ],
+      [
+        "gap",
+        "10px",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-section-head h2",
+    "media": "(max-width:700px)",
+    "decl": [
+      [
+        "font-size",
+        "24px",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-stats,.yza-home-service-grid,.yza-home-vehicle-grid,.yza-home-lower-grid,.yza-home-promo-grid",
+    "media": "(max-width:700px)",
+    "decl": [
+      [
+        "grid-template-columns",
+        "1fr",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-member-card>strong",
+    "media": "(max-width:700px)",
+    "decl": [
+      [
+        "font-size",
+        "20px",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-stats>a,.yza-home-service-card,.yza-home-promo-grid>a",
+    "media": "(prefers-reduced-motion:reduce)",
+    "decl": [
+      [
+        "transition",
+        "none",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-stats>a:hover,.yza-home-service-card:hover,.yza-home-promo-grid>a:hover",
+    "media": "(prefers-reduced-motion:reduce)",
+    "decl": [
+      [
+        "transform",
+        "none",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-stats",
+    "media": null,
+    "decl": [
+      [
+        "padding",
+        "12px clamp(24px,9vw,150px) 0",
+        true
+      ],
+      [
+        "background",
+        "#f5f6f8",
+        true
+      ],
+      [
+        "gap",
+        "4px",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-stats>a",
+    "media": null,
+    "decl": [
+      [
+        "border-color",
+        "#f0b9bf",
+        true
+      ],
+      [
+        "border-radius",
+        "8px",
+        true
+      ],
+      [
+        "background",
+        "#fff",
+        true
+      ],
+      [
+        "color",
+        "#17191d",
+        true
+      ],
+      [
+        "box-shadow",
+        "0 4px 12px rgba(20,21,25,.08)",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-stats small,.yza-home-stats em",
+    "media": null,
+    "decl": [
+      [
+        "color",
+        "#626a75",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-stats strong",
+    "media": null,
+    "decl": [
+      [
+        "color",
+        "#17191d",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-section-head h2,.yza-home-panel .yza-home-section-head h2",
+    "media": null,
+    "decl": [
+      [
+        "color",
+        "#17191d",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-section-head p",
+    "media": null,
+    "decl": [
+      [
+        "color",
+        "#616a76",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-service-card",
+    "media": null,
+    "decl": [
+      [
+        "min-height",
+        "210px",
+        true
+      ],
+      [
+        "border-radius",
+        "8px",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-lower-grid .yza-home-panel .yza-home-section-head h2",
+    "media": null,
+    "decl": [
+      [
+        "color",
+        "#fff",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-lower-grid .yza-home-panel .yza-home-section-head p,.yza-home-lower-grid .yza-home-panel-empty",
+    "media": null,
+    "decl": [
+      [
+        "color",
+        "#aeb3bd",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-stats",
+    "media": "(max-width:700px)",
+    "decl": [
+      [
+        "padding-inline",
+        "14px",
+        true
+      ],
+      [
+        "gap",
+        "8px",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-member-card-top",
+    "media": null,
+    "decl": [
+      [
+        "display",
+        "flex",
+        true
+      ],
+      [
+        "align-items",
+        "center",
+        true
+      ],
+      [
+        "justify-content",
+        "space-between",
+        true
+      ],
+      [
+        "gap",
+        "20px",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-member-card-id-label,.yza-home .yza-member-card-name-label,.yza-home .yza-member-card-meta span",
+    "media": null,
+    "decl": [
+      [
+        "display",
+        "block",
+        true
+      ],
+      [
+        "color",
+        "#aeb4bd",
+        true
+      ],
+      [
+        "font-size",
+        "10px",
+        true
+      ],
+      [
+        "letter-spacing",
+        ".2em",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-member-card-name-label",
+    "media": null,
+    "decl": [
+      [
+        "margin-top",
+        "0",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-member-card-name",
+    "media": null,
+    "decl": [
+      [
+        "margin-top",
+        "6px",
+        true
+      ],
+      [
+        "color",
+        "#fff",
+        true
+      ],
+      [
+        "font-size",
+        "18px",
+        true
+      ],
+      [
+        "font-weight",
+        "800",
+        true
+      ],
+      [
+        "letter-spacing",
+        ".03em",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-member-card-meta",
+    "media": null,
+    "decl": [
+      [
+        "display",
+        "flex",
+        true
+      ],
+      [
+        "gap",
+        "44px",
+        true
+      ],
+      [
+        "margin-top",
+        "auto",
+        true
+      ],
+      [
+        "padding-top",
+        "22px",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-member-card-meta strong",
+    "media": null,
+    "decl": [
+      [
+        "display",
+        "block",
+        true
+      ],
+      [
+        "margin-top",
+        "6px",
+        true
+      ],
+      [
+        "color",
+        "#fff",
+        true
+      ],
+      [
+        "font-size",
+        "13px",
+        true
+      ],
+      [
+        "letter-spacing",
+        ".08em",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-member-card-meta strong.is-active",
+    "media": null,
+    "decl": [
+      [
+        "color",
+        "#ed1c24",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-member-card-name",
+    "media": "(max-width:700px)",
+    "decl": [
+      [
+        "font-size",
+        "16px",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-home-member-card",
+    "media": null,
+    "decl": [
+      [
+        "position",
+        "relative",
+        true
+      ],
+      [
+        "isolation",
+        "isolate",
+        true
+      ],
+      [
+        "display",
+        "flex",
+        true
+      ],
+      [
+        "min-height",
+        "280px",
+        true
+      ],
+      [
+        "flex-direction",
+        "column",
+        true
+      ],
+      [
+        "overflow",
+        "hidden",
+        true
+      ],
+      [
+        "padding",
+        "28px 34px 24px",
+        true
+      ],
+      [
+        "color",
+        "#fff",
+        true
+      ],
+      [
+        "background",
+        "#101216 url('/assets/images/member/member-card-bg.png') center/cover no-repeat",
+        true
+      ],
+      [
+        "border",
+        "1px solid #ed1c24",
+        true
+      ],
+      [
+        "border-radius",
+        "16px",
+        true
+      ],
+      [
+        "box-shadow",
+        "none",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-home-member-card::after",
+    "media": null,
+    "decl": [
+      [
+        "position",
+        "absolute",
+        true
+      ],
+      [
+        "z-index",
+        "-1",
+        true
+      ],
+      [
+        "inset",
+        "0",
+        true
+      ],
+      [
+        "content",
+        "\"\"",
+        true
+      ],
+      [
+        "background",
+        "linear-gradient(90deg,rgba(8,9,11,.22),rgba(8,9,11,.05))",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-home-member-card .yza-member-card-top",
+    "media": null,
+    "decl": [
+      [
+        "display",
+        "flex",
+        true
+      ],
+      [
+        "align-items",
+        "center",
+        true
+      ],
+      [
+        "justify-content",
+        "space-between",
+        true
+      ],
+      [
+        "gap",
+        "20px",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-home-member-card .yza-member-card-top img",
+    "media": null,
+    "decl": [
+      [
+        "width",
+        "92px",
+        true
+      ],
+      [
+        "height",
+        "52px",
+        true
+      ],
+      [
+        "object-fit",
+        "contain",
+        true
+      ],
+      [
+        "object-position",
+        "left center",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-home-member-card .yza-member-card-top>span",
+    "media": null,
+    "decl": [
+      [
+        "color",
+        "#d6d9de",
+        true
+      ],
+      [
+        "font-size",
+        "12px",
+        true
+      ],
+      [
+        "letter-spacing",
+        ".2em",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-home-member-card .yza-member-card-top b",
+    "media": null,
+    "decl": [
+      [
+        "color",
+        "#ed1c24",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-member-card-code",
+    "media": null,
+    "decl": [
+      [
+        "display",
+        "block",
+        true
+      ],
+      [
+        "margin-top",
+        "6px",
+        true
+      ],
+      [
+        "color",
+        "#fff",
+        true
+      ],
+      [
+        "font-size",
+        "31px",
+        true
+      ],
+      [
+        "letter-spacing",
+        ".06em",
+        true
+      ],
+      [
+        "line-height",
+        "1",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-member-card-name",
+    "media": null,
+    "decl": [
+      [
+        "display",
+        "block",
+        true
+      ],
+      [
+        "margin-top",
+        "6px",
+        true
+      ],
+      [
+        "color",
+        "#fff",
+        true
+      ],
+      [
+        "font-size",
+        "18px",
+        true
+      ],
+      [
+        "letter-spacing",
+        ".03em",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-member-card-meta",
+    "media": null,
+    "decl": [
+      [
+        "display",
+        "flex",
+        true
+      ],
+      [
+        "gap",
+        "44px",
+        true
+      ],
+      [
+        "margin-top",
+        "auto",
+        true
+      ],
+      [
+        "padding-top",
+        "22px",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-member-card-meta small",
+    "media": null,
+    "decl": [
+      [
+        "display",
+        "block",
+        true
+      ],
+      [
+        "color",
+        "#aeb4bd",
+        true
+      ],
+      [
+        "font-size",
+        "10px",
+        true
+      ],
+      [
+        "letter-spacing",
+        ".2em",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-member-card-meta strong",
+    "media": null,
+    "decl": [
+      [
+        "display",
+        "block",
+        true
+      ],
+      [
+        "margin-top",
+        "6px",
+        true
+      ],
+      [
+        "color",
+        "#fff",
+        true
+      ],
+      [
+        "font-size",
+        "13px",
+        true
+      ],
+      [
+        "letter-spacing",
+        ".08em",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-member-card-meta small:last-child strong",
+    "media": null,
+    "decl": [
+      [
+        "color",
+        "#ed1c24",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-home-member-card",
+    "media": "(max-width:700px)",
+    "decl": [
+      [
+        "min-height",
+        "240px",
+        true
+      ],
+      [
+        "padding",
+        "22px",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-member-card-code",
+    "media": "(max-width:700px)",
+    "decl": [
+      [
+        "font-size",
+        "24px",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home .yza-member-card-name",
+    "media": "(max-width:700px)",
+    "decl": [
+      [
+        "font-size",
+        "16px",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-image-panel .yza-home-section-head",
+    "media": null,
+    "decl": [
+      [
+        "align-items",
+        "start",
+        false
+      ],
+      [
+        "margin-bottom",
+        "6px",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-image-panel .yza-home-section-head h2",
+    "media": null,
+    "decl": [
+      [
+        "margin",
+        "0",
+        false
+      ],
+      [
+        "color",
+        "#fff",
+        true
+      ],
+      [
+        "font-size",
+        "30px",
+        true
+      ],
+      [
+        "line-height",
+        "1.1",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-image-panel .yza-home-section-head>a",
+    "media": null,
+    "decl": [
+      [
+        "padding",
+        "9px 13px",
+        false
+      ],
+      [
+        "border",
+        "1px solid #ffffff8c",
+        false
+      ],
+      [
+        "border-radius",
+        "999px",
+        false
+      ],
+      [
+        "background",
+        "#0b0d11aa",
+        false
+      ],
+      [
+        "color",
+        "#fff",
+        true
+      ],
+      [
+        "font-size",
+        "11px",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-image-panel .yza-home-section-head>a b",
+    "media": null,
+    "decl": [
+      [
+        "margin-left",
+        "5px",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-benefits-section .yza-home-section-head",
+    "media": null,
+    "decl": [
+      [
+        "margin-bottom",
+        "14px",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-benefits-section .yza-home-section-head h2",
+    "media": null,
+    "decl": [
+      [
+        "color",
+        "#17191d",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-benefits-section .yza-home-section-head p",
+    "media": null,
+    "decl": [
+      [
+        "color",
+        "#66717e",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-image-panel .yza-home-section-head",
+    "media": "(max-width:700px)",
+    "decl": [
+      [
+        "display",
+        "flex",
+        false
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-image-panel .yza-home-section-head h2",
+    "media": "(max-width:700px)",
+    "decl": [
+      [
+        "font-size",
+        "25px",
+        true
+      ]
+    ]
+  },
+  {
+    "selector": ".yza-home-benefits-section .yza-home-section-head",
+    "media": "(max-width:700px)",
+    "decl": [
+      [
+        "display",
+        "grid",
+        false
+      ]
+    ]
+  }
+]

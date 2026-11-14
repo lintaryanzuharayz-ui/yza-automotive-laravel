@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Tests\Feature\PromoTransactionIntegrityStage4Test" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\PromoTransactionIntegrityStage4Test.php" tests="5" assertions="10" errors="0" failures="5" skipped="0" time="1.436231">
+    <testsuite name="Tests\Feature\PromoTransactionIntegrityStage4Test::test_missing_promo_rolls_back_the_entire_domain_operation" tests="5" assertions="10" errors="0" failures="5" skipped="0" time="1.436231">
+      <testcase name="test_missing_promo_rolls_back_the_entire_domain_operation with data set &quot;service&quot;" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\PromoTransactionIntegrityStage4Test.php" line="27" class="Tests\Feature\PromoTransactionIntegrityStage4Test" classname="Tests.Feature.PromoTransactionIntegrityStage4Test" assertions="2" time="0.798814">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\PromoTransactionIntegrityStage4Test::test_missing_promo_rolls_back_the_entire_domain_operation with data set "service"&#13;
+Promo failure must leave no partial invoice, stock, reservation, history or notification.
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'514a72f061cc11618c9685fb3d72c23007dff5efd9409432ac117c9323156f66'
++'da2e20fc2102efb4aee13a36618893f5bbf1df528a52d5d4bffa1bf9250cfffe'
+&#13;
+C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\PromoTransactionIntegrityStage4Test.php:40</failure>
+      </testcase>
+      <testcase name="test_missing_promo_rolls_back_the_entire_domain_operation with data set &quot;wash&quot;" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\PromoTransactionIntegrityStage4Test.php" line="27" class="Tests\Feature\PromoTransactionIntegrityStage4Test" classname="Tests.Feature.PromoTransactionIntegrityStage4Test" assertions="2" time="0.108690">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\PromoTransactionIntegrityStage4Test::test_missing_promo_rolls_back_the_entire_domain_operation with data set "wash"&#13;
+Promo failure must leave no partial invoice, stock, reservation, history or notification.
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'4a2a45260a9643716448c6baa88a3069d71bcb80e289e0cbe07bb028b76c6f89'
++'6dfeed6d365aa122c1b21ea578580f809c80721dba51ba26cf22ac530fae1287'
+&#13;
+C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\PromoTransactionIntegrityStage4Test.php:40</failure>
+      </testcase>
+      <testcase name="test_missing_promo_rolls_back_the_entire_domain_operation with data set &quot;car sale&quot;" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\PromoTransactionIntegrityStage4Test.php" line="27" class="Tests\Feature\PromoTransactionIntegrityStage4Test" classname="Tests.Feature.PromoTransactionIntegrityStage4Test" assertions="2" time="0.279270">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\PromoTransactionIntegrityStage4Test::test_missing_promo_rolls_back_the_entire_domain_operation with data set "car sale"&#13;
+Promo failure must leave no partial invoice, stock, reservation, history or notification.
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'dfa65df54914c54366105984e94f1a0b0e2e1bfb6a582de33e5d840b6cec15d1'
++'55017b814d8f8dd2643bd89075c2fc37a2354e8a16a30ceaee70ede1e16c959f'
+&#13;
+C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\PromoTransactionIntegrityStage4Test.php:40</failure>
+      </testcase>
+      <testcase name="test_missing_promo_rolls_back_the_entire_domain_operation with data set &quot;parts sale&quot;" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\PromoTransactionIntegrityStage4Test.php" line="27" class="Tests\Feature\PromoTransactionIntegrityStage4Test" classname="Tests.Feature.PromoTransactionIntegrityStage4Test" assertions="2" time="0.129830">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\PromoTransactionIntegrityStage4Test::test_missing_promo_rolls_back_the_entire_domain_operation with data set "parts sale"&#13;
+Promo failure must leave no partial invoice, stock, reservation, history or notification.
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'8c3f780c431f20eb26872a10dad62457eef73cc4e7f2443e015f3c42cf933b6f'
++'05d7d6e709ce57b2ac7de1d5dfed6cc045c4ecb44ce883a4ca9ce16709fc73dc'
+&#13;
+C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\PromoTransactionIntegrityStage4Test.php:40</failure>
+      </testcase>
+      <testcase name="test_missing_promo_rolls_back_the_entire_domain_operation with data set &quot;trade-in&quot;" file="C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\PromoTransactionIntegrityStage4Test.php" line="27" class="Tests\Feature\PromoTransactionIntegrityStage4Test" classname="Tests.Feature.PromoTransactionIntegrityStage4Test" assertions="2" time="0.119628">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\PromoTransactionIntegrityStage4Test::test_missing_promo_rolls_back_the_entire_domain_operation with data set "trade-in"&#13;
+Promo failure must leave no partial invoice, stock, reservation, history or notification.
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'c684002a671dceec1fd732bcc05444fd78ad5270d5be94a6761827fa07a90e67'
++'b3ad18dc87193b7612193a6910d4520dd2c43e25d218df10c20e0da6bb7624d7'
+&#13;
+C:\xampp\htdocs\yza_automotive_laravel\tests\Feature\PromoTransactionIntegrityStage4Test.php:40</failure>
+      </testcase>
+    </testsuite>
+  </testsuite>
+</testsuites>

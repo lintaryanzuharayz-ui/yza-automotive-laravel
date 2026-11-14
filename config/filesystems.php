@@ -32,7 +32,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app/private'),
+            'root' => env('FILESYSTEM_LOCAL_ROOT', storage_path('app/private')),
             'serve' => true,
             'throw' => false,
             'report' => false,
@@ -40,8 +40,8 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
+            'root' => env('FILESYSTEM_PUBLIC_ROOT', storage_path('app/public')),
+            'url' => rtrim(env('APP_URL', 'http://127.0.0.1:8000'), '/').'/storage',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
