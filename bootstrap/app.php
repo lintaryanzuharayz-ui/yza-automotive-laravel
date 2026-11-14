@@ -26,16 +26,33 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        $exceptions->render(function (\Illuminate\Session\TokenMismatchException $e, \Illuminate\Http\Request $request) {
-            if ($request->is('petugas/login') || $request->is('admin/login') || $request->is('logout')) {
+        $handleCsrf = function (\Illuminate\Http\Request $request) {
+            try {
+                if ($request->hasSession()) {
+                    $request->session()->regenerateToken();
+                }
+            } catch (\Throwable) {}
+
+            if ($request->is('petugas/login') || $request->is('admin/login') || $request->is('petugas/*') || $request->is('admin/*') || $request->is('logout')) {
                 return redirect()->route('petugas.login')
-                    ->withErrors(['identity' => 'Sesi keamanan login telah disegarkan. Silakan masukkan kredensial kembali.']);
+                    ->withErrors(['identity' => 'Sesi keamanan login telah diperbarui. Silakan masukkan kredensial kembali.']);
             }
-            if ($request->is('login')) {
+            if ($request->is('login') || $request->is('pelanggan/*')) {
                 return redirect()->route('login')
-                    ->withErrors(['identity' => 'Sesi telah disegarkan untuk keamanan. Silakan coba login kembali.']);
+                    ->withErrors(['identity' => 'Sesi login telah diperbarui. Silakan coba masuk kembali.']);
             }
 
-            return redirect()->back()->withErrors(['error' => 'Sesi telah kedaluwarsa. Silakan muat ulang halaman.']);
+            return redirect()->back()
+                ->withErrors(['error' => 'Sesi Anda telah diperbarui. Silakan ulangi aksi Anda.']);
+        };
+
+        $exceptions->render(function (\Illuminate\Session\TokenMismatchException $e, \Illuminate\Http\Request $request) use ($handleCsrf) {
+            return $handleCsrf($request);
+        });
+
+        $exceptions->render(function (\Symfony\Component\HttpKernel\Exception\HttpException $e, \Illuminate\Http\Request $request) use ($handleCsrf) {
+            if ($e->getStatusCode() === 419) {
+                return $handleCsrf($request);
+            }
         });
     })->create();
