@@ -47,7 +47,6 @@ class AuthController extends Controller
             ->header('Pragma', 'no-cache')
             ->header('Expires', 'Sun, 02 Jan 1990 00:00:00 GMT');
     }
-    }
 
     public function store(Request $request, MemberAccessService $access): RedirectResponse
     {
