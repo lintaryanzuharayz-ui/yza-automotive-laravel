@@ -6,6 +6,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', config('app.name'))</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+    </style>
     @php
         $isMemberShell = auth()->check() && auth()->user()->roleName() === 'pelanggan' && request()->routeIs('pelanggan.*') && !View::hasSection('member-portal');
     @endphp
@@ -63,6 +69,19 @@
                         <img src="{{ asset('images/branding/logo-yza.png') }}" alt="YZA Automotive">
                         <span>YZA Automotive</span>
                     </a>
+                    @if(auth()->check() && auth()->user()->isStaff())
+                        <div style="display:flex; align-items:center; gap:12px; margin-left:auto; margin-right:16px;">
+                            <span style="font-size:12px; color:#475569; font-weight:600;">
+                                {{ auth()->user()->displayName() }}
+                            </span>
+                            <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+                                @csrf
+                                <button type="submit" style="background:#ef1b2d; color:#ffffff; border:none; padding:5px 12px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer;">
+                                    Logout
+                                </button>
+                            </form>
+                        </div>
+                    @endif
                     <button class="yza-menu-toggle" type="button" aria-label="Buka navigasi" aria-expanded="false">☰</button>
                 </header>
             @endif

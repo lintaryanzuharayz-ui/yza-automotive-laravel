@@ -22,5 +22,16 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        $exceptions->render(function (\Illuminate\Session\TokenMismatchException $e, \Illuminate\Http\Request $request) {
+            if ($request->is('petugas/login') || $request->is('admin/login') || $request->is('logout')) {
+                return redirect()->route('petugas.login')
+                    ->withErrors(['identity' => 'Sesi keamanan login telah disegarkan. Silakan masukkan kredensial kembali.']);
+            }
+            if ($request->is('login')) {
+                return redirect()->route('login')
+                    ->withErrors(['identity' => 'Sesi telah disegarkan untuk keamanan. Silakan coba login kembali.']);
+            }
+
+            return redirect()->back()->withErrors(['error' => 'Sesi telah kedaluwarsa. Silakan muat ulang halaman.']);
+        });
     })->create();

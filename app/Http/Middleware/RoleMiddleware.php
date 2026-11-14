@@ -8,10 +8,34 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RoleMiddleware
 {
-    public function handle(Request $request, Closure $next, string $role): Response
+    public function handle(Request $request, Closure $next, string ...$roles): Response
     {
-        abort_unless($request->user()?->roleName() === strtolower($role), 403);
+        $user = $request->user();
+        if (!$user) {
+            abort(403);
+        }
 
-        return $next($request);
+        $userRole = $user->roleName();
+
+        $allowedRoles = [];
+        foreach ($roles as $r) {
+            foreach (explode(',', $r) as $subRole) {
+                $allowedRoles[] = strtolower(trim($subRole));
+            }
+        }
+
+        if (in_array($userRole, $allowedRoles, true)) {
+            return $next($request);
+        }
+
+        if (in_array('admin', $allowedRoles, true) && $user->isAdmin()) {
+            return $next($request);
+        }
+
+        if (in_array('petugas', $allowedRoles, true) && $user->isStaff()) {
+            return $next($request);
+        }
+
+        abort(403);
     }
 }

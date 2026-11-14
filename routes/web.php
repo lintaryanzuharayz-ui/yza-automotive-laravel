@@ -89,14 +89,19 @@ Route::get('/trade-in/membership-entry', [PublicMobilController::class, 'members
 Route::middleware('guest')->group(function (): void {
     Route::get('/login', [AuthController::class, 'create'])->name('login');
     Route::post('/login', [AuthController::class, 'store'])->name('login.store');
+
     Route::get('/register', [RegistrationController::class, 'create'])->name('register');
     Route::get('/register/regions/{level}/{parent?}', [RegistrationController::class, 'regions'])->name('register.regions');
     Route::post('/register', [RegistrationController::class, 'store'])->name('register.store');
 });
 
-Route::post('/logout', [AuthController::class, 'destroy'])
-    ->middleware('auth')
-    ->name('logout');
+// Portal Login Petugas & Admin (Di luar guest middleware agar transisi antar akun/role selalu meregenerasi token fresh tanpa 419)
+Route::get('/petugas/login', [AuthController::class, 'createPetugas'])->name('petugas.login');
+Route::post('/petugas/login', [AuthController::class, 'storePetugas'])->name('petugas.login.store');
+Route::get('/admin/login', fn() => redirect()->route('petugas.login'))->name('admin.login');
+
+// Logout (Mendukung GET dan POST untuk kehandalan pergantian akun)
+Route::match(['get', 'post'], '/logout', [AuthController::class, 'destroy'])->name('logout');
 Route::post('/payment/midtrans/notification', [MidtransController::class, 'notification'])->name('midtrans.notification');
 
 Route::middleware('auth')->group(function (): void {
@@ -365,4 +370,8 @@ Route::middleware(['auth', 'role:petugas'])->prefix('petugas')->name('petugas.')
     Route::get('penjualan-mobil/create', [OperationsPenjualanMobilController::class, 'create'])->name('penjualan-mobil.create');
     Route::post('penjualan-mobil', [OperationsPenjualanMobilController::class, 'store'])->name('penjualan-mobil.store');
     Route::get('penjualan-mobil/{penjualan_mobil}', [OperationsPenjualanMobilController::class, 'show'])->name('penjualan-mobil.show');
+    Route::get('inventory/stok', [InventoryController::class, 'stock'])->name('inventory.stock');
+    Route::get('inventory/riwayat', [InventoryController::class, 'history'])->name('inventory.history');
+    Route::get('inventory/penyesuaian/{sparepart?}', [InventoryController::class, 'adjustment'])->name('inventory.adjustment');
+    Route::post('inventory/penyesuaian', [InventoryController::class, 'adjust'])->name('inventory.adjust');
 });

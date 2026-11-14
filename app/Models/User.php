@@ -65,4 +65,33 @@ class User extends Authenticatable
     {
         return strtolower((string) ($this->role?->nama_role ?? ''));
     }
+
+    public const STAFF_ROLES = [
+        'admin',
+        'super_admin',
+        'owner',
+        'petugas',
+        'service_advisor',
+        'mechanic',
+        'warehouse_staff',
+        'finance',
+        'operational_staff',
+        'quality_control',
+        'sales',
+    ];
+
+    public function isStaff(): bool
+    {
+        return $this->petugas !== null || in_array($this->roleName(), self::STAFF_ROLES, true);
+    }
+
+    public function isAdmin(): bool
+    {
+        return in_array($this->roleName(), ['admin', 'super_admin'], true);
+    }
+
+    public function isPelanggan(): bool
+    {
+        return $this->roleName() === 'pelanggan';
+    }
 }
